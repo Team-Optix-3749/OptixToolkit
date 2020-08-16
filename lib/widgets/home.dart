@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import '../my_flutter_app_icons.dart';
 
 class MyStatefulWidget extends StatefulWidget {
-  MyStatefulWidget({Key key}) : super(key: key);
+  MyStatefulWidget({Key key, this.title}) : super(key: key);
+
+  final String title;
 
   @override
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
@@ -29,7 +32,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     ),
     Text(
       'Index 3: Profile',
-      style: optionStyle
+      style: optionStyle,
     )
   ];
 
@@ -43,29 +46,44 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BottomNavigationBar Sample'),
+        title: Text(widget.title),
+        backgroundColor: blue,
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
+      backgroundColor: background,
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         backgroundColor: background,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
+            icon: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Icon(Icons.home),
+            ),
+            title: Container(),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            title: Text('OptixTools'),
+            icon: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Icon(FlutterIcons.tools),
+            ),
+            title: Container(),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('OptixParts'),
+            icon: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Icon(FlutterIcons.parts),
+            ),
+            title: Container(),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            title: Text('Profile'),
+            icon: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Icon(Icons.person),
+            ),
+            title: Container(),
           ),
         ],
         currentIndex: _selectedIndex,

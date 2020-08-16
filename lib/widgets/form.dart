@@ -22,27 +22,23 @@ class _FormPageState extends State<FormPage> {
 
   bool isInProcess = false;
 
-  Future signIn(BuildContext context) async {
+  Future signIn() async {
     if (isInProcess) return;
     isInProcess = true;
     if (widget.isLogin) {
       //do login
       try {
-        AuthResult result = await widget._auth.signInWithEmailAndPassword(
+        await widget._auth.signInWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
-        _continue(context);
       } catch (e) {
-        print(e);
         Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.message)));
       }
       isInProcess = false;
     } else {
       try {
-        AuthResult result = await widget._auth.createUserWithEmailAndPassword(
+        await widget._auth.createUserWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
-        print(result.user.email);
       } catch (e) {
-        print(e);
         Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.message)));
       }
       isInProcess = false;
@@ -57,17 +53,25 @@ class _FormPageState extends State<FormPage> {
     super.dispose();
   }
 
-  void _continue(BuildContext context) {
-    Navigator.push(
+  void _goToHome() {
+    Navigator.pushReplacement(
         context,
         PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) =>
-                MyStatefulWidget()));
+                MyStatefulWidget(title: widget.title)));
   }
 
   @override
   void initState() {
-    widget._auth.onAuthStateChanged;
+    CheckAuthState();
+  }
+
+  Future CheckAuthState() async {
+    await for (var event in widget._auth.onAuthStateChanged) {
+      if (event != null) {
+        _goToHome();
+      }
+    }
   }
 
   @override
@@ -114,7 +118,7 @@ class _FormPageState extends State<FormPage> {
                   RaisedButton(
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
-                        signIn(context);
+                        signIn();
                       }
                     },
                     child: Text(widget.isLogin ? 'Login' : 'Sign Up'),
