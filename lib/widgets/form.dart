@@ -126,6 +126,7 @@ class _FormPageState extends State<FormPage> {
                       }
                     },
                     child: Text(widget.isLogin ? 'Login' : 'Sign Up'),
+                    color: blue,
                   )
                 ])),
           ],
