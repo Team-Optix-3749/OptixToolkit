@@ -11,7 +11,7 @@ class FormPage extends StatefulWidget {
   final bool isLogin;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-  final _firestore = Firestore.instance;
+  final Firestore _firestore = Firestore.instance;
 
   @override
   _FormPageState createState() => _FormPageState();

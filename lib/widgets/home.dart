@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../my_flutter_app_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import "./form.dart";
 
 class MyStatefulWidget extends StatefulWidget {
@@ -8,6 +9,7 @@ class MyStatefulWidget extends StatefulWidget {
 
   final String title;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final Firestore _firestore = Firestore.instance;
 
   @override
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
@@ -21,7 +23,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  List<Widget> _widgetOptions = <Widget>[
     Text(
       'Home',
       style: optionStyle,
@@ -35,7 +37,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       style: optionStyle,
     ),
     Text(
-      'Profile',
+      'loading profile',
       style: optionStyle,
     )
   ];
@@ -74,10 +76,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       if (event == null) {
         _goToLogin();
       } else {
-        print("user uid is below");
-        print(event.uid);
+        GetUserData(event.uid);
       }
     }
+  }
+
+  Future GetUserData(String uid) async {
+    var doc = await widget._firestore.collection("users").document(uid).get();
+    print(doc);
+    setState(() {
+      _widgetOptions[3] = Text(doc.data['name'], style: optionStyle);
+    });
   }
 
   @override
