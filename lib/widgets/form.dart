@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'home.dart';
+import 'auth.dart';
 
 class FormPage extends StatefulWidget {
   FormPage({Key key, this.isLogin}) : super(key: key);
@@ -126,6 +127,11 @@ class _FormPageState extends State<FormPage> {
                       }
                     },
                     child: Text(widget.isLogin ? 'Login' : 'Sign Up'),
+                    color: blue,
+                  ),
+                  RaisedButton(
+                    onPressed: () => AuthService.googleSignIn(),
+                    child: Text("Login With Google"),
                     color: blue,
                   )
                 ])),
