@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
-        body: FormPage(isLogin: true),
+        body: FormPage(isLogin: false),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'home.dart';
 //import 'auth.dart';
@@ -10,6 +11,7 @@ class FormPage extends StatefulWidget {
   final bool isLogin;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final _firestore = Firestore.instance;
 
   @override
   _FormPageState createState() => _FormPageState();
@@ -36,24 +38,30 @@ class _FormPageState extends State<FormPage> {
       try {
         await widget._auth.signInWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
+        _goToHome();
       } catch (e) {
         Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.message)));
       }
       isInProcess = false;
     } else {
       try {
-        await widget._auth.createUserWithEmailAndPassword(
+        AuthResult res = await widget._auth.createUserWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
+        await widget._firestore
+            .collection("users")
+            .document(res.user.uid)
+            .setData({'uid': res.user.uid, 'name': nameController.text});
+        _goToHome();
       } catch (e) {
         Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.message)));
+        
       }
       isInProcess = false;
     }
   }
 
   Future signInWithGoogle() async {
-    GoogleSignInAccount googleUser =
-        await widget._googleSignIn.signIn();
+    GoogleSignInAccount googleUser = await widget._googleSignIn.signIn();
 
     // Step 2
     GoogleSignInAuthentication googleAuth = await googleUser.authentication;
@@ -89,7 +97,7 @@ class _FormPageState extends State<FormPage> {
 
   Future CheckAuthState() async {
     await for (var event in widget._auth.onAuthStateChanged) {
-      if (event != null) {
+      if (event != null && !isInProcess) {
         _goToHome();
       }
     }

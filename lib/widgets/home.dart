@@ -48,6 +48,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   void initState() {
+    CheckAuthState();
     //LogOut();
   }
 
@@ -58,6 +59,25 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) =>
                 FormPage(isLogin: true)));
+  }
+
+  void _goToLogin() {
+    Navigator.pushReplacement(
+        context,
+        PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) =>
+                FormPage(isLogin: true)));
+  }
+
+  Future CheckAuthState() async {
+    await for (var event in widget._auth.onAuthStateChanged) {
+      if (event == null) {
+        _goToLogin();
+      } else {
+        print("user uid is below");
+        print(event.uid);
+      }
+    }
   }
 
   @override
