@@ -19,6 +19,10 @@ class _FormPageState extends State<FormPage> {
   final passwordController = TextEditingController();
   final nameController = TextEditingController();
 
+  final Color background = Color(0xff26292c);
+  final Color blue = Color(0xff159deb);
+  final Color white = Color(0xffffffff);
+
   bool isInProcess = false;
 
   Future signIn() async {
@@ -76,6 +80,7 @@ class _FormPageState extends State<FormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: background,
       appBar: AppBar(
         title: Center(child: Text(widget.isLogin ? "Login" : "Signup")),
       ),

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import '../my_flutter_app_icons.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import "./form.dart";
 
 class MyStatefulWidget extends StatefulWidget {
   MyStatefulWidget({Key key, this.title}) : super(key: key);
 
   final String title;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
@@ -41,6 +44,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    //LogOut();
+  }
+
+  Future LogOut() async {
+    await widget._auth.signOut();
+    Navigator.pushReplacement(
+        context,
+        PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) =>
+                FormPage(isLogin: true)));
   }
 
   @override
