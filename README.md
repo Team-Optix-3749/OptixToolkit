@@ -1,2 +1,2 @@
 # OptixToolkit
-A system to track and manage tools and robot parts.
+> 🧰 An app to track and manage tools and robot parts.
