@@ -1,35 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'home.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title, this.isLogin}) : super(key: key);
+class FormPage extends StatefulWidget {
+  FormPage({Key key, this.title, this.isLogin}) : super(key: key);
 
   final String title;
   final bool isLogin;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _FormPageState createState() => _FormPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  String _username = "default";
-  String _password = "default";
+class _FormPageState extends State<FormPage> {
   final _formKey = GlobalKey<FormState>();
 
-  void _changeWord() {
-    String word = myController.text;
-    setState(() {
-      _username = word;
-    });
-    myController.text = "";
-  }
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final nameController = TextEditingController();
 
-  final myController = TextEditingController();
+  bool isInProcess = false;
+
+  Future signIn(BuildContext context) async {
+    if (isInProcess) return;
+    isInProcess = true;
+    if (widget.isLogin) {
+      //do login
+      try {
+        AuthResult result = await widget._auth.signInWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text);
+        _continue(context);
+      } catch (e) {
+        print(e);
+        Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.message)));
+      }
+      isInProcess = false;
+    } else {
+      try {
+        AuthResult result = await widget._auth.createUserWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text);
+        print(result.user.email);
+      } catch (e) {
+        print(e);
+        Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.message)));
+      }
+      isInProcess = false;
+    }
+  }
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    myController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
+  }
+
+  void _continue(BuildContext context) {
+    Navigator.push(
+        context,
+        PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) =>
+                MyStatefulWidget()));
+  }
+
+  @override
+  void initState() {
+    widget._auth.onAuthStateChanged;
   }
 
   @override
@@ -45,7 +83,16 @@ class _MyHomePageState extends State<MyHomePage> {
             Form(
                 key: _formKey,
                 child: Column(children: <Widget>[
-                  // Add TextFormFields and RaisedButton here.
+                  if (!widget.isLogin)
+                    TextFormField(
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Name';
+                        }
+                        return null;
+                      },
+                      controller: nameController,
+                    ),
                   TextFormField(
                     validator: (value) {
                       if (value.isEmpty) {
@@ -53,16 +100,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       }
                       return null;
                     },
+                    controller: emailController,
                   ),
-                  if (!widget.isLogin)
-                    TextFormField(
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'bruh';
-                        }
-                        return null;
-                      },
-                    ),
                   TextFormField(
                     validator: (value) {
                       if (value.isEmpty) {
@@ -70,16 +109,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       }
                       return null;
                     },
+                    controller: passwordController,
                   ),
                   RaisedButton(
                     onPressed: () {
-                      // Validate returns true if the form is valid, otherwise false.
                       if (_formKey.currentState.validate()) {
-                        // If the form is valid, display a snackbar. In the real world,
-                        // you'd often call a server or save the information in a database.
-
-                        Scaffold.of(context).showSnackBar(
-                            SnackBar(content: Text('Processing Data')));
+                        signIn(context);
                       }
                     },
                     child: Text(widget.isLogin ? 'Login' : 'Sign Up'),
@@ -91,28 +126,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-// class MyCustomForm extends StatefulWidget {
-//   @override
-//   MyCustomFormState createState() {
-//     return MyCustomFormState();
-//   }
-// }
-
-// // Define a corresponding State class.
-// // This class holds data related to the form.
-// class MyCustomFormState extends State<MyCustomForm> {
-//   // Create a global key that uniquely identifies the Form widget
-//   // and allows validation of the form.
-//   //
-//   // Note: This is a `GlobalKey<FormState>`,
-//   // not a GlobalKey<MyCustomFormState>.
-//   final _formKey = GlobalKey<FormState>();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     // Build a Form widget using the _formKey created above.
-//     return
-//     );
-//   }
-// }

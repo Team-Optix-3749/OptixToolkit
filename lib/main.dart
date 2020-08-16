@@ -1,5 +1,7 @@
+import 'package:OptixToolkit/widgets/home.dart';
 import 'package:flutter/material.dart';
 import 'widgets/form.dart';
+//import 'widgets/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,8 +16,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home:Scaffold(
-        body: MyHomePage(title: "hello", isLogin: false),
+      home: Scaffold(
+        body: FormPage(title: "Hello", isLogin: true),
       ),
     );
   }
