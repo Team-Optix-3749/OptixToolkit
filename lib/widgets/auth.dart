@@ -35,15 +35,6 @@ class AuthService {
     loading.add(true);
 
     // Step 1
-    GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-
-    // Step 2
-    GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-    FirebaseUser user = await _auth.signInWithGoogle(
-        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-
-    // Step 3
-    updateUserData(user);
 
     // Done
     loading.add(false);

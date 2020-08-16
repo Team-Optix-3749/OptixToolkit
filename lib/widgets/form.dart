@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'home.dart';
-import 'auth.dart';
+//import 'auth.dart';
 
 class FormPage extends StatefulWidget {
   FormPage({Key key, this.isLogin}) : super(key: key);
 
   final bool isLogin;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   @override
   _FormPageState createState() => _FormPageState();
@@ -47,6 +49,21 @@ class _FormPageState extends State<FormPage> {
       }
       isInProcess = false;
     }
+  }
+
+  Future signInWithGoogle() async {
+    GoogleSignInAccount googleUser =
+        await widget._googleSignIn.signIn();
+
+    // Step 2
+    GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    final AuthCredential credential = GoogleAuthProvider.getCredential(
+        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+    AuthResult result = await widget._auth.signInWithCredential(credential);
+    FirebaseUser user = result.user;
+
+    // Step 3
+    //updateUserData(user);
   }
 
   @override
@@ -130,7 +147,7 @@ class _FormPageState extends State<FormPage> {
                     color: blue,
                   ),
                   RaisedButton(
-                    onPressed: () => AuthService.googleSignIn(),
+                    onPressed: () => signInWithGoogle(),
                     child: Text("Login With Google"),
                     color: blue,
                   )
