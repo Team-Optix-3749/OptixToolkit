@@ -20,15 +20,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       style: optionStyle,
     ),
     Text(
-      'Index 1: Business',
+      'Index 1: OptixParts',
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'Index 2: OptixTools',
       style: optionStyle,
     ),
     Text(
-      'Index 3: Account',
+      'Index 3: Profile',
       style: optionStyle
     )
   ];
@@ -57,15 +57,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
-            title: Text('Tools'),
+            title: Text('OptixTools'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
-            title: Text('Store'),
+            title: Text('OptixParts'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            title: Text('Account'),
+            title: Text('Profile'),
           ),
         ],
         currentIndex: _selectedIndex,
