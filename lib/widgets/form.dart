@@ -3,9 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'home.dart';
 
 class FormPage extends StatefulWidget {
-  FormPage({Key key, this.title, this.isLogin}) : super(key: key);
+  FormPage({Key key, this.isLogin}) : super(key: key);
 
-  final String title;
   final bool isLogin;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -58,7 +57,7 @@ class _FormPageState extends State<FormPage> {
         context,
         PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) =>
-                MyStatefulWidget(title: widget.title)));
+                MyStatefulWidget()));
   }
 
   @override
@@ -78,7 +77,7 @@ class _FormPageState extends State<FormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Center(child: Text(widget.isLogin ? "Login" : "Signup")),
       ),
       body: Center(
         child: Column(
