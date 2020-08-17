@@ -3,4 +3,4 @@
 
 # Developing
  Error build\app\intermediates\signing_config\debug\out\signing-config.json (Access is denied) <br>
- to fix it remove the file
+ to fix it remove the file, or admin privileges
