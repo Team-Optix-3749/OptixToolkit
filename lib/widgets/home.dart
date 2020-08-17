@@ -51,7 +51,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   void initState() {
     CheckAuthState();
-    //LogOut();
+    LogOut();
   }
 
   Future LogOut() async {

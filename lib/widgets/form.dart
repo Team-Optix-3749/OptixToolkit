@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+//import 'package:google_sign_in/google_sign_in.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'home.dart';
 //import 'auth.dart';
 
@@ -10,7 +11,7 @@ class FormPage extends StatefulWidget {
 
   final bool isLogin;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  //final GoogleSignIn _googleSignIn = GoogleSignIn();
   final Firestore _firestore = Firestore.instance;
 
   @override
@@ -27,6 +28,9 @@ class _FormPageState extends State<FormPage> {
   final Color background = Color(0xff26292c);
   final Color blue = Color(0xff159deb);
   final Color white = Color(0xffffffff);
+  final Color gray = Color(0xff3A3D41);
+  final Color subtleGray = Color(0xffcccccc);
+  final Color divider = Color(0xff3a3d41);
 
   bool isInProcess = false;
 
@@ -50,28 +54,14 @@ class _FormPageState extends State<FormPage> {
         await widget._firestore
             .collection("users")
             .document(res.user.uid)
-            .setData({'uid': res.user.uid, 'name': nameController.text});
+            .setData({'uid': res.user.uid, 'name': nameController.text},
+                merge: true);
         _goToHome();
       } catch (e) {
         Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.message)));
-        
       }
       isInProcess = false;
     }
-  }
-
-  Future signInWithGoogle() async {
-    GoogleSignInAccount googleUser = await widget._googleSignIn.signIn();
-
-    // Step 2
-    GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
-        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-    AuthResult result = await widget._auth.signInWithCredential(credential);
-    FirebaseUser user = result.user;
-
-    // Step 3
-    //updateUserData(user);
   }
 
   @override
@@ -88,6 +78,14 @@ class _FormPageState extends State<FormPage> {
         PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) =>
                 MyStatefulWidget()));
+  }
+
+  void switchPage() {
+    Navigator.pushReplacement(
+        context,
+        PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) =>
+                FormPage(isLogin: !widget.isLogin)));
   }
 
   @override
@@ -108,7 +106,9 @@ class _FormPageState extends State<FormPage> {
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
-        title: Center(child: Text(widget.isLogin ? "Login" : "Signup")),
+        title: Center(
+            child: Text(widget.isLogin ? "LOGIN" : "SIGNUP",
+                style: GoogleFonts.rubik(fontWeight: FontWeight.bold))),
       ),
       body: Center(
         child: Column(
@@ -116,50 +116,118 @@ class _FormPageState extends State<FormPage> {
           children: <Widget>[
             Form(
                 key: _formKey,
-                child: Column(children: <Widget>[
-                  if (!widget.isLogin)
-                    TextFormField(
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'Name';
-                        }
-                        return null;
-                      },
-                      controller: nameController,
+                child: Column(
+                  children: <Widget>[
+                    if (!widget.isLogin)
+                      Container(
+                          width: 300,
+                          child: TextFormField(
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return 'Name';
+                                }
+                                return null;
+                              },
+                              controller: nameController,
+                              style: GoogleFonts.rubik(color: white),
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: gray,
+                                hintText: 'Full Name',
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(9.0)),
+                                hintStyle: TextStyle(color: subtleGray),
+                              ))),
+                    SizedBox(height: 10),
+                    Container(
+                        width: 300,
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Email';
+                            }
+                            return null;
+                          },
+                          controller: emailController,
+                          style: GoogleFonts.rubik(color: white),
+                          textAlign: TextAlign.center,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: gray,
+                            hintText: 'Email',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(9.0)),
+                            hintStyle: TextStyle(color: subtleGray),
+                          ),
+                        )),
+                    SizedBox(height: 10),
+                    Container(
+                        width: 300,
+                        child: TextFormField(
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return 'Password';
+                              }
+                              return null;
+                            },
+                            controller: passwordController,
+                            obscureText: true,
+                            style: TextStyle(color: Colors.white),
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                                filled: true,
+                                fillColor: gray,
+                                hintText: 'Password',
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(9.0)),
+                                hintStyle: TextStyle(color: subtleGray)))),
+                    SizedBox(height: 10),
+                    ButtonTheme(
+                      minWidth: 300,
+                      height: 50,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7.0)),
+                      child: RaisedButton(
+                        onPressed: () {
+                          if (_formKey.currentState.validate()) {
+                            signIn();
+                          }
+                        },
+                        child: Text(widget.isLogin ? 'LOG IN' : 'SIGN UP',
+                            style: GoogleFonts.rubik(
+                                fontWeight: FontWeight.bold, color: white)),
+                        color: blue,
+                      ),
                     ),
-                  TextFormField(
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Username';
-                      }
-                      return null;
-                    },
-                    controller: emailController,
-                  ),
-                  TextFormField(
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Password';
-                      }
-                      return null;
-                    },
-                    controller: passwordController,
-                  ),
-                  RaisedButton(
-                    onPressed: () {
-                      if (_formKey.currentState.validate()) {
-                        signIn();
-                      }
-                    },
-                    child: Text(widget.isLogin ? 'Login' : 'Sign Up'),
-                    color: blue,
-                  ),
-                  RaisedButton(
-                    onPressed: () => signInWithGoogle(),
-                    child: Text("Login With Google"),
-                    color: blue,
-                  )
-                ])),
+                    SizedBox(height: 5),
+                    Container(
+                      width: 300,
+                      child: Divider(
+                        color: divider,
+                        height: 20,
+                        thickness: 2,
+                        endIndent: 0,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    ButtonTheme(
+                      minWidth: 300,
+                      height: 50,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7.0),
+                          side: BorderSide(color: blue)),
+                      child: RaisedButton(
+                        onPressed: () => switchPage(),
+                        child: Text(widget.isLogin ? "SIGN UP" : "LOG IN",
+                            style: GoogleFonts.rubik(
+                                fontWeight: FontWeight.bold, color: white)),
+                        color: background,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                  ],
+                )),
           ],
         ),
       ),
