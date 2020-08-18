@@ -24,22 +24,26 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
+    Column(
+      children: [
+        Text("Home"),
+      ],
     ),
-    Text(
-      'OptixTools',
-      style: optionStyle,
+    Column(
+      children: [
+        Text("OptixTools"),
+      ],
     ),
-    Text(
-      'OptixParts',
-      style: optionStyle,
+    Column(
+      children: [
+        Text("OptixParts"),
+      ],
     ),
-    Text(
-      'loading profile',
-      style: optionStyle,
-    )
+    Column(
+      children: [
+        Text("Loading Profile"),
+      ],
+    ),
   ];
 
   void _onItemTapped(int index) {
@@ -51,7 +55,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   void initState() {
     CheckAuthState();
-    LogOut();
+    // LogOut();
   }
 
   Future LogOut() async {
