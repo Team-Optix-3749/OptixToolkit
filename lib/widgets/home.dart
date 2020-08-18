@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../my_flutter_app_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -47,9 +48,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     Text(
                       "Hey there, Tux!",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25.0,
+                      style: GoogleFonts.rubik(
+                        textStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25.0,
+                        ),
                       ),
                     )
                   ],
