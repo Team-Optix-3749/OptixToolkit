@@ -29,7 +29,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     Column(
       children: [
         Container(
-          margin: EdgeInsets.only(left: 7, top: 12, right: 7, bottom: 12),
+          margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 17),
           width: 400,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7.0),
