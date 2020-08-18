@@ -17,6 +17,7 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final Color background = Color(0xff26292c);
+  final Color lightBackground = Color(0xff3a3d41);
   final Color blue = Color(0xff159deb);
   final Color white = Color(0xffffffff);
   final List<String> titles = ["Home", "OptixTools", "OptixParts", "Profile"];
@@ -26,7 +27,35 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   List<Widget> _widgetOptions = <Widget>[
     Column(
       children: [
-        Text("Home"),
+        Container(
+          width: 350,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(7.0),
+            color: Color(0xff3a3d41),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "Hey there, Tux!",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     ),
     Column(
