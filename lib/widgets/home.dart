@@ -28,7 +28,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     Column(
       children: [
         Container(
-          width: 350,
+          margin: EdgeInsets.only(left: 7, top: 12, right: 7, bottom: 12),
+          width: 400,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7.0),
             color: Color(0xff3a3d41),
