@@ -1,0 +1,8 @@
+-- column: box
+ +-- row 1: title
+ +-- row 2: body
+    +-- column 1: tool names (blue)
+    +-- column 2: tool times (white)
+    +-- column 3: buttons (blue)
+
+all of them need cross-axis and regular axis alignment

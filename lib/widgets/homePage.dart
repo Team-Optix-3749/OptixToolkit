@@ -71,91 +71,76 @@ class _homePage extends State<homePage> {
                     ),
                     child: Padding(
                       padding: EdgeInsets.all(20.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                      child: Column(
                         children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Row(
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              new RichText(
+                                text: new TextSpan(
+                                  children: <TextSpan>[
+                                    new TextSpan(
+                                        text: 'Upcoming ',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 25.0,
+                                        )),
+                                    new TextSpan(
+                                      text: 'Reservations',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        fontSize: 25.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Column(
                                 children: [
                                   new RichText(
                                     text: new TextSpan(
                                       children: <TextSpan>[
                                         new TextSpan(
-                                            text: 'Upcoming ',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 25.0,
-                                            )),
-                                        new TextSpan(
-                                          text: 'Reservations',
+                                          text: 'Mill ',
                                           style: TextStyle(
+                                            color: Color(0xff159deb),
+                                            fontSize: 15.0,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                            fontSize: 25.0,
                                           ),
                                         ),
                                       ],
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
-                              Row(
+                              Column(
                                 children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              new RichText(
-                                                text: new TextSpan(
-                                                  children: <TextSpan>[
-                                                    new TextSpan(
-                                                      text: 'Mill ',
-                                                      style: TextStyle(
-                                                        color:
-                                                            Color(0xff159deb),
-                                                        fontSize: 15.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
+                                  new RichText(
+                                    text: new TextSpan(
+                                      children: <TextSpan>[
+                                        new TextSpan(
+                                          text: '2pm-2:30pm ',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15.0,
                                           ),
-                                          Column(
-                                            children: [
-                                              new RichText(
-                                                text: new TextSpan(
-                                                  children: <TextSpan>[
-                                                    new TextSpan(
-                                                      text: '2pm-2:30pm ',
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15.0,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  RaisedButton(
+                                    onPressed: () {},
+                                    child: const Text('Enabled Button',
+                                        style: TextStyle(fontSize: 20)),
                                   ),
                                 ],
                               ),

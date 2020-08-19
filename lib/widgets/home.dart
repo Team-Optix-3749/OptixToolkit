@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import '../my_flutter_app_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,7 +22,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final Color lightBackground = Color(0xff3a3d41);
   final Color blue = Color(0xff159deb);
   final Color white = Color(0xffffffff);
-  final List<String> titles = ["Home", "OptixTools", "OptixParts", "Profile"];
+  final List<String> titles = ["HOME", "TOOLS", "PARTS", "PROFILE"];
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -101,7 +102,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text(titles[_selectedIndex])),
+        title: Center(
+            child: Text(titles[_selectedIndex],
+                style: GoogleFonts.rubik(fontWeight: FontWeight.bold))),
         backgroundColor: blue,
       ),
       body: Center(
