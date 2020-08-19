@@ -27,18 +27,18 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
-    homePage(),
+    homePage(name: ""),
     Container(
       child: Column(
         children: [
-          Text("OptixTools"),
+          Text("TOOLS"),
         ],
       ),
     ),
     Container(
       child: Column(
         children: [
-          Text("OptixParts"),
+          Text("PARTS"),
         ],
       ),
     ),
@@ -94,6 +94,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     var doc = await widget._firestore.collection("users").document(uid).get();
     print(doc);
     setState(() {
+      _widgetOptions[0] = homePage(name: doc.data['name']);
       _widgetOptions[3] = Text(doc.data['name'], style: optionStyle);
     });
   }
