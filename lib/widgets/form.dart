@@ -137,7 +137,7 @@ class _FormPageState extends State<FormPage> {
                                 hintText: 'Full Name',
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(9.0)),
-                                hintStyle: TextStyle(color: subtleGray),
+                                hintStyle: GoogleFonts.rubik(color: subtleGray),
                               ))),
                     SizedBox(height: 10),
                     Container(
@@ -158,7 +158,7 @@ class _FormPageState extends State<FormPage> {
                             hintText: 'Email',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(9.0)),
-                            hintStyle: TextStyle(color: subtleGray),
+                            hintStyle: GoogleFonts.rubik(color: subtleGray),
                           ),
                         )),
                     SizedBox(height: 10),
@@ -173,7 +173,7 @@ class _FormPageState extends State<FormPage> {
                             },
                             controller: passwordController,
                             obscureText: true,
-                            style: TextStyle(color: Colors.white),
+                            style: GoogleFonts.rubik(color: Colors.white),
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                                 filled: true,
@@ -181,7 +181,8 @@ class _FormPageState extends State<FormPage> {
                                 hintText: 'Password',
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(9.0)),
-                                hintStyle: TextStyle(color: subtleGray)))),
+                                hintStyle:
+                                    GoogleFonts.rubik(color: subtleGray)))),
                     SizedBox(height: 10),
                     ButtonTheme(
                       minWidth: 300,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class homePage extends StatefulWidget {
   homePage({Key key}) : super(key: key);
@@ -98,7 +99,9 @@ class _homePage extends State<homePage> {
                               ),
                             ],
                           ),
+                          const SizedBox(height: 20),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
                                 children: [
@@ -136,11 +139,37 @@ class _homePage extends State<homePage> {
                                 ],
                               ),
                               Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  RaisedButton(
-                                    onPressed: () {},
-                                    child: const Text('Enabled Button',
-                                        style: TextStyle(fontSize: 20)),
+                                  ButtonTheme(
+                                    minWidth: 170,
+                                    height: 40,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(7.0)),
+                                    child: RaisedButton(
+                                      onPressed: () {},
+                                      child: Text('RESERVE A TOOL',
+                                          style: GoogleFonts.rubik(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white)),
+                                      color: Color(0xff159deb),
+                                    ),
+                                  ),
+                                  ButtonTheme(
+                                    minWidth: 170,
+                                    height: 40,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(7.0)),
+                                    child: RaisedButton(
+                                      onPressed: () {},
+                                      child: Text('CHECKOUT A TOOL',
+                                          style: GoogleFonts.rubik(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white)),
+                                      color: Color(0xff159deb),
+                                    ),
                                   ),
                                 ],
                               ),
