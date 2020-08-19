@@ -81,20 +81,26 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ],
       ),
     ),
-    Column(
-      children: [
-        Text("OptixTools"),
-      ],
+    Container(
+      child: Column(
+        children: [
+          Text("OptixTools"),
+        ],
+      ),
     ),
-    Column(
-      children: [
-        Text("OptixParts"),
-      ],
+    Container(
+      child: Column(
+        children: [
+          Text("OptixParts"),
+        ],
+      ),
     ),
-    Column(
-      children: [
-        Text("Loading Profile"),
-      ],
+    Container(
+      child: Column(
+        children: [
+          Text("Loading Profile"),
+        ],
+      ),
     ),
   ];
 
