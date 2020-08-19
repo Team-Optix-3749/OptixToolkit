@@ -111,13 +111,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                                   ),
                                   children: <TextSpan>[
                                     new TextSpan(
-                                        text: 'Hey there, ',
+                                        text: 'Upcoming ',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 25.0,
                                         )),
                                     new TextSpan(
-                                      text: 'Tux!',
+                                      text: 'Reservations',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
