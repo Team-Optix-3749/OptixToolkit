@@ -26,59 +26,60 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
-    Container(),
-    Column(
-      children: [
-        Container(
-          margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 17),
-          width: 400,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(7.0),
-            color: Color(0xff3a3d41),
-          ),
-          child: Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    new RichText(
-                      text: new TextSpan(
-                        // Note: Styles for TextSpans must be explicitly defined.
-                        // Child text spans will inherit styles from parent
-                        style: new TextStyle(
-                          fontSize: 14.0,
-                          color: Colors.black,
-                        ),
-                        children: <TextSpan>[
-                          new TextSpan(
-                              text: 'Hey there, ',
+    Container(
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 17),
+            width: 400,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7.0),
+              color: Color(0xff3a3d41),
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      new RichText(
+                        text: new TextSpan(
+                          // Note: Styles for TextSpans must be explicitly defined.
+                          // Child text spans will inherit styles from parent
+                          style: new TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.black,
+                          ),
+                          children: <TextSpan>[
+                            new TextSpan(
+                                text: 'Hey there, ',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25.0,
+                                )),
+                            new TextSpan(
+                              text: 'Tux!',
                               style: TextStyle(
+                                fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 fontSize: 25.0,
-                              )),
-                          new TextSpan(
-                            text: 'Tux!',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 25.0,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ],
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
     Column(
       children: [
