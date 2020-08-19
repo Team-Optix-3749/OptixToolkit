@@ -45,16 +45,43 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      "Hey there, Tux!",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.rubik(
-                        textStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25.0,
+                    new RichText(
+                      text: new TextSpan(
+                        // Note: Styles for TextSpans must be explicitly defined.
+                        // Child text spans will inherit styles from parent
+                        style: new TextStyle(
+                          fontSize: 14.0,
+                          color: Colors.black,
                         ),
+                        children: <TextSpan>[
+                          new TextSpan(
+                              text: 'Hey there, ',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25.0,
+                              )),
+                          new TextSpan(
+                            text: 'Tux!',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 25.0,
+                            ),
+                          ),
+                        ],
                       ),
                     )
+
+                    // Text(
+                    //   "Hey there, Tux!",
+                    //   textAlign: TextAlign.center,
+                    //   style: GoogleFonts.rubik(
+                    //     textStyle: TextStyle(
+                    //       color: Colors.white,
+                    //       fontSize: 25.0,
+                    //     ),
+                    //   ),
+                    // )
                   ],
                 ),
               ],
