@@ -130,12 +130,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                               Row(
                                 children: [
                                   Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Column(
                                             children: [
@@ -150,7 +153,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                                                       text: 'Upcoming ',
                                                       style: TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 25.0,
+                                                        fontSize: 15.0,
                                                       ),
                                                     ),
                                                   ],
@@ -171,7 +174,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                                                       text: 'Upcoming ',
                                                       style: TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 25.0,
+                                                        fontSize: 15.0,
                                                       ),
                                                     ),
                                                   ],
