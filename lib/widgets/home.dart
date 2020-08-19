@@ -140,8 +140,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                                                     new TextSpan(
                                                       text: 'Upcoming ',
                                                       style: TextStyle(
-                                                        color: Colors.white,
+                                                        color:
+                                                            Color(0xff159deb),
                                                         fontSize: 15.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                                     ),
                                                   ],
