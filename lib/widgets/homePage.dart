@@ -76,7 +76,7 @@ class _homePage extends State<homePage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Row(
@@ -106,15 +106,15 @@ class _homePage extends State<homePage> {
                               Row(
                                 children: [
                                   Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                            MainAxisAlignment.center,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Column(
                                             children: [
