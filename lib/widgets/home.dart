@@ -26,6 +26,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
+    Container(),
     Column(
       children: [
         Container(
@@ -71,17 +72,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         ],
                       ),
                     )
-
-                    // Text(
-                    //   "Hey there, Tux!",
-                    //   textAlign: TextAlign.center,
-                    //   style: GoogleFonts.rubik(
-                    //     textStyle: TextStyle(
-                    //       color: Colors.white,
-                    //       fontSize: 25.0,
-                    //     ),
-                    //   ),
-                    // )
                   ],
                 ),
               ],
