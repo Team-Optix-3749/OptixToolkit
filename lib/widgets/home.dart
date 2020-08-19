@@ -33,7 +33,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             children: [
               Container(
                 margin:
-                    EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 17),
+                    EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
                 width: 400,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7.0),
@@ -85,7 +85,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 children: [
                   Container(
                     margin: EdgeInsets.only(
-                        left: 12, top: 17, right: 12, bottom: 17),
+                        left: 12, top: 17, right: 12, bottom: 0),
                     width: 400,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(7.0),
