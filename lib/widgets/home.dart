@@ -138,7 +138,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                                                 text: new TextSpan(
                                                   children: <TextSpan>[
                                                     new TextSpan(
-                                                      text: 'Upcoming ',
+                                                      text: 'Mill ',
                                                       style: TextStyle(
                                                         color:
                                                             Color(0xff159deb),
@@ -158,7 +158,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                                                 text: new TextSpan(
                                                   children: <TextSpan>[
                                                     new TextSpan(
-                                                      text: 'Upcoming ',
+                                                      text: '2pm-2:30pm ',
                                                       style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 15.0,
