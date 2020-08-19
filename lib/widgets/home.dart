@@ -51,10 +51,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         children: <Widget>[
                           new RichText(
                             text: new TextSpan(
-                              style: new TextStyle(
-                                fontSize: 14.0,
-                                color: Colors.black,
-                              ),
                               children: <TextSpan>[
                                 new TextSpan(
                                     text: 'Hey there, ',
@@ -103,10 +99,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                                 children: [
                                   new RichText(
                                     text: new TextSpan(
-                                      style: new TextStyle(
-                                        fontSize: 14.0,
-                                        color: Colors.black,
-                                      ),
                                       children: <TextSpan>[
                                         new TextSpan(
                                             text: 'Upcoming ',
@@ -144,10 +136,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                                             children: [
                                               new RichText(
                                                 text: new TextSpan(
-                                                  style: new TextStyle(
-                                                    fontSize: 14.0,
-                                                    color: Colors.black,
-                                                  ),
                                                   children: <TextSpan>[
                                                     new TextSpan(
                                                       text: 'Upcoming ',
@@ -165,10 +153,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                                             children: [
                                               new RichText(
                                                 text: new TextSpan(
-                                                  style: new TextStyle(
-                                                    fontSize: 14.0,
-                                                    color: Colors.black,
-                                                  ),
                                                   children: <TextSpan>[
                                                     new TextSpan(
                                                       text: 'Upcoming ',
@@ -218,10 +202,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                             children: <Widget>[
                               new RichText(
                                 text: new TextSpan(
-                                  style: new TextStyle(
-                                    fontSize: 14.0,
-                                    color: Colors.black,
-                                  ),
                                   children: <TextSpan>[
                                     new TextSpan(
                                         text: 'Incoming ',
