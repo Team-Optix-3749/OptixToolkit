@@ -99,30 +99,43 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              new RichText(
-                                text: new TextSpan(
-                                  style: new TextStyle(
-                                    fontSize: 14.0,
-                                    color: Colors.black,
-                                  ),
-                                  children: <TextSpan>[
-                                    new TextSpan(
-                                        text: 'Upcoming ',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 25.0,
-                                        )),
-                                    new TextSpan(
-                                      text: 'Reservations',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        fontSize: 25.0,
+                              Row(
+                                children: [
+                                  new RichText(
+                                    text: new TextSpan(
+                                      style: new TextStyle(
+                                        fontSize: 14.0,
+                                        color: Colors.black,
                                       ),
+                                      children: <TextSpan>[
+                                        new TextSpan(
+                                            text: 'Upcoming ',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 25.0,
+                                            )),
+                                        new TextSpan(
+                                          text: 'Reservations',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                            fontSize: 25.0,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              )
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Column(
+                                    children: [
+                                      Text('lit tool'),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ],
