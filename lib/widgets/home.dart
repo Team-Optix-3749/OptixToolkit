@@ -130,8 +130,57 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                               Row(
                                 children: [
                                   Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Text('lit tool'),
+                                      Row(
+                                        children: [
+                                          Column(
+                                            children: [
+                                              new RichText(
+                                                text: new TextSpan(
+                                                  style: new TextStyle(
+                                                    fontSize: 14.0,
+                                                    color: Colors.black,
+                                                  ),
+                                                  children: <TextSpan>[
+                                                    new TextSpan(
+                                                      text: 'Upcoming ',
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 25.0,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Column(
+                                            children: [
+                                              new RichText(
+                                                text: new TextSpan(
+                                                  style: new TextStyle(
+                                                    fontSize: 14.0,
+                                                    color: Colors.black,
+                                                  ),
+                                                  children: <TextSpan>[
+                                                    new TextSpan(
+                                                      text: 'Upcoming ',
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 25.0,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ],
                                   ),
                                 ],
