@@ -1,10 +1,9 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../services/firebase.dart';
-import '../services/NavigationService.dart';
+import 'package:OptixToolkit/services/firebase.dart';
+import 'package:OptixToolkit/services/NavigationService.dart';
 import 'home.dart';
 
 class FormPage extends StatefulWidget {

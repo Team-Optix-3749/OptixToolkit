@@ -4,10 +4,10 @@ import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/firebase.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
-import '../my_flutter_app_icons.dart';
+import 'package:OptixToolkit/my_flutter_app_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import "./form.dart";
-import "pages/homePage.dart";
+import "package:OptixToolkit/screens/form.dart";
+import "package:OptixToolkit/screens/pages/homePage.dart";
 
 class MyStatefulWidget extends StatefulWidget {
   MyStatefulWidget({Key key, this.uid}) : super(key: key);
