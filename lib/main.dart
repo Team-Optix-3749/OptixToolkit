@@ -1,6 +1,7 @@
-import 'package:OptixToolkit/widgets/home.dart';
+import 'services/NavigationService.dart';
 import 'package:flutter/material.dart';
 import 'widgets/form.dart';
+import 'services/auth.dart';
 //import 'widgets/home.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      navigatorKey: NavigationService.navigatorKey,
       home: Scaffold(
         body: FormPage(isLogin: true),
       ),

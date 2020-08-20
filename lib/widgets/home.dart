@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:OptixToolkit/services/NavigationService.dart';
+import 'package:OptixToolkit/services/auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import '../my_flutter_app_icons.dart';
@@ -7,10 +11,9 @@ import "./form.dart";
 import "homePage.dart";
 
 class MyStatefulWidget extends StatefulWidget {
-  MyStatefulWidget({Key key, this.title}) : super(key: key);
+  MyStatefulWidget({Key key, this.uid}) : super(key: key);
 
-  final String title;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final String uid;
   final Firestore _firestore = Firestore.instance;
 
   @override
@@ -18,6 +21,8 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  StreamSubscription<FirebaseUser> sub;
+
   final Color background = Color(0xff26292c);
   final Color lightBackground = Color(0xff3a3d41);
   final Color blue = Color(0xff159deb);
@@ -59,35 +64,28 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   void initState() {
-    CheckAuthState();
-    // LogOut();
+    super.initState();
+    GetUserData(widget.uid);
+    sub = Auth.AuthState().listen((event) {
+      if (event == null) {
+        NavigationService.navigateTo(PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) =>
+                FormPage(isLogin: true)));
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    if (sub != null) sub.cancel();
+    super.dispose();
   }
 
   Future LogOut() async {
-    await widget._auth.signOut();
-    Navigator.pushReplacement(
-        context,
-        PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) =>
-                FormPage(isLogin: true)));
-  }
-
-  void _goToLogin() {
-    Navigator.pushReplacement(
-        context,
-        PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) =>
-                FormPage(isLogin: true)));
-  }
-
-  Future CheckAuthState() async {
-    await for (var event in widget._auth.onAuthStateChanged) {
-      if (event == null) {
-        _goToLogin();
-      } else {
-        GetUserData(event.uid);
-      }
-    }
+    await Auth.signOut();
+    NavigationService.navigateTo(PageRouteBuilder(
+        pageBuilder: (context, animation1, animation2) =>
+            FormPage(isLogin: true)));
   }
 
   Future GetUserData(String uid) async {

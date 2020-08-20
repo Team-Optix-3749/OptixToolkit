@@ -1,18 +1,16 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../services/auth.dart';
+import '../services/NavigationService.dart';
 import 'home.dart';
-//import 'auth.dart';
 
 class FormPage extends StatefulWidget {
   FormPage({Key key, this.isLogin}) : super(key: key);
 
   final bool isLogin;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  //final GoogleSignIn _googleSignIn = GoogleSignIn();
-  final Firestore _firestore = Firestore.instance;
 
   @override
   _FormPageState createState() => _FormPageState();
@@ -32,73 +30,33 @@ class _FormPageState extends State<FormPage> {
   final Color subtleGray = Color(0xffcccccc);
   final Color divider = Color(0xff3a3d41);
 
-  bool isInProcess = false;
+  StreamSubscription<FirebaseUser> sub;
 
-  Future signIn() async {
-    if (isInProcess) return;
-    isInProcess = true;
-    if (widget.isLogin) {
-      //do login
-      try {
-        await widget._auth.signInWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text);
-        _goToHome();
-      } catch (e) {
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.message)));
+  @override
+  void initState() {
+    super.initState();
+    sub = Auth.AuthState().listen((event) {
+      if (event != null) {
+        NavigationService.navigateTo(PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) =>
+                MyStatefulWidget(uid: event.uid)));
       }
-      isInProcess = false;
-    } else {
-      try {
-        AuthResult res = await widget._auth.createUserWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text);
-        await widget._firestore
-            .collection("users")
-            .document(res.user.uid)
-            .setData({'uid': res.user.uid, 'name': nameController.text},
-                merge: true);
-        _goToHome();
-      } catch (e) {
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.message)));
-      }
-      isInProcess = false;
-    }
+    });
   }
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
+    if (sub != null) sub.cancel();
     emailController.dispose();
     passwordController.dispose();
+    nameController.dispose();
     super.dispose();
   }
 
-  void _goToHome() {
-    Navigator.pushReplacement(
-        context,
-        PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) =>
-                MyStatefulWidget()));
-  }
-
   void switchPage() {
-    Navigator.pushReplacement(
-        context,
-        PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) =>
-                FormPage(isLogin: !widget.isLogin)));
-  }
-
-  @override
-  void initState() {
-    CheckAuthState();
-  }
-
-  Future CheckAuthState() async {
-    await for (var event in widget._auth.onAuthStateChanged) {
-      if (event != null && !isInProcess) {
-        _goToHome();
-      }
-    }
+    NavigationService.navigateTo(PageRouteBuilder(
+        pageBuilder: (context, animation1, animation2) =>
+            Scaffold(body: FormPage(isLogin: !widget.isLogin))));
   }
 
   @override
@@ -192,7 +150,15 @@ class _FormPageState extends State<FormPage> {
                       child: RaisedButton(
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
-                            signIn();
+                            if (widget.isLogin)
+                              Auth.signIn(emailController.text,
+                                  passwordController.text, context);
+                            else
+                              Auth.signUp(
+                                  emailController.text,
+                                  passwordController.text,
+                                  nameController.text,
+                                  context);
                           }
                         },
                         child: Text(widget.isLogin ? 'LOG IN' : 'SIGN UP',

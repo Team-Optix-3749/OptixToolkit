@@ -2,16 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-class homePage extends StatefulWidget {
+class homePage extends StatelessWidget {
   homePage({Key key, this.name}) : super(key: key);
-
   final String name;
 
-  @override
-  _homePage createState() => _homePage();
-}
-
-class _homePage extends State<homePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,7 +41,7 @@ class _homePage extends State<homePage> {
                                       fontSize: 25.0,
                                     )),
                                 TextSpan(
-                                  text: widget.name.split(" ")[0],
+                                  text: name.split(" ")[0],
                                   style: GoogleFonts.rubik(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
