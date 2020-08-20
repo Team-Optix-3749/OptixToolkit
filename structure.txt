@@ -6,3 +6,8 @@
     +-- column 3: buttons (blue)
 
 all of them need cross-axis and regular axis alignment
+
+-- column: box
+ +-- row 1: title
+ +-- row 2: progress (bg dark) (center text with z-index)
+   +-- row 1: actual progress (bg light)
