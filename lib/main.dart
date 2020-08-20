@@ -1,8 +1,6 @@
 import 'services/NavigationService.dart';
 import 'package:flutter/material.dart';
-import 'widgets/form.dart';
-import 'services/firebase.dart';
-//import 'widgets/home.dart';
+import 'screens/form.dart';
 
 void main() {
   runApp(MyApp());
