@@ -347,7 +347,7 @@ class homePage extends StatelessWidget {
                     children: [
                       Container(
                         margin: EdgeInsets.only(
-                            left: 12, top: 17, right: 12, bottom: 0),
+                            left: 12, top: 17, right: 12, bottom: 17),
                         width: 400,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(7.0),
@@ -387,130 +387,12 @@ class homePage extends StatelessWidget {
                                   Row(
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.all(15.0),
-                                        child: LinearPercentIndicator(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width -
-                                              100,
-                                          animation: true,
-                                          lineHeight: 30.0,
-                                          animationDuration: 1000,
-                                          backgroundColor: Color(0xff26292c),
-                                          percent: 0.75,
-                                          center: RichText(
-                                            text: TextSpan(
-                                              children: <TextSpan>[
-                                                TextSpan(
-                                                    text: 'Falcon 500: ',
-                                                    style: GoogleFonts.rubik(
-                                                      color: Colors.white,
-                                                      fontSize: 15.0,
-                                                    )),
-                                                TextSpan(
-                                                  text: 'Shipped',
-                                                  style: GoogleFonts.rubik(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white,
-                                                    fontSize: 15.0,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          linearStrokeCap:
-                                              LinearStrokeCap.roundAll,
-                                          progressColor: Color(0xff159deb),
+                                        padding: EdgeInsets.only(
+                                          top: 15.0,
+                                          right: 17.0,
+                                          left: 17.0,
+                                          bottom: 0.0,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.all(15.0),
-                                        child: LinearPercentIndicator(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width -
-                                              100,
-                                          animation: true,
-                                          lineHeight: 30.0,
-                                          animationDuration: 1000,
-                                          backgroundColor: Color(0xff26292c),
-                                          percent: 0.75,
-                                          center: RichText(
-                                            text: TextSpan(
-                                              children: <TextSpan>[
-                                                TextSpan(
-                                                    text: 'Falcon 500: ',
-                                                    style: GoogleFonts.rubik(
-                                                      color: Colors.white,
-                                                      fontSize: 15.0,
-                                                    )),
-                                                TextSpan(
-                                                  text: 'Shipped',
-                                                  style: GoogleFonts.rubik(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white,
-                                                    fontSize: 15.0,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          linearStrokeCap:
-                                              LinearStrokeCap.roundAll,
-                                          progressColor: Color(0xff159deb),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.all(15.0),
-                                        child: LinearPercentIndicator(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width -
-                                              100,
-                                          animation: true,
-                                          lineHeight: 30.0,
-                                          animationDuration: 1000,
-                                          backgroundColor: Color(0xff26292c),
-                                          percent: 0.75,
-                                          center: RichText(
-                                            text: TextSpan(
-                                              children: <TextSpan>[
-                                                TextSpan(
-                                                    text: 'Falcon 500: ',
-                                                    style: GoogleFonts.rubik(
-                                                      color: Colors.white,
-                                                      fontSize: 15.0,
-                                                    )),
-                                                TextSpan(
-                                                  text: 'Shipped',
-                                                  style: GoogleFonts.rubik(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white,
-                                                    fontSize: 15.0,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          linearStrokeCap:
-                                              LinearStrokeCap.roundAll,
-                                          progressColor: Color(0xff159deb),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.all(15.0),
                                         child: LinearPercentIndicator(
                                           width: MediaQuery.of(context)
                                                   .size
@@ -550,6 +432,7 @@ class homePage extends StatelessWidget {
                                   ),
                                 ],
                               ),
+                              const SizedBox(height: 15),
                             ],
                           ),
                         ),
@@ -558,6 +441,7 @@ class homePage extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(height: 150),
             ],
           ),
         ),
