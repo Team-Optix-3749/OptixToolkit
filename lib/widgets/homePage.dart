@@ -37,16 +37,16 @@ class _homePage extends State<homePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          new RichText(
-                            text: new TextSpan(
+                          RichText(
+                            text: TextSpan(
                               children: <TextSpan>[
-                                new TextSpan(
+                                TextSpan(
                                     text: 'Hey there, ',
                                     style: GoogleFonts.rubik(
                                       color: Colors.white,
                                       fontSize: 25.0,
                                     )),
-                                new TextSpan(
+                                TextSpan(
                                   text: widget.name.split(" ")[0],
                                   style: GoogleFonts.rubik(
                                     fontWeight: FontWeight.bold,
@@ -54,7 +54,7 @@ class _homePage extends State<homePage> {
                                     fontSize: 25.0,
                                   ),
                                 ),
-                                new TextSpan(
+                                TextSpan(
                                   text: '!',
                                   style: GoogleFonts.rubik(
                                     color: Colors.white,
@@ -87,16 +87,16 @@ class _homePage extends State<homePage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              new RichText(
-                                text: new TextSpan(
+                              RichText(
+                                text: TextSpan(
                                   children: <TextSpan>[
-                                    new TextSpan(
+                                    TextSpan(
                                         text: 'Upcoming ',
                                         style: GoogleFonts.rubik(
                                           color: Colors.white,
                                           fontSize: 25.0,
                                         )),
-                                    new TextSpan(
+                                    TextSpan(
                                       text: 'Reservations',
                                       style: GoogleFonts.rubik(
                                         fontWeight: FontWeight.bold,
@@ -124,10 +124,10 @@ class _homePage extends State<homePage> {
                                       children: [
                                         Column(
                                           children: [
-                                            new RichText(
-                                              text: new TextSpan(
+                                            RichText(
+                                              text: TextSpan(
                                                 children: <TextSpan>[
-                                                  new TextSpan(
+                                                  TextSpan(
                                                     text: 'Mill ',
                                                     style: GoogleFonts.rubik(
                                                       color: Color(0xff159deb),
@@ -143,10 +143,10 @@ class _homePage extends State<homePage> {
                                         ),
                                         Column(
                                           children: [
-                                            new RichText(
-                                              text: new TextSpan(
+                                            RichText(
+                                              text: TextSpan(
                                                 children: <TextSpan>[
-                                                  new TextSpan(
+                                                  TextSpan(
                                                     text: '2pm-2:30pm ',
                                                     style: GoogleFonts.rubik(
                                                       color: Colors.white,
@@ -164,10 +164,10 @@ class _homePage extends State<homePage> {
                                       children: [
                                         Column(
                                           children: [
-                                            new RichText(
-                                              text: new TextSpan(
+                                            RichText(
+                                              text: TextSpan(
                                                 children: <TextSpan>[
-                                                  new TextSpan(
+                                                  TextSpan(
                                                     text: 'Drill ',
                                                     style: GoogleFonts.rubik(
                                                       color: Color(0xff159deb),
@@ -183,10 +183,10 @@ class _homePage extends State<homePage> {
                                         ),
                                         Column(
                                           children: [
-                                            new RichText(
-                                              text: new TextSpan(
+                                            RichText(
+                                              text: TextSpan(
                                                 children: <TextSpan>[
-                                                  new TextSpan(
+                                                  TextSpan(
                                                     text: '2pm-2:30pm ',
                                                     style: GoogleFonts.rubik(
                                                       color: Colors.white,
@@ -204,10 +204,10 @@ class _homePage extends State<homePage> {
                                       children: [
                                         Column(
                                           children: [
-                                            new RichText(
-                                              text: new TextSpan(
+                                            RichText(
+                                              text: TextSpan(
                                                 children: <TextSpan>[
-                                                  new TextSpan(
+                                                  TextSpan(
                                                     text: 'Bandsaw ',
                                                     style: GoogleFonts.rubik(
                                                       color: Color(0xff159deb),
@@ -223,10 +223,10 @@ class _homePage extends State<homePage> {
                                         ),
                                         Column(
                                           children: [
-                                            new RichText(
-                                              text: new TextSpan(
+                                            RichText(
+                                              text: TextSpan(
                                                 children: <TextSpan>[
-                                                  new TextSpan(
+                                                  TextSpan(
                                                     text: '2pm-2:30pm ',
                                                     style: GoogleFonts.rubik(
                                                       color: Colors.white,
@@ -244,10 +244,10 @@ class _homePage extends State<homePage> {
                                       children: [
                                         Column(
                                           children: [
-                                            new RichText(
-                                              text: new TextSpan(
+                                            RichText(
+                                              text: TextSpan(
                                                 children: <TextSpan>[
-                                                  new TextSpan(
+                                                  TextSpan(
                                                     text: 'ChopSaw ',
                                                     style: GoogleFonts.rubik(
                                                       color: Color(0xff159deb),
@@ -263,10 +263,10 @@ class _homePage extends State<homePage> {
                                         ),
                                         Column(
                                           children: [
-                                            new RichText(
-                                              text: new TextSpan(
+                                            RichText(
+                                              text: TextSpan(
                                                 children: <TextSpan>[
-                                                  new TextSpan(
+                                                  TextSpan(
                                                     text: '2pm-2:30pm ',
                                                     style: GoogleFonts.rubik(
                                                       color: Colors.white,
@@ -341,16 +341,16 @@ class _homePage extends State<homePage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              new RichText(
-                                text: new TextSpan(
+                              RichText(
+                                text: TextSpan(
                                   children: <TextSpan>[
-                                    new TextSpan(
+                                    TextSpan(
                                         text: 'Incoming ',
                                         style: GoogleFonts.rubik(
                                           color: Colors.white,
                                           fontSize: 25.0,
                                         )),
-                                    new TextSpan(
+                                    TextSpan(
                                       text: 'Parts',
                                       style: GoogleFonts.rubik(
                                         fontWeight: FontWeight.bold,
@@ -369,7 +369,7 @@ class _homePage extends State<homePage> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.all(15.0),
-                                    child: new LinearPercentIndicator(
+                                    child: LinearPercentIndicator(
                                       width: MediaQuery.of(context).size.width -
                                           100,
                                       animation: true,
@@ -377,16 +377,16 @@ class _homePage extends State<homePage> {
                                       animationDuration: 1000,
                                       backgroundColor: Color(0xff26292c),
                                       percent: 0.75,
-                                      center: new RichText(
-                                        text: new TextSpan(
+                                      center: RichText(
+                                        text: TextSpan(
                                           children: <TextSpan>[
-                                            new TextSpan(
+                                            TextSpan(
                                                 text: 'Falcon 500: ',
                                                 style: GoogleFonts.rubik(
                                                   color: Colors.white,
                                                   fontSize: 15.0,
                                                 )),
-                                            new TextSpan(
+                                            TextSpan(
                                               text: 'Shipped',
                                               style: GoogleFonts.rubik(
                                                 fontWeight: FontWeight.bold,
@@ -407,7 +407,7 @@ class _homePage extends State<homePage> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.all(15.0),
-                                    child: new LinearPercentIndicator(
+                                    child: LinearPercentIndicator(
                                       width: MediaQuery.of(context).size.width -
                                           100,
                                       animation: true,
@@ -415,16 +415,16 @@ class _homePage extends State<homePage> {
                                       animationDuration: 1000,
                                       backgroundColor: Color(0xff26292c),
                                       percent: 0.75,
-                                      center: new RichText(
-                                        text: new TextSpan(
+                                      center: RichText(
+                                        text: TextSpan(
                                           children: <TextSpan>[
-                                            new TextSpan(
+                                            TextSpan(
                                                 text: 'Falcon 500: ',
                                                 style: GoogleFonts.rubik(
                                                   color: Colors.white,
                                                   fontSize: 15.0,
                                                 )),
-                                            new TextSpan(
+                                            TextSpan(
                                               text: 'Shipped',
                                               style: GoogleFonts.rubik(
                                                 fontWeight: FontWeight.bold,
@@ -445,7 +445,7 @@ class _homePage extends State<homePage> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.all(15.0),
-                                    child: new LinearPercentIndicator(
+                                    child: LinearPercentIndicator(
                                       width: MediaQuery.of(context).size.width -
                                           100,
                                       animation: true,
@@ -453,16 +453,16 @@ class _homePage extends State<homePage> {
                                       animationDuration: 1000,
                                       backgroundColor: Color(0xff26292c),
                                       percent: 0.75,
-                                      center: new RichText(
-                                        text: new TextSpan(
+                                      center: RichText(
+                                        text: TextSpan(
                                           children: <TextSpan>[
-                                            new TextSpan(
+                                            TextSpan(
                                                 text: 'Falcon 500: ',
                                                 style: GoogleFonts.rubik(
                                                   color: Colors.white,
                                                   fontSize: 15.0,
                                                 )),
-                                            new TextSpan(
+                                            TextSpan(
                                               text: 'Shipped',
                                               style: GoogleFonts.rubik(
                                                 fontWeight: FontWeight.bold,
@@ -483,7 +483,7 @@ class _homePage extends State<homePage> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.all(15.0),
-                                    child: new LinearPercentIndicator(
+                                    child: LinearPercentIndicator(
                                       width: MediaQuery.of(context).size.width -
                                           100,
                                       animation: true,
@@ -491,16 +491,16 @@ class _homePage extends State<homePage> {
                                       animationDuration: 1000,
                                       backgroundColor: Color(0xff26292c),
                                       percent: 0.75,
-                                      center: new RichText(
-                                        text: new TextSpan(
+                                      center: RichText(
+                                        text: TextSpan(
                                           children: <TextSpan>[
-                                            new TextSpan(
+                                            TextSpan(
                                                 text: 'Falcon 500: ',
                                                 style: GoogleFonts.rubik(
                                                   color: Colors.white,
                                                   fontSize: 15.0,
                                                 )),
-                                            new TextSpan(
+                                            TextSpan(
                                               text: 'Shipped',
                                               style: GoogleFonts.rubik(
                                                 fontWeight: FontWeight.bold,
