@@ -1,12 +1,11 @@
 import 'dart:async';
 
 import 'package:OptixToolkit/services/NavigationService.dart';
-import 'package:OptixToolkit/services/auth.dart';
+import 'package:OptixToolkit/services/firebase.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import '../my_flutter_app_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import "./form.dart";
 import "homePage.dart";
 
@@ -14,7 +13,6 @@ class MyStatefulWidget extends StatefulWidget {
   MyStatefulWidget({Key key, this.uid}) : super(key: key);
 
   final String uid;
-  final Firestore _firestore = Firestore.instance;
 
   @override
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
@@ -32,7 +30,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
-    homePage(name: ""),
+    Text("loading bruh..."),
     Container(
       child: Column(
         children: [
@@ -65,7 +63,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   void initState() {
     super.initState();
-    GetUserData(widget.uid);
+    setState(() {
+      _widgetOptions[0] = homePage(uid: widget.uid);
+    });
     sub = Auth.AuthState().listen((event) {
       if (event == null) {
         NavigationService.navigateTo(PageRouteBuilder(
@@ -86,15 +86,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     NavigationService.navigateTo(PageRouteBuilder(
         pageBuilder: (context, animation1, animation2) =>
             FormPage(isLogin: true)));
-  }
-
-  Future GetUserData(String uid) async {
-    var doc = await widget._firestore.collection("users").document(uid).get();
-    print(doc);
-    setState(() {
-      _widgetOptions[0] = homePage(name: doc.data['name']);
-      _widgetOptions[3] = Text(doc.data['name'], style: optionStyle);
-    });
   }
 
   @override

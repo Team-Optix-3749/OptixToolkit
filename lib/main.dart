@@ -1,7 +1,7 @@
 import 'services/NavigationService.dart';
 import 'package:flutter/material.dart';
 import 'widgets/form.dart';
-import 'services/auth.dart';
+import 'services/firebase.dart';
 //import 'widgets/home.dart';
 
 void main() {
