@@ -262,7 +262,7 @@ class homePage2 extends StatelessWidget {
                                                 text: TextSpan(
                                                   children: <TextSpan>[
                                                     TextSpan(
-                                                      text: 'ChopSaw ',
+                                                      text: 'Chop Saw ',
                                                       style: GoogleFonts.rubik(
                                                         color:
                                                             Color(0xff159deb),
