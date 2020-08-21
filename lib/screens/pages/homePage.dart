@@ -56,7 +56,9 @@ class homePage2 extends StatelessWidget {
                                   TextSpan(
                                     text: Provider.of<User>(context) == null
                                         ? ""
-                                        : Provider.of<User>(context).name,
+                                        : Provider.of<User>(context)
+                                            .name
+                                            .split(" ")[0],
                                     style: GoogleFonts.rubik(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
