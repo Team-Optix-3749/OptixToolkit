@@ -11,3 +11,9 @@ all of them need cross-axis and regular axis alignment
  +-- row 1: title
  +-- row 2: progress (bg dark) (center text with z-index)
    +-- row 1: actual progress (bg light)
+
+Tools:
+-- column: box
+ +-- row: buttons
+ +-- row: reservations
+  +-- table: part, member, time
