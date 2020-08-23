@@ -2,10 +2,10 @@
 ![build](https://github.com/Team-Optix-3749/OptixToolkit/workflows/build/badge.svg)
 > 🧰 An app to track and manage tools and robot parts.
 
-# Developing
+# Known Errors
 
-Error build\app\intermediates\signing_config\debug\out\signing-config.json (Access is denied) <br>
-to fix it remove the file, or admin privileges
+Error: ``build\app\intermediates\signing_config\debug\out\signing-config.json (Access is denied)`` <br>
+Fix: Remove the file
 
 # OptixTools
 
