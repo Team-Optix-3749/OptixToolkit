@@ -28,7 +28,7 @@ class ToolWidget extends StatelessWidget {
                 color: Color(0xff3a3d41),
               ),
               child: Padding(
-                padding: EdgeInsets.all(7.0),
+                padding: EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
