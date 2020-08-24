@@ -37,7 +37,7 @@ class ToolWidget extends StatelessWidget {
                       minWidth: 110,
                       height: 55,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7.0)),
+                          borderRadius: BorderRadius.circular(5.0)),
                       child: RaisedButton(
                         onPressed: () {},
                         child: Text('RESERVE',
@@ -51,7 +51,7 @@ class ToolWidget extends StatelessWidget {
                       minWidth: 110,
                       height: 55,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7.0)),
+                          borderRadius: BorderRadius.circular(5.0)),
                       child: RaisedButton(
                         onPressed: () {},
                         child: Text('CHECKOUT',
@@ -65,7 +65,7 @@ class ToolWidget extends StatelessWidget {
                       minWidth: 110,
                       height: 55,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7.0)),
+                          borderRadius: BorderRadius.circular(5.0)),
                       child: RaisedButton(
                         onPressed: () {},
                         child: Text('CHECKIN',
