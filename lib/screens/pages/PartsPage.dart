@@ -34,13 +34,13 @@ class PartsWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     ButtonTheme(
-                      minWidth: 110,
+                      minWidth: 170,
                       height: 55,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0)),
                       child: RaisedButton(
                         onPressed: () {},
-                        child: Text('RESERVE',
+                        child: Text('ADD A PART',
                             style: GoogleFonts.rubik(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
@@ -48,33 +48,19 @@ class PartsWidget extends StatelessWidget {
                       ),
                     ),
                     ButtonTheme(
-                      minWidth: 110,
+                      minWidth: 170,
                       height: 55,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0)),
                       child: RaisedButton(
                         onPressed: () {},
-                        child: Text('CHECK OUT',
+                        child: Text('TRACK A PART',
                             style: GoogleFonts.rubik(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
                         color: Color(0xff159deb),
                       ),
                     ),
-                    ButtonTheme(
-                      minWidth: 110,
-                      height: 55,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0)),
-                      child: RaisedButton(
-                        onPressed: () {},
-                        child: Text('CHECK IN',
-                            style: GoogleFonts.rubik(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        color: Color(0xff159deb),
-                      ),
-                    )
                   ],
                 ),
               ),
