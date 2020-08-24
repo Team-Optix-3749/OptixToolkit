@@ -122,179 +122,182 @@ class homePage2 extends StatelessWidget {
                             ),
                             const SizedBox(height: 15),
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Column(
-                                          children: [
-                                            RichText(
-                                              text: TextSpan(
-                                                children: <TextSpan>[
-                                                  TextSpan(
-                                                    text: 'Mill ',
-                                                    style: GoogleFonts.rubik(
-                                                      color: Color(0xff159deb),
-                                                      fontSize: 15.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Column(
-                                          children: [
-                                            RichText(
-                                              text: TextSpan(
-                                                children: <TextSpan>[
-                                                  TextSpan(
-                                                    text: '2pm-2:30pm ',
-                                                    style: GoogleFonts.rubik(
-                                                      color: Colors.white,
-                                                      fontSize: 15.0,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Column(
-                                          children: [
-                                            RichText(
-                                              text: TextSpan(
-                                                children: <TextSpan>[
-                                                  TextSpan(
-                                                    text: 'Drill ',
-                                                    style: GoogleFonts.rubik(
-                                                      color: Color(0xff159deb),
-                                                      fontSize: 15.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Column(
-                                          children: [
-                                            RichText(
-                                              text: TextSpan(
-                                                children: <TextSpan>[
-                                                  TextSpan(
-                                                    text: '2pm-2:30pm ',
-                                                    style: GoogleFonts.rubik(
-                                                      color: Colors.white,
-                                                      fontSize: 15.0,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Column(
-                                          children: [
-                                            RichText(
-                                              text: TextSpan(
-                                                children: <TextSpan>[
-                                                  TextSpan(
-                                                    text: 'Bandsaw ',
-                                                    style: GoogleFonts.rubik(
-                                                      color: Color(0xff159deb),
-                                                      fontSize: 15.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Column(
-                                          children: [
-                                            RichText(
-                                              text: TextSpan(
-                                                children: <TextSpan>[
-                                                  TextSpan(
-                                                    text: '2pm-2:30pm ',
-                                                    style: GoogleFonts.rubik(
-                                                      color: Colors.white,
-                                                      fontSize: 15.0,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Column(
-                                          children: [
-                                            RichText(
-                                              text: TextSpan(
-                                                children: <TextSpan>[
-                                                  TextSpan(
-                                                    text: 'Chop Saw ',
-                                                    style: GoogleFonts.rubik(
-                                                      color: Color(0xff159deb),
-                                                      fontSize: 15.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Column(
-                                          children: [
-                                            RichText(
-                                              text: TextSpan(
-                                                children: <TextSpan>[
-                                                  TextSpan(
-                                                    text: '2pm-2:30pm ',
-                                                    style: GoogleFonts.rubik(
-                                                      color: Colors.white,
-                                                      fontSize: 15.0,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
+                              children: [],
                             ),
+                            // Row(
+                            //   crossAxisAlignment: CrossAxisAlignment.center,
+                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //   children: [
+                            //     Column(
+                            //       mainAxisAlignment:
+                            //           MainAxisAlignment.spaceAround,
+                            //       children: [
+                            //         Row(
+                            //           mainAxisAlignment:
+                            //               MainAxisAlignment.start,
+                            //           children: [
+                            //             Column(
+                            //               children: [
+                            //                 RichText(
+                            //                   text: TextSpan(
+                            //                     children: <TextSpan>[
+                            //                       TextSpan(
+                            //                         text: 'Mill ',
+                            //                         style: GoogleFonts.rubik(
+                            //                           color: Color(0xff159deb),
+                            //                           fontSize: 15.0,
+                            //                           fontWeight:
+                            //                               FontWeight.bold,
+                            //                         ),
+                            //                       ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //             Column(
+                            //               children: [
+                            //                 RichText(
+                            //                   text: TextSpan(
+                            //                     children: <TextSpan>[
+                            //                       TextSpan(
+                            //                         text: '2pm-2:30pm ',
+                            //                         style: GoogleFonts.rubik(
+                            //                           color: Colors.white,
+                            //                           fontSize: 15.0,
+                            //                         ),
+                            //                       ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //           ],
+                            //         ),
+                            //         Row(
+                            //           children: [
+                            //             Column(
+                            //               children: [
+                            //                 RichText(
+                            //                   text: TextSpan(
+                            //                     children: <TextSpan>[
+                            //                       TextSpan(
+                            //                         text: 'Drill ',
+                            //                         style: GoogleFonts.rubik(
+                            //                           color: Color(0xff159deb),
+                            //                           fontSize: 15.0,
+                            //                           fontWeight:
+                            //                               FontWeight.bold,
+                            //                         ),
+                            //                       ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //             Column(
+                            //               children: [
+                            //                 RichText(
+                            //                   text: TextSpan(
+                            //                     children: <TextSpan>[
+                            //                       TextSpan(
+                            //                         text: '2pm-2:30pm ',
+                            //                         style: GoogleFonts.rubik(
+                            //                           color: Colors.white,
+                            //                           fontSize: 15.0,
+                            //                         ),
+                            //                       ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //           ],
+                            //         ),
+                            //         Row(
+                            //           children: [
+                            //             Column(
+                            //               children: [
+                            //                 RichText(
+                            //                   text: TextSpan(
+                            //                     children: <TextSpan>[
+                            //                       TextSpan(
+                            //                         text: 'Bandsaw ',
+                            //                         style: GoogleFonts.rubik(
+                            //                           color: Color(0xff159deb),
+                            //                           fontSize: 15.0,
+                            //                           fontWeight:
+                            //                               FontWeight.bold,
+                            //                         ),
+                            //                       ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //             Column(
+                            //               children: [
+                            //                 RichText(
+                            //                   text: TextSpan(
+                            //                     children: <TextSpan>[
+                            //                       TextSpan(
+                            //                         text: '2pm-2:30pm ',
+                            //                         style: GoogleFonts.rubik(
+                            //                           color: Colors.white,
+                            //                           fontSize: 15.0,
+                            //                         ),
+                            //                       ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //           ],
+                            //         ),
+                            //         Row(
+                            //           children: [
+                            //             Column(
+                            //               children: [
+                            //                 RichText(
+                            //                   text: TextSpan(
+                            //                     children: <TextSpan>[
+                            //                       TextSpan(
+                            //                         text: 'Chop Saw ',
+                            //                         style: GoogleFonts.rubik(
+                            //                           color: Color(0xff159deb),
+                            //                           fontSize: 15.0,
+                            //                           fontWeight:
+                            //                               FontWeight.bold,
+                            //                         ),
+                            //                       ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //             Column(
+                            //               children: [
+                            //                 RichText(
+                            //                   text: TextSpan(
+                            //                     children: <TextSpan>[
+                            //                       TextSpan(
+                            //                         text: '2pm-2:30pm ',
+                            //                         style: GoogleFonts.rubik(
+                            //                           color: Colors.white,
+                            //                           fontSize: 15.0,
+                            //                         ),
+                            //                       ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //           ],
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ],
+                            // ),
                           ],
                         ),
                       ),
