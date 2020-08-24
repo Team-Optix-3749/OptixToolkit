@@ -307,7 +307,7 @@ class homePage2 extends StatelessWidget {
                                               BorderRadius.circular(7.0)),
                                       child: RaisedButton(
                                         onPressed: () {},
-                                        child: Text('RESERVE A TOOL',
+                                        child: Text('RESERVE',
                                             style: GoogleFonts.rubik(
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.white)),
@@ -322,7 +322,22 @@ class homePage2 extends StatelessWidget {
                                               BorderRadius.circular(7.0)),
                                       child: RaisedButton(
                                         onPressed: () {},
-                                        child: Text('CHECKOUT A TOOL',
+                                        child: Text('CHECK OUT',
+                                            style: GoogleFonts.rubik(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white)),
+                                        color: Color(0xff159deb),
+                                      ),
+                                    ),
+                                    ButtonTheme(
+                                      minWidth: 160,
+                                      height: 40,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(7.0)),
+                                      child: RaisedButton(
+                                        onPressed: () {},
+                                        child: Text('CHECK IN',
                                             style: GoogleFonts.rubik(
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.white)),
