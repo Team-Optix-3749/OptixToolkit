@@ -143,7 +143,7 @@ class ToolWidget extends StatelessWidget {
                                             text: "Christopher\n",
                                           ),
                                           TextSpan(
-                                            text: "BandSaw",
+                                            text: "Band Saw",
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -200,7 +200,7 @@ class ToolWidget extends StatelessWidget {
                                             text: "Christopher\n",
                                           ),
                                           TextSpan(
-                                            text: "BandSaw",
+                                            text: "Band Saw",
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -257,7 +257,7 @@ class ToolWidget extends StatelessWidget {
                                             text: "Christopher\n",
                                           ),
                                           TextSpan(
-                                            text: "BandSaw",
+                                            text: "Band Saw",
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -314,7 +314,7 @@ class ToolWidget extends StatelessWidget {
                                             text: "Christopher\n",
                                           ),
                                           TextSpan(
-                                            text: "BandSaw",
+                                            text: "Band Saw",
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                             ),
