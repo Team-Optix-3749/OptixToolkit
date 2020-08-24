@@ -34,8 +34,8 @@ class ToolWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     ButtonTheme(
-                      minWidth: 100,
-                      height: 60,
+                      minWidth: 110,
+                      height: 55,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0)),
                       child: RaisedButton(
@@ -48,8 +48,8 @@ class ToolWidget extends StatelessWidget {
                       ),
                     ),
                     ButtonTheme(
-                      minWidth: 100,
-                      height: 60,
+                      minWidth: 110,
+                      height: 55,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0)),
                       child: RaisedButton(
@@ -62,8 +62,8 @@ class ToolWidget extends StatelessWidget {
                       ),
                     ),
                     ButtonTheme(
-                      minWidth: 100,
-                      height: 60,
+                      minWidth: 110,
+                      height: 55,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0)),
                       child: RaisedButton(
