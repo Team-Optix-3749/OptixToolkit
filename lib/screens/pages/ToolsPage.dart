@@ -87,7 +87,7 @@ class ToolWidget extends StatelessWidget {
                 color: Color(0xff3a3d41),
               ),
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(15.0),
                 child: Column(
                   children: [
                     Row(
@@ -121,7 +121,7 @@ class ToolWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 340,
+                          width: 330,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7.0),
                             color: Color(0xff26292c),
