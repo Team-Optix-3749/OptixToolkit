@@ -118,6 +118,7 @@ class ToolWidget extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           width: 340,
