@@ -120,9 +120,9 @@ class homePage2 extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 10),
                             Padding(
-                              padding: EdgeInsets.only(left: 12, right: 12),
+                              padding:
+                                  EdgeInsets.only(top: 10, left: 12, right: 12),
                               child: Column(
                                 children: [
                                   Container(
