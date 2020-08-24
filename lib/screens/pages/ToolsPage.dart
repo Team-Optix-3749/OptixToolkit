@@ -28,10 +28,10 @@ class ToolWidget extends StatelessWidget {
                 color: Color(0xff3a3d41),
               ),
               child: Padding(
-                padding: EdgeInsets.all(19.0),
+                padding: EdgeInsets.only(left: 5, top: 8, right: 5, bottom: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     ButtonTheme(
                       minWidth: 100,
