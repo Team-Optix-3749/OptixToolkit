@@ -21,7 +21,7 @@ class PartsWidget extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(left: 12, top: 10, right: 12, bottom: 0),
+              margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
               width: 400,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7.0),
