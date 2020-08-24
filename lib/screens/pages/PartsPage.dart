@@ -54,7 +54,7 @@ class PartsWidget extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5.0)),
                       child: RaisedButton(
                         onPressed: () {},
-                        child: Text('TRACK A PART',
+                        child: Text('EDIT A PART',
                             style: GoogleFonts.rubik(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
