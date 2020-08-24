@@ -28,13 +28,13 @@ class ToolWidget extends StatelessWidget {
                 color: Color(0xff3a3d41),
               ),
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     ButtonTheme(
-                      minWidth: 110,
+                      minWidth: 108,
                       height: 55,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0)),
@@ -48,7 +48,7 @@ class ToolWidget extends StatelessWidget {
                       ),
                     ),
                     ButtonTheme(
-                      minWidth: 110,
+                      minWidth: 108,
                       height: 55,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0)),
@@ -62,7 +62,7 @@ class ToolWidget extends StatelessWidget {
                       ),
                     ),
                     ButtonTheme(
-                      minWidth: 110,
+                      minWidth: 108,
                       height: 55,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0)),
