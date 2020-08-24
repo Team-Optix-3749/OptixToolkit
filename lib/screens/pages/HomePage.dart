@@ -137,9 +137,8 @@ class homePage2 extends StatelessWidget {
                                                 TextSpan(
                                                   text: 'Angle Grinder ',
                                                   style: GoogleFonts.rubik(
-                                                    color: Color(0xff159deb),
+                                                    color: Colors.white,
                                                     fontSize: 18.0,
-                                                    fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                               ],
@@ -155,52 +154,9 @@ class homePage2 extends StatelessWidget {
                                                 TextSpan(
                                                   text: '12:30pm - 12:40pm ',
                                                   style: GoogleFonts.rubik(
-                                                    color: Colors.white,
-                                                    fontSize: 18.0,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(top: 5),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          RichText(
-                                            text: TextSpan(
-                                              children: <TextSpan>[
-                                                TextSpan(
-                                                  text: 'Angle Grinder ',
-                                                  style: GoogleFonts.rubik(
                                                     color: Color(0xff159deb),
                                                     fontSize: 18.0,
                                                     fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          RichText(
-                                            text: TextSpan(
-                                              children: <TextSpan>[
-                                                TextSpan(
-                                                  text: '12:30pm - 12:40pm ',
-                                                  style: GoogleFonts.rubik(
-                                                    color: Colors.white,
-                                                    fontSize: 18.0,
                                                   ),
                                                 ),
                                               ],
