@@ -79,92 +79,96 @@ class ToolWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Column(
-              children: [
-                Container(
-                  margin:
-                      EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
-                  width: 400,
-                  height: MediaQuery.of(context).size.height,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7.0),
-                    color: Color(0xff3a3d41),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RichText(
-                              text: TextSpan(
-                                children: <TextSpan>[
-                                  TextSpan(
-                                      text: 'Tool ',
-                                      style: GoogleFonts.rubik(
-                                        color: Colors.white,
-                                        fontSize: 25.0,
-                                      )),
-                                  TextSpan(
-                                    text: 'Reservations',
-                                    style: GoogleFonts.rubik(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                      fontSize: 25.0,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(
-                                  left: 12, top: 17, right: 12, bottom: 0),
-                              width: 400,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(17.0),
-                                color: Color(0xFF26292C),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.all(15.0),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        RichText(
-                                          text: TextSpan(
-                                              style: GoogleFonts.rubik(
-                                                  color: Colors.white,
-                                                  fontSize: 20.0),
-                                              children: <TextSpan>[
-                                                TextSpan(text: "Christopher\n",),
-                                                TextSpan(
-                                                    text: "BandSaw",
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                              ]),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
+            // Column(
+            //   children: [
+            //     Container(
+            //       margin:
+            //           EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
+            //       width: 400,
+            //       height: MediaQuery.of(context).size.height,
+            //       decoration: BoxDecoration(
+            //         borderRadius: BorderRadius.circular(7.0),
+            //         color: Color(0xff3a3d41),
+            //       ),
+            //       child: Padding(
+            //         padding: EdgeInsets.all(15.0),
+            //         child: Column(
+            //           children: [
+            //             Row(
+            //               mainAxisAlignment: MainAxisAlignment.center,
+            //               children: [
+            //                 RichText(
+            //                   text: TextSpan(
+            //                     children: <TextSpan>[
+            //                       TextSpan(
+            //                           text: 'Tool ',
+            //                           style: GoogleFonts.rubik(
+            //                             color: Colors.white,
+            //                             fontSize: 25.0,
+            //                           )),
+            //                       TextSpan(
+            //                         text: 'Reservations',
+            //                         style: GoogleFonts.rubik(
+            //                           fontWeight: FontWeight.bold,
+            //                           color: Colors.white,
+            //                           fontSize: 25.0,
+            //                         ),
+            //                       ),
+            //                     ],
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //             Column(
+            //               children: [
+            //                 Container(
+            //                   margin: EdgeInsets.only(
+            //                       left: 12, top: 17, right: 12, bottom: 0),
+            //                   width: 400,
+            //                   decoration: BoxDecoration(
+            //                     borderRadius: BorderRadius.circular(17.0),
+            //                     color: Color(0xFF26292C),
+            //                   ),
+            //                   child: Padding(
+            //                     padding: EdgeInsets.all(15.0),
+            //                     child: Column(
+            //                       children: [
+            //                         Row(
+            //                           mainAxisAlignment:
+            //                               MainAxisAlignment.start,
+            //                           children: [
+            //                             RichText(
+            //                               text: TextSpan(
+            //                                 style: GoogleFonts.rubik(
+            //                                     color: Colors.white,
+            //                                     fontSize: 20.0),
+            //                                 children: <TextSpan>[
+            //                                   TextSpan(
+            //                                     text: "Christopher\n",
+            //                                   ),
+            //                                   TextSpan(
+            //                                     text: "BandSaw",
+            //                                     style: TextStyle(
+            //                                         fontWeight:
+            //                                             FontWeight.bold),
+            //                                   ),
+            //                                 ],
+            //                               ),
+            //                             )
+            //                           ],
+            //                         ),
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ],
+            //             )
+            //           ],
+            //         ),
+            //       ),
+            //     )
+            //   ],
+            // ),
             const SizedBox(height: 600),
           ],
         ),
