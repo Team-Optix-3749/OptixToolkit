@@ -117,7 +117,7 @@ class ToolWidget extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Row(
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
@@ -126,12 +126,34 @@ class ToolWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(7.0),
                             color: Color(0xff26292c),
                           ),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(15.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                          child: Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        style: GoogleFonts.rubik(
+                                            color: Colors.white,
+                                            fontSize: 20.0),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: "Christopher\n",
+                                          ),
+                                          TextSpan(
+                                            text: "BandSaw",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
                                   children: [
                                     RichText(
                                       text: TextSpan(
@@ -149,12 +171,69 @@ class ToolWidget extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
+                          // child: Row(
+                          //   children: [
+                          //     Padding(
+                          //       padding: EdgeInsets.all(15.0),
+                          //       child: Row(
+                          //         mainAxisAlignment:
+                          //             MainAxisAlignment.spaceBetween,
+                          //         children: [
+                          //           Column(
+                          //             children: [
+                          //               RichText(
+                          //                 text: TextSpan(
+                          //                   style: GoogleFonts.rubik(
+                          //                       color: Colors.white,
+                          //                       fontSize: 20.0),
+                          //                   children: <TextSpan>[
+                          //                     TextSpan(
+                          //                       text: "Christopher\n",
+                          //                     ),
+                          //                     TextSpan(
+                          //                       text: "BandSaw",
+                          //                       style: TextStyle(
+                          //                         fontWeight: FontWeight.bold,
+                          //                       ),
+                          //                     ),
+                          //                   ],
+                          //                 ),
+                          //               ),
+                          //             ],
+                          //           ),
+                          //           Column(
+                          //             children: [
+                          //               RichText(
+                          //                 text: TextSpan(
+                          //                   style: GoogleFonts.rubik(
+                          //                       color: Colors.white,
+                          //                       fontSize: 20.0),
+                          //                   children: <TextSpan>[
+                          //                     TextSpan(
+                          //                       text: "Christopher\n",
+                          //                     ),
+                          //                     TextSpan(
+                          //                       text: "BandSaw",
+                          //                       style: TextStyle(
+                          //                           fontWeight:
+                          //                               FontWeight.bold),
+                          //                     ),
+                          //                   ],
+                          //                 ),
+                          //               ),
+                          //             ],
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                         ),
                       ],
                     ),
