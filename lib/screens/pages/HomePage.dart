@@ -121,8 +121,52 @@ class homePage2 extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(height: 15),
-                            Row(
-                              children: [],
+                            Container(
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          RichText(
+                                            text: TextSpan(
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                  text: 'Angle Grinder ',
+                                                  style: GoogleFonts.rubik(
+                                                    color: Color(0xff159deb),
+                                                    fontSize: 15.0,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        children: [
+                                          RichText(
+                                            text: TextSpan(
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                  text: '12:30pm-12:40pm ',
+                                                  style: GoogleFonts.rubik(
+                                                    color: Colors.white,
+                                                    fontSize: 15.0,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                             // Row(
                             //   crossAxisAlignment: CrossAxisAlignment.center,
