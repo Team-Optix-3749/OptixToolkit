@@ -9,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:OptixToolkit/screens/Form.dart';
 import 'package:OptixToolkit/screens/pages/HomePage.dart';
 import 'package:OptixToolkit/screens/pages/ToolsPage.dart';
+import 'package:OptixToolkit/screens/pages/PartsPage.dart';
 
 class MyStatefulWidget extends StatefulWidget {
   MyStatefulWidget({Key key, this.uid}) : super(key: key);
@@ -32,13 +33,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
     Text("loading bruh..."),
-    Container(
-      child: Column(
-        children: [
-          Text("PARTS"),
-        ],
-      ),
-    ),
+    Text("loading bruh..."),
+    Text("loading bruh..."),
+    Text("loading bruh..."),
+    Text("loading bruh..."),
+    Text("loading bruh..."),
     Container(
       child: Column(
         children: [
@@ -60,6 +59,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     setState(() {
       _widgetOptions[0] = homePage(uid: widget.uid);
       _widgetOptions[1] = toolsPage();
+      _widgetOptions[2] = partsPage();
     });
     sub = Auth.AuthState().listen((event) {
       if (event == null) {
