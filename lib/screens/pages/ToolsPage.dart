@@ -120,6 +120,7 @@ class ToolWidget extends StatelessWidget {
                     Row(
                       children: [
                         Container(
+                          width: 340,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7.0),
                             color: Color(0xff26292c),
