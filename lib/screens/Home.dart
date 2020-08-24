@@ -64,10 +64,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     sub = Auth.AuthState().listen((event) {
       if (event == null) {
         NavigationService.navigateTo(PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) =>
-                FormPage(isLogin: true)));
+            pageBuilder: (context, animation1, animation2) => FormPage()));
       }
     });
+    LogOut();
   }
 
   @override
@@ -79,8 +79,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Future LogOut() async {
     await Auth.signOut();
     NavigationService.navigateTo(PageRouteBuilder(
-        pageBuilder: (context, animation1, animation2) =>
-            FormPage(isLogin: true)));
+        pageBuilder: (context, animation1, animation2) => FormPage()));
   }
 
   @override

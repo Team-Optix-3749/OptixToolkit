@@ -7,9 +7,7 @@ import 'package:OptixToolkit/services/NavigationService.dart';
 import 'Home.dart';
 
 class FormPage extends StatefulWidget {
-  FormPage({Key key, this.isLogin}) : super(key: key);
-
-  final bool isLogin;
+  FormPage({Key key}) : super(key: key);
 
   @override
   _FormPageState createState() => _FormPageState();
@@ -52,19 +50,13 @@ class _FormPageState extends State<FormPage> {
     super.dispose();
   }
 
-  void switchPage() {
-    NavigationService.navigateTo(PageRouteBuilder(
-        pageBuilder: (context, animation1, animation2) =>
-            Scaffold(body: FormPage(isLogin: !widget.isLogin))));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
         title: Center(
-            child: Text(widget.isLogin ? "LOGIN" : "SIGNUP",
+            child: Text("LOGIN",
                 style: GoogleFonts.rubik(fontWeight: FontWeight.bold))),
       ),
       body: Center(
@@ -75,95 +67,52 @@ class _FormPageState extends State<FormPage> {
                 key: _formKey,
                 child: Column(
                   children: <Widget>[
-                    if (!widget.isLogin)
-                      Container(
-                          width: 300,
-                          child: TextFormField(
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return 'Name';
-                                }
-                                return null;
-                              },
-                              controller: nameController,
-                              style: GoogleFonts.rubik(color: white),
-                              textAlign: TextAlign.center,
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: gray,
-                                hintText: 'Full Name',
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(9.0)),
-                                hintStyle: GoogleFonts.rubik(color: subtleGray),
-                              ))),
                     SizedBox(height: 10),
                     Container(
-                        width: 300,
-                        child: TextFormField(
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Email';
-                            }
-                            return null;
-                          },
-                          controller: emailController,
-                          style: GoogleFonts.rubik(color: white),
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: gray,
-                            hintText: 'Email',
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(9.0)),
-                            hintStyle: GoogleFonts.rubik(color: subtleGray),
-                          ),
-                        )),
-                    SizedBox(height: 10),
-                    Container(
-                        width: 300,
-                        child: TextFormField(
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Password';
-                              }
-                              return null;
-                            },
-                            controller: passwordController,
-                            obscureText: true,
-                            style: GoogleFonts.rubik(color: Colors.white),
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                                filled: true,
-                                fillColor: gray,
-                                hintText: 'Password',
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(9.0)),
-                                hintStyle:
-                                    GoogleFonts.rubik(color: subtleGray)))),
-                    SizedBox(height: 10),
-                    ButtonTheme(
-                      minWidth: 300,
-                      height: 50,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7.0)),
-                      child: RaisedButton(
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            if (widget.isLogin)
-                              Auth.signIn(emailController.text,
-                                  passwordController.text, context);
-                            else
-                              Auth.signUp(
-                                  emailController.text,
-                                  passwordController.text,
-                                  nameController.text,
-                                  context);
+                      width: 300,
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Email';
                           }
+                          return null;
                         },
-                        child: Text(widget.isLogin ? 'LOG IN' : 'SIGN UP',
-                            style: GoogleFonts.rubik(
-                                fontWeight: FontWeight.bold, color: white)),
-                        color: blue,
+                        controller: emailController,
+                        obscureText: true,
+                        style: GoogleFonts.rubik(color: Colors.white),
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: gray,
+                          hintText: 'Email',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(9.0)),
+                          hintStyle: GoogleFonts.rubik(color: subtleGray),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      width: 300,
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Password';
+                          }
+                          return null;
+                        },
+                        controller: passwordController,
+                        obscureText: true,
+                        style: GoogleFonts.rubik(color: Colors.white),
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: gray,
+                          hintText: 'Password',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(9.0)),
+                          hintStyle: GoogleFonts.rubik(color: subtleGray),
+                        ),
                       ),
                     ),
                     SizedBox(height: 5),
@@ -181,17 +130,23 @@ class _FormPageState extends State<FormPage> {
                       minWidth: 300,
                       height: 50,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7.0),
-                          side: BorderSide(color: blue)),
+                          borderRadius: BorderRadius.circular(7.0)),
                       child: RaisedButton(
-                        onPressed: () => switchPage(),
-                        child: Text(widget.isLogin ? "SIGN UP" : "LOG IN",
+                        onPressed: () {
+                          if (_formKey.currentState.validate()) {
+                            Auth.signIn(emailController.text,
+                                passwordController.text, context);
+                          }
+                        },
+                        child: Text('LOG IN',
                             style: GoogleFonts.rubik(
                                 fontWeight: FontWeight.bold, color: white)),
-                        color: background,
+                        color: blue,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 5),
+                    SizedBox(height: 5),
+                    
                   ],
                 )),
           ],

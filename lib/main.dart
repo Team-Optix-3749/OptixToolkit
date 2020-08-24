@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       ),
       navigatorKey: NavigationService.navigatorKey,
       home: Scaffold(
-        body: FormPage(isLogin: true),
+        body: FormPage(),
       ),
     );
   }
