@@ -30,7 +30,7 @@ class ToolWidget extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(left: 5, top: 8, right: 5, bottom: 8),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     ButtonTheme(
