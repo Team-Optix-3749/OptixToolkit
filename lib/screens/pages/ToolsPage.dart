@@ -32,61 +32,62 @@ class ToolWidget extends StatelessWidget {
                   color: Color(0xff3a3d41),
                 ),
                 child: Padding(
-                    padding: EdgeInsets.all(19.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: <Widget>[
-                            ButtonTheme(
-                              minWidth: 100,
-                              height: 60,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(7.0)),
-                              child: RaisedButton(
-                                onPressed: () {},
-                                child: Text('RESERVE',
-                                    style: GoogleFonts.rubik(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                                color: Color(0xff159deb),
-                              ),
+                  padding: EdgeInsets.all(19.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          ButtonTheme(
+                            minWidth: 100,
+                            height: 60,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(7.0)),
+                            child: RaisedButton(
+                              onPressed: () {},
+                              child: Text('RESERVE',
+                                  style: GoogleFonts.rubik(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white)),
+                              color: Color(0xff159deb),
                             ),
-                            ButtonTheme(
-                              minWidth: 100,
-                              height: 60,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(7.0)),
-                              child: RaisedButton(
-                                onPressed: () {},
-                                child: Text('CHECKOUT',
-                                    style: GoogleFonts.rubik(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                                color: Color(0xff159deb),
-                              ),
+                          ),
+                          ButtonTheme(
+                            minWidth: 100,
+                            height: 60,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(7.0)),
+                            child: RaisedButton(
+                              onPressed: () {},
+                              child: Text('CHECKOUT',
+                                  style: GoogleFonts.rubik(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white)),
+                              color: Color(0xff159deb),
                             ),
-                            ButtonTheme(
-                              minWidth: 100,
-                              height: 60,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(7.0)),
-                              child: RaisedButton(
-                                onPressed: () {},
-                                child: Text('CHECKIN',
-                                    style: GoogleFonts.rubik(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                                color: Color(0xff159deb),
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    )),
+                          ),
+                          ButtonTheme(
+                            minWidth: 100,
+                            height: 60,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(7.0)),
+                            child: RaisedButton(
+                              onPressed: () {},
+                              child: Text('CHECKIN',
+                                  style: GoogleFonts.rubik(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white)),
+                              color: Color(0xff159deb),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               )
             ],
           )
