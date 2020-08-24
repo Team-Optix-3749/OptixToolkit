@@ -126,225 +126,239 @@ class homePage2 extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: <TextSpan>[
-                                                    TextSpan(
-                                                      text: 'Mill ',
-                                                      style: GoogleFonts.rubik(
-                                                        color:
-                                                            Color(0xff159deb),
-                                                        fontSize: 15.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: <TextSpan>[
-                                                    TextSpan(
-                                                      text: '2pm-2:30pm ',
-                                                      style: GoogleFonts.rubik(
-                                                        color: Colors.white,
-                                                        fontSize: 15.0,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Column(
-                                            children: [
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: <TextSpan>[
-                                                    TextSpan(
-                                                      text: 'Drill ',
-                                                      style: GoogleFonts.rubik(
-                                                        color:
-                                                            Color(0xff159deb),
-                                                        fontSize: 15.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: <TextSpan>[
-                                                    TextSpan(
-                                                      text: '2pm-2:30pm ',
-                                                      style: GoogleFonts.rubik(
-                                                        color: Colors.white,
-                                                        fontSize: 15.0,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Column(
-                                            children: [
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: <TextSpan>[
-                                                    TextSpan(
-                                                      text: 'Bandsaw ',
-                                                      style: GoogleFonts.rubik(
-                                                        color:
-                                                            Color(0xff159deb),
-                                                        fontSize: 15.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: <TextSpan>[
-                                                    TextSpan(
-                                                      text: '2pm-2:30pm ',
-                                                      style: GoogleFonts.rubik(
-                                                        color: Colors.white,
-                                                        fontSize: 15.0,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Column(
-                                            children: [
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: <TextSpan>[
-                                                    TextSpan(
-                                                      text: 'Chop Saw ',
-                                                      style: GoogleFonts.rubik(
-                                                        color:
-                                                            Color(0xff159deb),
-                                                        fontSize: 15.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: <TextSpan>[
-                                                    TextSpan(
-                                                      text: '2pm-2:30pm ',
-                                                      style: GoogleFonts.rubik(
-                                                        color: Colors.white,
-                                                        fontSize: 15.0,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ]),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: [
-                                    ButtonTheme(
-                                      minWidth: 160,
-                                      height: 40,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7.0)),
-                                      child: RaisedButton(
-                                        onPressed: () {},
-                                        child: Text('RESERVE',
-                                            style: GoogleFonts.rubik(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white)),
-                                        color: Color(0xff159deb),
-                                      ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Column(
+                                          children: [
+                                            RichText(
+                                              text: TextSpan(
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text: 'Mill ',
+                                                    style: GoogleFonts.rubik(
+                                                      color: Color(0xff159deb),
+                                                      fontSize: 15.0,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            RichText(
+                                              text: TextSpan(
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text: '2pm-2:30pm ',
+                                                    style: GoogleFonts.rubik(
+                                                      color: Colors.white,
+                                                      fontSize: 15.0,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                    ButtonTheme(
-                                      minWidth: 160,
-                                      height: 40,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7.0)),
-                                      child: RaisedButton(
-                                        onPressed: () {},
-                                        child: Text('CHECK OUT',
-                                            style: GoogleFonts.rubik(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white)),
-                                        color: Color(0xff159deb),
-                                      ),
+                                    Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            RichText(
+                                              text: TextSpan(
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text: 'Drill ',
+                                                    style: GoogleFonts.rubik(
+                                                      color: Color(0xff159deb),
+                                                      fontSize: 15.0,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            RichText(
+                                              text: TextSpan(
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text: '2pm-2:30pm ',
+                                                    style: GoogleFonts.rubik(
+                                                      color: Colors.white,
+                                                      fontSize: 15.0,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                    ButtonTheme(
-                                      minWidth: 160,
-                                      height: 40,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7.0)),
-                                      child: RaisedButton(
-                                        onPressed: () {},
-                                        child: Text('CHECK IN',
-                                            style: GoogleFonts.rubik(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white)),
-                                        color: Color(0xff159deb),
-                                      ),
+                                    Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            RichText(
+                                              text: TextSpan(
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text: 'Bandsaw ',
+                                                    style: GoogleFonts.rubik(
+                                                      color: Color(0xff159deb),
+                                                      fontSize: 15.0,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            RichText(
+                                              text: TextSpan(
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text: '2pm-2:30pm ',
+                                                    style: GoogleFonts.rubik(
+                                                      color: Colors.white,
+                                                      fontSize: 15.0,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            RichText(
+                                              text: TextSpan(
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text: 'Chop Saw ',
+                                                    style: GoogleFonts.rubik(
+                                                      color: Color(0xff159deb),
+                                                      fontSize: 15.0,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            RichText(
+                                              text: TextSpan(
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text: '2pm-2:30pm ',
+                                                    style: GoogleFonts.rubik(
+                                                      color: Colors.white,
+                                                      fontSize: 15.0,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ],
+                                ),
+                                Container(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          ButtonTheme(
+                                            minWidth: 160,
+                                            height: 35,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(7.0)),
+                                            child: RaisedButton(
+                                              onPressed: () {},
+                                              child: Text('RESERVE',
+                                                  style: GoogleFonts.rubik(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white)),
+                                              color: Color(0xff159deb),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          ButtonTheme(
+                                            minWidth: 160,
+                                            height: 35,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(7.0)),
+                                            child: RaisedButton(
+                                              onPressed: () {},
+                                              child: Text('CHECK OUT',
+                                                  style: GoogleFonts.rubik(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white)),
+                                              color: Color(0xff159deb),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          ButtonTheme(
+                                            minWidth: 160,
+                                            height: 35,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(7.0)),
+                                            child: RaisedButton(
+                                              onPressed: () {},
+                                              child: Text('CHECK IN',
+                                                  style: GoogleFonts.rubik(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white)),
+                                              color: Color(0xff159deb),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
