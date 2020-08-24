@@ -19,22 +19,6 @@ class Auth {
     isInProcess = false;
   }
 
-  static Future signUp(
-      String email, String password, String name, BuildContext context) async {
-    if (isInProcess) return;
-    isInProcess = true;
-    //do login
-    try {
-      AuthResult res = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      await Database.write(
-          ["users", res.user.uid], {'uid': res.user.uid, 'name': name});
-    } catch (e) {
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.message)));
-    }
-    isInProcess = false;
-  }
-
   static Future signOut() async {
     await _auth.signOut();
   }

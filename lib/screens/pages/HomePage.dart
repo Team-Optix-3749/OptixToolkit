@@ -3,21 +3,30 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:OptixToolkit/services/firebase.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class homePage extends StatelessWidget {
-  homePage({Key key, this.uid}) : super(key: key);
-  final String uid;
+  homePage({Key key, this.user}) : super(key: key);
+  final FirebaseUser user;
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-      StreamProvider<User>.value(
-          value: Database.readDocListener<User>(["users", uid], User()))
-    ], child: homePage2());
+    return homePage2(
+      user: user,
+    );
+    /*MultiProvider(
+        providers: [
+          StreamProvider<User>.value(
+          value: Database.readDocListener<User>(["users", user.uid], User()))
+        ],
+        child: );*/
   }
 }
 
 class homePage2 extends StatelessWidget {
+  homePage2({Key key, this.user}) : super(key: key);
+  final FirebaseUser user;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -54,11 +63,7 @@ class homePage2 extends StatelessWidget {
                                         fontSize: 25.0,
                                       )),
                                   TextSpan(
-                                    text: Provider.of<User>(context) == null
-                                        ? ""
-                                        : Provider.of<User>(context)
-                                            .name
-                                            .split(" ")[0],
+                                    text: user.displayName.split(" ")[0],
                                     style: GoogleFonts.rubik(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,

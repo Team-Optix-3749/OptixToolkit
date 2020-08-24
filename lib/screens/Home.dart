@@ -12,9 +12,9 @@ import 'package:OptixToolkit/screens/pages/ToolsPage.dart';
 import 'package:OptixToolkit/screens/pages/PartsPage.dart';
 
 class MyStatefulWidget extends StatefulWidget {
-  MyStatefulWidget({Key key, this.uid}) : super(key: key);
+  MyStatefulWidget({Key key, this.user}) : super(key: key);
 
-  final String uid;
+  final FirebaseUser user;
 
   @override
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
@@ -57,7 +57,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   void initState() {
     super.initState();
     setState(() {
-      _widgetOptions[0] = homePage(uid: widget.uid);
+      _widgetOptions[0] = homePage(user: widget.user);
       _widgetOptions[1] = toolsPage();
       _widgetOptions[2] = partsPage();
     });
@@ -67,7 +67,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             pageBuilder: (context, animation1, animation2) => FormPage()));
       }
     });
-    LogOut();
+    //LogOut();
   }
 
   @override

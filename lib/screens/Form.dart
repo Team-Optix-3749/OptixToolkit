@@ -36,7 +36,7 @@ class _FormPageState extends State<FormPage> {
       if (event != null) {
         NavigationService.navigateTo(PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) =>
-                MyStatefulWidget(uid: event.uid)));
+                MyStatefulWidget(user: event)));
       }
     });
   }
@@ -78,7 +78,6 @@ class _FormPageState extends State<FormPage> {
                           return null;
                         },
                         controller: emailController,
-                        obscureText: true,
                         style: GoogleFonts.rubik(color: Colors.white),
                         textAlign: TextAlign.center,
                         decoration: InputDecoration(

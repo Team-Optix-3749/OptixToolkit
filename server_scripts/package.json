@@ -1,0 +1,16 @@
+{
+  "name": "server_scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx ts-node index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase-admin": "^9.1.1",
+    "ts-node": "^9.0.0"
+  }
+}
