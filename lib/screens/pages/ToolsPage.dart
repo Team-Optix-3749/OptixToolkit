@@ -54,7 +54,7 @@ class ToolWidget extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5.0)),
                       child: RaisedButton(
                         onPressed: () {},
-                        child: Text('CHECKOUT',
+                        child: Text('CHECK OUT',
                             style: GoogleFonts.rubik(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
@@ -68,7 +68,7 @@ class ToolWidget extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5.0)),
                       child: RaisedButton(
                         onPressed: () {},
-                        child: Text('CHECKIN',
+                        child: Text('CHECK IN',
                             style: GoogleFonts.rubik(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
