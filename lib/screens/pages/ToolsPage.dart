@@ -79,6 +79,43 @@ class ToolWidget extends StatelessWidget {
                 ),
               ),
             ),
+            Container(
+              margin: EdgeInsets.only(left: 12, top: 10, right: 12, bottom: 0),
+              width: 400,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7.0),
+                color: Color(0xff3a3d41),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    RichText(
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'Tool ',
+                              style: GoogleFonts.rubik(
+                                color: Colors.white,
+                                fontSize: 25.0,
+                              )),
+                          TextSpan(
+                            text: 'Reservations',
+                            style: GoogleFonts.rubik(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 25.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             // Column(
             //   children: [
             //     Container(
