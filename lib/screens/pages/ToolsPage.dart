@@ -21,14 +21,14 @@ class ToolWidget extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
+              margin: EdgeInsets.only(left: 12, top: 10, right: 12, bottom: 0),
               width: 400,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7.0),
                 color: Color(0xff3a3d41),
               ),
               child: Padding(
-                padding: EdgeInsets.only(left: 5, top: 8, right: 5, bottom: 8),
+                padding: EdgeInsets.all(7.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -79,7 +79,7 @@ class ToolWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 500),
+            const SizedBox(height: 600),
           ],
         ),
       ),
