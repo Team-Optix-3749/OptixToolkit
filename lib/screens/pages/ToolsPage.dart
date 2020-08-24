@@ -116,11 +116,11 @@ class ToolWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
+                          margin: EdgeInsets.only(top: 10),
                           width: 330,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7.0),
