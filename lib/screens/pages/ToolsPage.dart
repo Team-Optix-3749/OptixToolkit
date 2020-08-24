@@ -79,6 +79,7 @@ class ToolWidget extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 500),
           ],
         ),
       ),
