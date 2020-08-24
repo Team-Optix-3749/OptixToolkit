@@ -127,7 +127,7 @@ class homePage2 extends StatelessWidget {
                                   margin: EdgeInsets.only(top: 5),
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Column(
                                         children: [
@@ -171,7 +171,7 @@ class homePage2 extends StatelessWidget {
                                   margin: EdgeInsets.only(top: 5),
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Column(
                                         children: [
@@ -215,7 +215,7 @@ class homePage2 extends StatelessWidget {
                                   margin: EdgeInsets.only(top: 5),
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Column(
                                         children: [
@@ -259,7 +259,7 @@ class homePage2 extends StatelessWidget {
                                   margin: EdgeInsets.only(top: 5),
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Column(
                                         children: [
@@ -303,7 +303,7 @@ class homePage2 extends StatelessWidget {
                                   margin: EdgeInsets.only(top: 5),
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Column(
                                         children: [
