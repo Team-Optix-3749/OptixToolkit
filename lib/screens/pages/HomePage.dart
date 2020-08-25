@@ -124,6 +124,7 @@ class homePage2 extends StatelessWidget {
                           ),
                         ],
                       ),
+                      const SizedBox(height: 5),
                       Expanded(
                         child: ListView(
                           children: [
@@ -354,47 +355,48 @@ class homePage2 extends StatelessWidget {
                   ),
                 ),
               ),
-              Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: 12, top: 17, right: 12, bottom: 17),
-                    width: 400,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7.0),
-                      color: Color(0xff3a3d41),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(15.0),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              RichText(
-                                text: TextSpan(
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                        text: 'Incoming ',
-                                        style: GoogleFonts.rubik(
-                                          color: Colors.white,
-                                          fontSize: 25.0,
-                                        )),
-                                    TextSpan(
-                                      text: 'Parts',
-                                      style: GoogleFonts.rubik(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        fontSize: 25.0,
-                                      ),
-                                    ),
-                                  ],
+              Container(
+                margin:
+                    EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
+                width: 400,
+                height: 250,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7.0),
+                  color: Color(0xff3a3d41),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          RichText(
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: 'Incoming ',
+                                    style: GoogleFonts.rubik(
+                                      color: Colors.white,
+                                      fontSize: 25.0,
+                                    )),
+                                TextSpan(
+                                  text: 'Parts',
+                                  style: GoogleFonts.rubik(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 25.0,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                          Column(
-                            children: [
+                        ],
+                      ),
+                      Expanded(
+                        child: ListView(
+                          children: [
                               Row(
                                 children: [
                                   Padding(
@@ -568,18 +570,15 @@ class homePage2 extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
-                          const SizedBox(height: 15),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ],
           ),
-          const SizedBox(height: 150),
         ],
       ),
     );
