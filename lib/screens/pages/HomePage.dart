@@ -39,7 +39,7 @@ class homePage2 extends StatelessWidget {
                     EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
                 width: 400,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7.0),
+                  borderRadius: BorderRadius.circular(10.0),
                   color: Color(0xff3a3d41),
                 ),
                 child: Padding(
@@ -91,7 +91,7 @@ class homePage2 extends StatelessWidget {
                 width: 400,
                 height: 200,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7.0),
+                  borderRadius: BorderRadius.circular(10.0),
                   color: Color(0xff3a3d41),
                 ),
                 child: Padding(
@@ -361,7 +361,7 @@ class homePage2 extends StatelessWidget {
                 width: 400,
                 height: 250,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7.0),
+                  borderRadius: BorderRadius.circular(10.0),
                   color: Color(0xff3a3d41),
                 ),
                 child: Padding(
@@ -397,179 +397,180 @@ class homePage2 extends StatelessWidget {
                       Expanded(
                         child: ListView(
                           children: [
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      top: 15.0,
-                                      right: 17.0,
-                                      left: 17.0,
-                                      bottom: 0.0,
-                                    ),
-                                    child: LinearPercentIndicator(
-                                      width: MediaQuery.of(context).size.width -
-                                          100,
-                                      animation: true,
-                                      lineHeight: 30.0,
-                                      animationDuration: 1000,
-                                      backgroundColor: Color(0xff26292c),
-                                      percent: 1,
-                                      center: RichText(
-                                        text: TextSpan(
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                                text: 'Limelight: ',
-                                                style: GoogleFonts.rubik(
-                                                  color: Colors.white,
-                                                  fontSize: 15.0,
-                                                )),
-                                            TextSpan(
-                                              text: 'Arrived',
-                                              style: GoogleFonts.rubik(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors
-                                                    .lightGreenAccent[400],
-                                                fontSize: 15.0,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      linearStrokeCap: LinearStrokeCap.roundAll,
-                                      progressColor: Color(0xff159deb),
-                                    ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    top: 15.0,
+                                    right: 17.0,
+                                    left: 17.0,
+                                    bottom: 0.0,
                                   ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      top: 15.0,
-                                      right: 17.0,
-                                      left: 17.0,
-                                      bottom: 0.0,
-                                    ),
-                                    child: LinearPercentIndicator(
-                                      width: MediaQuery.of(context).size.width -
-                                          100,
-                                      animation: true,
-                                      lineHeight: 30.0,
-                                      animationDuration: 1000,
-                                      backgroundColor: Color(0xff26292c),
-                                      percent: 0.75,
-                                      center: RichText(
-                                        text: TextSpan(
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                                text: 'Spark Max: ',
-                                                style: GoogleFonts.rubik(
-                                                  color: Colors.white,
-                                                  fontSize: 15.0,
-                                                )),
-                                            TextSpan(
-                                              text: 'Shipped',
+                                  child: LinearPercentIndicator(
+                                    width:
+                                        MediaQuery.of(context).size.width - 100,
+                                    animation: true,
+                                    lineHeight: 30.0,
+                                    animationDuration: 1000,
+                                    backgroundColor: Color(0xff26292c),
+                                    percent: 1,
+                                    center: RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                              text: 'Limelight: ',
                                               style: GoogleFonts.rubik(
-                                                fontWeight: FontWeight.bold,
                                                 color: Colors.white,
                                                 fontSize: 15.0,
-                                              ),
+                                              )),
+                                          TextSpan(
+                                            text: 'Arrived',
+                                            style: GoogleFonts.rubik(
+                                              fontWeight: FontWeight.bold,
+                                              color:
+                                                  Colors.lightGreenAccent[400],
+                                              fontSize: 15.0,
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                      linearStrokeCap: LinearStrokeCap.roundAll,
-                                      progressColor: Color(0xff159deb),
                                     ),
+                                    linearStrokeCap: LinearStrokeCap.roundAll,
+                                    progressColor: Color(0xff159deb),
                                   ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      top: 15.0,
-                                      right: 17.0,
-                                      left: 17.0,
-                                      bottom: 0.0,
-                                    ),
-                                    child: LinearPercentIndicator(
-                                      width: MediaQuery.of(context).size.width -
-                                          100,
-                                      animation: true,
-                                      lineHeight: 30.0,
-                                      animationDuration: 1000,
-                                      backgroundColor: Color(0xff26292c),
-                                      percent: 0.40,
-                                      center: RichText(
-                                        text: TextSpan(
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                                text: 'Fairlane Wheel: ',
-                                                style: GoogleFonts.rubik(
-                                                  color: Colors.white,
-                                                  fontSize: 15.0,
-                                                )),
-                                            TextSpan(
-                                              text: 'Ordered',
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    top: 15.0,
+                                    right: 17.0,
+                                    left: 17.0,
+                                    bottom: 0.0,
+                                  ),
+                                  child: LinearPercentIndicator(
+                                    width:
+                                        MediaQuery.of(context).size.width - 100,
+                                    animation: true,
+                                    lineHeight: 30.0,
+                                    animationDuration: 1000,
+                                    backgroundColor: Color(0xff26292c),
+                                    percent: 0.75,
+                                    center: RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                              text: 'Spark Max: ',
                                               style: GoogleFonts.rubik(
-                                                fontWeight: FontWeight.bold,
                                                 color: Colors.white,
                                                 fontSize: 15.0,
-                                              ),
+                                              )),
+                                          TextSpan(
+                                            text: 'Shipped',
+                                            style: GoogleFonts.rubik(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                              fontSize: 15.0,
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                      linearStrokeCap: LinearStrokeCap.roundAll,
-                                      progressColor: Color(0xff159deb),
                                     ),
+                                    linearStrokeCap: LinearStrokeCap.roundAll,
+                                    progressColor: Color(0xff159deb),
                                   ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      top: 15.0,
-                                      right: 17.0,
-                                      left: 17.0,
-                                      bottom: 0.0,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    top: 15.0,
+                                    right: 17.0,
+                                    left: 17.0,
+                                    bottom: 0.0,
+                                  ),
+                                  child: LinearPercentIndicator(
+                                    width:
+                                        MediaQuery.of(context).size.width - 100,
+                                    animation: true,
+                                    lineHeight: 30.0,
+                                    animationDuration: 1000,
+                                    backgroundColor: Color(0xff26292c),
+                                    percent: 0.40,
+                                    center: RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: 'Fairlane Wheel: ',
+                                            style: GoogleFonts.rubik(
+                                              color: Colors.white,
+                                              fontSize: 15.0,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: 'Ordered',
+                                            style: GoogleFonts.rubik(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                              fontSize: 15.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    child: LinearPercentIndicator(
-                                      width: MediaQuery.of(context).size.width -
-                                          100,
-                                      animation: true,
-                                      lineHeight: 30.0,
-                                      animationDuration: 1000,
-                                      backgroundColor: Color(0xff26292c),
-                                      percent: 0,
-                                      center: RichText(
-                                        text: TextSpan(
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                                text: 'Falcon 500: ',
-                                                style: GoogleFonts.rubik(
-                                                  color: Colors.white,
-                                                  fontSize: 15.0,
-                                                )),
-                                            TextSpan(
-                                              text: 'Not Ordered',
+                                    linearStrokeCap: LinearStrokeCap.roundAll,
+                                    progressColor: Color(0xff159deb),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    top: 15.0,
+                                    right: 17.0,
+                                    left: 17.0,
+                                    bottom: 0.0,
+                                  ),
+                                  child: LinearPercentIndicator(
+                                    width:
+                                        MediaQuery.of(context).size.width - 100,
+                                    animation: true,
+                                    lineHeight: 30.0,
+                                    animationDuration: 1000,
+                                    backgroundColor: Color(0xff26292c),
+                                    percent: 0,
+                                    center: RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                              text: 'Falcon 500: ',
                                               style: GoogleFonts.rubik(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.red,
+                                                color: Colors.white,
                                                 fontSize: 15.0,
-                                              ),
+                                              )),
+                                          TextSpan(
+                                            text: 'Not Ordered',
+                                            style: GoogleFonts.rubik(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.red,
+                                              fontSize: 15.0,
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                      linearStrokeCap: LinearStrokeCap.roundAll,
-                                      progressColor: Color(0xff159deb),
                                     ),
+                                    linearStrokeCap: LinearStrokeCap.roundAll,
+                                    progressColor: Color(0xff159deb),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),

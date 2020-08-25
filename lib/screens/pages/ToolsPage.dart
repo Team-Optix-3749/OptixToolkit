@@ -23,7 +23,7 @@ class ToolWidget extends StatelessWidget {
             margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
             width: 400,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7.0),
+              borderRadius: BorderRadius.circular(10.0),
               color: Color(0xff3a3d41),
             ),
             child: Padding(
@@ -36,7 +36,7 @@ class ToolWidget extends StatelessWidget {
                     minWidth: 108,
                     height: 55,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
+                        borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
                       onPressed: () {},
                       child: Text('RESERVE',
@@ -50,7 +50,7 @@ class ToolWidget extends StatelessWidget {
                     minWidth: 108,
                     height: 55,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
+                        borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
                       onPressed: () {},
                       child: Text('CHECK OUT',
@@ -64,7 +64,7 @@ class ToolWidget extends StatelessWidget {
                     minWidth: 108,
                     height: 55,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
+                        borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
                       onPressed: () {},
                       child: Text('CHECK IN',
@@ -81,7 +81,7 @@ class ToolWidget extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
             width: 400,
-            height: 400,
+            height: MediaQuery.of(context).size.height * 0.65,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(7.0),
               color: Color(0xff3a3d41),
@@ -116,15 +116,15 @@ class ToolWidget extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 15),
                   Expanded(
                     child: ListView(
-                      padding: EdgeInsets.all(15.0),
                       children: [
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(bottom: 10),
                           width: 330,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.0),
+                            borderRadius: BorderRadius.circular(10.0),
                             color: Color(0xff26292c),
                           ),
                           child: Padding(
@@ -178,10 +178,10 @@ class ToolWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(bottom: 10),
                           width: 330,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.0),
+                            borderRadius: BorderRadius.circular(10.0),
                             color: Color(0xff26292c),
                           ),
                           child: Padding(
@@ -235,10 +235,10 @@ class ToolWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(bottom: 10),
                           width: 330,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.0),
+                            borderRadius: BorderRadius.circular(10.0),
                             color: Color(0xff26292c),
                           ),
                           child: Padding(
@@ -292,10 +292,10 @@ class ToolWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(bottom: 10),
                           width: 330,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.0),
+                            borderRadius: BorderRadius.circular(10.0),
                             color: Color(0xff26292c),
                           ),
                           child: Padding(
@@ -349,10 +349,10 @@ class ToolWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(bottom: 10),
                           width: 330,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.0),
+                            borderRadius: BorderRadius.circular(10.0),
                             color: Color(0xff26292c),
                           ),
                           child: Padding(
@@ -406,10 +406,10 @@ class ToolWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(bottom: 10),
                           width: 330,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.0),
+                            borderRadius: BorderRadius.circular(10.0),
                             color: Color(0xff26292c),
                           ),
                           child: Padding(
@@ -463,10 +463,10 @@ class ToolWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(bottom: 10),
                           width: 330,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.0),
+                            borderRadius: BorderRadius.circular(10.0),
                             color: Color(0xff26292c),
                           ),
                           child: Padding(
@@ -520,10 +520,10 @@ class ToolWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(bottom: 10),
                           width: 330,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.0),
+                            borderRadius: BorderRadius.circular(10.0),
                             color: Color(0xff26292c),
                           ),
                           child: Padding(
@@ -579,232 +579,6 @@ class ToolWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-
-                  // Column(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     Container(
-                  //       margin: EdgeInsets.only(top: 10),
-                  //       width: 330,
-                  //       decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(7.0),
-                  //         color: Color(0xff26292c),
-                  //       ),
-                  //       child: Padding(
-                  //         padding: EdgeInsets.all(15.0),
-                  //         child: Row(
-                  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //           children: [
-                  //             Column(
-                  //               children: [
-                  //                 RichText(
-                  //                   text: TextSpan(
-                  //                     style: GoogleFonts.rubik(
-                  //                         color: Colors.white, fontSize: 20.0),
-                  //                     children: <TextSpan>[
-                  //                       TextSpan(
-                  //                         text: "Christopher\n",
-                  //                       ),
-                  //                       TextSpan(
-                  //                         text: "Band Saw",
-                  //                         style: TextStyle(
-                  //                           fontWeight: FontWeight.bold,
-                  //                         ),
-                  //                       ),
-                  //                     ],
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //             Column(
-                  //               children: [
-                  //                 RichText(
-                  //                   text: TextSpan(
-                  //                     style: GoogleFonts.rubik(
-                  //                         color: Colors.white, fontSize: 22.0),
-                  //                     children: <TextSpan>[
-                  //                       TextSpan(
-                  //                         text: "12pm - 1pm",
-                  //                         style: TextStyle(
-                  //                             color: Color(0xff159deb),
-                  //                             fontWeight: FontWeight.bold),
-                  //                       ),
-                  //                     ],
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     Container(
-                  //       margin: EdgeInsets.only(top: 10),
-                  //       width: 330,
-                  //       decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(7.0),
-                  //         color: Color(0xff26292c),
-                  //       ),
-                  //       child: Padding(
-                  //         padding: EdgeInsets.all(15.0),
-                  //         child: Row(
-                  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //           children: [
-                  //             Column(
-                  //               children: [
-                  //                 RichText(
-                  //                   text: TextSpan(
-                  //                     style: GoogleFonts.rubik(
-                  //                         color: Colors.white, fontSize: 20.0),
-                  //                     children: <TextSpan>[
-                  //                       TextSpan(
-                  //                         text: "Christopher\n",
-                  //                       ),
-                  //                       TextSpan(
-                  //                         text: "Band Saw",
-                  //                         style: TextStyle(
-                  //                           fontWeight: FontWeight.bold,
-                  //                         ),
-                  //                       ),
-                  //                     ],
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //             Column(
-                  //               children: [
-                  //                 RichText(
-                  //                   text: TextSpan(
-                  //                     style: GoogleFonts.rubik(
-                  //                         color: Colors.white, fontSize: 22.0),
-                  //                     children: <TextSpan>[
-                  //                       TextSpan(
-                  //                         text: "12pm - 1pm",
-                  //                         style: TextStyle(
-                  //                             color: Color(0xff159deb),
-                  //                             fontWeight: FontWeight.bold),
-                  //                       ),
-                  //                     ],
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     Container(
-                  //       margin: EdgeInsets.only(top: 10),
-                  //       width: 330,
-                  //       decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(7.0),
-                  //         color: Color(0xff26292c),
-                  //       ),
-                  //       child: Padding(
-                  //         padding: EdgeInsets.all(15.0),
-                  //         child: Row(
-                  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //           children: [
-                  //             Column(
-                  //               children: [
-                  //                 RichText(
-                  //                   text: TextSpan(
-                  //                     style: GoogleFonts.rubik(
-                  //                         color: Colors.white, fontSize: 20.0),
-                  //                     children: <TextSpan>[
-                  //                       TextSpan(
-                  //                         text: "Christopher\n",
-                  //                       ),
-                  //                       TextSpan(
-                  //                         text: "Band Saw",
-                  //                         style: TextStyle(
-                  //                           fontWeight: FontWeight.bold,
-                  //                         ),
-                  //                       ),
-                  //                     ],
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //             Column(
-                  //               children: [
-                  //                 RichText(
-                  //                   text: TextSpan(
-                  //                     style: GoogleFonts.rubik(
-                  //                         color: Colors.white, fontSize: 22.0),
-                  //                     children: <TextSpan>[
-                  //                       TextSpan(
-                  //                         text: "12pm - 1pm",
-                  //                         style: TextStyle(
-                  //                             color: Color(0xff159deb),
-                  //                             fontWeight: FontWeight.bold),
-                  //                       ),
-                  //                     ],
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     Container(
-                  //       margin: EdgeInsets.only(top: 10),
-                  //       width: 330,
-                  //       decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(7.0),
-                  //         color: Color(0xff26292c),
-                  //       ),
-                  //       child: Padding(
-                  //         padding: EdgeInsets.all(15.0),
-                  //         child: Row(
-                  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //           children: [
-                  //             Column(
-                  //               children: [
-                  //                 RichText(
-                  //                   text: TextSpan(
-                  //                     style: GoogleFonts.rubik(
-                  //                         color: Colors.white, fontSize: 20.0),
-                  //                     children: <TextSpan>[
-                  //                       TextSpan(
-                  //                         text: "Christopher\n",
-                  //                       ),
-                  //                       TextSpan(
-                  //                         text: "Band Saw",
-                  //                         style: TextStyle(
-                  //                           fontWeight: FontWeight.bold,
-                  //                         ),
-                  //                       ),
-                  //                     ],
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //             Column(
-                  //               children: [
-                  //                 RichText(
-                  //                   text: TextSpan(
-                  //                     style: GoogleFonts.rubik(
-                  //                         color: Colors.white, fontSize: 22.0),
-                  //                     children: <TextSpan>[
-                  //                       TextSpan(
-                  //                         text: "12pm - 1pm",
-                  //                         style: TextStyle(
-                  //                             color: Color(0xff159deb),
-                  //                             fontWeight: FontWeight.bold),
-                  //                       ),
-                  //                     ],
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
                 ],
               ),
             ),

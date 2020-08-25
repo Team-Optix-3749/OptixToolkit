@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:OptixToolkit/services/NavigationService.dart';
+import 'package:OptixToolkit/screens/pages/AddPart.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class partsPage extends StatelessWidget {
@@ -23,7 +25,7 @@ class PartsWidget extends StatelessWidget {
             margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
             width: 400,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7.0),
+              borderRadius: BorderRadius.circular(10.0),
               color: Color(0xff3a3d41),
             ),
             child: Padding(
@@ -36,9 +38,13 @@ class PartsWidget extends StatelessWidget {
                     minWidth: 170,
                     height: 55,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
+                        borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        NavigationService.goTo(PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                AddPart()));
+                      },
                       child: Text('ADD A PART',
                           style: GoogleFonts.rubik(
                               fontWeight: FontWeight.bold,
@@ -50,7 +56,7 @@ class PartsWidget extends StatelessWidget {
                     minWidth: 170,
                     height: 55,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0)),
+                        borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
                       onPressed: () {},
                       child: Text('EDIT A PART',
@@ -67,13 +73,13 @@ class PartsWidget extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
             width: 400,
-            height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height * 0.65,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7.0),
+              borderRadius: BorderRadius.circular(10.0),
               color: Color(0xff3a3d41),
             ),
             child: Padding(
-              padding: EdgeInsets.all(15.0),
+              padding: EdgeInsets.only(left: 15, top: 15, right: 15, bottom: 5),
               child: Column(
                 children: [
                   Row(
@@ -102,14 +108,15 @@ class PartsWidget extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 15),
                   Expanded(
                     child: ListView(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(bottom: 10),
                           width: 330,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.0),
+                            borderRadius: BorderRadius.circular(10.0),
                             color: Color(0xff26292c),
                           ),
                           child: Padding(
@@ -163,10 +170,10 @@ class PartsWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(bottom: 10),
                           width: 330,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.0),
+                            borderRadius: BorderRadius.circular(10.0),
                             color: Color(0xff26292c),
                           ),
                           child: Padding(
@@ -220,10 +227,10 @@ class PartsWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(bottom: 10),
                           width: 330,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.0),
+                            borderRadius: BorderRadius.circular(10.0),
                             color: Color(0xff26292c),
                           ),
                           child: Padding(
@@ -277,10 +284,10 @@ class PartsWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(bottom: 10),
                           width: 330,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7.0),
+                            borderRadius: BorderRadius.circular(10.0),
                             color: Color(0xff26292c),
                           ),
                           child: Padding(
