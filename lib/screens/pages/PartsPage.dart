@@ -17,93 +17,93 @@ class PartsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
-              width: 400,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7.0),
-                color: Color(0xff3a3d41),
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    ButtonTheme(
-                      minWidth: 170,
-                      height: 55,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0)),
-                      child: RaisedButton(
-                        onPressed: () {},
-                        child: Text('ADD A PART',
-                            style: GoogleFonts.rubik(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        color: Color(0xff159deb),
-                      ),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
+            width: 400,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7.0),
+              color: Color(0xff3a3d41),
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  ButtonTheme(
+                    minWidth: 170,
+                    height: 55,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0)),
+                    child: RaisedButton(
+                      onPressed: () {},
+                      child: Text('ADD A PART',
+                          style: GoogleFonts.rubik(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                      color: Color(0xff159deb),
                     ),
-                    ButtonTheme(
-                      minWidth: 170,
-                      height: 55,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0)),
-                      child: RaisedButton(
-                        onPressed: () {},
-                        child: Text('EDIT A PART',
-                            style: GoogleFonts.rubik(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        color: Color(0xff159deb),
-                      ),
+                  ),
+                  ButtonTheme(
+                    minWidth: 170,
+                    height: 55,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0)),
+                    child: RaisedButton(
+                      onPressed: () {},
+                      child: Text('EDIT A PART',
+                          style: GoogleFonts.rubik(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
+                      color: Color(0xff159deb),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
-              width: 400,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7.0),
-                color: Color(0xff3a3d41),
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(15.0),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        RichText(
-                          text: TextSpan(
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: 'Shopping ',
-                                  style: GoogleFonts.rubik(
-                                    color: Colors.white,
-                                    fontSize: 25.0,
-                                  )),
-                              TextSpan(
-                                text: 'List',
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
+            width: 400,
+            height: 400,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7.0),
+              color: Color(0xff3a3d41),
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(15.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      RichText(
+                        text: TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: 'Shopping ',
                                 style: GoogleFonts.rubik(
-                                  fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                   fontSize: 25.0,
-                                ),
+                                )),
+                            TextSpan(
+                              text: 'List',
+                              style: GoogleFonts.rubik(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 25.0,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: ListView(
                       children: [
                         Container(
                           margin: EdgeInsets.only(top: 10),
@@ -335,13 +335,12 @@ class PartsWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 600),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
