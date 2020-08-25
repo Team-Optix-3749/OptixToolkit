@@ -41,11 +41,11 @@ class PartsWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
                       onPressed: () {
-                        NavigationService.goTo(PageRouteBuilder(
+                        NavigationService.navigateTo(PageRouteBuilder(
                             pageBuilder: (context, animation1, animation2) =>
                                 AddPart()));
                       },
-                      child: Text('ADD A PART',
+                      child: Text('REQUEST A PART',
                           style: GoogleFonts.rubik(
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
@@ -112,6 +112,234 @@ class PartsWidget extends StatelessWidget {
                   Expanded(
                     child: ListView(
                       children: [
+                        Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          width: 330,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: Color(0xff26292c),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        style: GoogleFonts.rubik(
+                                            color: Colors.white,
+                                            fontSize: 20.0),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: "Christopher\n",
+                                          ),
+                                          TextSpan(
+                                            text: "Band Saw",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        style: GoogleFonts.rubik(
+                                            color: Colors.white,
+                                            fontSize: 22.0),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: "12pm - 1pm",
+                                            style: TextStyle(
+                                                color: Color(0xff159deb),
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          width: 330,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: Color(0xff26292c),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        style: GoogleFonts.rubik(
+                                            color: Colors.white,
+                                            fontSize: 20.0),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: "Christopher\n",
+                                          ),
+                                          TextSpan(
+                                            text: "Band Saw",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        style: GoogleFonts.rubik(
+                                            color: Colors.white,
+                                            fontSize: 22.0),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: "12pm - 1pm",
+                                            style: TextStyle(
+                                                color: Color(0xff159deb),
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          width: 330,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: Color(0xff26292c),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        style: GoogleFonts.rubik(
+                                            color: Colors.white,
+                                            fontSize: 20.0),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: "Christopher\n",
+                                          ),
+                                          TextSpan(
+                                            text: "Band Saw",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        style: GoogleFonts.rubik(
+                                            color: Colors.white,
+                                            fontSize: 22.0),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: "12pm - 1pm",
+                                            style: TextStyle(
+                                                color: Color(0xff159deb),
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          width: 330,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: Color(0xff26292c),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        style: GoogleFonts.rubik(
+                                            color: Colors.white,
+                                            fontSize: 20.0),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: "Christopher\n",
+                                          ),
+                                          TextSpan(
+                                            text: "Band Saw",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        style: GoogleFonts.rubik(
+                                            color: Colors.white,
+                                            fontSize: 22.0),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: "12pm - 1pm",
+                                            style: TextStyle(
+                                                color: Color(0xff159deb),
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                         Container(
                           margin: EdgeInsets.only(bottom: 10),
                           width: 330,

@@ -89,7 +89,7 @@ class homePage2 extends StatelessWidget {
                 margin:
                     EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
                 width: 400,
-                height: 200,
+                height: MediaQuery.of(context).size.height * 0.28,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   color: Color(0xff3a3d41),
@@ -359,7 +359,7 @@ class homePage2 extends StatelessWidget {
                 margin:
                     EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
                 width: 400,
-                height: 250,
+                height: MediaQuery.of(context).size.height * 0.36,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   color: Color(0xff3a3d41),
@@ -402,8 +402,8 @@ class homePage2 extends StatelessWidget {
                                 Padding(
                                   padding: EdgeInsets.only(
                                     top: 15.0,
-                                    right: 17.0,
-                                    left: 17.0,
+                                    right: 12.0,
+                                    left: 12.0,
                                     bottom: 0.0,
                                   ),
                                   child: LinearPercentIndicator(
@@ -418,11 +418,12 @@ class homePage2 extends StatelessWidget {
                                       text: TextSpan(
                                         children: <TextSpan>[
                                           TextSpan(
-                                              text: 'Limelight: ',
-                                              style: GoogleFonts.rubik(
-                                                color: Colors.white,
-                                                fontSize: 15.0,
-                                              )),
+                                            text: 'Limelight: ',
+                                            style: GoogleFonts.rubik(
+                                              color: Colors.white,
+                                              fontSize: 15.0,
+                                            ),
+                                          ),
                                           TextSpan(
                                             text: 'Arrived',
                                             style: GoogleFonts.rubik(
@@ -462,11 +463,12 @@ class homePage2 extends StatelessWidget {
                                       text: TextSpan(
                                         children: <TextSpan>[
                                           TextSpan(
-                                              text: 'Spark Max: ',
-                                              style: GoogleFonts.rubik(
-                                                color: Colors.white,
-                                                fontSize: 15.0,
-                                              )),
+                                            text: 'Spark Max: ',
+                                            style: GoogleFonts.rubik(
+                                              color: Colors.white,
+                                              fontSize: 15.0,
+                                            ),
+                                          ),
                                           TextSpan(
                                             text: 'Shipped',
                                             style: GoogleFonts.rubik(
@@ -549,11 +551,12 @@ class homePage2 extends StatelessWidget {
                                       text: TextSpan(
                                         children: <TextSpan>[
                                           TextSpan(
-                                              text: 'Falcon 500: ',
-                                              style: GoogleFonts.rubik(
-                                                color: Colors.white,
-                                                fontSize: 15.0,
-                                              )),
+                                            text: 'Falcon 500: ',
+                                            style: GoogleFonts.rubik(
+                                              color: Colors.white,
+                                              fontSize: 15.0,
+                                            ),
+                                          ),
                                           TextSpan(
                                             text: 'Not Ordered',
                                             style: GoogleFonts.rubik(

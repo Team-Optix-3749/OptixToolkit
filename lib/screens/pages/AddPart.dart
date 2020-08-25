@@ -8,8 +8,9 @@ class AddPart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Center(
-            child: Text("bruh",
+            child: Text("ADD PART",
                 style: GoogleFonts.rubik(fontWeight: FontWeight.bold))),
         backgroundColor: Color(0xff159deb),
       ),
