@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
-import 'package:OptixToolkit/screens/pages/AddPart.dart';
+import 'package:OptixToolkit/screens/pages/subpages/AddPart.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class partsPage extends StatelessWidget {
