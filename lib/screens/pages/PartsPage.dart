@@ -41,7 +41,7 @@ class PartsWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
                       onPressed: () {
-                        NavigationService.navigateTo(PageRouteBuilder(
+                        NavigationService.goTo(PageRouteBuilder(
                             pageBuilder: (context, animation1, animation2) =>
                                 AddPart()));
                       },
@@ -73,7 +73,7 @@ class PartsWidget extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
             width: 400,
-            height: MediaQuery.of(context).size.height * 0.65,
+            height: MediaQuery.of(context).size.height * 0.63,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               color: Color(0xff3a3d41),

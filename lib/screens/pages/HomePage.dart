@@ -89,7 +89,7 @@ class homePage2 extends StatelessWidget {
                 margin:
                     EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
                 width: 400,
-                height: MediaQuery.of(context).size.height * 0.28,
+                height: MediaQuery.of(context).size.height * 0.25,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   color: Color(0xff3a3d41),
@@ -359,7 +359,7 @@ class homePage2 extends StatelessWidget {
                 margin:
                     EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
                 width: 400,
-                height: MediaQuery.of(context).size.height * 0.36,
+                height: MediaQuery.of(context).size.height * 0.35,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   color: Color(0xff3a3d41),
