@@ -17,3 +17,13 @@ Tools:
  +-- row: buttons
  +-- row: reservations
   +-- table: part, member, time
+
+Request Part:
+-- text
+-- input
+-- input
+-- input
+-- slider
+-- row
+ +-- button
+ +-- button
