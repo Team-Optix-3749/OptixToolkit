@@ -12,6 +12,7 @@ class _AddPartState extends State<AddPart> {
   final partNameController = TextEditingController();
   final partLinkController = TextEditingController();
   final partDescriptionController = TextEditingController();
+  double priority = 0;
 
   final _formKey = GlobalKey<FormState>();
   final Color background = Color(0xff26292c);
@@ -73,14 +74,13 @@ class _AddPartState extends State<AddPart> {
                             }
                             return null;
                           },
-                          obscureText: true,
                           style: GoogleFonts.rubik(color: Colors.white),
                           textAlign: TextAlign.center,
                           controller: partNameController,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: gray,
-                            hintText: 'Password',
+                            hintText: 'Part Name',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(9.0)),
                             hintStyle: GoogleFonts.rubik(color: subtleGray),
@@ -99,14 +99,13 @@ class _AddPartState extends State<AddPart> {
                             }
                             return null;
                           },
-                          obscureText: true,
                           style: GoogleFonts.rubik(color: Colors.white),
                           textAlign: TextAlign.center,
                           controller: partLinkController,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: gray,
-                            hintText: 'Password',
+                            hintText: 'Part Link',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(9.0)),
                             hintStyle: GoogleFonts.rubik(color: subtleGray),
@@ -117,24 +116,37 @@ class _AddPartState extends State<AddPart> {
                         width: 300,
                         margin: EdgeInsets.only(top: 17),
                         child: TextFormField(
+                          maxLines: 7,
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Enter a Part Link';
                             }
                             return null;
                           },
-                          obscureText: true,
                           style: GoogleFonts.rubik(color: Colors.white),
                           textAlign: TextAlign.start,
                           controller: partNameController,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: gray,
-                            hintText: 'Password',
+                            hintText: 'Part Description',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(9.0)),
                             hintStyle: GoogleFonts.rubik(color: subtleGray),
                           ),
+                        ),
+                      ),
+                      Container(
+                        width: 325,
+                        margin: EdgeInsets.only(top: 17),
+                        child: Slider(
+                          value: priority,
+                          onChanged: (value) =>
+                              setState(() => priority = value),
+                          divisions: 5,
+                          label: "$priority",
+                          min: 0,
+                          max: 5,
                         ),
                       ),
                     ],
