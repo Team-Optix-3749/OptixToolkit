@@ -84,7 +84,8 @@ class _ReserveToolState extends State<ReserveTool> {
                               fontSize: 20.0,
                             ),
                             validator: (value) {
-                              if (value == "Select a Tool") return "Not a Tool";
+                              if (value == "Select a Tool")
+                                return "Select a Tool";
                               return null;
                             },
                             onChanged: (String newValue) {
