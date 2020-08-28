@@ -178,6 +178,69 @@ class _ReserveToolState extends State<ReserveTool> {
                         ),
                       ),
                       Container(
+                        width: 300,
+                        margin: EdgeInsets.only(top: 20),
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0)),
+                          elevation: 4.0,
+                          onPressed: () {
+                            DatePicker.showTimePicker(context,
+                                theme: DatePickerTheme(
+                                  containerHeight: 210.0,
+                                ),
+                                showTitleActions: true, onConfirm: (time) {
+                              print('confirm $time');
+                              _time =
+                                  '${time.hour} : ${time.minute} : ${time.second}';
+                              setState(() {});
+                            },
+                                currentTime: DateTime.now(),
+                                locale: LocaleType.en);
+                            setState(() {});
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 50.0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Container(
+                                      child: Row(
+                                        children: <Widget>[
+                                          Icon(
+                                            Icons.access_time,
+                                            size: 18.0,
+                                            color: Color(0xff159deb),
+                                          ),
+                                          Text(
+                                            " $_time",
+                                            style: TextStyle(
+                                                color: Color(0xff159deb),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18.0),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Text(
+                                  "  Change",
+                                  style: TextStyle(
+                                      color: Color(0xff159deb),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0),
+                                ),
+                              ],
+                            ),
+                          ),
+                          color: Color(0xff3a3d41),
+                        ),
+                      ),
+                      Container(
                         margin: EdgeInsets.only(top: 10),
                         width: 300,
                         child: Padding(
