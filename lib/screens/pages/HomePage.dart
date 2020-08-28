@@ -104,13 +104,13 @@ class homePage2 extends StatelessWidget {
                             text: TextSpan(
                               children: <TextSpan>[
                                 TextSpan(
-                                    text: 'Shopping ',
+                                    text: 'Upcoming ',
                                     style: GoogleFonts.rubik(
                                       color: Colors.white,
                                       fontSize: 25.0,
                                     )),
                                 TextSpan(
-                                  text: 'List',
+                                  text: 'Reservations',
                                   style: GoogleFonts.rubik(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
