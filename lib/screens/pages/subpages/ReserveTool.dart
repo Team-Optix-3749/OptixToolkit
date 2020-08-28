@@ -95,7 +95,7 @@ class _ReserveToolState extends State<ReserveTool> {
                             'Band Saw',
                             'Mill',
                             'Chop Saw',
-                            'Drill Presses'
+                            'Drill Press'
                           ].map<DropdownMenuItem<String>>(
                             (String value) {
                               return DropdownMenuItem<String>(
