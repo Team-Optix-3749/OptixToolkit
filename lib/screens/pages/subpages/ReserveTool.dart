@@ -173,23 +173,6 @@ class _ReserveToolState extends State<ReserveTool> {
                         ),
                         color: Colors.white,
                       ),
-                      FlatButton(
-                          onPressed: () {
-                            DatePicker.showDatePicker(context,
-                                showTitleActions: true,
-                                minTime: DateTime(2000, 1, 1),
-                                maxTime: DateTime(2022, 12, 31),
-                                onChanged: (date) {
-                              print('change $date');
-                            }, onConfirm: (date) {
-                              print('confirm $date');
-                            },
-                                currentTime: DateTime.now(),
-                                locale: LocaleType.en);
-                          },
-                          child: Text(
-                            'Show DateTime Picker',
-                          )),
                       Container(
                         margin: EdgeInsets.only(top: 10),
                         width: 300,
