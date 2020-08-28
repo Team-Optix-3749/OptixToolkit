@@ -12,16 +12,14 @@ import 'package:OptixToolkit/screens/pages/ToolsPage.dart';
 import 'package:OptixToolkit/screens/pages/PartsPage.dart';
 
 class MyStatefulWidget extends StatefulWidget {
-  MyStatefulWidget({Key key, this.user}) : super(key: key);
+  MyStatefulWidget({Key key}) : super(key: key);
 
-  final FirebaseUser user;
 
   @override
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  StreamSubscription<FirebaseUser> sub;
 
   final Color background = Color(0xff26292c);
   final Color lightBackground = Color(0xff3a3d41);
@@ -32,9 +30,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
-    Text("loading bruh..."),
-    Text("loading bruh..."),
-    Text("loading bruh..."),
+    homePage(),
+    toolsPage(),
+    partsPage(),
     Text("loading bruh..."),
     Text("loading bruh..."),
     Text("loading bruh..."),
@@ -56,24 +54,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   void initState() {
     super.initState();
-    setState(() {
-      _widgetOptions[0] = homePage(user: widget.user);
-      _widgetOptions[1] = toolsPage();
-      _widgetOptions[2] = partsPage();
-    });
-    sub = Auth.AuthState().listen((event) {
-      if (event == null) {
-        NavigationService.navigateTo(PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) => FormPage()));
-      }
-    });
     //LogOut();
-  }
-
-  @override
-  void dispose() {
-    if (sub != null) sub.cancel();
-    super.dispose();
   }
 
   Future LogOut() async {

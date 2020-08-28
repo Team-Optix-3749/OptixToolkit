@@ -27,23 +27,8 @@ class _FormPageState extends State<FormPage> {
   final Color subtleGray = Color(0xffcccccc);
   final Color divider = Color(0xff3a3d41);
 
-  StreamSubscription<FirebaseUser> sub;
-
-  @override
-  void initState() {
-    super.initState();
-    sub = Auth.AuthState().listen((event) {
-      if (event != null) {
-        NavigationService.navigateTo(PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) =>
-                MyStatefulWidget(user: event)));
-      }
-    });
-  }
-
   @override
   void dispose() {
-    if (sub != null) sub.cancel();
     emailController.dispose();
     passwordController.dispose();
     nameController.dispose();
@@ -145,7 +130,6 @@ class _FormPageState extends State<FormPage> {
                     ),
                     SizedBox(height: 5),
                     SizedBox(height: 5),
-                    
                   ],
                 )),
           ],

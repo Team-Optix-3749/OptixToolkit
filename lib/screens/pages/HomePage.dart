@@ -6,14 +6,11 @@ import 'package:OptixToolkit/services/firebase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class homePage extends StatelessWidget {
-  homePage({Key key, this.user}) : super(key: key);
-  final FirebaseUser user;
+  homePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return homePage2(
-      user: user,
-    );
+    return homePage2();
     /*MultiProvider(
         providers: [
           StreamProvider<User>.value(
@@ -24,8 +21,7 @@ class homePage extends StatelessWidget {
 }
 
 class homePage2 extends StatelessWidget {
-  homePage2({Key key, this.user}) : super(key: key);
-  final FirebaseUser user;
+  homePage2({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +58,9 @@ class homePage2 extends StatelessWidget {
                                       fontSize: 25.0,
                                     )),
                                 TextSpan(
-                                  text: user.displayName.split(" ")[0],
+                                  text: Provider.of<FirebaseUser>(context)
+                                      .displayName
+                                      .split(" ")[0],
                                   style: GoogleFonts.rubik(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,

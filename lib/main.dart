@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:OptixToolkit/services/firebase.dart';
 import 'services/NavigationService.dart';
 import 'package:flutter/material.dart';
 import 'package:OptixToolkit/screens/Form.dart';
+import 'package:OptixToolkit/screens/Home.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,9 +20,18 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       navigatorKey: NavigationService.navigatorKey,
-      home: Scaffold(
-        body: FormPage(),
-      ),
+      home: MultiProvider(providers: [
+        StreamProvider<FirebaseUser>.value(value: Auth.AuthState())
+      ], child: MainApp()),
     );
+  }
+}
+
+class MainApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Provider.of<FirebaseUser>(context) == null
+        ? FormPage()
+        : MyStatefulWidget();
   }
 }
