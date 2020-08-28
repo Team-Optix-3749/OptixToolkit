@@ -70,40 +70,46 @@ class _ReserveToolState extends State<ReserveTool> {
                       Container(
                         width: 300,
                         margin: EdgeInsets.only(top: 20),
-                        child: DropdownButtonFormField<String>(
-                          value: dropdownValue,
-                          icon: Icon(Icons.arrow_downward),
-                          iconSize: 24,
-                          elevation: 16,
-                          style: GoogleFonts.rubik(
-                            color: Color(0xff159deb),
-                            fontSize: 20.0,
+                        child: Theme(
+                          data: Theme.of(context).copyWith(
+                            canvasColor: background,
                           ),
-                          validator: (value) {
-                            if (value == "Select a Tool") return "Not a Tool";
-                            return null;
-                          },
-                          onChanged: (String newValue) {
-                            setState(() {
-                              dropdownValue = newValue;
-                            });
-                          },
-                          items: <String>[
-                            'Select a Tool',
-                            'Drill',
-                            'Driver',
-                            'Band Saw',
-                            'Mill',
-                            'Chop Saw',
-                            'Drill Press'
-                          ].map<DropdownMenuItem<String>>(
-                            (String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value, textAlign: TextAlign.center),
-                              );
+                          child: DropdownButtonFormField<String>(
+                            value: dropdownValue,
+                            icon: Icon(Icons.arrow_downward),
+                            iconSize: 24,
+                            elevation: 16,
+                            style: GoogleFonts.rubik(
+                              color: Color(0xff159deb),
+                              fontSize: 20.0,
+                            ),
+                            validator: (value) {
+                              if (value == "Select a Tool") return "Not a Tool";
+                              return null;
                             },
-                          ).toList(),
+                            onChanged: (String newValue) {
+                              setState(() {
+                                dropdownValue = newValue;
+                              });
+                            },
+                            items: <String>[
+                              'Select a Tool',
+                              'Drill',
+                              'Driver',
+                              'Band Saw',
+                              'Mill',
+                              'Chop Saw',
+                              'Drill Press'
+                            ].map<DropdownMenuItem<String>>(
+                              (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child:
+                                      Text(value, textAlign: TextAlign.center),
+                                );
+                              },
+                            ).toList(),
+                          ),
                         ),
                       ),
                       Container(
