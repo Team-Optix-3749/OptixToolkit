@@ -59,8 +59,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   Future LogOut() async {
     await Auth.signOut();
-    NavigationService.navigateTo(PageRouteBuilder(
-        pageBuilder: (context, animation1, animation2) => FormPage()));
   }
 
   @override
