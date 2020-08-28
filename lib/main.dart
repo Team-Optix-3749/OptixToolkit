@@ -13,16 +13,17 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Optix Toolkit',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return MultiProvider(
+      providers: [StreamProvider<FirebaseUser>.value(value: Auth.AuthState())],
+      child: MaterialApp(
+        title: 'Optix Toolkit',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        navigatorKey: NavigationService.navigatorKey,
+        home: MainApp(),
       ),
-      navigatorKey: NavigationService.navigatorKey,
-      home: MultiProvider(providers: [
-        StreamProvider<FirebaseUser>.value(value: Auth.AuthState())
-      ], child: MainApp()),
     );
   }
 }
