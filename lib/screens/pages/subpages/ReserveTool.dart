@@ -73,7 +73,7 @@ class _ReserveToolState extends State<ReserveTool> {
                         margin: EdgeInsets.only(top: 20),
                         child: Theme(
                           data: Theme.of(context).copyWith(
-                            canvasColor: background,
+                            canvasColor: Color(0xff3a3d41),
                           ),
                           child: DropdownButtonFormField<String>(
                             value: dropdownValue,
