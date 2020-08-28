@@ -82,7 +82,7 @@ class PartsWidget extends StatelessWidget {
               color: Color(0xff3a3d41),
             ),
             child: Padding(
-              padding: EdgeInsets.only(left: 15, top: 15, right: 15, bottom: 5),
+              padding: EdgeInsets.all(15.0),
               child: Column(
                 children: [
                   Row(
