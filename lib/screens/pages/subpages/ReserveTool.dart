@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class ReserveTool extends StatefulWidget {
   ReserveTool({Key key}) : super(key: key);
@@ -18,7 +19,7 @@ class _ReserveToolState extends State<ReserveTool> {
   final Color background = Color(0xff26292c);
   final Color gray = Color(0xff3A3D41);
   final Color subtleGray = Color(0xffcccccc);
-  String dropdownValue;
+  String dropdownValue = "Select a Tool";
 
   @override
   Widget build(BuildContext context) {
@@ -69,90 +70,38 @@ class _ReserveToolState extends State<ReserveTool> {
                       Container(
                         width: 300,
                         margin: EdgeInsets.only(top: 20),
-                        child: DropdownButton<String>(
+                        child: DropdownButtonFormField<String>(
                           value: dropdownValue,
                           icon: Icon(Icons.arrow_downward),
                           iconSize: 24,
                           elevation: 16,
-                          style: TextStyle(color: Color(0xff159deb)),
-                          underline: Container(
-                            height: 2,
+                          style: GoogleFonts.rubik(
                             color: Color(0xff159deb),
+                            fontSize: 20.0,
                           ),
+                          validator: (value) {
+                            if (value == "Select a Tool") return "Not a Tool";
+                            return null;
+                          },
                           onChanged: (String newValue) {
                             setState(() {
                               dropdownValue = newValue;
                             });
                           },
-                          items: <String>['One', 'Two', 'Free', 'Four']
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      Container(
-                        width: 300,
-                        margin: EdgeInsets.only(top: 17),
-                        child: TextFormField(
-                          validator: (value) {
-                            if (value.length < 8 &&
-                                !((value.substring(0, 8) != "https://") ||
-                                    (value.substring(0, 8) != "http://"))) {
-                              return 'Enter Valid Link (with http(s))';
-                            }
-                            return null;
-                          },
-                          style: GoogleFonts.rubik(color: Colors.white),
-                          textAlign: TextAlign.center,
-                          controller: partLinkController,
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: gray,
-                            hintText: 'Part Link',
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(9.0)),
-                            hintStyle: GoogleFonts.rubik(color: subtleGray),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 300,
-                        margin: EdgeInsets.only(top: 17),
-                        child: TextFormField(
-                          maxLines: 7,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Enter a Part Link';
-                            }
-                            return null;
-                          },
-                          style: GoogleFonts.rubik(color: Colors.white),
-                          textAlign: TextAlign.start,
-                          controller: partNameController,
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: gray,
-                            hintText: 'Part Description',
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(9.0)),
-                            hintStyle: GoogleFonts.rubik(color: subtleGray),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 325,
-                        margin: EdgeInsets.only(top: 17),
-                        child: Slider(
-                          value: priority,
-                          onChanged: (value) =>
-                              setState(() => priority = value),
-                          divisions: 5,
-                          label: "$priority",
-                          min: 0,
-                          max: 5,
+                          items: <String>[
+                            'Select a Tool',
+                            'One',
+                            'Two',
+                            'Free',
+                            'Four'
+                          ].map<DropdownMenuItem<String>>(
+                            (String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value, textAlign: TextAlign.center),
+                              );
+                            },
+                          ).toList(),
                         ),
                       ),
                       Container(
