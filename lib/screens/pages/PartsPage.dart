@@ -41,9 +41,12 @@ class PartsWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
                       onPressed: () {
-                        NavigationService.goTo(PageRouteBuilder(
+                        NavigationService.goTo(
+                          PageRouteBuilder(
                             pageBuilder: (context, animation1, animation2) =>
-                                AddPart()));
+                                AddPart(),
+                          ),
+                        );
                       },
                       child: Text('REQUEST A PART',
                           style: GoogleFonts.rubik(

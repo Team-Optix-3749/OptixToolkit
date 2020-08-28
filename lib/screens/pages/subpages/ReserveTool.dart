@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AddPart extends StatefulWidget {
-  AddPart({Key key}) : super(key: key);
+class ReserveTool extends StatefulWidget {
+  ReserveTool({Key key}) : super(key: key);
 
   @override
-  _AddPartState createState() => _AddPartState();
+  _ReserveToolState createState() => _ReserveToolState();
 }
 
-class _AddPartState extends State<AddPart> {
+class _ReserveToolState extends State<ReserveTool> {
   final partNameController = TextEditingController();
   final partLinkController = TextEditingController();
   final partDescriptionController = TextEditingController();
@@ -18,6 +18,7 @@ class _AddPartState extends State<AddPart> {
   final Color background = Color(0xff26292c);
   final Color gray = Color(0xff3A3D41);
   final Color subtleGray = Color(0xffcccccc);
+  String dropdownValue;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class _AddPartState extends State<AddPart> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "REQUEST PART",
+          "RESERVE TOOL",
           style: GoogleFonts.rubik(fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
@@ -43,14 +44,14 @@ class _AddPartState extends State<AddPart> {
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Request a ',
+                          text: 'Reserve a ',
                           style: GoogleFonts.rubik(
                             color: Colors.white,
                             fontSize: 25.0,
                           ),
                         ),
                         TextSpan(
-                          text: 'Part',
+                          text: 'Tool',
                           style: GoogleFonts.rubik(
                             color: Colors.white,
                             fontSize: 25.0,
@@ -68,24 +69,28 @@ class _AddPartState extends State<AddPart> {
                       Container(
                         width: 300,
                         margin: EdgeInsets.only(top: 20),
-                        child: TextFormField(
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Enter Part Name';
-                            }
-                            return null;
-                          },
-                          style: GoogleFonts.rubik(color: Colors.white),
-                          textAlign: TextAlign.center,
-                          controller: partNameController,
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: gray,
-                            hintText: 'Part Name',
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(9.0)),
-                            hintStyle: GoogleFonts.rubik(color: subtleGray),
+                        child: DropdownButton<String>(
+                          value: dropdownValue,
+                          icon: Icon(Icons.arrow_downward),
+                          iconSize: 24,
+                          elevation: 16,
+                          style: TextStyle(color: Color(0xff159deb)),
+                          underline: Container(
+                            height: 2,
+                            color: Color(0xff159deb),
                           ),
+                          onChanged: (String newValue) {
+                            setState(() {
+                              dropdownValue = newValue;
+                            });
+                          },
+                          items: <String>['One', 'Two', 'Free', 'Four']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
                         ),
                       ),
                       Container(
@@ -165,7 +170,9 @@ class _AddPartState extends State<AddPart> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(7.0)),
                                 child: RaisedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    _formKey.currentState.validate();
+                                  },
                                   child: Text('Submit',
                                       style: GoogleFonts.rubik(
                                           fontWeight: FontWeight.bold,
