@@ -20,7 +20,8 @@ class _ReserveToolState extends State<ReserveTool> {
   final Color gray = Color(0xff3A3D41);
   final Color subtleGray = Color(0xffcccccc);
   String dropdownValue = "Select a Tool";
-  String _time = "Not Set";
+  String _startTime = "Start Time";
+  String _endTime = "End Time";
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +129,7 @@ class _ReserveToolState extends State<ReserveTool> {
                                 ),
                                 showTitleActions: true, onConfirm: (time) {
                               print('confirm $time');
-                              _time =
+                              _startTime =
                                   '${time.hour} : ${time.minute} : ${time.second}';
                               setState(() {});
                             },
@@ -153,7 +154,7 @@ class _ReserveToolState extends State<ReserveTool> {
                                             color: Color(0xff159deb),
                                           ),
                                           Text(
-                                            " $_time",
+                                            " $_startTime",
                                             style: TextStyle(
                                                 color: Color(0xff159deb),
                                                 fontWeight: FontWeight.bold,
@@ -191,7 +192,7 @@ class _ReserveToolState extends State<ReserveTool> {
                                 ),
                                 showTitleActions: true, onConfirm: (time) {
                               print('confirm $time');
-                              _time =
+                              _endTime =
                                   '${time.hour} : ${time.minute} : ${time.second}';
                               setState(() {});
                             },
@@ -216,7 +217,7 @@ class _ReserveToolState extends State<ReserveTool> {
                                             color: Color(0xff159deb),
                                           ),
                                           Text(
-                                            " $_time",
+                                            " $_endTime",
                                             style: TextStyle(
                                                 color: Color(0xff159deb),
                                                 fontWeight: FontWeight.bold,
