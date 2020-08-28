@@ -20,7 +20,7 @@ class _ReserveToolState extends State<ReserveTool> {
   final Color gray = Color(0xff3A3D41);
   final Color subtleGray = Color(0xffcccccc);
   String dropdownValue = "Select a Tool";
-  String _time = "Not set";
+  String _time = "Not Set";
 
   @override
   Widget build(BuildContext context) {
