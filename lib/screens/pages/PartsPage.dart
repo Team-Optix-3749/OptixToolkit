@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
-import 'package:OptixToolkit/screens/pages/AddPart.dart';
+import 'package:OptixToolkit/screens/pages/subpages/AddPart.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class partsPage extends StatelessWidget {
@@ -41,9 +41,12 @@ class PartsWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
                       onPressed: () {
-                        NavigationService.goTo(PageRouteBuilder(
+                        NavigationService.goTo(
+                          PageRouteBuilder(
                             pageBuilder: (context, animation1, animation2) =>
-                                AddPart()));
+                                AddPart(),
+                          ),
+                        );
                       },
                       child: Text('REQUEST A PART',
                           style: GoogleFonts.rubik(

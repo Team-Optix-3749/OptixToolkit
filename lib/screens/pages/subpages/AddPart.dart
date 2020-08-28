@@ -62,6 +62,7 @@ class _AddPartState extends State<AddPart> {
                   ),
                 ),
                 Form(
+                  key: _formKey,
                   child: Column(
                     children: [
                       Container(
@@ -147,6 +148,33 @@ class _AddPartState extends State<AddPart> {
                           label: "$priority",
                           min: 0,
                           max: 5,
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 10),
+                        width: 300,
+                        child: Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              ButtonTheme(
+                                minWidth: 200,
+                                height: 55,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(7.0)),
+                                child: RaisedButton(
+                                  onPressed: () {},
+                                  child: Text('Submit',
+                                      style: GoogleFonts.rubik(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white)),
+                                  color: Color(0xff159deb),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

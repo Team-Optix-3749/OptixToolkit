@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:OptixToolkit/services/NavigationService.dart';
+import 'package:OptixToolkit/screens/pages/subpages/ReserveTool.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class toolsPage extends StatelessWidget {
@@ -38,7 +40,14 @@ class ToolWidget extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        NavigationService.goTo(
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                ReserveTool(),
+                          ),
+                        );
+                      },
                       child: Text('RESERVE',
                           style: GoogleFonts.rubik(
                               fontWeight: FontWeight.bold,
