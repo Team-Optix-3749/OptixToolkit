@@ -31,11 +31,11 @@ class PartsWidget extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(10.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   ButtonTheme(
-                    minWidth: 170,
+                    minWidth: MediaQuery.of(context).size.width * 0.89,
                     height: 55,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
@@ -49,20 +49,6 @@ class PartsWidget extends StatelessWidget {
                         );
                       },
                       child: Text('REQUEST A PART',
-                          style: GoogleFonts.rubik(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
-                      color: Color(0xff159deb),
-                    ),
-                  ),
-                  ButtonTheme(
-                    minWidth: 170,
-                    height: 55,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7.0)),
-                    child: RaisedButton(
-                      onPressed: () {},
-                      child: Text('EDIT A PART',
                           style: GoogleFonts.rubik(
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
