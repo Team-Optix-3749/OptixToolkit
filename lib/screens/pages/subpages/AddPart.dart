@@ -140,8 +140,24 @@ class _AddPartState extends State<AddPart> {
                         ),
                       ),
                       Container(
+                        margin: EdgeInsets.only(top: 20),
+                        child: RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Priority',
+                                style: GoogleFonts.rubik(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
                         width: 325,
-                        margin: EdgeInsets.only(top: 17),
+                        margin: EdgeInsets.only(top: 3),
                         child: Slider(
                           value: priority,
                           onChanged: (value) =>
