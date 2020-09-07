@@ -50,7 +50,24 @@ class _toolState extends State<ToolWidget> {
     super.initState();
   }
 
-  Future scan() async {
+  Future checkOutScan() async {
+    try {
+      String barcode_ = (await BarcodeScanner.scan()).rawContent;
+      print(barcode_);
+    } on PlatformException catch (e) {
+      if (e.code == BarcodeScanner.cameraAccessDenied) {
+        print('Camera permission not granted');
+      } else {
+        print('Unknown Error: $e');
+      }
+    } on FormatException catch (e) {
+      print('User pressed back button before scanning');
+    } catch (e) {
+      print('Unknown Error: $e');
+    }
+  }
+
+  Future checkInScan() async {
     try {
       String barcode_ = (await BarcodeScanner.scan()).rawContent;
       print(barcode_);
@@ -113,11 +130,10 @@ class _toolState extends State<ToolWidget> {
                         borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
                       onPressed: () {
-                        scan().catchError(() {
+                        checkOutScan().catchError(() {
                           _showDialog(context);
                         });
                       },
-                      // onPressed: scan,
                       child: Text('CHECK OUT',
                           style: GoogleFonts.rubik(
                               fontWeight: FontWeight.bold,
@@ -131,7 +147,11 @@ class _toolState extends State<ToolWidget> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
-                      onPressed: scan,
+                      onPressed: () {
+                        checkInScan().catchError(() {
+                          _showDialog(context);
+                        });
+                      },
                       child: Text('CHECK IN',
                           style: GoogleFonts.rubik(
                               fontWeight: FontWeight.bold,
