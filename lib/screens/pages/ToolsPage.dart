@@ -113,11 +113,9 @@ class _toolState extends State<ToolWidget> {
                         borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
                       onPressed: () {
-                        try {
-                          scan
-                        } catch (e) {
+                        scan().catchError(() {
                           _showDialog(context);
-                        }
+                        });
                       },
                       // onPressed: scan,
                       child: Text('CHECK OUT',
