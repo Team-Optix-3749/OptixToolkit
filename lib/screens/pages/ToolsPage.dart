@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/screens/pages/subpages/ReserveTool.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 
 class toolsPage extends StatelessWidget {
   const toolsPage({Key key, this.uid}) : super(key: key);
@@ -13,8 +15,57 @@ class toolsPage extends StatelessWidget {
   }
 }
 
-class ToolWidget extends StatelessWidget {
-  const ToolWidget({Key key}) : super(key: key);
+class ToolWidget extends StatefulWidget {
+  ToolWidget({Key key}) : super(key: key);
+
+  @override
+  _toolState createState() => _toolState();
+}
+
+class _toolState extends State<ToolWidget> {
+  void _showDialog(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Alert Dialog title"),
+          content: new Text("Alert Dialog body"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void initState() {
+    super.initState();
+  }
+
+  Future scan() async {
+    try {
+      String barcode_ = (await BarcodeScanner.scan()).rawContent;
+      print(barcode_);
+    } on PlatformException catch (e) {
+      if (e.code == BarcodeScanner.cameraAccessDenied) {
+        print('Camera permission not granted');
+      } else {
+        print('Unknown Error: $e');
+      }
+    } on FormatException catch (e) {
+      print('User pressed back button before scanning');
+    } catch (e) {
+      print('Unknown Error: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +112,14 @@ class ToolWidget extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        try {
+                          scan
+                        } catch (e) {
+                          _showDialog(context);
+                        }
+                      },
+                      // onPressed: scan,
                       child: Text('CHECK OUT',
                           style: GoogleFonts.rubik(
                               fontWeight: FontWeight.bold,
@@ -75,7 +133,7 @@ class ToolWidget extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: scan,
                       child: Text('CHECK IN',
                           style: GoogleFonts.rubik(
                               fontWeight: FontWeight.bold,
