@@ -36,6 +36,12 @@ class profilePage extends StatelessWidget {
                         text: TextSpan(
                           children: <TextSpan>[
                             TextSpan(
+                                text: 'Welcome ',
+                                style: GoogleFonts.rubik(
+                                  color: Colors.white,
+                                  fontSize: 25.0,
+                                )),
+                            TextSpan(
                               text: Provider.of<FirebaseUser>(context)
                                   .displayName
                                   .split(" ")[0],
