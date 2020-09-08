@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key key}) : super(key: key);
+class profilePage extends StatelessWidget {
+  const profilePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
