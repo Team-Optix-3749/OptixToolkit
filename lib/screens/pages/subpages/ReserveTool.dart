@@ -82,7 +82,7 @@ class _ReserveToolState extends State<ReserveTool> {
                             iconSize: 24,
                             elevation: 16,
                             style: GoogleFonts.rubik(
-                              color: Color(0xff159deb),
+                                                color: Colors.white,
                               fontSize: 20.0,
                             ),
                             validator: (value) {
@@ -158,7 +158,7 @@ class _ReserveToolState extends State<ReserveTool> {
                                           Text(
                                             " $_startTime",
                                             style: TextStyle(
-                                                color: Color(0xff159deb),
+                                                color: Colors.white,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18.0),
                                           ),
@@ -170,7 +170,7 @@ class _ReserveToolState extends State<ReserveTool> {
                                 Text(
                                   "  Change",
                                   style: TextStyle(
-                                      color: Color(0xff159deb),
+                                                color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18.0),
                                 ),
@@ -221,7 +221,7 @@ class _ReserveToolState extends State<ReserveTool> {
                                           Text(
                                             " $_endTime",
                                             style: TextStyle(
-                                                color: Color(0xff159deb),
+                                      color: Colors.white,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18.0),
                                           ),
@@ -233,7 +233,7 @@ class _ReserveToolState extends State<ReserveTool> {
                                 Text(
                                   "  Change",
                                   style: TextStyle(
-                                      color: Color(0xff159deb),
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18.0),
                                 ),
