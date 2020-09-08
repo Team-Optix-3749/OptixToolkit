@@ -261,7 +261,7 @@ class _ReserveToolState extends State<ReserveTool> {
                                   onPressed: () {
                                     _formKey.currentState.validate();
                                   },
-                                  child: Text('SUBMIT',
+                                  child: Text('RESERVE',
                                       style: GoogleFonts.rubik(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),

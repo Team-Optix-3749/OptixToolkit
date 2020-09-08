@@ -206,7 +206,7 @@ class _AddPartState extends State<AddPart> {
                                     borderRadius: BorderRadius.circular(7.0)),
                                 child: RaisedButton(
                                   onPressed: () {},
-                                  child: Text('SUBMIT',
+                                  child: Text('ADD',
                                       style: GoogleFonts.rubik(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),

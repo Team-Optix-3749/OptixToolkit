@@ -167,7 +167,7 @@ class profilePage extends StatelessWidget {
                                                   BorderRadius.circular(7.0)),
                                           child: RaisedButton(
                                             onPressed: () {},
-                                            child: Text('SUBMIT',
+                                            child: Text('UPDATE',
                                                 style: GoogleFonts.rubik(
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.white)),
