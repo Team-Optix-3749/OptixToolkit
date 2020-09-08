@@ -147,8 +147,7 @@ class PartsWidget extends StatelessWidget {
                                           TextSpan(
                                             text: "Arrived",
                                             style: TextStyle(
-                                                color: Colors
-                                                    .lightGreenAccent[400],
+                                                color: Color(0xff3ce887),
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -206,7 +205,7 @@ class PartsWidget extends StatelessWidget {
                                           TextSpan(
                                             text: "Shipped",
                                             style: TextStyle(
-                                                color: Colors.yellow,
+                                                color: Color(0xffe6d040),
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -380,8 +379,7 @@ class PartsWidget extends StatelessWidget {
                                           TextSpan(
                                             text: "Arrived",
                                             style: TextStyle(
-                                                color: Colors
-                                                    .lightGreenAccent[400],
+                                                color: Color(0xff3ce887),
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -439,7 +437,7 @@ class PartsWidget extends StatelessWidget {
                                           TextSpan(
                                             text: "Shipped",
                                             style: TextStyle(
-                                                color: Colors.white,
+                                                color: Color(0xffe6d040),
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -497,7 +495,7 @@ class PartsWidget extends StatelessWidget {
                                           TextSpan(
                                             text: "Ordered",
                                             style: TextStyle(
-                                                color: Colors.white,
+                                                color: Colors.orange,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
