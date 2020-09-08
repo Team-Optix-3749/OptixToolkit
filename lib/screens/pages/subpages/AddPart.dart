@@ -11,6 +11,7 @@ class AddPart extends StatefulWidget {
 class _AddPartState extends State<AddPart> {
   final partNameController = TextEditingController();
   final partLinkController = TextEditingController();
+  final trackingNumberController = TextEditingController();
   final partDescriptionController = TextEditingController();
   double priority = 0;
 
@@ -107,6 +108,29 @@ class _AddPartState extends State<AddPart> {
                             filled: true,
                             fillColor: gray,
                             hintText: 'Part Link',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(9.0)),
+                            hintStyle: GoogleFonts.rubik(color: subtleGray),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 300,
+                        margin: EdgeInsets.only(top: 20),
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Enter Tracking Number';
+                            }
+                            return null;
+                          },
+                          style: GoogleFonts.rubik(color: Colors.white),
+                          textAlign: TextAlign.center,
+                          controller: trackingNumberController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: gray,
+                            hintText: 'Tracking Number',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(9.0)),
                             hintStyle: GoogleFonts.rubik(color: subtleGray),
