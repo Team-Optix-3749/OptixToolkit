@@ -1,12 +1,9 @@
 import 'dart:async';
 
-import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/firebase.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:OptixToolkit/Icons.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:OptixToolkit/screens/Form.dart';
 import 'package:OptixToolkit/screens/pages/HomePage.dart';
 import 'package:OptixToolkit/screens/pages/ToolsPage.dart';
 import 'package:OptixToolkit/screens/pages/PartsPage.dart';
@@ -33,9 +30,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     toolsPage(),
     partsPage(),
     profilePage(),
-    Text("loading bruh..."),
-    Text("loading bruh..."),
-    Text("loading bruh..."),
     Container(
       child: Column(
         children: [

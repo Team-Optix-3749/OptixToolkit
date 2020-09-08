@@ -1,10 +1,6 @@
-import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:OptixToolkit/services/firebase.dart';
-import 'package:OptixToolkit/services/NavigationService.dart';
-import 'Home.dart';
 
 class FormPage extends StatefulWidget {
   FormPage({Key key}) : super(key: key);
