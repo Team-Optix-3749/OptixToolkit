@@ -36,7 +36,7 @@ class profilePage extends StatelessWidget {
                         text: TextSpan(
                           children: <TextSpan>[
                             TextSpan(
-                                text: 'Welcome ',
+                                text: 'Welcome, ',
                                 style: GoogleFonts.rubik(
                                   color: Colors.white,
                                   fontSize: 25.0,
