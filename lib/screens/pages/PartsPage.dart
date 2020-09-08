@@ -125,8 +125,9 @@ class PartsWidget extends StatelessWidget {
                                             text: "Christopher\n",
                                           ),
                                           TextSpan(
-                                            text: "Band Saw",
+                                            text: "Limelight",
                                             style: TextStyle(
+                                              color: Color(0xff159deb),
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -144,9 +145,10 @@ class PartsWidget extends StatelessWidget {
                                             fontSize: 22.0),
                                         children: <TextSpan>[
                                           TextSpan(
-                                            text: "12pm - 1pm",
+                                            text: "Arrived",
                                             style: TextStyle(
-                                                color: Color(0xff159deb),
+                                                color: Colors
+                                                    .lightGreenAccent[400],
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -182,8 +184,9 @@ class PartsWidget extends StatelessWidget {
                                             text: "Christopher\n",
                                           ),
                                           TextSpan(
-                                            text: "Band Saw",
+                                            text: "Spark Max",
                                             style: TextStyle(
+                                              color: Color(0xff159deb),
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -201,9 +204,9 @@ class PartsWidget extends StatelessWidget {
                                             fontSize: 22.0),
                                         children: <TextSpan>[
                                           TextSpan(
-                                            text: "12pm - 1pm",
+                                            text: "Shipped",
                                             style: TextStyle(
-                                                color: Color(0xff159deb),
+                                                color: Colors.white,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -239,8 +242,9 @@ class PartsWidget extends StatelessWidget {
                                             text: "Christopher\n",
                                           ),
                                           TextSpan(
-                                            text: "Band Saw",
+                                            text: "Failane Wheel",
                                             style: TextStyle(
+                                              color: Color(0xff159deb),
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -258,9 +262,9 @@ class PartsWidget extends StatelessWidget {
                                             fontSize: 22.0),
                                         children: <TextSpan>[
                                           TextSpan(
-                                            text: "12pm - 1pm",
+                                            text: "Ordered",
                                             style: TextStyle(
-                                                color: Color(0xff159deb),
+                                                color: Colors.white,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -296,8 +300,9 @@ class PartsWidget extends StatelessWidget {
                                             text: "Christopher\n",
                                           ),
                                           TextSpan(
-                                            text: "Band Saw",
+                                            text: "Falcon 500",
                                             style: TextStyle(
+                                              color: Color(0xff159deb),
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -315,9 +320,9 @@ class PartsWidget extends StatelessWidget {
                                             fontSize: 22.0),
                                         children: <TextSpan>[
                                           TextSpan(
-                                            text: "12pm - 1pm",
+                                            text: "Not Ordered",
                                             style: TextStyle(
-                                                color: Color(0xff159deb),
+                                                color: Colors.red,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -353,8 +358,9 @@ class PartsWidget extends StatelessWidget {
                                             text: "Christopher\n",
                                           ),
                                           TextSpan(
-                                            text: "Band Saw",
+                                            text: "Limelight",
                                             style: TextStyle(
+                                              color: Color(0xff159deb),
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -372,9 +378,10 @@ class PartsWidget extends StatelessWidget {
                                             fontSize: 22.0),
                                         children: <TextSpan>[
                                           TextSpan(
-                                            text: "12pm - 1pm",
+                                            text: "Arrived",
                                             style: TextStyle(
-                                                color: Color(0xff159deb),
+                                                color: Colors
+                                                    .lightGreenAccent[400],
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -410,8 +417,9 @@ class PartsWidget extends StatelessWidget {
                                             text: "Christopher\n",
                                           ),
                                           TextSpan(
-                                            text: "Band Saw",
+                                            text: "Spark Max",
                                             style: TextStyle(
+                                              color: Color(0xff159deb),
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -429,9 +437,9 @@ class PartsWidget extends StatelessWidget {
                                             fontSize: 22.0),
                                         children: <TextSpan>[
                                           TextSpan(
-                                            text: "12pm - 1pm",
+                                            text: "Shipped",
                                             style: TextStyle(
-                                                color: Color(0xff159deb),
+                                                color: Colors.white,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -467,8 +475,9 @@ class PartsWidget extends StatelessWidget {
                                             text: "Christopher\n",
                                           ),
                                           TextSpan(
-                                            text: "Band Saw",
+                                            text: "Failane Wheel",
                                             style: TextStyle(
+                                              color: Color(0xff159deb),
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -486,9 +495,9 @@ class PartsWidget extends StatelessWidget {
                                             fontSize: 22.0),
                                         children: <TextSpan>[
                                           TextSpan(
-                                            text: "12pm - 1pm",
+                                            text: "Ordered",
                                             style: TextStyle(
-                                                color: Color(0xff159deb),
+                                                color: Colors.white,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -524,8 +533,9 @@ class PartsWidget extends StatelessWidget {
                                             text: "Christopher\n",
                                           ),
                                           TextSpan(
-                                            text: "Band Saw",
+                                            text: "Falcon 500",
                                             style: TextStyle(
+                                              color: Color(0xff159deb),
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -543,9 +553,9 @@ class PartsWidget extends StatelessWidget {
                                             fontSize: 22.0),
                                         children: <TextSpan>[
                                           TextSpan(
-                                            text: "12pm - 1pm",
+                                            text: "Not Ordered",
                                             style: TextStyle(
-                                                color: Color(0xff159deb),
+                                                color: Colors.red,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
