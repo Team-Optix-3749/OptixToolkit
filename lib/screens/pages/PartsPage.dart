@@ -48,10 +48,13 @@ class PartsWidget extends StatelessWidget {
                           ),
                         );
                       },
-                      child: Text('REQUEST A PART',
-                          style: GoogleFonts.rubik(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
+                      child: Text(
+                        'ADD A PART',
+                        style: GoogleFonts.rubik(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                            color: Colors.white),
+                      ),
                       color: Color(0xff159deb),
                     ),
                   ),

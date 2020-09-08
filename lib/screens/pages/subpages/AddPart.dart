@@ -26,7 +26,7 @@ class _AddPartState extends State<AddPart> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "REQUEST PART",
+          "ADD PART",
           style: GoogleFonts.rubik(fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
@@ -43,7 +43,7 @@ class _AddPartState extends State<AddPart> {
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Request a ',
+                          text: 'Add a ',
                           style: GoogleFonts.rubik(
                             color: Colors.white,
                             fontSize: 25.0,
