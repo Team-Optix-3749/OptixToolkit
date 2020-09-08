@@ -471,7 +471,7 @@ class homePage2 extends StatelessWidget {
                                             text: 'Shipped',
                                             style: GoogleFonts.rubik(
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.white,
+                                              color: Colors.yellowAccent,
                                               fontSize: 15.0,
                                             ),
                                           ),
@@ -515,7 +515,7 @@ class homePage2 extends StatelessWidget {
                                             text: 'Ordered',
                                             style: GoogleFonts.rubik(
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.white,
+                                              color: Colors.orange,
                                               fontSize: 15.0,
                                             ),
                                           ),
