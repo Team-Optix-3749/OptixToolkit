@@ -18,6 +18,34 @@ class PartsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> _showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('AlertDialog Title'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text('This is a demo alert dialog.'),
+                  Text('Would you like to approve of this message?'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Approve'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Container(
       child: Column(
         children: [
@@ -41,12 +69,13 @@ class PartsWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
                       onPressed: () {
-                        NavigationService.goTo(
-                          PageRouteBuilder(
-                            pageBuilder: (context, animation1, animation2) =>
-                                AddPart(),
-                          ),
-                        );
+                        _showMyDialog();
+                        // NavigationService.goTo(
+                        //   PageRouteBuilder(
+                        //     pageBuilder: (context, animation1, animation2) =>
+                        //         AddPart(),
+                        //   ),
+                        // );
                       },
                       child: Text(
                         'ADD A PART',
