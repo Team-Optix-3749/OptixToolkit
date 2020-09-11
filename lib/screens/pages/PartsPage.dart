@@ -18,16 +18,16 @@ class PartsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget editButton = FlatButton(
-      child: Text(
-        "Edit",
-        style: GoogleFonts.rubik(
-          fontWeight: FontWeight.bold,
-          color: Color(0xff159deb),
-        ),
-      ),
-      onPressed: () {},
-    );
+    // Widget editButton = FlatButton(
+    //   child: Text(
+    //     "Edit",
+    //     style: GoogleFonts.rubik(
+    //       fontWeight: FontWeight.bold,
+    //       color: Color(0xff159deb),
+    //     ),
+    //   ),
+    //   onPressed: () {},
+    // );
     Widget doneButton = FlatButton(
       child: Text(
         "Done",
@@ -161,7 +161,7 @@ class PartsWidget extends StatelessWidget {
               ),
             ),
             actions: [
-              editButton,
+              // editButton,
               doneButton,
             ],
           );
