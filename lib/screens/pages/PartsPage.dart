@@ -50,7 +50,7 @@ class PartsWidget extends StatelessWidget {
               'Part Name',
               style: GoogleFonts.rubik(
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Color(0xff159deb),
               ),
             ),
             backgroundColor: Color(0xff26292c),
@@ -70,7 +70,7 @@ class PartsWidget extends StatelessWidget {
                           text: 'name',
                           style: GoogleFonts.rubik(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff159deb),
+                            color: Colors.white,
                             fontSize: 18.0,
                           ),
                         ),
@@ -90,7 +90,7 @@ class PartsWidget extends StatelessWidget {
                           text: 'link',
                           style: GoogleFonts.rubik(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff159deb),
+                            color: Colors.white,
                             fontSize: 18.0,
                           ),
                         ),
@@ -110,7 +110,7 @@ class PartsWidget extends StatelessWidget {
                           text: 'number',
                           style: GoogleFonts.rubik(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff159deb),
+                            color: Colors.white,
                             fontSize: 18.0,
                           ),
                         ),
@@ -130,7 +130,7 @@ class PartsWidget extends StatelessWidget {
                           text: 'description',
                           style: GoogleFonts.rubik(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff159deb),
+                            color: Colors.white,
                             fontSize: 18.0,
                           ),
                         ),
@@ -150,7 +150,7 @@ class PartsWidget extends StatelessWidget {
                           text: 'priority',
                           style: GoogleFonts.rubik(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff159deb),
+                            color: Colors.white,
                             fontSize: 18.0,
                           ),
                         ),
