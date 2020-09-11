@@ -34,15 +34,117 @@ class PartsWidget extends StatelessWidget {
         barrierDismissible: false, // user must tap button!
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Part Name'),
+            title: Text(
+              'Part Name',
+              style: GoogleFonts.rubik(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            backgroundColor: Color(0xff26292c),
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
-                  Text('Ordered by: name'),
-                  Text('Part Link: link'),
-                  Text('Tracking Number: number'),
-                  Text('Description: description'),
-                  Text('Priority: priority'),
+                  RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'Ordered By: ',
+                            style: GoogleFonts.rubik(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                            )),
+                        TextSpan(
+                          text: 'name',
+                          style: GoogleFonts.rubik(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff159deb),
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'Part Link: ',
+                            style: GoogleFonts.rubik(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                            )),
+                        TextSpan(
+                          text: 'link',
+                          style: GoogleFonts.rubik(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff159deb),
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'Tracking Number: ',
+                            style: GoogleFonts.rubik(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                            )),
+                        TextSpan(
+                          text: 'number',
+                          style: GoogleFonts.rubik(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff159deb),
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'Description: ',
+                            style: GoogleFonts.rubik(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                            )),
+                        TextSpan(
+                          text: 'description',
+                          style: GoogleFonts.rubik(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff159deb),
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'Priority: ',
+                            style: GoogleFonts.rubik(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                            )),
+                        TextSpan(
+                          text: 'priority',
+                          style: GoogleFonts.rubik(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff159deb),
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
