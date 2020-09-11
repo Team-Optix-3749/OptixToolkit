@@ -19,11 +19,23 @@ class PartsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget editButton = FlatButton(
-      child: Text("Edit"),
+      child: Text(
+        "Edit",
+        style: GoogleFonts.rubik(
+          fontWeight: FontWeight.bold,
+          color: Color(0xff159deb),
+        ),
+      ),
       onPressed: () {},
     );
     Widget doneButton = FlatButton(
-      child: Text("Done"),
+      child: Text(
+        "Done",
+        style: GoogleFonts.rubik(
+          fontWeight: FontWeight.bold,
+          color: Color(0xff159deb),
+        ),
+      ),
       onPressed: () {
         Navigator.of(context).pop();
       },
