@@ -69,13 +69,12 @@ class PartsWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
                       onPressed: () {
-                        _showMyDialog();
-                        // NavigationService.goTo(
-                        //   PageRouteBuilder(
-                        //     pageBuilder: (context, animation1, animation2) =>
-                        //         AddPart(),
-                        //   ),
-                        // );
+                        NavigationService.goTo(
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                AddPart(),
+                          ),
+                        );
                       },
                       child: Text(
                         'ADD A PART',
@@ -133,61 +132,67 @@ class PartsWidget extends StatelessWidget {
                   Expanded(
                     child: ListView(
                       children: [
-                        Container(
-                          margin: EdgeInsets.only(bottom: 10),
-                          width: 330,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            color: Color(0xff26292c),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(15.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  children: [
-                                    RichText(
-                                      text: TextSpan(
-                                        style: GoogleFonts.rubik(
-                                            color: Colors.white,
-                                            fontSize: 20.0),
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                            text: "Christopher\n",
-                                          ),
-                                          TextSpan(
-                                            text: "Limelight",
-                                            style: TextStyle(
-                                              color: Color(0xff159deb),
-                                              fontWeight: FontWeight.bold,
+                        new GestureDetector(
+                          onTap: () {
+                            _showMyDialog();
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(bottom: 10),
+                            width: 330,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Color(0xff26292c),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(15.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    children: [
+                                      RichText(
+                                        text: TextSpan(
+                                          style: GoogleFonts.rubik(
+                                              color: Colors.white,
+                                              fontSize: 20.0),
+                                          children: <TextSpan>[
+                                            TextSpan(
+                                              text: "Christopher\n",
                                             ),
-                                          ),
-                                        ],
+                                            TextSpan(
+                                              text: "Limelight",
+                                              style: TextStyle(
+                                                color: Color(0xff159deb),
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    RichText(
-                                      text: TextSpan(
-                                        style: GoogleFonts.rubik(
-                                            color: Colors.white,
-                                            fontSize: 22.0),
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                            text: "Arrived",
-                                            style: TextStyle(
-                                                color: Color(0xff3ce887),
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      RichText(
+                                        text: TextSpan(
+                                          style: GoogleFonts.rubik(
+                                              color: Colors.white,
+                                              fontSize: 22.0),
+                                          children: <TextSpan>[
+                                            TextSpan(
+                                              text: "Arrived",
+                                              style: TextStyle(
+                                                  color: Color(0xff3ce887),
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
