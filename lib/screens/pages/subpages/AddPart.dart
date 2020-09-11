@@ -138,30 +138,6 @@ class _AddPartState extends State<AddPart> {
                         ),
                       ),
                       Container(
-                        width: 300,
-                        margin: EdgeInsets.only(top: 17),
-                        child: TextFormField(
-                          maxLines: 7,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Enter a Part Link';
-                            }
-                            return null;
-                          },
-                          style: GoogleFonts.rubik(color: Colors.white),
-                          textAlign: TextAlign.start,
-                          controller: partNameController,
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: gray,
-                            hintText: 'Part Description',
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(9.0)),
-                            hintStyle: GoogleFonts.rubik(color: subtleGray),
-                          ),
-                        ),
-                      ),
-                      Container(
                         margin: EdgeInsets.only(top: 20),
                         child: RichText(
                           text: TextSpan(

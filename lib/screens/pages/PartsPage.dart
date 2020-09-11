@@ -121,26 +121,6 @@ class PartsWidget extends StatelessWidget {
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                            text: 'Description: ',
-                            style: GoogleFonts.rubik(
-                              color: Colors.white,
-                              fontSize: 18.0,
-                            )),
-                        TextSpan(
-                          text: 'description',
-                          style: GoogleFonts.rubik(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 18.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  RichText(
-                    text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
                             text: 'Priority: ',
                             style: GoogleFonts.rubik(
                               color: Colors.white,
