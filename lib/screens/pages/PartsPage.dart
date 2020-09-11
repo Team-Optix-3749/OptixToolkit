@@ -18,28 +18,37 @@ class PartsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget editButton = FlatButton(
+      child: Text("Edit"),
+      onPressed: () {},
+    );
+    Widget doneButton = FlatButton(
+      child: Text("Done"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
     Future<void> _showMyDialog() async {
       return showDialog<void>(
         context: context,
         barrierDismissible: false, // user must tap button!
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('AlertDialog Title'),
+            title: Text('Part Name'),
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
-                  Text('This is a demo alert dialog.'),
-                  Text('Would you like to approve of this message?'),
+                  Text('Ordered by: name'),
+                  Text('Part Link: link'),
+                  Text('Tracking Number: number'),
+                  Text('Description: description'),
+                  Text('Priority: priority'),
                 ],
               ),
             ),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('Approve'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
+            actions: [
+              editButton,
+              doneButton,
             ],
           );
         },
