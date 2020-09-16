@@ -21,7 +21,7 @@ doc/api/
 
 .flutter-plugins*
 
-server_scripts/node_modules/
-server_scripts/firebaseServiceKey.json
+server_scripts/users/node_modules/
+server_scripts/users/firebaseServiceKey.json
 
 core
