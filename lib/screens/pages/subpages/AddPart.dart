@@ -1,6 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AddPart extends StatefulWidget {
@@ -13,6 +11,7 @@ class AddPart extends StatefulWidget {
 class _AddPartState extends State<AddPart> {
   final partNameController = TextEditingController();
   final partLinkController = TextEditingController();
+  final trackingNumberController = TextEditingController();
   final partDescriptionController = TextEditingController();
   double priority = 0;
 
@@ -28,7 +27,7 @@ class _AddPartState extends State<AddPart> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "REQUEST PART",
+          "ADD PART",
           style: GoogleFonts.rubik(fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
@@ -45,7 +44,7 @@ class _AddPartState extends State<AddPart> {
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Request a ',
+                          text: 'Add a ',
                           style: GoogleFonts.rubik(
                             color: Colors.white,
                             fontSize: 25.0,
@@ -117,22 +116,21 @@ class _AddPartState extends State<AddPart> {
                       ),
                       Container(
                         width: 300,
-                        margin: EdgeInsets.only(top: 17),
+                        margin: EdgeInsets.only(top: 20),
                         child: TextFormField(
-                          maxLines: 7,
                           validator: (value) {
                             if (value.isEmpty) {
-                              return 'Enter a Part Link';
+                              return 'Enter Tracking Number';
                             }
                             return null;
                           },
                           style: GoogleFonts.rubik(color: Colors.white),
-                          textAlign: TextAlign.start,
-                          controller: partNameController,
+                          textAlign: TextAlign.center,
+                          controller: trackingNumberController,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: gray,
-                            hintText: 'Part Description',
+                            hintText: 'Tracking Number',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(9.0)),
                             hintStyle: GoogleFonts.rubik(color: subtleGray),
@@ -140,8 +138,24 @@ class _AddPartState extends State<AddPart> {
                         ),
                       ),
                       Container(
+                        margin: EdgeInsets.only(top: 20),
+                        child: RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Priority',
+                                style: GoogleFonts.rubik(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
                         width: 325,
-                        margin: EdgeInsets.only(top: 17),
+                        margin: EdgeInsets.only(top: 3),
                         child: Slider(
                           value: priority,
                           onChanged: (value) =>
@@ -168,7 +182,7 @@ class _AddPartState extends State<AddPart> {
                                     borderRadius: BorderRadius.circular(7.0)),
                                 child: RaisedButton(
                                   onPressed: () {},
-                                  child: Text('SUBMIT',
+                                  child: Text('ADD',
                                       style: GoogleFonts.rubik(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),
