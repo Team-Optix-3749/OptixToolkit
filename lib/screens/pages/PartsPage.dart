@@ -166,7 +166,7 @@ class PartsWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   ButtonTheme(
-                    minWidth: MediaQuery.of(context).size.width * 0.89,
+                    minWidth: MediaQuery.of(context).size.width * 0.88,
                     height: 55,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
