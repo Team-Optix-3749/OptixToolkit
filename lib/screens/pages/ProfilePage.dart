@@ -300,7 +300,7 @@ class profilePage extends StatelessWidget {
           //       ],
           //     ),
           //   ),
-          ),
+          // ),
         ],
       ),
     );
