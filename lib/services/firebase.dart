@@ -29,6 +29,14 @@ class Auth {
   static Stream<FirebaseUser> AuthState() {
     return _auth.onAuthStateChanged;
   }
+
+  static Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      print(e);
+    }
+  }
 }
 
 class Database {

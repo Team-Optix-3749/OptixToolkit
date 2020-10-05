@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:OptixToolkit/services/firebase.dart';
 
 class profilePage extends StatelessWidget {
   const profilePage({Key key}) : super(key: key);
@@ -15,6 +16,9 @@ class profilePage extends StatelessWidget {
     final Color background = Color(0xff26292c);
     final Color gray = Color(0xff3A3D41);
     final Color subtleGray = Color(0xffcccccc);
+    final emailController = TextEditingController();
+    final emailController2 = TextEditingController();
+
     return Container(
       child: Column(
         children: [
@@ -66,7 +70,7 @@ class profilePage extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
             width: 400,
-            height: MediaQuery.of(context).size.height * 0.43,
+            height: MediaQuery.of(context).size.height * 0.40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               color: Color(0xff3a3d41),
@@ -117,32 +121,14 @@ class profilePage extends StatelessWidget {
                                   width: 300,
                                   margin: EdgeInsets.only(top: 20),
                                   child: TextFormField(
+                                    controller: emailController,
                                     style:
                                         GoogleFonts.rubik(color: Colors.white),
                                     textAlign: TextAlign.center,
                                     decoration: InputDecoration(
                                       filled: true,
                                       fillColor: background,
-                                      hintText: 'Change Password',
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(9.0)),
-                                      hintStyle:
-                                          GoogleFonts.rubik(color: subtleGray),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 300,
-                                  margin: EdgeInsets.only(top: 20),
-                                  child: TextFormField(
-                                    style:
-                                        GoogleFonts.rubik(color: Colors.white),
-                                    textAlign: TextAlign.center,
-                                    decoration: InputDecoration(
-                                      filled: true,
-                                      fillColor: background,
-                                      hintText: 'Confirm Password',
+                                      hintText: 'Enter Email',
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(9.0)),
@@ -169,8 +155,11 @@ class profilePage extends StatelessWidget {
                                               borderRadius:
                                                   BorderRadius.circular(7.0)),
                                           child: RaisedButton(
-                                            onPressed: () {},
-                                            child: Text('UPDATE',
+                                            onPressed: () {
+                                              Auth.sendPasswordResetEmail(
+                                                  emailController.text);
+                                            },
+                                            child: Text('CHANGE PASSWORD',
                                                 style: GoogleFonts.rubik(
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.white)),
