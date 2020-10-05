@@ -14,10 +14,8 @@ class profilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     final Color background = Color(0xff26292c);
-    final Color gray = Color(0xff3A3D41);
     final Color subtleGray = Color(0xffcccccc);
     final emailController = TextEditingController();
-    final emailController2 = TextEditingController();
 
     return Container(
       child: Column(
