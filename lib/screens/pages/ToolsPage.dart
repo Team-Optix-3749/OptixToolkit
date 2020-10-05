@@ -1,9 +1,14 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:OptixToolkit/services/NavigationService.dart';
-import 'package:OptixToolkit/screens/pages/subpages/ReserveTool.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+// Package imports:
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+// Project imports:
+import 'package:OptixToolkit/screens/pages/subpages/ReserveTool.dart';
+import 'package:OptixToolkit/services/NavigationService.dart';
 
 class toolsPage extends StatelessWidget {
   const toolsPage({Key key, this.uid}) : super(key: key);

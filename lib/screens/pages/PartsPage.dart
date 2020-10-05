@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:OptixToolkit/services/NavigationService.dart';
-import 'package:OptixToolkit/screens/pages/subpages/AddPart.dart';
+
+// Package imports:
 import 'package:google_fonts/google_fonts.dart';
+
+// Project imports:
+import 'package:OptixToolkit/screens/pages/subpages/AddPart.dart';
+import 'package:OptixToolkit/services/NavigationService.dart';
 
 class partsPage extends StatelessWidget {
   const partsPage({Key key, this.uid}) : super(key: key);
