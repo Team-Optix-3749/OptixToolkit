@@ -1,10 +1,15 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:OptixToolkit/services/firebase.dart';
-import 'services/NavigationService.dart';
-import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:OptixToolkit/screens/Form.dart';
 import 'package:OptixToolkit/screens/Home.dart';
+import 'package:OptixToolkit/services/firebase.dart';
+import 'services/NavigationService.dart';
 
 void main() {
   runApp(MyApp());
