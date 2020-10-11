@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [StreamProvider<FirebaseUser>.value(value: Auth.AuthState())],
+      providers: [StreamProvider<FirebaseUser>.value(value: Auth.authState())],
       child: MaterialApp(
         title: 'Optix Toolkit',
         theme: ThemeData(

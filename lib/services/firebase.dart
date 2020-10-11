@@ -25,7 +25,7 @@ class Auth {
     await _auth.signOut();
   }
 
-  static Stream<FirebaseUser> AuthState() {
+  static Stream<FirebaseUser> authState() {
     return _auth.onAuthStateChanged;
   }
 
