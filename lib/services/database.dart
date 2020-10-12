@@ -12,20 +12,32 @@ class Database {
       String link,
       String trackingId,
       String carrier,
-      String description) async {
+      String description,
+      double priority) async {
     var client = http.Client();
-    var result = await client.post(Constants.SERVER_URL + "parts/add", body: {
+
+    Map data = {
       'auth': idToken.token,
       'uid': user.uid,
       'name': name,
       'link': link,
       'description': description,
+      'priority': priority.toInt(),
       'trackingInfo': {'trackingId': trackingId, 'carrier': carrier}
-    });
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Constants.SERVER_URL + "parts/add", 
+      headers: {"Content-Type": "application/json"},
+      body: body
+    );
 
     if (result.statusCode == 200) {
       return true;
     } else {
+      print("ERROR");
+      print(result.body);
       return false;
     }
   }

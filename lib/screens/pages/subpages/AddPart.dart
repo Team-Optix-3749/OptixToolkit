@@ -1,8 +1,12 @@
 // Flutter imports:
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:OptixToolkit/services/database.dart';
+import 'package:provider/provider.dart';
 
 class AddPart extends StatefulWidget {
   AddPart({Key key}) : super(key: key);
@@ -184,7 +188,21 @@ class _AddPartState extends State<AddPart> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(7.0)),
                                 child: RaisedButton(
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    print("Handling on pressed");
+                                    var result = await Database.addPart(
+                                        await Provider.of<FirebaseUser>(context, listen: false)
+                                            .getIdToken(),
+                                        Provider.of<FirebaseUser>(context, listen: false),
+                                        partNameController.text,
+                                        partLinkController.text,
+                                        trackingNumberController.text,
+                                        'USPS',
+                                        'Some Description',
+                                        priority);
+                                    print("Result of the request below: ");
+                                    print(result);
+                                  },
                                   child: Text('ADD',
                                       style: GoogleFonts.rubik(
                                           fontWeight: FontWeight.bold,
