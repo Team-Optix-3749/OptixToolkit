@@ -170,15 +170,11 @@ class _AddPartState extends State<AddPart> {
                               });
                             },
                             items: <String>[
-                              'Select a Tool',
-                              'Drill',
-                              'Driver',
-                              'Band Saw',
-                              'Mill',
-                              'Chop Saw',
-                              'Drill Press',
-                              'Circular Saw',
-                              'Jigsaw'
+                              'Select a Carrier',
+                              'Amazon',
+                              'FedEx',
+                              'UPS',
+                              'USPS',
                             ].map<DropdownMenuItem<String>>(
                               (String value) {
                                 return DropdownMenuItem<String>(
