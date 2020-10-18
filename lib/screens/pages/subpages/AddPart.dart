@@ -20,7 +20,7 @@ class _AddPartState extends State<AddPart> {
   final partLinkController = TextEditingController();
   final trackingNumberController = TextEditingController();
   final partDescriptionController = TextEditingController();
-  String dropdownValue = 'One';
+  String dropdownValue = "Select a Carrier";
   double priority = 0;
 
   final _formKey = GlobalKey<FormState>();
@@ -146,28 +146,49 @@ class _AddPartState extends State<AddPart> {
                         ),
                       ),
                       Container(
-                        child: DropdownButton<String>(
-                          value: dropdownValue,
-                          icon: Icon(Icons.arrow_downward),
-                          iconSize: 24,
-                          elevation: 16,
-                          style: TextStyle(color: Colors.deepPurple),
-                          underline: Container(
-                            height: 2,
-                            color: Colors.deepPurpleAccent,
+                        child: Theme(
+                          data: Theme.of(context).copyWith(
+                            canvasColor: Color(0xff3a3d41),
                           ),
-                          onChanged: (String newValue) {
-                            setState(() {
-                              dropdownValue = newValue;
-                            });
-                          },
-                          items: <String>['One', 'Two', 'Free', 'Four']
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
+                          child: DropdownButtonFormField<String>(
+                            value: dropdownValue,
+                            icon: Icon(Icons.arrow_downward),
+                            iconSize: 24,
+                            elevation: 16,
+                            style: GoogleFonts.rubik(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                            ),
+                            validator: (value) {
+                              if (value == "Select a Tool")
+                                return "Select a Tool";
+                              return null;
+                            },
+                            onChanged: (String newValue) {
+                              setState(() {
+                                dropdownValue = newValue;
+                              });
+                            },
+                            items: <String>[
+                              'Select a Tool',
+                              'Drill',
+                              'Driver',
+                              'Band Saw',
+                              'Mill',
+                              'Chop Saw',
+                              'Drill Press',
+                              'Circular Saw',
+                              'Jigsaw'
+                            ].map<DropdownMenuItem<String>>(
+                              (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child:
+                                      Text(value, textAlign: TextAlign.center),
+                                );
+                              },
+                            ).toList(),
+                          ),
                         ),
                       ),
                       Container(
