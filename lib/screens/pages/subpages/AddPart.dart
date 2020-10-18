@@ -20,6 +20,7 @@ class _AddPartState extends State<AddPart> {
   final partLinkController = TextEditingController();
   final trackingNumberController = TextEditingController();
   final partDescriptionController = TextEditingController();
+  String dropdownValue = 'One';
   double priority = 0;
 
   final _formKey = GlobalKey<FormState>();
@@ -145,6 +146,31 @@ class _AddPartState extends State<AddPart> {
                         ),
                       ),
                       Container(
+                        child: DropdownButton<String>(
+                          value: dropdownValue,
+                          icon: Icon(Icons.arrow_downward),
+                          iconSize: 24,
+                          elevation: 16,
+                          style: TextStyle(color: Colors.deepPurple),
+                          underline: Container(
+                            height: 2,
+                            color: Colors.deepPurpleAccent,
+                          ),
+                          onChanged: (String newValue) {
+                            setState(() {
+                              dropdownValue = newValue;
+                            });
+                          },
+                          items: <String>['One', 'Two', 'Free', 'Four']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      Container(
                         margin: EdgeInsets.only(top: 20),
                         child: RichText(
                           text: TextSpan(
@@ -191,9 +217,11 @@ class _AddPartState extends State<AddPart> {
                                   onPressed: () async {
                                     print("Handling on pressed");
                                     var result = await Database.addPart(
-                                        await Provider.of<FirebaseUser>(context, listen: false)
+                                        await Provider.of<FirebaseUser>(context,
+                                                listen: false)
                                             .getIdToken(),
-                                        Provider.of<FirebaseUser>(context, listen: false),
+                                        Provider.of<FirebaseUser>(context,
+                                            listen: false),
                                         partNameController.text,
                                         partLinkController.text,
                                         trackingNumberController.text,
