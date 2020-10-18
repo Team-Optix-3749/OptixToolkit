@@ -146,6 +146,7 @@ class _AddPartState extends State<AddPart> {
                         ),
                       ),
                       Container(
+                        width: 300,
                         child: Theme(
                           data: Theme.of(context).copyWith(
                             canvasColor: Color(0xff3a3d41),
