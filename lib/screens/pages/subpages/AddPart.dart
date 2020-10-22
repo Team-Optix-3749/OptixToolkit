@@ -27,7 +27,6 @@ class _AddPartState extends State<AddPart> {
   final Color background = Color(0xff26292c);
   final Color gray = Color(0xff3A3D41);
   final Color subtleGray = Color(0xffcccccc);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -243,8 +242,8 @@ class _AddPartState extends State<AddPart> {
                                         partNameController.text,
                                         partLinkController.text,
                                         trackingNumberController.text,
-                                        'USPS',
-                                        'Some Description',
+                                        dropdownValue,
+                                        '',
                                         priority);
                                     print("Result of the request below: ");
                                     print(result);
