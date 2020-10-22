@@ -232,21 +232,24 @@ class _AddPartState extends State<AddPart> {
                                     borderRadius: BorderRadius.circular(7.0)),
                                 child: RaisedButton(
                                   onPressed: () async {
-                                    print("Handling on pressed");
-                                    var result = await Database.addPart(
-                                        await Provider.of<FirebaseUser>(context,
-                                                listen: false)
-                                            .getIdToken(),
-                                        Provider.of<FirebaseUser>(context,
-                                            listen: false),
-                                        partNameController.text,
-                                        partLinkController.text,
-                                        trackingNumberController.text,
-                                        dropdownValue,
-                                        '',
-                                        priority);
-                                    print("Result of the request below: ");
-                                    print(result);
+                                    if (_formKey.currentState.validate()) {
+                                      print("Handling on pressed");
+                                      var result = await Database.addPart(
+                                          await Provider.of<FirebaseUser>(
+                                                  context,
+                                                  listen: false)
+                                              .getIdToken(),
+                                          Provider.of<FirebaseUser>(context,
+                                              listen: false),
+                                          partNameController.text,
+                                          partLinkController.text,
+                                          trackingNumberController.text,
+                                          dropdownValue,
+                                          '',
+                                          priority);
+                                      print("Result of the request below: ");
+                                      print(result);
+                                    }
                                   },
                                   child: Text('ADD',
                                       style: GoogleFonts.rubik(
