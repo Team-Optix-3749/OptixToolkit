@@ -28,7 +28,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL + "parts/add", 
+    var result = await client.post(Constants.SERVER_URL + "parts/add",
       headers: {"Content-Type": "application/json"},
       body: body
     );
