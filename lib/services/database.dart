@@ -28,10 +28,8 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL + "parts/add", 
-      headers: {"Content-Type": "application/json"},
-      body: body
-    );
+    var result = await client.post(Constants.SERVER_URL + "parts/add",
+        headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
       return true;
@@ -40,5 +38,27 @@ class Database {
       print(result.body);
       return false;
     }
+  }
+
+  static Future getParts(
+    IdTokenResult idToken,
+  ) async {
+    var client = http.Client();
+
+    Map data = {
+      'auth': idToken.token,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Constants.SERVER_URL + "parts/get",
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    return result;
+    /*if (result.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }*/
   }
 }
