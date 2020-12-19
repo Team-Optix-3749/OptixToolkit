@@ -6,6 +6,8 @@ on:
 jobs:
   android:
     runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true  
     steps:
       - uses: actions/checkout@v2.1.0
       - uses: actions/setup-java@v1
