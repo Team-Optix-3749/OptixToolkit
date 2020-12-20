@@ -16,6 +16,7 @@ dependencies:
   
   barcode_scan: ^3.0.1
   firebase_core: ^0.4.0+9
+  loading_animations: ^2.1.0
   firebase_analytics: ^5.0.2
   cloud_firestore: ^0.13.7
   firebase_auth: ^0.16.1

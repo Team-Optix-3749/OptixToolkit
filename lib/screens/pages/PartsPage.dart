@@ -1,4 +1,7 @@
 // Flutter imports:
+import 'package:OptixToolkit/screens/Loading.dart';
+import 'package:OptixToolkit/services/database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -7,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 // Project imports:
 import 'package:OptixToolkit/screens/pages/subpages/AddPart.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
+import 'package:provider/provider.dart';
 
 class partsPage extends StatelessWidget {
   const partsPage({Key key, this.uid}) : super(key: key);
@@ -14,25 +18,45 @@ class partsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PartsWidget();
+    return FutureBuilder<IdTokenResult>(
+      future: Provider.of<FirebaseUser>(context, listen: false).getIdToken(),
+      builder: (context, idToken) {
+        switch (idToken.connectionState) {
+          case ConnectionState.waiting:
+            return Loading();
+          default:
+            if (idToken.hasError)
+              return Text('Error: ${idToken.error}');
+            else
+              return FutureBuilder<List<Part>>(
+                future: Database.getParts(idToken.data),
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return Loading();
+                    default:
+                      if (snapshot.hasError)
+                        return Text('Error: ${snapshot.error}');
+                      else
+                        return PartsWidget(
+                          parts: snapshot.data,
+                        );
+                  }
+                },
+              );
+        }
+      },
+    );
   }
 }
 
 class PartsWidget extends StatelessWidget {
-  const PartsWidget({Key key}) : super(key: key);
+  final List<Part> parts;
+
+  const PartsWidget({Key key, this.parts}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Widget editButton = FlatButton(
-    //   child: Text(
-    //     "Edit",
-    //     style: GoogleFonts.rubik(
-    //       fontWeight: FontWeight.bold,
-    //       color: Color(0xff159deb),
-    //     ),
-    //   ),
-    //   onPressed: () {},
-    // );
     Widget doneButton = FlatButton(
       child: Text(
         "Done",
@@ -52,7 +76,7 @@ class PartsWidget extends StatelessWidget {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text(
-              'Part Name',
+              parts[0].name,
               style: GoogleFonts.rubik(
                 fontWeight: FontWeight.bold,
                 color: Color(0xff159deb),
@@ -72,7 +96,7 @@ class PartsWidget extends StatelessWidget {
                               fontSize: 18.0,
                             )),
                         TextSpan(
-                          text: 'name',
+                          text: parts[0].displayName,
                           style: GoogleFonts.rubik(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -92,7 +116,7 @@ class PartsWidget extends StatelessWidget {
                               fontSize: 18.0,
                             )),
                         TextSpan(
-                          text: 'link',
+                          text: parts[0].link,
                           style: GoogleFonts.rubik(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -112,7 +136,7 @@ class PartsWidget extends StatelessWidget {
                               fontSize: 18.0,
                             )),
                         TextSpan(
-                          text: 'number',
+                          text: parts[0].trackingId,
                           style: GoogleFonts.rubik(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -132,7 +156,27 @@ class PartsWidget extends StatelessWidget {
                               fontSize: 18.0,
                             )),
                         TextSpan(
-                          text: 'priority',
+                          text: parts[0].priority.toString(),
+                          style: GoogleFonts.rubik(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'Status: ',
+                            style: GoogleFonts.rubik(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                            )),
+                        TextSpan(
+                          text: parts[4].status,
                           style: GoogleFonts.rubik(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
