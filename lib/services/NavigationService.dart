@@ -11,4 +11,8 @@ class NavigationService {
   static Future<dynamic> goTo(Route<Object> route) {
     return navigatorKey.currentState.push(route);
   }
+
+  static void pop() {
+    return navigatorKey.currentState.pop();
+  }
 }

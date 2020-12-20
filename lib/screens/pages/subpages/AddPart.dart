@@ -1,4 +1,6 @@
 // Flutter imports:
+import 'package:OptixToolkit/screens/pages/PartsPage.dart';
+import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -249,6 +251,9 @@ class _AddPartState extends State<AddPart> {
                                           priority);
                                       print("Result of the request below: ");
                                       print(result);
+                                      if (result) {
+                                        NavigationService.pop();
+                                      }
                                     }
                                   },
                                   child: Text('ADD',

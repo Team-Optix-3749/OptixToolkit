@@ -23,7 +23,7 @@ class Database {
       'uid': user.uid,
       'name': name,
       'link': link,
-      'description': description,
+      'description': " ",
       'priority': priority.toInt(),
       'trackingInfo': {'trackingId': trackingId, 'carrier': carrier}
     };
@@ -67,6 +67,17 @@ class Database {
   }
 }
 
+final Map<String, String> deliveryMap = {
+  "pre_transit": "Ordered",
+  "in_transit": "Shipped",
+  "out_for_delivery": "Shipped",
+  "delivered": "Arrived",
+  "return_to_sender": "Failure",
+  "failure": "Failure",
+  "unknown": "Failure",
+  "Not Availible": "Failure"
+};
+
 class Part {
   final String uid;
   final String name;
@@ -90,15 +101,23 @@ class Part {
       this.status});
 
   factory Part.fromJson(Map<String, dynamic> json) {
+    String status = json['status'];
+    if (deliveryMap.containsKey(json['status'])) {
+      status = deliveryMap[status];
+    } else {
+      status = "Faliure";
+    }
+
     return Part(
-        uid: json['uid'] as String,
-        name: json['name'] as String,
-        link: json['link'] as String,
-        trackingId: json['trackingInfo']['trackingId'] as String,
-        carrier: json['trackingInfo']['carrier'] as String,
-        description: json['description'] as String,
-        priority: json['priority'] as int,
-        displayName: json['displayName'] as String,
-        status: json['status'] as String);
+      uid: json['uid'] as String,
+      name: json['name'] as String,
+      link: json['link'] as String,
+      trackingId: json['trackingInfo']['trackingId'] as String,
+      carrier: json['trackingInfo']['carrier'] as String,
+      description: json['description'] as String,
+      priority: json['priority'] as int,
+      displayName: json['displayName'] as String,
+      status: status,
+    );
   }
 }
