@@ -1,7 +1,12 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:google_fonts/google_fonts.dart';
+
+// Project imports:
 import 'package:OptixToolkit/screens/subwidgets/PartModal.dart';
 import 'package:OptixToolkit/services/database.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class PartCard extends StatelessWidget {
   final Part part;

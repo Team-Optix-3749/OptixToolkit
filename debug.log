@@ -1,0 +1,4 @@
+[1216/143231.756:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1216/143231.757:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
+[1216/144149.310:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1216/144149.310:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports

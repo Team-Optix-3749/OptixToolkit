@@ -41,6 +41,7 @@ class partsPage extends StatelessWidget {
                       else
                         return PartsWidget(
                           parts: snapshot.data,
+                          idToken: idToken.data
                         );
                   }
                 },
@@ -51,10 +52,24 @@ class partsPage extends StatelessWidget {
   }
 }
 
-class PartsWidget extends StatelessWidget {
+class PartsWidget extends StatefulWidget {
   final List<Part> parts;
+  final IdTokenResult idToken;
 
-  const PartsWidget({Key key, this.parts}) : super(key: key);
+  PartsWidget({Key key, this.parts, this.idToken}) : super(key: key);
+
+  @override
+  _partState createState() => _partState(this.parts, this.idToken);
+}
+
+class _partState extends State<PartsWidget> {
+  List<Part> parts;
+  IdTokenResult idToken;
+
+  _partState(List<Part> parts, IdTokenResult idToken) {
+    this.parts = parts;
+    this.idToken = idToken;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -175,12 +190,21 @@ class PartsWidget extends StatelessWidget {
                   ),
                   const SizedBox(height: 15),
                   Expanded(
-                    child: ListView(
+                    child: RefreshIndicator(
+                      onRefresh: () async {
+                        var partsRes = await Database.getParts(idToken);
+                        setState(() {
+                          this.parts = partsRes;
+                        });
+                        print("Refreshsed");
+                      },
+                      child: ListView(
                         children: parts
                             .map<Widget>((part) => PartCard(part: part))
                             .toList()
                             .reversed
                             .toList()),
+                    )
                   ),
                 ],
               ),

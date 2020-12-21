@@ -1,8 +1,12 @@
+// Dart imports:
 import 'dart:convert';
 
-import 'package:OptixToolkit/constants.dart' as Constants;
+// Package imports:
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
+
+// Project imports:
+import 'package:OptixToolkit/constants.dart' as Constants;
 
 class FailedRequestException implements Exception {}
 
@@ -102,6 +106,7 @@ class Part {
 
   factory Part.fromJson(Map<String, dynamic> json) {
     String status = json['status'];
+    print(status + " " + json['trackingInfo']['trackingId']);
     if (deliveryMap.containsKey(json['status'])) {
       status = deliveryMap[status];
     } else {

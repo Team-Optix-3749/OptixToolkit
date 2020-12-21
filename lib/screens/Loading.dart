@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:loading_animations/loading_animations.dart';
 
 class Loading extends StatelessWidget {

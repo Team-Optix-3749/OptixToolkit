@@ -6,24 +6,51 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
+import 'package:OptixToolkit/services/database.dart';
+import 'package:OptixToolkit/screens/Loading.dart';
+import 'package:OptixToolkit/screens/subwidgets/PartLine.dart';
 
 class homePage extends StatelessWidget {
   homePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return homePage2();
-    /*MultiProvider(
-        providers: [
-          StreamProvider<User>.value(
-          value: Database.readDocListener<User>(["users", user.uid], User()))
-        ],
-        child: );*/
+    return FutureBuilder<IdTokenResult>(
+      future: Provider.of<FirebaseUser>(context, listen: false).getIdToken(),
+      builder: (context, idToken) {
+        switch (idToken.connectionState) {
+          case ConnectionState.waiting:
+            return Loading();
+          default:
+            if (idToken.hasError)
+              return Text('Error: ${idToken.error}');
+            else
+              return FutureBuilder<List<Part>>(
+                future: Database.getParts(idToken.data),
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return Loading();
+                    default:
+                      if (snapshot.hasError)
+                        return Text('Error: ${snapshot.error}');
+                      else
+                        return homePage2(
+                          parts: snapshot.data,
+                        );
+                  }
+                },
+              );
+        }
+      },
+    );
   }
 }
 
+
 class homePage2 extends StatelessWidget {
-  homePage2({Key key}) : super(key: key);
+  final List<Part> parts;
+  homePage2({Key key, this.parts}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -396,186 +423,12 @@ class homePage2 extends StatelessWidget {
                       ),
                       Expanded(
                         child: ListView(
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 15.0,
-                                    right: 12.0,
-                                    left: 12.0,
-                                    bottom: 0.0,
-                                  ),
-                                  child: LinearPercentIndicator(
-                                    width:
-                                        MediaQuery.of(context).size.width - 100,
-                                    animation: true,
-                                    lineHeight: 30.0,
-                                    animationDuration: 1000,
-                                    backgroundColor: Color(0xff26292c),
-                                    percent: 1,
-                                    center: RichText(
-                                      text: TextSpan(
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                            text: 'Limelight: ',
-                                            style: GoogleFonts.rubik(
-                                              color: Colors.white,
-                                              fontSize: 15.0,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: 'Arrived',
-                                            style: GoogleFonts.rubik(
-                                              fontWeight: FontWeight.bold,
-                                              color:
-                                                  Colors.lightGreenAccent[400],
-                                              fontSize: 15.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    linearStrokeCap: LinearStrokeCap.roundAll,
-                                    progressColor: Color(0xff159deb),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 15.0,
-                                    right: 17.0,
-                                    left: 17.0,
-                                    bottom: 0.0,
-                                  ),
-                                  child: LinearPercentIndicator(
-                                    width:
-                                        MediaQuery.of(context).size.width - 100,
-                                    animation: true,
-                                    lineHeight: 30.0,
-                                    animationDuration: 1000,
-                                    backgroundColor: Color(0xff26292c),
-                                    percent: 0.75,
-                                    center: RichText(
-                                      text: TextSpan(
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                            text: 'Spark Max: ',
-                                            style: GoogleFonts.rubik(
-                                              color: Colors.white,
-                                              fontSize: 15.0,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: 'Shipped',
-                                            style: GoogleFonts.rubik(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.yellowAccent,
-                                              fontSize: 15.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    linearStrokeCap: LinearStrokeCap.roundAll,
-                                    progressColor: Color(0xff159deb),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 15.0,
-                                    right: 17.0,
-                                    left: 17.0,
-                                    bottom: 0.0,
-                                  ),
-                                  child: LinearPercentIndicator(
-                                    width:
-                                        MediaQuery.of(context).size.width - 100,
-                                    animation: true,
-                                    lineHeight: 30.0,
-                                    animationDuration: 1000,
-                                    backgroundColor: Color(0xff26292c),
-                                    percent: 0.40,
-                                    center: RichText(
-                                      text: TextSpan(
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                            text: 'Fairlane Wheel: ',
-                                            style: GoogleFonts.rubik(
-                                              color: Colors.white,
-                                              fontSize: 15.0,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: 'Ordered',
-                                            style: GoogleFonts.rubik(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.orange,
-                                              fontSize: 15.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    linearStrokeCap: LinearStrokeCap.roundAll,
-                                    progressColor: Color(0xff159deb),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 15.0,
-                                    right: 17.0,
-                                    left: 17.0,
-                                    bottom: 0.0,
-                                  ),
-                                  child: LinearPercentIndicator(
-                                    width:
-                                        MediaQuery.of(context).size.width - 100,
-                                    animation: true,
-                                    lineHeight: 30.0,
-                                    animationDuration: 1000,
-                                    backgroundColor: Color(0xff26292c),
-                                    percent: 0,
-                                    center: RichText(
-                                      text: TextSpan(
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                            text: 'Falcon 500: ',
-                                            style: GoogleFonts.rubik(
-                                              color: Colors.white,
-                                              fontSize: 15.0,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: 'Not Ordered',
-                                            style: GoogleFonts.rubik(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.red,
-                                              fontSize: 15.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    linearStrokeCap: LinearStrokeCap.roundAll,
-                                    progressColor: Color(0xff159deb),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                          children: parts
+                            .map<Widget>((part) => PartLine(part: part))
+                            .toList()
+                            .reversed
+                            .toList().sublist(0,4),
+                          ),
                       ),
                     ],
                   ),

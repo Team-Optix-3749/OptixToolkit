@@ -1,14 +1,15 @@
 // Flutter imports:
-import 'package:OptixToolkit/screens/pages/PartsPage.dart';
-import 'package:OptixToolkit/services/NavigationService.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:OptixToolkit/services/database.dart';
 import 'package:provider/provider.dart';
+
+// Project imports:
+import 'package:OptixToolkit/screens/pages/PartsPage.dart';
+import 'package:OptixToolkit/services/NavigationService.dart';
+import 'package:OptixToolkit/services/database.dart';
 
 class AddPart extends StatefulWidget {
   AddPart({Key key}) : super(key: key);
