@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 // Project imports:
 import 'package:OptixToolkit/screens/Form.dart';
 import 'package:OptixToolkit/screens/Home.dart';
+import 'package:OptixToolkit/screens/Loading.dart';
 import 'package:OptixToolkit/services/firebase.dart';
 import 'services/NavigationService.dart';
 
@@ -27,7 +28,19 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         navigatorKey: NavigationService.navigatorKey,
-        home: MainApp(),
+        home: Consumer<FirebaseUser>(
+          builder: (context, user, child) {
+            if (user) {
+              return FutureProvider<IdTokenResult>(
+                create: (_) => user.getIdToken(),
+                child: MainApp(),
+              );
+              else {
+                return MainApp();
+              }
+            }
+          },
+        ),
       ),
     );
   }
@@ -36,8 +49,8 @@ class MyApp extends StatelessWidget {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Provider.of<FirebaseUser>(context) == null
-        ? FormPage()
-        : MyStatefulWidget();
+    if (Provider.of<FirebaseUser>(context) == null) return FormPage();
+    if (Provider.of<IdTokenResult>(context) == null) return Loading();
+    return MyStatefulWidget();
   }
 }

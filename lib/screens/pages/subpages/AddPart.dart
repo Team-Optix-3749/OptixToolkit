@@ -238,10 +238,8 @@ class _AddPartState extends State<AddPart> {
                                     if (_formKey.currentState.validate()) {
                                       print("Handling on pressed");
                                       var result = await Database.addPart(
-                                          await Provider.of<FirebaseUser>(
-                                                  context,
-                                                  listen: false)
-                                              .getIdToken(),
+                                          Provider.of<IdTokenResult>(context,
+                                              listen: false),
                                           Provider.of<FirebaseUser>(context,
                                               listen: false),
                                           partNameController.text,

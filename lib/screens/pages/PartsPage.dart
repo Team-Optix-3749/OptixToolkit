@@ -19,33 +19,17 @@ class partsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<IdTokenResult>(
-      future: Provider.of<FirebaseUser>(context, listen: false).getIdToken(),
-      builder: (context, idToken) {
-        switch (idToken.connectionState) {
+    return FutureBuilder<List<Part>>(
+      future: Database.getParts(Provider.of<IdTokenResult>(context)),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
           case ConnectionState.waiting:
             return Loading();
           default:
-            if (idToken.hasError)
-              return Text('Error: ${idToken.error}');
+            if (snapshot.hasError)
+              return Text('Error: ${snapshot.error}');
             else
-              return FutureBuilder<List<Part>>(
-                future: Database.getParts(idToken.data),
-                builder: (context, snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.waiting:
-                      return Loading();
-                    default:
-                      if (snapshot.hasError)
-                        return Text('Error: ${snapshot.error}');
-                      else
-                        return PartsWidget(
-                          parts: snapshot.data,
-                          idToken: idToken.data
-                        );
-                  }
-                },
-              );
+              return PartsWidget(parts: snapshot.data, idToken: Provider.of<IdTokenResult>(context));
         }
       },
     );
@@ -190,22 +174,21 @@ class _partState extends State<PartsWidget> {
                   ),
                   const SizedBox(height: 15),
                   Expanded(
-                    child: RefreshIndicator(
-                      onRefresh: () async {
-                        var partsRes = await Database.getParts(idToken);
-                        setState(() {
-                          this.parts = partsRes;
-                        });
-                        print("Refreshsed");
-                      },
-                      child: ListView(
+                      child: RefreshIndicator(
+                    onRefresh: () async {
+                      var partsRes = await Database.getParts(idToken);
+                      setState(() {
+                        this.parts = partsRes;
+                      });
+                      print("Refreshsed");
+                    },
+                    child: ListView(
                         children: parts
                             .map<Widget>((part) => PartCard(part: part))
                             .toList()
                             .reversed
                             .toList()),
-                    )
-                  ),
+                  )),
                 ],
               ),
             ),
