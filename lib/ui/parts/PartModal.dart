@@ -16,7 +16,6 @@ class PartModal extends StatelessWidget {
     final Color green = Color(0xff3ce887);
     final Color yellow = Color(0xffe6d040);
     final Color orange = Colors.orange;
-    final Color red = Colors.red;
     final Color pink = Colors.pink;
 
     final Map<String, TextStyle> styleMap = {

@@ -10,9 +10,9 @@ import 'package:google_fonts/google_fonts.dart';
 // Project imports:
 import 'package:OptixToolkit/Icons.dart';
 import 'package:OptixToolkit/ui/HomePage.dart';
-import 'package:OptixToolkit/screens/pages/PartsPage.dart';
+import 'package:OptixToolkit/ui/parts/PartsPage.dart';
 import 'package:OptixToolkit/ui/ProfilePage.dart';
-import 'package:OptixToolkit/screens/pages/ToolsPage.dart';
+import 'package:OptixToolkit/ui/tools/ToolsPage.dart';
 import 'package:OptixToolkit/services/firebase.dart';
 
 class MyStatefulWidget extends StatefulWidget {

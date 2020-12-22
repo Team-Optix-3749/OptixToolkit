@@ -1,15 +1,11 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:OptixToolkit/screens/subwidgets/ToolCard.dart';
+import 'package:OptixToolkit/ui/tools/ToolCard.dart';
 
 // Package imports:
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-// Project imports:
-import 'package:OptixToolkit/ui/tools/ReserveTool.dart';
-import 'package:OptixToolkit/services/NavigationService.dart';
 
 class toolsPage extends StatelessWidget {
   const toolsPage({Key key, this.uid}) : super(key: key);
@@ -109,28 +105,7 @@ class _toolState extends State<ToolWidget> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   ButtonTheme(
-                    minWidth: 110,
-                    height: 55,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7.0)),
-                    child: RaisedButton(
-                      onPressed: () {
-                        NavigationService.goTo(
-                          PageRouteBuilder(
-                            pageBuilder: (context, animation1, animation2) =>
-                                ReserveTool(),
-                          ),
-                        );
-                      },
-                      child: Text('RESERVE',
-                          style: GoogleFonts.rubik(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
-                      color: Color(0xff159deb),
-                    ),
-                  ),
-                  ButtonTheme(
-                    minWidth: 110,
+                    minWidth: 170,
                     height: 55,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
@@ -148,7 +123,7 @@ class _toolState extends State<ToolWidget> {
                     ),
                   ),
                   ButtonTheme(
-                    minWidth: 110,
+                    minWidth: 170,
                     height: 55,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
@@ -174,7 +149,7 @@ class _toolState extends State<ToolWidget> {
             width: 400,
             height: MediaQuery.of(context).size.height * 0.63,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7.0),
+              borderRadius: BorderRadius.circular(10.0),
               color: Color(0xff3a3d41),
             ),
             child: Padding(

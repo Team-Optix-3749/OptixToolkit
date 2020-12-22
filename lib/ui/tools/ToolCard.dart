@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:OptixToolkit/services/database.dart';
+import 'package:OptixToolkit/ui/tools/ToolStatus.dart';
+import 'package:OptixToolkit/services/NavigationService.dart';
 
 class ToolCard extends StatelessWidget {
   const ToolCard({Key key}) : super(key: key);
@@ -38,24 +39,13 @@ class ToolCard extends StatelessWidget {
                 ),
               ],
             ),
-            Column(
+            Row(
               children: [
-                RichText(
-                  text: TextSpan(
-                    style:
-                        GoogleFonts.rubik(color: Colors.white, fontSize: 22.0),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: "·",
-                        style: TextStyle(
-                          color: Color(0xff159deb),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 40.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                ToolStatus(),
+                ToolStatus(),
+                ToolStatus(),
+                ToolStatus(),
+                ToolStatus()
               ],
             ),
           ],
