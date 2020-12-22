@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:OptixToolkit/services/database.dart';
-import 'package:OptixToolkit/screens/Loading.dart';
+import 'package:OptixToolkit/ui/Loading.dart';
 import 'package:OptixToolkit/screens/subwidgets/PartLine.dart';
 
 class homePage extends StatelessWidget {
@@ -46,7 +46,6 @@ class homePage extends StatelessWidget {
     );
   }
 }
-
 
 class homePage2 extends StatelessWidget {
   final List<Part> parts;
@@ -424,11 +423,12 @@ class homePage2 extends StatelessWidget {
                       Expanded(
                         child: ListView(
                           children: parts
-                            .map<Widget>((part) => PartLine(part: part))
-                            .toList()
-                            .reversed
-                            .toList().sublist(0,4),
-                          ),
+                              .map<Widget>((part) => PartLine(part: part))
+                              .toList()
+                              .reversed
+                              .toList()
+                              .sublist(0, 4),
+                        ),
                       ),
                     ],
                   ),

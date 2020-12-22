@@ -6,9 +6,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
-import 'package:OptixToolkit/screens/Form.dart';
-import 'package:OptixToolkit/screens/Home.dart';
-import 'package:OptixToolkit/screens/Loading.dart';
+import 'package:OptixToolkit/ui/Form.dart';
+import 'package:OptixToolkit/ui/Home.dart';
+import 'package:OptixToolkit/ui/Loading.dart';
 import 'package:OptixToolkit/services/firebase.dart';
 import 'services/NavigationService.dart';
 
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [StreamProvider<FirebaseUser>.value(value: Auth.authState())],
       child: MaterialApp(
-        title: 'Optix Toolkit',
+        title: 'OptixToolkit',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -30,14 +30,13 @@ class MyApp extends StatelessWidget {
         navigatorKey: NavigationService.navigatorKey,
         home: Consumer<FirebaseUser>(
           builder: (context, user, child) {
-            if (user) {
+            if (user != null) {
               return FutureProvider<IdTokenResult>(
                 create: (_) => user.getIdToken(),
                 child: MainApp(),
               );
-              else {
-                return MainApp();
-              }
+            } else {
+              return MainApp();
             }
           },
         ),

@@ -1,6 +1,6 @@
 // Flutter imports:
-import 'package:OptixToolkit/screens/Loading.dart';
-import 'package:OptixToolkit/screens/subwidgets/PartCard.dart';
+import 'package:OptixToolkit/ui/Loading.dart';
+import 'package:OptixToolkit/ui/parts/PartCard.dart';
 import 'package:OptixToolkit/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Project imports:
-import 'package:OptixToolkit/screens/pages/subpages/AddPart.dart';
+import 'package:OptixToolkit/ui/parts/AddPart.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +29,9 @@ class partsPage extends StatelessWidget {
             if (snapshot.hasError)
               return Text('Error: ${snapshot.error}');
             else
-              return PartsWidget(parts: snapshot.data, idToken: Provider.of<IdTokenResult>(context));
+              return PartsWidget(
+                  parts: snapshot.data,
+                  idToken: Provider.of<IdTokenResult>(context));
         }
       },
     );
