@@ -8,7 +8,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:OptixToolkit/services/database.dart';
 import 'package:OptixToolkit/ui/Loading.dart';
-import 'package:OptixToolkit/screens/subwidgets/PartLine.dart';
+import 'package:OptixToolkit/ui/parts/PartLine.dart';
 
 class homePage extends StatelessWidget {
   homePage({Key key}) : super(key: key);
