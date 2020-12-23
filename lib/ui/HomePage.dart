@@ -114,116 +114,126 @@ class homePage2 extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                margin:
-                    EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
-                width: 400,
-                height: MediaQuery.of(context).size.height * 0.25,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: Color(0xff3a3d41),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          RichText(
-                            text: TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: 'Upcoming ',
+              GestureDetector(
+                onTap: () {
+                  changePage(1);
+                },
+                child: Container(
+                  margin:
+                      EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
+                  width: 400,
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Color(0xff3a3d41),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(15.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            RichText(
+                              text: TextSpan(
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: 'Upcoming ',
+                                      style: GoogleFonts.rubik(
+                                        color: Colors.white,
+                                        fontSize: 25.0,
+                                      )),
+                                  TextSpan(
+                                    text: 'Reservations',
                                     style: GoogleFonts.rubik(
+                                      fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                       fontSize: 25.0,
-                                    )),
-                                TextSpan(
-                                  text: 'Reservations',
-                                  style: GoogleFonts.rubik(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    fontSize: 25.0,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 5),
-                      Expanded(
-                        child: ListView(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(top: 5),
-                              child: Column(
-                                children: [
-                                  ToolLine(),
-                                  ToolLine(),
-                                  ToolLine(),
                                 ],
                               ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 5),
+                        Expanded(
+                          child: ListView(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(top: 5),
+                                child: Column(
+                                  children: [
+                                    ToolLine(),
+                                    ToolLine(),
+                                    ToolLine(),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Container(
-                margin:
-                    EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
-                width: 400,
-                height: MediaQuery.of(context).size.height * 0.35,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: Color(0xff3a3d41),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          RichText(
-                            text: TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: 'Incoming ',
+              GestureDetector(
+                onTap: () {
+                  changePage(2);
+                },
+                child: Container(
+                  margin:
+                      EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
+                  width: 400,
+                  height: MediaQuery.of(context).size.height * 0.35,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Color(0xff3a3d41),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(15.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            RichText(
+                              text: TextSpan(
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: 'Incoming ',
+                                      style: GoogleFonts.rubik(
+                                        color: Colors.white,
+                                        fontSize: 25.0,
+                                      )),
+                                  TextSpan(
+                                    text: 'Parts',
                                     style: GoogleFonts.rubik(
+                                      fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                       fontSize: 25.0,
-                                    )),
-                                TextSpan(
-                                  text: 'Parts',
-                                  style: GoogleFonts.rubik(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    fontSize: 25.0,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Expanded(
-                        child: ListView(
-                          children: parts
-                              .map<Widget>((part) => PartLine(part: part))
-                              .toList()
-                              .reversed
-                              .toList()
-                              .sublist(0, 4),
+                          ],
                         ),
-                      ),
-                    ],
+                        Expanded(
+                          child: ListView(
+                            children: parts
+                                .map<Widget>((part) => PartLine(part: part))
+                                .toList()
+                                .reversed
+                                .toList()
+                                .sublist(0, 4),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

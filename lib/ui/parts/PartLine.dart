@@ -41,7 +41,7 @@ class PartLine extends StatelessWidget {
       "Arrived": 1.0,
       "Shipped": 0.75,
       "Ordered": 0.4,
-      "Failure": 0.0,
+      "Failure": 0.000000000000001,
     };
 
     return Row(
