@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:OptixToolkit/ui/tools/ToolStatus.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
 
-import 'ReserveTool.dart';
+import 'ToolReserve.dart';
 
 class ToolCard extends StatelessWidget {
   const ToolCard({Key key}) : super(key: key);
@@ -14,7 +14,7 @@ class ToolCard extends StatelessWidget {
       onTap: () {
         NavigationService.goTo(
           PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) => ReserveTool(),
+            pageBuilder: (context, animation1, animation2) => ToolReserve(),
           ),
         );
       },

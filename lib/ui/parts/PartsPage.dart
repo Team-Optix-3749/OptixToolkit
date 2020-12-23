@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Project imports:
-import 'package:OptixToolkit/ui/parts/AddPart.dart';
+import 'package:OptixToolkit/ui/parts/PartAdd.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:provider/provider.dart';
 
@@ -85,7 +85,7 @@ class _partState extends State<PartsWidget> {
                         NavigationService.goTo(
                           PageRouteBuilder(
                             pageBuilder: (context, animation1, animation2) =>
-                                AddPart(),
+                                PartAdd(),
                           ),
                         );
                       },

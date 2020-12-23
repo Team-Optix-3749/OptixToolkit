@@ -10,14 +10,14 @@ import 'package:provider/provider.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/database.dart';
 
-class AddPart extends StatefulWidget {
-  AddPart({Key key}) : super(key: key);
+class PartAdd extends StatefulWidget {
+  PartAdd({Key key}) : super(key: key);
 
   @override
-  _AddPartState createState() => _AddPartState();
+  _PartAddState createState() => _PartAddState();
 }
 
-class _AddPartState extends State<AddPart> {
+class _PartAddState extends State<PartAdd> {
   final partNameController = TextEditingController();
   final partLinkController = TextEditingController();
   final trackingNumberController = TextEditingController();

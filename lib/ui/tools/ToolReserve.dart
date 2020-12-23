@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ReserveTool extends StatefulWidget {
-  ReserveTool({Key key}) : super(key: key);
+class ToolReserve extends StatefulWidget {
+  ToolReserve({Key key}) : super(key: key);
 
   @override
-  _ReserveToolState createState() => _ReserveToolState();
+  _ToolReserveState createState() => _ToolReserveState();
 }
 
-class _ReserveToolState extends State<ReserveTool> {
+class _ToolReserveState extends State<ToolReserve> {
   final partNameController = TextEditingController();
   final partLinkController = TextEditingController();
   final partDescriptionController = TextEditingController();
