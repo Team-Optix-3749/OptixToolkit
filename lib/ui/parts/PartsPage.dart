@@ -59,39 +59,6 @@ class _partState extends State<PartsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final Color green = Color(0xff3ce887);
-    final Color yellow = Color(0xffe6d040);
-    final Color orange = Colors.orange;
-    final Color red = Colors.red;
-    final Color pink = Colors.pink;
-
-    final Map<String, TextStyle> styleMap = {
-      "Arrived": GoogleFonts.rubik(
-        color: green,
-      ),
-      "Shipped": GoogleFonts.rubik(
-        color: yellow,
-      ),
-      "Ordered": GoogleFonts.rubik(
-        color: orange,
-      ),
-      "Failure": GoogleFonts.rubik(
-        color: pink,
-      ),
-    };
-
-    Widget doneButton = FlatButton(
-      child: Text(
-        "Done",
-        style: GoogleFonts.rubik(
-          fontWeight: FontWeight.bold,
-          color: Color(0xff159deb),
-        ),
-      ),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
     return Container(
       child: Column(
         children: [

@@ -29,8 +29,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final Color white = Color(0xffffffff);
   final List<String> titles = ["HOME", "TOOLS", "PARTS", "PROFILE"];
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
     homePage(),
     toolsPage(),
