@@ -2,10 +2,9 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'ToolCard.dart';
+import 'ToolReserveItem.dart';
 
 class ToolReserve extends StatefulWidget {
   ToolReserve({Key key}) : super(key: key);
@@ -78,7 +77,7 @@ class _ToolReserveState extends State<ToolReserve> {
               const SizedBox(height: 15),
               Expanded(
                 child: ListView(
-                  children: [ToolCard()],
+                  children: [ToolReserveItem()],
                 ),
               ),
             ],
