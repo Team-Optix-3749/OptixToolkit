@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'ToolCard.dart';
+
 class ToolReserve extends StatefulWidget {
   ToolReserve({Key key}) : super(key: key);
 
@@ -18,13 +20,9 @@ class _ToolReserveState extends State<ToolReserve> {
   final partDescriptionController = TextEditingController();
   double priority = 0;
 
-  final _formKey = GlobalKey<FormState>();
   final Color background = Color(0xff26292c);
   final Color gray = Color(0xff3A3D41);
   final Color subtleGray = Color(0xffcccccc);
-  String dropdownValue = "Select a Tool";
-  String _startTime = "Start Time";
-  String _endTime = "End Time";
 
   @override
   Widget build(BuildContext context) {
@@ -39,247 +37,51 @@ class _ToolReserveState extends State<ToolReserve> {
         ),
         backgroundColor: Color(0xff159deb),
       ),
-      body: Center(
-        child: Container(
-          child: Container(
-            margin: EdgeInsets.only(top: 17, bottom: 17),
-            child: Column(
-              children: [
-                Container(
-                  child: RichText(
+      body: Container(
+        margin: EdgeInsets.only(left: 12, top: 20, right: 12, bottom: 0),
+        width: 400,
+        height: MediaQuery.of(context).size.height * 0.63,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          color: Color(0xff3a3d41),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  RichText(
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Reserve a ',
-                          style: GoogleFonts.rubik(
-                            color: Colors.white,
-                            fontSize: 25.0,
-                          ),
-                        ),
+                            text: 'Tool ',
+                            style: GoogleFonts.rubik(
+                              color: Colors.white,
+                              fontSize: 25.0,
+                            )),
                         TextSpan(
-                          text: 'Tool',
+                          text: 'Reservations',
                           style: GoogleFonts.rubik(
+                            fontWeight: FontWeight.bold,
                             color: Colors.white,
                             fontSize: 25.0,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
                   ),
+                ],
+              ),
+              const SizedBox(height: 15),
+              Expanded(
+                child: ListView(
+                  children: [ToolCard()],
                 ),
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 300,
-                        margin: EdgeInsets.only(top: 20),
-                        child: Theme(
-                          data: Theme.of(context).copyWith(
-                            canvasColor: Color(0xff3a3d41),
-                          ),
-                          child: DropdownButtonFormField<String>(
-                            value: dropdownValue,
-                            icon: Icon(Icons.arrow_downward),
-                            iconSize: 24,
-                            elevation: 16,
-                            style: GoogleFonts.rubik(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                            ),
-                            validator: (value) {
-                              if (value == "Select a Tool")
-                                return "Select a Tool";
-                              return null;
-                            },
-                            onChanged: (String newValue) {
-                              setState(() {
-                                dropdownValue = newValue;
-                              });
-                            },
-                            items: <String>[
-                              'Select a Tool',
-                              'Drill',
-                              'Driver',
-                              'Band Saw',
-                              'Mill',
-                              'Chop Saw',
-                              'Drill Press',
-                              'Circular Saw',
-                              'Jigsaw'
-                            ].map<DropdownMenuItem<String>>(
-                              (String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child:
-                                      Text(value, textAlign: TextAlign.center),
-                                );
-                              },
-                            ).toList(),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 300,
-                        margin: EdgeInsets.only(top: 20),
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0)),
-                          elevation: 4.0,
-                          onPressed: () {
-                            DatePicker.showTimePicker(context,
-                                theme: DatePickerTheme(
-                                  containerHeight: 210.0,
-                                ),
-                                showTitleActions: true, onConfirm: (time) {
-                              print('confirm $time');
-                              _startTime =
-                                  '${time.hour} : ${time.minute} : ${time.second}';
-                              setState(() {});
-                            },
-                                currentTime: DateTime.now(),
-                                locale: LocaleType.en);
-                            setState(() {});
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 50.0,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Container(
-                                      child: Row(
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.access_time,
-                                            size: 18.0,
-                                            color: Color(0xff159deb),
-                                          ),
-                                          Text(
-                                            " $_startTime",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18.0),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Text(
-                                  "  Change",
-                                  style: TextStyle(
-                                      color: Color(0xff159deb),
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0),
-                                ),
-                              ],
-                            ),
-                          ),
-                          color: Color(0xff3a3d41),
-                        ),
-                      ),
-                      Container(
-                        width: 300,
-                        margin: EdgeInsets.only(top: 20),
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0)),
-                          elevation: 4.0,
-                          onPressed: () {
-                            DatePicker.showTimePicker(context,
-                                theme: DatePickerTheme(
-                                  containerHeight: 210.0,
-                                ),
-                                showTitleActions: true, onConfirm: (time) {
-                              print('confirm $time');
-                              _endTime =
-                                  '${time.hour} : ${time.minute} : ${time.second}';
-                              setState(() {});
-                            },
-                                currentTime: DateTime.now(),
-                                locale: LocaleType.en);
-                            setState(() {});
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 50.0,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Container(
-                                      child: Row(
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.access_time,
-                                            size: 18.0,
-                                            color: Color(0xff159deb),
-                                          ),
-                                          Text(
-                                            " $_endTime",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18.0),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Text(
-                                  "  Change",
-                                  style: TextStyle(
-                                      color: Color(0xff159deb),
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0),
-                                ),
-                              ],
-                            ),
-                          ),
-                          color: Color(0xff3a3d41),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        width: 300,
-                        child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              ButtonTheme(
-                                minWidth: 200,
-                                height: 55,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(7.0)),
-                                child: RaisedButton(
-                                  onPressed: () {
-                                    _formKey.currentState.validate();
-                                  },
-                                  child: Text('RESERVE',
-                                      style: GoogleFonts.rubik(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white)),
-                                  color: Color(0xff159deb),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
