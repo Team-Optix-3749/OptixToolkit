@@ -12,7 +12,7 @@ class Loading extends StatelessWidget {
       borderSize: 3.0,
       size: 50.0,
       backgroundColor: Color(0xff159deb),
-      duration: Duration(milliseconds: 2000),
+      duration: Duration(milliseconds: 1000),
     );
   }
 }

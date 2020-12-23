@@ -55,9 +55,9 @@ class ToolLine extends StatelessWidget {
                 text: TextSpan(
                   children: <TextSpan>[
                     TextSpan(
-                      text: 'Not in Use',
+                      text: 'Out of Service',
                       style: GoogleFonts.rubik(
-                        color: green,
+                        color: red,
                         fontSize: 21.0,
                         fontWeight: FontWeight.bold,
                       ),

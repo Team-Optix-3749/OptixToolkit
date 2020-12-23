@@ -11,7 +11,8 @@ import 'package:OptixToolkit/ui/parts/PartLine.dart';
 import 'package:OptixToolkit/ui/tools/ToolLine.dart';
 
 class homePage extends StatelessWidget {
-  homePage({Key key}) : super(key: key);
+  final Function(int) changePage;
+  homePage({Key key, this.changePage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +38,7 @@ class homePage extends StatelessWidget {
                       else
                         return homePage2(
                           parts: snapshot.data,
+                          changePage: this.changePage,
                         );
                   }
                 },
@@ -49,7 +51,8 @@ class homePage extends StatelessWidget {
 
 class homePage2 extends StatelessWidget {
   final List<Part> parts;
-  homePage2({Key key, this.parts}) : super(key: key);
+  final Function(int) changePage;
+  homePage2({Key key, this.parts, this.changePage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

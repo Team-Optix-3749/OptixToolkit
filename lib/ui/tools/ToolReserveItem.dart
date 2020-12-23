@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:OptixToolkit/ui/tools/ToolsPage.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
-
-import 'ToolReserve.dart';
-import 'ToolsPage.dart';
 
 class ToolReserveItem extends StatelessWidget {
   const ToolReserveItem({Key key}) : super(key: key);
@@ -86,12 +82,7 @@ class ToolReserveItem extends StatelessWidget {
                   ),
                   child: RaisedButton(
                     onPressed: () {
-                      NavigationService.goTo(
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              toolsPage(),
-                        ),
-                      );
+                      NavigationService.pop();
                     },
                     child: Text(
                       'RESERVE',

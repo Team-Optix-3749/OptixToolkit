@@ -78,7 +78,7 @@ final Map<String, String> deliveryMap = {
   "delivered": "Arrived",
   "return_to_sender": "Failure",
   "failure": "Failure",
-  "unknown": "Failure",
+  "unknown": "Ordered",
   "Not Availible": "Failure"
 };
 

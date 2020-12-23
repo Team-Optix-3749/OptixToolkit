@@ -29,21 +29,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final Color white = Color(0xffffffff);
   final List<String> titles = ["HOME", "TOOLS", "PARTS", "PROFILE"];
   int _selectedIndex = 0;
-  List<Widget> _widgetOptions = <Widget>[
-    homePage(),
-    toolsPage(),
-    partsPage(),
-    profilePage(),
-    Container(
-      child: Column(
-        children: [
-          Text("Loading Profile"),
-        ],
-      ),
-    ),
-  ];
 
-  void _onItemTapped(int index) {
+  void changePage(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -61,6 +48,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _widgetOptions = <Widget>[
+      homePage(changePage: changePage),
+      toolsPage(),
+      partsPage(),
+      profilePage(),
+      Container(
+        child: Column(
+          children: [
+            Text("Loading Profile"),
+          ],
+        ),
+      ),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -108,7 +109,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         currentIndex: _selectedIndex,
         unselectedItemColor: white,
         selectedItemColor: blue,
-        onTap: _onItemTapped,
+        onTap: changePage,
       ),
     );
   }
