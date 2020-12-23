@@ -13,10 +13,10 @@ class PartModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color green = Color(0xff3ce887);
-    final Color yellow = Color(0xffe6d040);
+    final Color green = Color(0xff15ee07);
+    final Color yellow = Color(0xffebe712);
+    final Color red = Color(0xffd5212c);
     final Color orange = Colors.orange;
-    final Color pink = Colors.pink;
 
     final Map<String, TextStyle> styleMap = {
       "Arrived": GoogleFonts.rubik(
@@ -35,7 +35,7 @@ class PartModal extends StatelessWidget {
         fontSize: 18.0,
       ),
       "Failure": GoogleFonts.rubik(
-        color: pink,
+        color: red,
         fontWeight: FontWeight.bold,
         fontSize: 18.0,
       ),

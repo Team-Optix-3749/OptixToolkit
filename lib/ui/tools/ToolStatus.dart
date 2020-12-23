@@ -6,9 +6,9 @@ class ToolStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color green = Color(0xff3ce887);
-    final Color yellow = Color(0xffe6d040);
-    final Color red = Colors.red;
+    final Color green = Color(0xff15ee07);
+    final Color yellow = Color(0xffebe712);
+    final Color red = Color(0xffd5212c);
 
     final Map<String, TextStyle> statusColor = {
       "notInUse": GoogleFonts.rubik(
