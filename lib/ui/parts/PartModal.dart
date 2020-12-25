@@ -16,7 +16,7 @@ class PartModal extends StatelessWidget {
     final Color green = Color(0xff15ee07);
     final Color yellow = Color(0xffebe712);
     final Color red = Color(0xffd5212c);
-    final Color orange = Colors.orange;
+    final Color orange = Color(0xffff9415);
 
     final Map<String, TextStyle> styleMap = {
       "Arrived": GoogleFonts.rubik(

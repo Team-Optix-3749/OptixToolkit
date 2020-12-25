@@ -8,6 +8,8 @@ import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:OptixToolkit/constants.dart' as Constants;
 
+import 'package:flutter/foundation.dart';
+
 class FailedRequestException implements Exception {}
 
 class Database {
@@ -69,6 +71,42 @@ class Database {
 
     return parsed.map<Part>((json) => Part.fromJson(json)).toList();
   }
+
+  static Future<Map<String, List<Tool>>> getTools(
+    IdTokenResult idToken,
+  ) async {
+    var client = http.Client();
+
+    Map data = {
+      'auth': idToken.token,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Constants.SERVER_URL + "tools/get_tools",
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode != 200) {
+      throw new FailedRequestException();
+    }
+
+    final parsed =
+        jsonDecode(result.body)['tools'].cast<Map<String, dynamic>>();
+
+    List<Tool> list = parsed.map<Tool>((json) => Tool.fromJson(json)).toList();
+
+    Map<String, List<Tool>> category_map = {};
+
+    for (var tool in list) {
+      if (category_map.containsKey(tool.category)) {
+        category_map[tool.category as String].insert(0, tool);
+      } else {
+        category_map[tool.category as String] = [tool];
+      }
+    }
+
+    return category_map;
+  }
 }
 
 final Map<String, String> deliveryMap = {
@@ -123,6 +161,35 @@ class Part {
       priority: json['priority'] as int,
       displayName: json['displayName'] as String,
       status: status,
+    );
+  }
+}
+
+class Tool {
+  final String name;
+  final String category;
+  final String user;
+  final List<String> reservations;
+  final String status;
+
+  Tool({
+    @required this.name,
+    @required this.category,
+    @required this.user,
+    @required this.reservations,
+    @required this.status,
+  });
+
+  factory Tool.fromJson(Map<String, dynamic> json) {
+    var user = json['user'] as String;
+    if (user == "null") user = "theres no user rn lol";
+
+    return Tool(
+      name: json['name'] as String,
+      status: json['status'] as String,
+      user: json['user'] as String,
+      category: json['category'] as String,
+      reservations: json['reservations'].cast<String>().toList(),
     );
   }
 }

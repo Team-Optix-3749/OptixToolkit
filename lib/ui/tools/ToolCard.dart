@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:OptixToolkit/ui/tools/ToolStatus.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
+import 'package:OptixToolkit/services/database.dart';
 
 import 'ToolReserve.dart';
 
 class ToolCard extends StatelessWidget {
-  const ToolCard({Key key}) : super(key: key);
+  final List<Tool> tools;
+  final String category;
+  const ToolCard({Key key, this.tools, this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,7 @@ class ToolCard extends StatelessWidget {
                           color: Colors.white, fontSize: 20.0),
                       children: <TextSpan>[
                         TextSpan(
-                          text: "Band Saw",
+                          text: "${category}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 25.0,

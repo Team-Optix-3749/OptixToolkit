@@ -28,25 +28,33 @@ class MyApp extends StatelessWidget {
     );
     return MultiProvider(
       providers: [StreamProvider<FirebaseUser>.value(value: Auth.authState())],
-      child: MaterialApp(
-        title: 'OptixToolkit',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        navigatorKey: NavigationService.navigatorKey,
-        home: Consumer<FirebaseUser>(
-          builder: (context, user, child) {
-            if (user != null) {
-              return FutureProvider<IdTokenResult>(
-                create: (_) => user.getIdToken(),
-                child: MainApp(),
-              );
-            } else {
-              return MainApp();
-            }
-          },
-        ),
+      child: Consumer<FirebaseUser>(
+        builder: (context, user, child) {
+          if (user != null) {
+            return FutureProvider<IdTokenResult>(
+              create: (_) => user.getIdToken(),
+              child: MaterialApp(
+                title: 'OptixToolkit',
+                theme: ThemeData(
+                  primarySwatch: Colors.blue,
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                ),
+                navigatorKey: NavigationService.navigatorKey,
+                home: MainApp(),
+              ),
+            );
+          } else {
+            return MaterialApp(
+              title: 'OptixToolkit',
+              theme: ThemeData(
+                primarySwatch: Colors.blue,
+                visualDensity: VisualDensity.adaptivePlatformDensity,
+              ),
+              navigatorKey: NavigationService.navigatorKey,
+              home: MainApp(),
+            );
+          }
+        },
       ),
     );
   }

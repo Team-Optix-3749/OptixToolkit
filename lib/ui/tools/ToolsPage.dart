@@ -2,6 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:OptixToolkit/ui/tools/ToolCard.dart';
+import 'package:OptixToolkit/services/database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:OptixToolkit/ui/Loading.dart';
+import 'package:provider/provider.dart';
 
 // Package imports:
 import 'package:barcode_scan/barcode_scan.dart';
@@ -13,18 +17,41 @@ class toolsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ToolWidget();
+    return FutureBuilder<Map<String, List<Tool>>>(
+      future: Database.getTools(Provider.of<IdTokenResult>(context)),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return Loading();
+          default:
+            if (snapshot.hasError)
+              return Text('Error: ${snapshot.error}');
+            else
+              return ToolWidget(
+                tools: snapshot.data,
+              );
+        }
+      },
+    );
   }
 }
 
 class ToolWidget extends StatefulWidget {
-  ToolWidget({Key key}) : super(key: key);
+  Map<String, List<Tool>> tools;
+
+  ToolWidget({Key key, this.tools}) : super(key: key);
 
   @override
-  _toolState createState() => _toolState();
+  _toolState createState() => _toolState(this.tools);
 }
 
 class _toolState extends State<ToolWidget> {
+  Map<String, List<Tool>> tools;
+
+  _toolState(Map<String, List<Tool>> tools) {
+    this.tools = tools;
+  }
+
   void _showDialog(BuildContext context) {
     // flutter defined function
     showDialog(
@@ -88,6 +115,10 @@ class _toolState extends State<ToolWidget> {
 
   @override
   Widget build(BuildContext context) {
+    List<ToolCard> widgets = [];
+    tools.forEach((category, tools) =>
+        widgets.insert(0, ToolCard(category: category, tools: tools)));
+
     return Container(
       child: Column(
         children: [
@@ -184,9 +215,7 @@ class _toolState extends State<ToolWidget> {
                   ),
                   const SizedBox(height: 15),
                   Expanded(
-                    child: ListView(
-                      children: [ToolCard()],
-                    ),
+                    child: ListView(children: widgets),
                   ),
                 ],
               ),

@@ -143,21 +143,36 @@ class _partState extends State<PartsWidget> {
                   ),
                   const SizedBox(height: 15),
                   Expanded(
-                      child: RefreshIndicator(
-                    onRefresh: () async {
-                      var partsRes = await Database.getParts(idToken);
-                      setState(() {
-                        this.parts = partsRes;
-                      });
-                      print("Refreshsed");
-                    },
-                    child: ListView(
-                        children: parts
-                            .map<Widget>((part) => PartCard(part: part))
-                            .toList()
-                            .reversed
-                            .toList()),
-                  )),
+                    child: RefreshIndicator(
+                      onRefresh: () async {
+                        var partsRes = await Database.getParts(idToken);
+                        setState(() {
+                          this.parts = partsRes;
+                        });
+                        print("Refreshsed");
+                      },
+                      child: ListView(
+                        children: parts.length != 0
+                            ? parts
+                                .map<Widget>((part) => PartCard(part: part))
+                                .toList()
+                                .reversed
+                                .toList()
+                            : [
+                                RichText(
+                                  textAlign: TextAlign.center,
+                                  text: TextSpan(
+                                    text: 'No Parts Exist',
+                                    style: GoogleFonts.rubik(
+                                      color: Color(0xffd5212c),
+                                      fontSize: 25.0,
+                                    ),
+                                  ),
+                                )
+                              ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

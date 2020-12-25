@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:OptixToolkit/services/database.dart';
 
 class ToolLine extends StatelessWidget {
-  const ToolLine({Key key}) : super(key: key);
+  final Tool tool;
+  const ToolLine({Key key, this.tool}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class ToolLine extends StatelessWidget {
                 text: TextSpan(
                   children: <TextSpan>[
                     TextSpan(
-                      text: 'Angle Grinder ',
+                      text: "Band Saw",
                       style: GoogleFonts.rubik(
                         color: Colors.white,
                         fontSize: 21.0,
@@ -55,7 +57,7 @@ class ToolLine extends StatelessWidget {
                 text: TextSpan(
                   children: <TextSpan>[
                     TextSpan(
-                      text: 'Out of Service',
+                      text: "asdfasdfs",
                       style: GoogleFonts.rubik(
                         color: red,
                         fontSize: 21.0,
