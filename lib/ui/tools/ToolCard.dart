@@ -17,7 +17,8 @@ class ToolCard extends StatelessWidget {
       onTap: () {
         NavigationService.goTo(
           PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) => ToolReserve(),
+            pageBuilder: (context, animation1, animation2) =>
+                ToolReserve(category: category, tools: tools),
           ),
         );
       },

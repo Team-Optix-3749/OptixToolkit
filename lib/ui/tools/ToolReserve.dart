@@ -1,23 +1,20 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:OptixToolkit/services/database.dart';
 
 // Package imports:
 import 'package:google_fonts/google_fonts.dart';
 
 import 'ToolReserveItem.dart';
 
-class ToolReserve extends StatefulWidget {
-  ToolReserve({Key key}) : super(key: key);
-
-  @override
-  _ToolReserveState createState() => _ToolReserveState();
-}
-
-class _ToolReserveState extends State<ToolReserve> {
+class ToolReserve extends StatelessWidget {
   final partNameController = TextEditingController();
   final partLinkController = TextEditingController();
   final partDescriptionController = TextEditingController();
-  double priority = 0;
+  final List<Tool> tools;
+  final String category;
+
+  ToolReserve({Key key, this.tools, this.category}) : super(key: key);
 
   final Color background = Color(0xff26292c);
   final Color gray = Color(0xff3A3D41);
@@ -77,7 +74,8 @@ class _ToolReserveState extends State<ToolReserve> {
               const SizedBox(height: 15),
               Expanded(
                 child: ListView(
-                  children: [ToolReserveItem()],
+                  children:
+                      tools.map((tool) => ToolReserveItem(tool: tool)).toList(),
                 ),
               ),
             ],
