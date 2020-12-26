@@ -18,6 +18,7 @@ class profilePage extends StatelessWidget {
     final Color background = Color(0xff26292c);
     final Color subtleGray = Color(0xffcccccc);
     final emailController = TextEditingController();
+    final Color red = Color(0xffd5212c);
 
     return Container(
       child: Column(
@@ -61,6 +62,24 @@ class profilePage extends StatelessWidget {
                           ],
                         ),
                       )
+                    ],
+                  ),
+                  const SizedBox(width: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () {
+                          Auth.signOut();
+                        },
+                        child: Icon(
+                          Icons.logout,
+                          color: red,
+                          size: 30.0,
+                          semanticLabel: 'LogOut',
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -159,10 +178,14 @@ class profilePage extends StatelessWidget {
                                               Auth.sendPasswordResetEmail(
                                                   emailController.text);
                                             },
-                                            child: Text('CHANGE PASSWORD',
-                                                style: GoogleFonts.rubik(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white)),
+                                            child: Text(
+                                              'CHANGE PASSWORD',
+                                              style: GoogleFonts.rubik(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                                fontSize: 18,
+                                              ),
+                                            ),
                                             color: Color(0xff159deb),
                                           ),
                                         ),
