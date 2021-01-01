@@ -164,7 +164,7 @@ class _toolState extends State<ToolWidget> {
                           _showDialog(context);
                         });
                       },
-                      child: Text('CHECK IN',
+                      child: Text('RETURN',
                           style: GoogleFonts.rubik(
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
