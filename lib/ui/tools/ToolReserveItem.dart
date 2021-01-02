@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/database.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ToolReserveItem extends StatelessWidget {
   final Tool tool;
@@ -84,8 +86,19 @@ class ToolReserveItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(7.0),
                   ),
                   child: RaisedButton(
-                    onPressed: () {
-                      NavigationService.pop();
+                    onPressed: () async {
+                      print("Handling on pressed");
+                      print("Tool Name: " + tool.name);
+                      print("Tool Status: " + tool.status);
+                      var result = await Database.reserveTool(
+                        Provider.of<IdTokenResult>(context, listen: false),
+                        Provider.of<FirebaseUser>(context, listen: false),
+                        tool.name,
+                      );
+                      print("Result of the request: " + result.toString());
+                      if (result) {
+                        NavigationService.pop();
+                      }
                     },
                     child: Text(
                       'RESERVE',

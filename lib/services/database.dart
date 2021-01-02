@@ -72,6 +72,30 @@ class Database {
     return parsed.map<Part>((json) => Part.fromJson(json)).toList();
   }
 
+  static Future reserveTool(
+      IdTokenResult idToken, FirebaseUser user, String toolname) async {
+    var client = http.Client();
+
+    Map data = {
+      'auth': idToken.token,
+      'uid': user.uid,
+      'toolname': toolname,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Constants.SERVER_URL + "tools/reserve_tool",
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode == 200) {
+      return true;
+    } else {
+      print("ERROR");
+      print(result.body);
+      return false;
+    }
+  }
+
   static Future<Map<String, List<Tool>>> getTools(
     IdTokenResult idToken,
   ) async {
