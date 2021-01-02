@@ -93,7 +93,7 @@ class _partState extends State<PartsWidget> {
                         'ADD A PART',
                         style: GoogleFonts.rubik(
                             fontWeight: FontWeight.bold,
-                            fontSize: 18.0,
+                            fontSize: 20.0,
                             color: Colors.white),
                       ),
                       color: Color(0xff159deb),

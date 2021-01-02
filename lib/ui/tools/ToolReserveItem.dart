@@ -19,14 +19,17 @@ class ToolReserveItem extends StatelessWidget {
       "notInUse": GoogleFonts.rubik(
         color: green,
         fontSize: 20.0,
+        fontWeight: FontWeight.bold,
       ),
       "reserved": GoogleFonts.rubik(
         color: yellow,
         fontSize: 20.0,
+        fontWeight: FontWeight.bold,
       ),
       "outOfService": GoogleFonts.rubik(
         color: red,
         fontSize: 20.0,
+        fontWeight: FontWeight.bold,
       ),
     };
 

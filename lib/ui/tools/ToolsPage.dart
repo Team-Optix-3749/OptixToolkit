@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:OptixToolkit/ui/tools/ToolCard.dart';
@@ -81,8 +82,18 @@ class _toolState extends State<ToolWidget> {
 
   Future checkOutScan() async {
     try {
-      String barcode_ = (await BarcodeScanner.scan()).rawContent;
-      print(barcode_);
+      String toolname = (await BarcodeScanner.scan()).rawContent;
+      print("Handling on pressed");
+      print("Tool Name: " + toolname);
+      var result = await Database.reserveTool(
+        Provider.of<IdTokenResult>(context, listen: false),
+        Provider.of<FirebaseUser>(context, listen: false),
+        toolname,
+      );
+      print("Result of the request: " + result.toString());
+      if (result) {
+        NavigationService.pop();
+      }
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.cameraAccessDenied) {
         print('Camera permission not granted');
@@ -96,10 +107,20 @@ class _toolState extends State<ToolWidget> {
     }
   }
 
-  Future checkInScan() async {
+  Future returnScan() async {
     try {
-      String barcode_ = (await BarcodeScanner.scan()).rawContent;
-      print(barcode_);
+      String toolname = (await BarcodeScanner.scan()).rawContent;
+      print("Handling on pressed");
+      print("Tool Name: " + toolname);
+      var result = await Database.reserveTool(
+        Provider.of<IdTokenResult>(context, listen: false),
+        Provider.of<FirebaseUser>(context, listen: false),
+        toolname,
+      );
+      print("Result of the request: " + result.toString());
+      if (result) {
+        NavigationService.pop();
+      }
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.cameraAccessDenied) {
         print('Camera permission not granted');
@@ -146,10 +167,14 @@ class _toolState extends State<ToolWidget> {
                           _showDialog(context);
                         });
                       },
-                      child: Text('CHECK OUT',
-                          style: GoogleFonts.rubik(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
+                      child: Text(
+                        'CHECK OUT',
+                        style: GoogleFonts.rubik(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
+                          color: Colors.white,
+                        ),
+                      ),
                       color: Color(0xff159deb),
                     ),
                   ),
@@ -160,14 +185,18 @@ class _toolState extends State<ToolWidget> {
                         borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
                       onPressed: () {
-                        checkInScan().catchError(() {
+                        returnScan().catchError(() {
                           _showDialog(context);
                         });
                       },
-                      child: Text('RETURN',
-                          style: GoogleFonts.rubik(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white)),
+                      child: Text(
+                        'RETURN',
+                        style: GoogleFonts.rubik(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
+                          color: Colors.white,
+                        ),
+                      ),
                       color: Color(0xff159deb),
                     ),
                   )

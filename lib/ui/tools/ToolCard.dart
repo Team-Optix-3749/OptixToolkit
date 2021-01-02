@@ -13,6 +13,12 @@ class ToolCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var dots_list = tools
+        .map((tool) => ToolStatus(status: tool.status))
+        .toList()
+        .reversed
+        .toList();
+
     return GestureDetector(
       onTap: () {
         NavigationService.goTo(
@@ -53,15 +59,7 @@ class ToolCard extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  ToolStatus(),
-                  ToolStatus(),
-                  ToolStatus(),
-                  ToolStatus(),
-                  ToolStatus()
-                ],
-              ),
+              Row(children: dots_list),
             ],
           ),
         ),

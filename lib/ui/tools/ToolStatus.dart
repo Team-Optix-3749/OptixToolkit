@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ToolStatus extends StatelessWidget {
-  const ToolStatus({Key key}) : super(key: key);
+  final String status;
+  const ToolStatus({Key key, @required this.status}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +34,7 @@ class ToolStatus extends StatelessWidget {
         text: TextSpan(
           style: GoogleFonts.rubik(color: Colors.white, fontSize: 22.0),
           children: <TextSpan>[
-            TextSpan(
-              text: "· ",
-              style: TextStyle(
-                color: Color(0xff159deb),
-                fontWeight: FontWeight.bold,
-                fontSize: 40.0,
-              ),
-            ),
+            TextSpan(text: "· ", style: statusColor[status]),
           ],
         ),
       ),
