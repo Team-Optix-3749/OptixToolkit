@@ -4,7 +4,8 @@ import 'package:OptixToolkit/services/database.dart';
 
 class ToolLine extends StatelessWidget {
   final Tool tool;
-  const ToolLine({Key key, this.tool}) : super(key: key);
+  final String status;
+  const ToolLine({Key key, this.tool, this.status}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,21 +13,27 @@ class ToolLine extends StatelessWidget {
     final Color yellow = Color(0xffebe712);
     final Color red = Color(0xffd5212c);
 
+    final Map<String, String> statusMessage = {
+      "notInUse": "Not In Use",
+      "reserved": "Reserved",
+      "outOfService": "Out of Service",
+    };
+
     final Map<String, TextStyle> statusColor = {
       "notInUse": GoogleFonts.rubik(
         color: green,
         fontWeight: FontWeight.bold,
-        fontSize: 40.0,
+        fontSize: 21.0,
       ),
       "reserved": GoogleFonts.rubik(
         color: yellow,
         fontWeight: FontWeight.bold,
-        fontSize: 40.0,
+        fontSize: 21.0,
       ),
       "outOfService": GoogleFonts.rubik(
         color: red,
         fontWeight: FontWeight.bold,
-        fontSize: 40.0,
+        fontSize: 21.0,
       ),
     };
 
@@ -40,7 +47,7 @@ class ToolLine extends StatelessWidget {
                 text: TextSpan(
                   children: <TextSpan>[
                     TextSpan(
-                      text: "Band Saw",
+                      text: "${tool.name}",
                       style: GoogleFonts.rubik(
                         color: Colors.white,
                         fontSize: 21.0,
@@ -57,12 +64,8 @@ class ToolLine extends StatelessWidget {
                 text: TextSpan(
                   children: <TextSpan>[
                     TextSpan(
-                      text: "asdfasdfs",
-                      style: GoogleFonts.rubik(
-                        color: red,
-                        fontSize: 21.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      text: statusMessage[status],
+                      style: statusColor[status],
                     ),
                   ],
                 ),

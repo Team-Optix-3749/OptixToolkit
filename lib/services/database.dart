@@ -63,6 +63,7 @@ class Database {
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode != 200) {
+      print(result.body);
       throw new FailedRequestException();
     }
 
@@ -159,6 +160,7 @@ class Database {
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode != 200) {
+      print(jsonDecode(result.body)['err']);
       throw new FailedRequestException();
     }
 

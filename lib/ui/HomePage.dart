@@ -16,46 +16,32 @@ class homePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<IdTokenResult>(
-      future: Provider.of<FirebaseUser>(context, listen: false).getIdToken(),
-      builder: (context, idToken) {
-        switch (idToken.connectionState) {
-          case ConnectionState.waiting:
-            return Loading();
-          default:
-            if (idToken.hasError)
-              return Text('Error: ${idToken.error}');
-            else
-              return FutureBuilder<List<Part>>(
-                future: Database.getParts(idToken.data),
-                builder: (context, snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.waiting:
-                      return Loading();
-                    default:
-                      if (snapshot.hasError)
-                        return Text('Error: ${snapshot.error}');
-                      else
-                        return homePage2(
-                          parts: snapshot.data,
-                          changePage: this.changePage,
-                        );
-                  }
-                },
-              );
-        }
-      },
-    );
+    return MultiProvider(providers: [
+      FutureProvider<List<Part>>.value(
+          value: Database.getParts(Provider.of<IdTokenResult>(context))),
+      FutureProvider<Map<String, List<Tool>>>.value(
+          value: Database.getTools(Provider.of<IdTokenResult>(context)))
+    ], child: homePage2());
   }
 }
 
 class homePage2 extends StatelessWidget {
   final List<Part> parts;
+  final List<Tool> tools;
   final Function(int) changePage;
-  homePage2({Key key, this.parts, this.changePage}) : super(key: key);
+  homePage2({Key key, this.parts, this.tools, this.changePage})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var parts = Provider.of<List<Part>>(context);
+    var toolsMap = Provider.of<Map<String, List<Tool>>>(context);
+    if (parts == null || toolsMap == null) return Loading();
+
+    List<Tool> tools = [];
+
+    toolsMap.forEach((k, v) => tools += v);
+
     return Container(
       child: Column(
         children: [
@@ -160,18 +146,12 @@ class homePage2 extends StatelessWidget {
                         const SizedBox(height: 5),
                         Expanded(
                           child: ListView(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(top: 5),
-                                child: Column(
-                                  children: [
-                                    ToolLine(),
-                                    ToolLine(),
-                                    ToolLine(),
-                                  ],
-                                ),
-                              ),
-                            ],
+                            children: tools
+                                .map<Widget>((tool) =>
+                                    ToolLine(tool: tool, status: tool.status))
+                                .toList()
+                                .reversed
+                                .toList(),
                           ),
                         ),
                       ],
