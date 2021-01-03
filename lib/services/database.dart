@@ -4,6 +4,8 @@ import 'dart:convert';
 // Package imports:
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
+import 'package:OptixToolkit/services/Alert.dart';
+import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:OptixToolkit/constants.dart' as Constants;
@@ -21,7 +23,8 @@ class Database {
       String trackingId,
       String carrier,
       String description,
-      double priority) async {
+      double priority,
+      BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -44,6 +47,7 @@ class Database {
     } else {
       print("ERROR");
       print(result.body);
+
       return false;
     }
   }
@@ -73,8 +77,8 @@ class Database {
     return parsed.map<Part>((json) => Part.fromJson(json)).toList();
   }
 
-  static Future reserveTool(
-      IdTokenResult idToken, FirebaseUser user, String toolname) async {
+  static Future reserveTool(IdTokenResult idToken, FirebaseUser user,
+      String toolname, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -93,12 +97,13 @@ class Database {
     } else {
       print("ERROR");
       print(result.body);
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
       return false;
     }
   }
 
-  static Future checkOutTool(
-      IdTokenResult idToken, FirebaseUser user, String toolname) async {
+  static Future checkOutTool(IdTokenResult idToken, FirebaseUser user,
+      String toolname, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -117,12 +122,13 @@ class Database {
     } else {
       print("ERROR");
       print(result.body);
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
       return false;
     }
   }
 
-  static Future returnTool(
-      IdTokenResult idToken, FirebaseUser user, String toolname) async {
+  static Future returnTool(IdTokenResult idToken, FirebaseUser user,
+      String toolname, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -141,6 +147,7 @@ class Database {
     } else {
       print("ERROR");
       print(result.body);
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
       return false;
     }
   }

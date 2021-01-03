@@ -4,39 +4,22 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:google_fonts/google_fonts.dart';
 
-// Project imports:
-import 'package:OptixToolkit/services/database.dart';
-
-class ToolAlert extends StatelessWidget {
+class Alert extends StatelessWidget {
   final String alert;
-  const ToolAlert({Key key, this.alert}) : super(key: key);
+  const Alert({Key key, this.alert}) : super(key: key);
+
+  static Future<void> showAlert(BuildContext context, String error) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return Alert(alert: error);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    final Color green = Color(0xff15ee07);
-    final Color yellow = Color(0xffebe712);
-    final Color red = Color(0xffd5212c);
-    final Color orange = Color(0xffff9415);
-
-    final Map<String, TextStyle> styleMap = {
-      "Arrived": GoogleFonts.rubik(
-          color: green, fontWeight: FontWeight.bold, fontSize: 18.0),
-      "Shipped": GoogleFonts.rubik(
-        color: yellow,
-        fontWeight: FontWeight.bold,
-        fontSize: 18.0,
-      ),
-      "Ordered": GoogleFonts.rubik(
-        color: orange,
-        fontWeight: FontWeight.bold,
-        fontSize: 18.0,
-      ),
-      "Failure": GoogleFonts.rubik(
-        color: red,
-        fontWeight: FontWeight.bold,
-        fontSize: 18.0,
-      ),
-    };
     Widget doneButton = FlatButton(
       child: Text(
         "Done",
@@ -56,6 +39,7 @@ class ToolAlert extends StatelessWidget {
         style: GoogleFonts.rubik(
           fontWeight: FontWeight.bold,
           color: Color(0xff159deb),
+          fontSize: 25.0,
         ),
       ),
       backgroundColor: Color(0xff26292c),

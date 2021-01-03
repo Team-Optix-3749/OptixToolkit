@@ -89,6 +89,7 @@ class _toolState extends State<ToolWidget> {
         Provider.of<IdTokenResult>(context, listen: false),
         Provider.of<FirebaseUser>(context, listen: false),
         toolname,
+        context,
       );
       print("Result of the request: " + result.toString());
     } on PlatformException catch (e) {
@@ -113,6 +114,7 @@ class _toolState extends State<ToolWidget> {
         Provider.of<IdTokenResult>(context, listen: false),
         Provider.of<FirebaseUser>(context, listen: false),
         toolname,
+        context,
       );
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.cameraAccessDenied) {
