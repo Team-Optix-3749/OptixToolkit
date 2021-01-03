@@ -9,6 +9,65 @@ class ToolReserveItem extends StatelessWidget {
   final Tool tool;
   const ToolReserveItem({Key key, this.tool}) : super(key: key);
 
+  Future<void> _showMyDialog(BuildContext context) async {
+    Widget doneButton = FlatButton(
+      child: Text(
+        "Done",
+        style: GoogleFonts.rubik(
+          fontWeight: FontWeight.bold,
+          color: Color(0xff159deb),
+        ),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return Container(
+          child: AlertDialog(
+            title: Text(
+              'Reservations',
+              style: GoogleFonts.rubik(
+                fontWeight: FontWeight.bold,
+                color: Color(0xff159deb),
+              ),
+            ),
+            backgroundColor: Color(0xff26292c),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  RichText(
+                    text: TextSpan(
+                      children: tool.reservations
+                          .map(
+                            (user) => TextSpan(
+                              text: '${user}',
+                              style: GoogleFonts.rubik(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            actions: [
+              // editButton,
+              doneButton,
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final Color green = Color(0xff15ee07);
@@ -58,35 +117,40 @@ class ToolReserveItem extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              children: [
-                RichText(
-                  text: TextSpan(
+            GestureDetector(
+              onTap: () {
+                _showMyDialog(context);
+              },
+              child: Column(
+                children: [
+                  RichText(
+                    text: TextSpan(
+                        style: GoogleFonts.rubik(
+                            color: Colors.white, fontSize: 20.0),
+                        children: [
+                          TextSpan(
+                            text: "${tool.name}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25.0,
+                            ),
+                          ),
+                        ]),
+                  ),
+                  RichText(
+                    text: TextSpan(
                       style: GoogleFonts.rubik(
                           color: Colors.white, fontSize: 20.0),
-                      children: [
+                      children: <TextSpan>[
                         TextSpan(
-                          text: "${tool.name}",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25.0,
-                          ),
+                          text: "${statusDisplayMap[tool.status]}",
+                          style: statusColor[tool.status],
                         ),
-                      ]),
-                ),
-                RichText(
-                  text: TextSpan(
-                    style:
-                        GoogleFonts.rubik(color: Colors.white, fontSize: 20.0),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: "${statusDisplayMap[tool.status]}",
-                        style: statusColor[tool.status],
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             Row(
               children: [

@@ -125,7 +125,7 @@ class homePage2 extends StatelessWidget {
                               text: TextSpan(
                                 children: <TextSpan>[
                                   TextSpan(
-                                      text: 'Upcoming ',
+                                      text: 'Tool ',
                                       style: GoogleFonts.rubik(
                                         color: Colors.white,
                                         fontSize: 25.0,
