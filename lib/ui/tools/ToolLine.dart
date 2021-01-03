@@ -12,9 +12,11 @@ class ToolLine extends StatelessWidget {
     final Color green = Color(0xff15ee07);
     final Color yellow = Color(0xffebe712);
     final Color red = Color(0xffd5212c);
+    final Color orange = Color(0xffff9415);
 
     final Map<String, String> statusMessage = {
       "notInUse": "Not In Use",
+      "inUse": "In Use",
       "reserved": "Reserved",
       "outOfService": "Out of Service",
     };
@@ -22,6 +24,11 @@ class ToolLine extends StatelessWidget {
     final Map<String, TextStyle> statusColor = {
       "notInUse": GoogleFonts.rubik(
         color: green,
+        fontWeight: FontWeight.bold,
+        fontSize: 21.0,
+      ),
+      "inUse": GoogleFonts.rubik(
+        color: orange,
         fontWeight: FontWeight.bold,
         fontSize: 21.0,
       ),

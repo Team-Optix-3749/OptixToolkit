@@ -14,10 +14,16 @@ class ToolReserveItem extends StatelessWidget {
     final Color green = Color(0xff15ee07);
     final Color yellow = Color(0xffebe712);
     final Color red = Color(0xffd5212c);
+    final Color orange = Color(0xffff9415);
 
     final Map<String, TextStyle> statusColor = {
       "notInUse": GoogleFonts.rubik(
         color: green,
+        fontSize: 20.0,
+        fontWeight: FontWeight.bold,
+      ),
+      "inUse": GoogleFonts.rubik(
+        color: orange,
         fontSize: 20.0,
         fontWeight: FontWeight.bold,
       ),
@@ -35,9 +41,11 @@ class ToolReserveItem extends StatelessWidget {
 
     final Map<String, String> statusDisplayMap = {
       "notInUse": "Not In Use",
+      "inUse": "In Use",
       "reserved": "Reserved",
       "outOfService": "Out of Service"
     };
+
     return Container(
       margin: EdgeInsets.only(bottom: 10),
       width: 330,

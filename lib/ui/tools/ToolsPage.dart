@@ -85,15 +85,12 @@ class _toolState extends State<ToolWidget> {
       String toolname = (await BarcodeScanner.scan()).rawContent;
       print("Handling on pressed");
       print("Tool Name: " + toolname);
-      var result = await Database.reserveTool(
+      var result = await Database.checkOutTool(
         Provider.of<IdTokenResult>(context, listen: false),
         Provider.of<FirebaseUser>(context, listen: false),
         toolname,
       );
       print("Result of the request: " + result.toString());
-      if (result) {
-        NavigationService.pop();
-      }
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.cameraAccessDenied) {
         print('Camera permission not granted');
@@ -112,15 +109,11 @@ class _toolState extends State<ToolWidget> {
       String toolname = (await BarcodeScanner.scan()).rawContent;
       print("Handling on pressed");
       print("Tool Name: " + toolname);
-      var result = await Database.reserveTool(
+      var result = await Database.returnTool(
         Provider.of<IdTokenResult>(context, listen: false),
         Provider.of<FirebaseUser>(context, listen: false),
         toolname,
       );
-      print("Result of the request: " + result.toString());
-      if (result) {
-        NavigationService.pop();
-      }
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.cameraAccessDenied) {
         print('Camera permission not granted');
