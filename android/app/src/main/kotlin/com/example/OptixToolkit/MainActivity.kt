@@ -1,4 +1,4 @@
-package org.team3749.optixtoolkit
+package org.team3749.toolkit
 
 import io.flutter.embedding.android.FlutterActivity
 
