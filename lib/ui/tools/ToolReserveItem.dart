@@ -4,7 +4,6 @@ import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:OptixToolkit/services/Alert.dart';
 
 class ToolReserveItem extends StatelessWidget {
   final Tool tool;
