@@ -29,6 +29,7 @@ class toolsPage extends StatelessWidget {
             else
               return ToolWidget(
                 tools: snapshot.data,
+                  idToken: Provider.of<IdTokenResult>(context),
               );
         }
       },
@@ -38,18 +39,21 @@ class toolsPage extends StatelessWidget {
 
 class ToolWidget extends StatefulWidget {
   Map<String, List<Tool>> tools;
+  final IdTokenResult idToken;
 
-  ToolWidget({Key key, this.tools}) : super(key: key);
+  ToolWidget({Key key, this.tools, this.idToken}) : super(key: key);
 
   @override
-  _toolState createState() => _toolState(this.tools);
+  _toolState createState() => _toolState(this.tools, this.idToken);
 }
 
 class _toolState extends State<ToolWidget> {
   Map<String, List<Tool>> tools;
+  IdTokenResult idToken;
 
-  _toolState(Map<String, List<Tool>> tools) {
+  _toolState(Map<String, List<Tool>> tools, IdTokenResult idToken) {
     this.tools = tools;
+    this.idToken = idToken;
   }
 
   void _showDialog(BuildContext context) {
@@ -238,7 +242,16 @@ class _toolState extends State<ToolWidget> {
                   ),
                   const SizedBox(height: 15),
                   Expanded(
-                    child: ListView(children: widgets),
+                    child: RefreshIndicator(
+                      onRefresh: () async {
+                        var toolsRes = await Database.getTools(idToken);
+                        setState(() {
+                          this.tools = toolsRes;
+                        });
+                        print("Refreshsed");
+                      },
+                      child: ListView(children: widgets),
+                    ),
                   ),
                 ],
               ),
