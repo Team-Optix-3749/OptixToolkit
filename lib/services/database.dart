@@ -47,7 +47,7 @@ class Database {
     } else {
       print("ERROR");
       print(result.body);
-
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
       return false;
     }
   }
