@@ -133,7 +133,7 @@ class ToolReserveItem extends StatelessWidget {
                             text: "${tool.name}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 25.0,
+                              fontSize: 22.0,
                             ),
                           ),
                         ]),
