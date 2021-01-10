@@ -45,7 +45,7 @@ class ToolReserveItem extends StatelessWidget {
                       children: tool.reservations
                           .map(
                             (user) => TextSpan(
-                              text: '${user}',
+                              text: '${user}\n',
                               style: GoogleFonts.rubik(
                                 color: Colors.white,
                                 fontSize: 18.0,
