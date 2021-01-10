@@ -151,7 +151,7 @@ class _toolState extends State<ToolWidget> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   ButtonTheme(
-                    minWidth: 170,
+                    minWidth: MediaQuery.of(context).size.width * 0.43,
                     height: 55,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
@@ -173,7 +173,7 @@ class _toolState extends State<ToolWidget> {
                     ),
                   ),
                   ButtonTheme(
-                    minWidth: 170,
+                    minWidth: MediaQuery.of(context).size.width * 0.43,
                     height: 55,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
