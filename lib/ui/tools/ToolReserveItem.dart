@@ -176,7 +176,10 @@ class ToolReserveItem extends StatelessWidget {
                       }
                     },
                     child: Text(
-                      'RESERVE',
+                      tool.reservations.contains(
+                              Provider.of<FirebaseUser>(context).displayName)
+                          ? "UNRESERVE"
+                          : "RESERVE",
                       style: GoogleFonts.rubik(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
