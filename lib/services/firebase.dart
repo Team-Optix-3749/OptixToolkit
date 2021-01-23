@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:OptixToolkit/services/Alert.dart';
 
 class Auth {
   static bool isInProcess = false;
@@ -16,7 +17,7 @@ class Auth {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.message)));
+      Alert.showAlert(context, e.message);
     }
     isInProcess = false;
   }

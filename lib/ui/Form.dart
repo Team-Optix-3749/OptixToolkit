@@ -27,6 +27,7 @@ class _FormPageState extends State<FormPage> {
   final Color gray = Color(0xff3A3D41);
   final Color subtleGray = Color(0xffcccccc);
   final Color divider = Color(0xff3a3d41);
+  bool _showPassword = false;
 
   @override
   void dispose() {
@@ -87,11 +88,24 @@ class _FormPageState extends State<FormPage> {
                           return null;
                         },
                         controller: passwordController,
-                        obscureText: true,
+                        obscureText: !this._showPassword,
                         style: GoogleFonts.rubik(color: Colors.white),
                         textAlign: TextAlign.center,
                         decoration: InputDecoration(
                           filled: true,
+                          prefixIcon: Icon(Icons.security),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              Icons.remove_red_eye,
+                              color: this._showPassword
+                                  ? Colors.blue
+                                  : Colors.grey,
+                            ),
+                            onPressed: () {
+                              setState(() =>
+                                  this._showPassword = !this._showPassword);
+                            },
+                          ),
                           fillColor: gray,
                           hintText: 'Password',
                           border: OutlineInputBorder(
