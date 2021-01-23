@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
       - run: sudo apt-get install -y mongodb-org-shell
-      - run: mongo ${{ secrets.MONGO }}
-      - run: db.tools.updateMany({}, {$set: {reservations: []}})
-      - run: db.tools.updateMany({status: {$ne: "outOfService"}}, {$set: {status: "notInUse"}})
+      - run: |
+          mongo ${{ secrets.MONGO }}
+          db.tools.updateMany({}, {$set: {reservations: []}})
+          db.tools.updateMany({status: {$ne: "outOfService"}}, {$set: {status: "notInUse"}})      
