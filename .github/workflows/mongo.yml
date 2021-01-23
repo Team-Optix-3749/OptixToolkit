@@ -9,6 +9,6 @@ jobs:
     steps:
       - run: sudo apt-get install -y mongodb-org-shell
       - run: |
-          mongo ${{ secrets.MONGO }}
+          mongo ${{ secrets.MONGO }} --username ${{ secrets.USERNAME }}
           db.tools.updateMany({}, {$set: {reservations: []}})
           db.tools.updateMany({status: {$ne: "outOfService"}}, {$set: {status: "notInUse"}})      
