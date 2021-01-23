@@ -1,0 +1,13 @@
+name: Mongo
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  mongo:
+    runs-on: ubuntu-latest 
+    steps:
+      - run: sudo apt-get install -y mongodb-org-shell
+      - run: |
+          echo -e 'db.tools.updateMany({}, {$set: {reservations: []}})\ndb.tools.updateMany({status: {$ne: "outOfService"}}, {$set: {status: "notInUse"}})' | mongo ${{ secrets.MONGO }}
