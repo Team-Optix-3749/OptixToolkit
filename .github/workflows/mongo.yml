@@ -1,7 +1,8 @@
 name: Mongo
 
 on:
-  - cron: "0 0 * * *"
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
   mongo:
