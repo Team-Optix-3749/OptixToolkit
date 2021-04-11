@@ -9,6 +9,65 @@ class ToolReserveItem extends StatelessWidget {
   final Tool tool;
   const ToolReserveItem({Key key, this.tool}) : super(key: key);
 
+  Future<void> _showToolService(BuildContext context) async {
+    Widget doneButton = FlatButton(
+      child: Text(
+        "Done",
+        style: GoogleFonts.rubik(
+          fontWeight: FontWeight.bold,
+          color: Color(0xff159deb),
+        ),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return Container(
+          child: AlertDialog(
+            title: Text(
+              'Change Tool Status',
+              style: GoogleFonts.rubik(
+                fontWeight: FontWeight.bold,
+                color: Color(0xff159deb),
+              ),
+            ),
+            backgroundColor: Color(0xff26292c),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  RichText(
+                    text: TextSpan(
+                      children: tool.reservations
+                          .map(
+                            (user) => TextSpan(
+                              text: '${user}\n',
+                              style: GoogleFonts.rubik(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            actions: [
+              // editButton,
+              doneButton,
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   Future<void> _showMyDialog(BuildContext context) async {
     Widget doneButton = FlatButton(
       child: Text(
@@ -121,6 +180,7 @@ class ToolReserveItem extends StatelessWidget {
               onTap: () {
                 _showMyDialog(context);
               },
+              onLongPress: () => {_showToolService(context)},
               child: Column(
                 children: [
                   RichText(

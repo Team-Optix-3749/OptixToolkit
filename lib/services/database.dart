@@ -28,6 +28,7 @@ class Database {
     var client = http.Client();
 
     Map data = {
+      'endpoint': 'parts-add',
       'auth': idToken.token,
       'uid': user.uid,
       'name': name,
@@ -39,7 +40,32 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL + "parts/add",
+    var result = await client.post(Constants.SERVER_URL,
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode == 200) {
+      return true;
+    } else {
+      print("ERROR");
+      print(result.body);
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
+      return false;
+    }
+  }
+
+  static Future removePart(
+      IdTokenResult idToken, String id, BuildContext context) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'parts-remove',
+      'id': id,
+      'auth': idToken.token,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Constants.SERVER_URL,
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -58,12 +84,13 @@ class Database {
     var client = http.Client();
 
     Map data = {
+      'endpoint': 'parts-get',
       'auth': idToken.token,
     };
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL + "parts/get",
+    var result = await client.post(Constants.SERVER_URL,
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode != 200) {
@@ -71,8 +98,11 @@ class Database {
       throw new FailedRequestException();
     }
 
-    final parsed =
-        jsonDecode(result.body)['parts'].cast<Map<String, dynamic>>();
+    final jsonParts = jsonDecode(result.body)['parts'];
+
+    //print(jsonParts);
+
+    final parsed = jsonParts.cast<Map<String, dynamic>>();
 
     return parsed.map<Part>((json) => Part.fromJson(json)).toList();
   }
@@ -82,6 +112,7 @@ class Database {
     var client = http.Client();
 
     Map data = {
+      'endpoint': 'reserve-tool',
       'auth': idToken.token,
       'uid': user.uid,
       'toolname': toolname,
@@ -89,7 +120,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL + "tools/reserve_tool",
+    var result = await client.post(Constants.SERVER_URL,
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -107,6 +138,7 @@ class Database {
     var client = http.Client();
 
     Map data = {
+      'endpoint': 'checkout-tool',
       'auth': idToken.token,
       'uid': user.uid,
       'toolname': toolname,
@@ -114,7 +146,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL + "tools/checkout_tool",
+    var result = await client.post(Constants.SERVER_URL,
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -132,6 +164,7 @@ class Database {
     var client = http.Client();
 
     Map data = {
+      'endpoint': 'return-tool',
       'auth': idToken.token,
       'uid': user.uid,
       'toolname': toolname,
@@ -158,12 +191,13 @@ class Database {
     var client = http.Client();
 
     Map data = {
+      'endpoint': 'get-tools',
       'auth': idToken.token,
     };
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL + "tools/get_tools",
+    var result = await client.post(Constants.SERVER_URL,
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode != 200) {
@@ -202,6 +236,7 @@ final Map<String, String> deliveryMap = {
 };
 
 class Part {
+  final String id;
   final String uid;
   final String name;
   final String link;
@@ -213,7 +248,8 @@ class Part {
   final String status;
 
   Part(
-      {this.uid,
+      {this.id,
+      this.uid,
       this.name,
       this.link,
       this.trackingId,
@@ -233,6 +269,7 @@ class Part {
     }
 
     return Part(
+      id: json['_id'] as String,
       uid: json['uid'] as String,
       name: json['name'] as String,
       link: json['link'] as String,

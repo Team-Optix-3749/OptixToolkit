@@ -1,5 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:OptixToolkit/services/database.dart';
 
 // Package imports:
 import 'package:google_fonts/google_fonts.dart';
@@ -50,6 +53,25 @@ class PartModal extends StatelessWidget {
       ),
       onPressed: () {
         Navigator.of(context).pop();
+      },
+    );
+
+    Widget removeButton = FlatButton(
+      child: Text(
+        "Remove",
+        style: GoogleFonts.rubik(
+          fontWeight: FontWeight.bold,
+          color: Color(0xffd5212c),
+        ),
+      ),
+      onPressed: () async {
+        var res = await Database.removePart(
+            Provider.of<IdTokenResult>(context, listen: false),
+            this.part.id,
+            context);
+        if (res) {
+          Navigator.of(context).pop();
+        }
       },
     );
 
@@ -165,7 +187,9 @@ class PartModal extends StatelessWidget {
         ),
       ),
       actions: [
-        // editButton,
+        (!!Provider.of<IdTokenResult>(context).claims['admin'])
+            ? removeButton
+            : null,
         doneButton,
       ],
     );
