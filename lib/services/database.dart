@@ -133,6 +133,31 @@ class Database {
     }
   }
 
+  static Future changeToolStatus(IdTokenResult idToken, FirebaseUser user,
+      String toolname, BuildContext context) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'change-tool-status',
+      'auth': idToken.token,
+      'toolname': toolname,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Constants.SERVER_URL,
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode == 200) {
+      return true;
+    } else {
+      print("ERROR");
+      print(result.body);
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
+      return false;
+    }
+  }
+
   static Future checkOutTool(IdTokenResult idToken, FirebaseUser user,
       String toolname, BuildContext context) async {
     var client = http.Client();
