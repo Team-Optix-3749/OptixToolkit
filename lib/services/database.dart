@@ -134,13 +134,14 @@ class Database {
   }
 
   static Future changeToolStatus(IdTokenResult idToken, FirebaseUser user,
-      String toolname, BuildContext context) async {
+      String toolname, String newstatus, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
       'endpoint': 'change-tool-status',
       'auth': idToken.token,
       'toolname': toolname,
+      'newtoolstatus': newstatus,
     };
 
     var body = json.encode(data);

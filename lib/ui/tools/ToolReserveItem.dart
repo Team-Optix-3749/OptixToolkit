@@ -23,6 +23,20 @@ class ToolReserveItem extends StatelessWidget {
       },
     );
 
+    String displayBroked(String status) {
+      switch (status) {
+        case "notInUse":
+          return "Tool is Broken";
+          break;
+        case "outOfService":
+          return "Tool is Working";
+          break;
+        default:
+          return "Tool is in Use";
+          break;
+      }
+    }
+
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -30,7 +44,7 @@ class ToolReserveItem extends StatelessWidget {
         return Container(
           child: AlertDialog(
             title: Text(
-              'Change Tool Status',
+              'Report Broken Tool',
               style: GoogleFonts.rubik(
                 fontWeight: FontWeight.bold,
                 color: Color(0xff159deb),
@@ -40,21 +54,70 @@ class ToolReserveItem extends StatelessWidget {
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
-                  RichText(
-                    text: TextSpan(
-                      children: tool.reservations
-                          .map(
-                            (user) => TextSpan(
-                              text: '${user}\n',
-                              style: GoogleFonts.rubik(
-                                color: Colors.white,
-                                fontSize: 18.0,
-                              ),
-                            ),
-                          )
-                          .toList(),
+                  RaisedButton(
+                    onPressed: () async {
+                      print("Handling on pressed");
+                      print("Tool Name: " + tool.name);
+                      print("Tool Status: " + tool.status);
+                      if (tool.status == "notInUse") {
+                        var result = await Database.changeToolStatus(
+                          Provider.of<IdTokenResult>(context, listen: false),
+                          Provider.of<FirebaseUser>(context, listen: false),
+                          tool.name,
+                          "outOfService",
+                          context,
+                        );
+                        if (result) {
+                          NavigationService.pop();
+                          NavigationService.pop();
+                        }
+                      } else if (tool.status == "outOfService") {
+                        var result = await Database.changeToolStatus(
+                          Provider.of<IdTokenResult>(context, listen: false),
+                          Provider.of<FirebaseUser>(context, listen: false),
+                          tool.name,
+                          "notInUse",
+                          context,
+                        );
+                        if (result) {
+                          NavigationService.pop();
+                          NavigationService.pop();
+                        }
+                      } else {
+                        NavigationService.pop();
+                        NavigationService.pop();
+                      }
+                      // var result = await Database.changeToolStatus(
+                      //     Provider.of<IdTokenResult>(context, listen: false),
+                      //     Provider.of<FirebaseUser>(context, listen: false),
+                      //     tool.name,
+                      //     context);
+                    },
+                    child: Text(
+                      displayBroked(tool.status),
+                      style: GoogleFonts.rubik(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
+                    color: Color(0xff159deb),
                   ),
+                  // RichText(
+                  //   text: TextSpan(
+                  //     children: tool.reservations
+                  //         .map(
+                  //           (user) => TextSpan(
+                  //             text: '${user}\n',
+                  //             style: GoogleFonts.rubik(
+                  //               color: Colors.white,
+                  //               fontSize: 18.0,
+                  //             ),
+                  //           ),
+                  //         )
+                  //         .toList(),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
