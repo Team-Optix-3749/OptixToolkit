@@ -87,11 +87,6 @@ class ToolReserveItem extends StatelessWidget {
                         NavigationService.pop();
                         NavigationService.pop();
                       }
-                      // var result = await Database.changeToolStatus(
-                      //     Provider.of<IdTokenResult>(context, listen: false),
-                      //     Provider.of<FirebaseUser>(context, listen: false),
-                      //     tool.name,
-                      //     context);
                     },
                     child: Text(
                       displayBroked(tool.status),
@@ -103,26 +98,10 @@ class ToolReserveItem extends StatelessWidget {
                     ),
                     color: Color(0xff159deb),
                   ),
-                  // RichText(
-                  //   text: TextSpan(
-                  //     children: tool.reservations
-                  //         .map(
-                  //           (user) => TextSpan(
-                  //             text: '${user}\n',
-                  //             style: GoogleFonts.rubik(
-                  //               color: Colors.white,
-                  //               fontSize: 18.0,
-                  //             ),
-                  //           ),
-                  //         )
-                  //         .toList(),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
             actions: [
-              // editButton,
               doneButton,
             ],
           ),
