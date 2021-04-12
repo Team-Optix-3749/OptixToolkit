@@ -248,6 +248,34 @@ class Database {
 
     return category_map;
   }
+
+  static Future<List<User>> getUsers(
+    IdTokenResult idToken,
+  ) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'list-users',
+      'auth': idToken.token,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Constants.SERVER_URL,
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode != 200) {
+      print(jsonDecode(result.body)['err']);
+      throw new FailedRequestException();
+    }
+
+    final parsed =
+        jsonDecode(result.body)['users'].cast<Map<String, dynamic>>();
+
+    var users = parsed.map<User>((json) => User.fromJson(json)).toList();
+
+    return users;
+  }
 }
 
 final Map<String, String> deliveryMap = {
@@ -257,7 +285,7 @@ final Map<String, String> deliveryMap = {
   "delivered": "Arrived",
   "return_to_sender": "Failure",
   "failure": "Failure",
-  "unknown": "Ordered",
+  "unknown": "Failure",
   "Not Availible": "Failure"
 };
 
@@ -274,16 +302,16 @@ class Part {
   final String status;
 
   Part(
-      {this.id,
-      this.uid,
-      this.name,
-      this.link,
-      this.trackingId,
-      this.carrier,
-      this.description,
-      this.priority,
-      this.displayName,
-      this.status});
+      {@required this.id,
+      @required this.uid,
+      @required this.name,
+      @required this.link,
+      @required this.trackingId,
+      @required this.carrier,
+      @required this.description,
+      @required this.priority,
+      @required this.displayName,
+      @required this.status});
 
   factory Part.fromJson(Map<String, dynamic> json) {
     String status = json['status'];
@@ -335,5 +363,27 @@ class Tool {
       category: json['category'] as String,
       reservations: json['reservations'].cast<String>().toList(),
     );
+  }
+}
+
+class User {
+  final String uid;
+  final String email;
+  final String displayName;
+  User({
+    @required this.uid,
+    @required this.email,
+    @required this.displayName,
+  });
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+        uid: json['uid'] as String,
+        email: json['email'] as String,
+        displayName: json['displayName'] as String);
+  }
+
+  String toString() {
+    return '${displayName}';
   }
 }

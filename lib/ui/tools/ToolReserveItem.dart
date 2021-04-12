@@ -272,6 +272,8 @@ class ToolReserveItem extends StatelessWidget {
                           Provider.of<FirebaseUser>(context, listen: false),
                           tool.name,
                           context);
+                      print(await Database.getUsers(
+                          Provider.of<IdTokenResult>(context, listen: false)));
                       print("Result of the request: " + result.toString());
                       if (result) {
                         NavigationService.pop();
