@@ -1,5 +1,7 @@
 // Flutter imports:
+import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:flutter/material.dart';
+import 'package:OptixToolkit/ui/UserList.dart';
 
 // Package imports:
 import 'package:firebase_auth/firebase_auth.dart';
@@ -89,7 +91,7 @@ class profilePage extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
             width: 400,
-            height: MediaQuery.of(context).size.height * 0.40,
+            height: MediaQuery.of(context).size.height * 0.32,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               color: Color(0xff3a3d41),
@@ -207,7 +209,7 @@ class profilePage extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
             width: 400,
-            height: MediaQuery.of(context).size.height * 0.30,
+            height: MediaQuery.of(context).size.height * 0.20,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               color: Color(0xff3a3d41),
@@ -316,6 +318,98 @@ class profilePage extends StatelessWidget {
               ),
             ),
           ),
+          if (Provider.of<IdTokenResult>(context).claims['admin'])
+            Container(
+              margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
+              width: 400,
+              height: MediaQuery.of(context).size.height * 0.20,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: Color(0xff3a3d41),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(15.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: 'Team ',
+                                  style: GoogleFonts.rubik(
+                                    color: Colors.white,
+                                    fontSize: 25.0,
+                                  )),
+                              TextSpan(
+                                text: 'Management',
+                                style: GoogleFonts.rubik(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 25.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.89,
+                            margin: EdgeInsets.only(top: 5),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ButtonTheme(
+                                      minWidth: 200,
+                                      height: 55,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(7.0)),
+                                      child: RaisedButton(
+                                        onPressed: () {
+                                          NavigationService.goTo(
+                                            PageRouteBuilder(
+                                              pageBuilder: (context, animation1,
+                                                      animation2) =>
+                                                  UserList(),
+                                            ),
+                                          );
+                                        },
+                                        child: Text(
+                                          'MANAGE USERS',
+                                          style: GoogleFonts.rubik(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        color: Color(0xff159deb),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
         ],
       ),
     );

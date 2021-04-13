@@ -29,7 +29,7 @@ class toolsPage extends StatelessWidget {
             else
               return ToolWidget(
                 tools: snapshot.data,
-                  idToken: Provider.of<IdTokenResult>(context),
+                idToken: Provider.of<IdTokenResult>(context),
               );
         }
       },
