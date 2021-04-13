@@ -23,6 +23,25 @@ class ToolReserveItem extends StatelessWidget {
       },
     );
 
+    Widget removeButton = FlatButton(
+      child: Text(
+        "Remove",
+        style: GoogleFonts.rubik(
+          fontWeight: FontWeight.bold,
+          color: Color(0xffd5212c),
+        ),
+      ),
+      onPressed: () async {
+        var res = await Database.removeTool(
+            Provider.of<IdTokenResult>(context, listen: false),
+            this.tool.id,
+            context);
+        if (res) {
+          Navigator.of(context).pop();
+          NavigationService.pop();
+        }
+      },
+    );
     String displayBroked(String status) {
       switch (status) {
         case "notInUse":
@@ -102,6 +121,9 @@ class ToolReserveItem extends StatelessWidget {
               ),
             ),
             actions: [
+              (!!Provider.of<IdTokenResult>(context).claims['admin'])
+                  ? removeButton
+                  : null,
               doneButton,
             ],
           ),

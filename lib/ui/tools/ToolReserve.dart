@@ -1,6 +1,8 @@
 // Flutter imports:
+import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:flutter/material.dart';
 import 'package:OptixToolkit/services/database.dart';
+import 'package:OptixToolkit/ui/tools/ToolAdd.dart';
 
 // Package imports:
 import 'package:google_fonts/google_fonts.dart';
@@ -81,6 +83,18 @@ class ToolReserve extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+          NavigationService.goTo(
+            PageRouteBuilder(
+              pageBuilder: (context, animation1, animation2) => ToolAdd(),
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
+        backgroundColor: Color(0xff159deb),
       ),
     );
   }

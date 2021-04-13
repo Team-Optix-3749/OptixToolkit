@@ -198,7 +198,58 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL + "tools/return_tool",
+    var result = await client.post(Constants.SERVER_URL,
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode == 200) {
+      return true;
+    } else {
+      print("ERROR");
+      print(result.body);
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
+      return false;
+    }
+  }
+
+  static Future addTool(IdTokenResult idToken, String toolname, String category,
+      BuildContext context) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'add-tool',
+      'auth': idToken.token,
+      'name': toolname,
+      'category': category,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Constants.SERVER_URL,
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode == 200) {
+      return true;
+    } else {
+      print("ERROR");
+      print(result.body);
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
+      return false;
+    }
+  }
+
+  static Future removeTool(
+      IdTokenResult idToken, String id, BuildContext context) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'remove-tool',
+      'id': id,
+      'auth': idToken.token,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Constants.SERVER_URL,
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -338,6 +389,7 @@ class Part {
 }
 
 class Tool {
+  final String id;
   final String name;
   final String category;
   final String user;
@@ -345,6 +397,7 @@ class Tool {
   final String status;
 
   Tool({
+    @required this.id,
     @required this.name,
     @required this.category,
     @required this.user,
@@ -357,6 +410,7 @@ class Tool {
     if (user == "null") user = "theres no user rn lol";
 
     return Tool(
+      id: json['_id'] as String,
       name: json['name'] as String,
       status: json['status'] as String,
       user: json['user'] as String,
