@@ -31,4 +31,4 @@ Fix: Remove the file
 
 - This will eliminate the “What are you doing? This is my part, I ordered it?” and “I need _x_, someone get it for me?”
 
-<a href="https://vercel.com/?utm_source=Team-Optix-3749&utm_campaign=oss" target="_blank"><img src="https://cloud-k8u9hqb6m-hack-club-bot.vercel.app/0powered-by-vercel.svg" height="25px" /></a>
+<a href="https://vercel.com/?utm_source=Team-Optix-3749&utm_campaign=oss" target="_blank"><img src="https://cloud-k8u9hqb6m-hack-club-bot.vercel.app/0powered-by-vercel.svg" height="50px" /></a>
