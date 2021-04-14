@@ -10,6 +10,9 @@ import 'package:provider/provider.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/database.dart';
 
+import 'Loading.dart';
+import 'UserCard.dart';
+
 class UserList extends StatefulWidget {
   UserList({Key key}) : super(key: key);
 
@@ -21,8 +24,26 @@ class _UserListState extends State<UserList> {
   final Color background = Color(0xff26292c);
   final Color gray = Color(0xff3A3D41);
   final Color subtleGray = Color(0xffcccccc);
+
+  List<UserCard> users = null;
+  String err = null;
+  bool called = false;
+
   @override
   Widget build(BuildContext context) {
+    if (!called) {
+      Database.getUsers(Provider.of<IdTokenResult>(context)).then((v) {
+        setState(() {
+          users = v.map((u) => UserCard(user: u)).toList();
+        });
+      }).catchError((e) {
+        setState(() {
+          err = e;
+        });
+      });
+    }
+    called = true;
+
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
@@ -44,7 +65,7 @@ class _UserListState extends State<UserList> {
                   margin:
                       EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
                   width: 400,
-                  height: MediaQuery.of(context).size.height * 0.63,
+                  height: MediaQuery.of(context).size.height * 0.80,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                     color: Color(0xff3a3d41),
@@ -80,66 +101,17 @@ class _UserListState extends State<UserList> {
                           ],
                         ),
                         const SizedBox(height: 15),
-                        Container(
-                          margin: EdgeInsets.only(bottom: 10),
-                          width: 330,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            color: Color(0xff26292c),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(15.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  children: [
-                                    RichText(
-                                      text: TextSpan(
-                                        style: GoogleFonts.rubik(
-                                            color: Colors.white,
-                                            fontSize: 10.0),
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                            text: "Raadwan Masum",
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 22.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    ButtonTheme(
-                                      minWidth: 100,
-                                      height: 40,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(7.0),
-                                      ),
-                                      child: RaisedButton(
-                                        onPressed: () async {},
-                                        child: Text(
-                                          "Remove",
-                                          style: GoogleFonts.rubik(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        color: Color(0xffd5212c),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
+                        if (err != null)
+                          Text('Error: ${err}')
+                        else if (users == null)
+                          Loading()
+                        else
+                          Expanded(
+                            child: RefreshIndicator(
+                              onRefresh: () async {},
+                              child: ListView(children: users),
                             ),
                           ),
-                        ),
                       ],
                     ),
                   ),
@@ -148,6 +120,18 @@ class _UserListState extends State<UserList> {
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          NavigationService.pop();
+          // NavigationService.goTo(
+          //   PageRouteBuilder(
+          //     pageBuilder: (context, animation1, animation2) => ToolAdd(),
+          //   ),
+          // );
+        },
+        child: const Icon(Icons.add),
+        backgroundColor: Color(0xff159deb),
       ),
     );
   }
