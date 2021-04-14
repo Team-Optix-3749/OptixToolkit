@@ -57,13 +57,12 @@ class UserCard extends StatelessWidget {
                   ),
                   child: RaisedButton(
                     onPressed: () async {
-                      var res = await Database.removeTool(
+                      var res = await Database.removeUser(
                           Provider.of<IdTokenResult>(context, listen: false),
                           user.uid,
                           context);
                       if (res) {
-                        Navigator.of(context).pop();
-                        NavigationService.pop();
+                        print("removed");
                       }
                     },
                     child: Text(
