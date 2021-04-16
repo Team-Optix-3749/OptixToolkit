@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 // Project imports:
 import 'package:OptixToolkit/ui/parts/PartAdd.dart';
+import 'package:OptixToolkit/ui/parts/PartReimburse.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:provider/provider.dart';
 
@@ -72,11 +73,11 @@ class _partState extends State<PartsWidget> {
             child: Padding(
               padding: EdgeInsets.all(10.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   ButtonTheme(
-                    minWidth: MediaQuery.of(context).size.width * 0.88,
+                    minWidth: MediaQuery.of(context).size.width * 0.43,
                     height: 55,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
@@ -94,6 +95,30 @@ class _partState extends State<PartsWidget> {
                         style: GoogleFonts.rubik(
                             fontWeight: FontWeight.bold,
                             fontSize: 20.0,
+                            color: Colors.white),
+                      ),
+                      color: Color(0xff159deb),
+                    ),
+                  ),
+                  ButtonTheme(
+                    minWidth: MediaQuery.of(context).size.width * 0.43,
+                    height: 55,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7.0)),
+                    child: RaisedButton(
+                      onPressed: () {
+                        NavigationService.goTo(
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                PartReimburse(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'REIMBURSEMENT',
+                        style: GoogleFonts.rubik(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0,
                             color: Colors.white),
                       ),
                       color: Color(0xff159deb),
