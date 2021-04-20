@@ -8,6 +8,9 @@ import 'package:provider/provider.dart';
 // Project imports:
 import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/database.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart'; // For File Upload To Firestore
 
 class PartReimburse extends StatefulWidget {
   PartReimburse({Key key}) : super(key: key);
@@ -23,11 +26,40 @@ class _PartReimburseState extends State<PartReimburse> {
   final partDescriptionController = TextEditingController();
   String dropdownValue = "Select a Carrier";
   double priority = 0;
+  File _image;
+  final picker = ImagePicker();
 
   final _formKey = GlobalKey<FormState>();
   final Color background = Color(0xff26292c);
   final Color gray = Color(0xff3A3D41);
   final Color subtleGray = Color(0xffcccccc);
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+        print('image selected');
+      } else {
+        print('No image selected.');
+      }
+    });
+    StorageReference firebaseStorageRef = FirebaseStorage.instance.ref().child(
+        "user/${Provider.of<FirebaseUser>(context, listen: false).uid}/i");
+    StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
+    StorageTaskSnapshot storageSnapshot = await uploadTask.onComplete;
+    var downloadUrl = await storageSnapshot.ref.getDownloadURL();
+    if (uploadTask.isComplete) {
+      final String url = downloadUrl.toString();
+      print(url);
+      //You might want to set this as the _auth.currentUser().photourl
+    } else {
+      //error uploading
+      print("error");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,6 +174,35 @@ class _PartReimburseState extends State<PartReimburse> {
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(9.0)),
                             hintStyle: GoogleFonts.rubik(color: subtleGray),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 10),
+                        width: 300,
+                        child: Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              ButtonTheme(
+                                minWidth: 200,
+                                height: 55,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(7.0)),
+                                child: RaisedButton(
+                                  onPressed: () async {
+                                    getImage();
+                                  },
+                                  child: Text('PICK IMAGE',
+                                      style: GoogleFonts.rubik(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white)),
+                                  color: Color(0xff159deb),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
