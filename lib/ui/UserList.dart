@@ -27,11 +27,8 @@ class _UserListState extends State<UserList> {
 
   final partNameController = TextEditingController();
   final partLinkController = TextEditingController();
-  final trackingNumberController = TextEditingController();
-  final partDescriptionController = TextEditingController();
   String dropdownValue = "Select a Carrier";
   double priority = 0;
-  bool _checked = false;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -57,148 +54,151 @@ class _UserListState extends State<UserList> {
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
-        return Container(
-          child: AlertDialog(
-            title: Text(
-              'Add User',
-              style: GoogleFonts.rubik(
-                fontWeight: FontWeight.bold,
-                color: Color(0xff159deb),
+        bool _checked = false;
+        return StatefulBuilder(builder: (context, setState) {
+          return Container(
+            child: AlertDialog(
+              title: Text(
+                'Add User',
+                style: GoogleFonts.rubik(
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xff159deb),
+                ),
               ),
-            ),
-            backgroundColor: Color(0xff26292c),
-            content: SingleChildScrollView(
-              child: ListBody(
-                children: <Widget>[
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 300,
-                          margin: EdgeInsets.only(top: 20),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Enter User Name';
-                              }
-                              return null;
-                            },
-                            style: GoogleFonts.rubik(color: Colors.white),
-                            textAlign: TextAlign.center,
-                            controller: partNameController,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: gray,
-                              hintText: 'User Name',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(9.0)),
-                              hintStyle: GoogleFonts.rubik(color: subtleGray),
+              backgroundColor: Color(0xff26292c),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 300,
+                            margin: EdgeInsets.only(top: 20),
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return 'Enter User Name';
+                                }
+                                return null;
+                              },
+                              style: GoogleFonts.rubik(color: Colors.white),
+                              textAlign: TextAlign.center,
+                              controller: partNameController,
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: gray,
+                                hintText: 'User Name',
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(9.0)),
+                                hintStyle: GoogleFonts.rubik(color: subtleGray),
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          width: 300,
-                          margin: EdgeInsets.only(top: 20, bottom: 20),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Enter User Email Address';
-                              }
-                              return null;
-                            },
-                            style: GoogleFonts.rubik(color: Colors.white),
-                            textAlign: TextAlign.center,
-                            controller: partNameController,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: gray,
-                              hintText: 'User Email Address',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(9.0)),
-                              hintStyle: GoogleFonts.rubik(color: subtleGray),
+                          Container(
+                            width: 300,
+                            margin: EdgeInsets.only(top: 20, bottom: 20),
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return 'Enter User Email Address';
+                                }
+                                return null;
+                              },
+                              style: GoogleFonts.rubik(color: Colors.white),
+                              textAlign: TextAlign.center,
+                              controller: partLinkController,
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: gray,
+                                hintText: 'User Email Address',
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(9.0)),
+                                hintStyle: GoogleFonts.rubik(color: subtleGray),
+                              ),
                             ),
                           ),
-                        ),
-                        CheckboxListTile(
-                          title: const Text('GeeksforGeeks'),
-                          secondary: const Icon(Icons.code),
-                          autofocus: false,
-                          activeColor: Color(0xff159deb),
-                          checkColor: Colors.white,
-                          selected: _checked,
-                          value: _checked,
-                          onChanged: (bool value) {
-                            setState(() {
-                              _checked = value;
-                            });
-                          },
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(top: 10, bottom: 0),
-                          width: 300,
-                          child: Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                ButtonTheme(
-                                  minWidth: 190,
-                                  height: 45,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(7.0)),
-                                  child: RaisedButton(
-                                    onPressed: () async {
-                                      if (_formKey.currentState.validate()) {
-                                        print("Handling on pressed");
-                                        var result = await Database.addPart(
-                                            Provider.of<IdTokenResult>(context,
-                                                listen: false),
-                                            Provider.of<FirebaseUser>(context,
-                                                listen: false),
-                                            partNameController.text,
-                                            partLinkController.text,
-                                            trackingNumberController.text,
-                                            dropdownValue,
-                                            '',
-                                            priority,
-                                            context);
-                                        print("Result of the request below: ");
-                                        print(result);
-                                        if (result) {
-                                          NavigationService.pop();
+                          CheckboxListTile(
+                            title: const Text(
+                              'Admin',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            autofocus: false,
+                            activeColor: Color(0xff159deb),
+                            checkColor: Colors.white,
+                            selected: _checked,
+                            value: _checked,
+                            onChanged: (bool value) {
+                              setState(() {
+                                _checked = value;
+                              });
+                            },
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 10, bottom: 0),
+                            width: 300,
+                            child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  ButtonTheme(
+                                    minWidth: 190,
+                                    height: 45,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(7.0)),
+                                    child: RaisedButton(
+                                      onPressed: () async {
+                                        if (_formKey.currentState.validate()) {
+                                          print("Handling on pressed");
+                                          var result = await Database.addUser(
+                                              Provider.of<IdTokenResult>(
+                                                  context,
+                                                  listen: false),
+                                              partNameController.text,
+                                              partLinkController.text,
+                                              _checked,
+                                              context);
+                                          print(
+                                              "Result of the request below: ");
+                                          print(result);
+                                          if (result) {
+                                            NavigationService.pop();
+                                          }
                                         }
-                                      }
-                                    },
-                                    child: Text(
-                                      'ADD USER',
-                                      style: GoogleFonts.rubik(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 17.0,
-                                          color: Colors.white),
+                                      },
+                                      child: Text(
+                                        'ADD USER',
+                                        style: GoogleFonts.rubik(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17.0,
+                                            color: Colors.white),
+                                      ),
+                                      color: Color(0xff159deb),
                                     ),
-                                    color: Color(0xff159deb),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              actions: [
+                // (!!Provider.of<IdTokenResult>(context).claims['admin'])
+                //     ? removeButton
+                //     : null,
+                cancelButton,
+              ],
             ),
-            actions: [
-              // (!!Provider.of<IdTokenResult>(context).claims['admin'])
-              //     ? removeButton
-              //     : null,
-              cancelButton,
-            ],
-          ),
-        );
+          );
+        });
       },
     );
   }

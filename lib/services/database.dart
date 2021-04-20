@@ -287,6 +287,33 @@ class Database {
     }
   }
 
+  static Future addUser(
+      IdTokenResult idToken, String name, String email, bool admin, BuildContext context) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'create-user',
+      'name': name,
+      'email': email,
+      'admin': admin,
+      'auth': idToken.token,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Constants.SERVER_URL,
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode == 200) {
+      return true;
+    } else {
+      print("ERROR");
+      print(result.body);
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
+      return false;
+    }
+  }
+
   static Future<Map<String, List<Tool>>> getTools(
     IdTokenResult idToken,
   ) async {
