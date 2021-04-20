@@ -46,7 +46,7 @@ class _PartReimburseState extends State<PartReimburse> {
       }
     });
     StorageReference firebaseStorageRef = FirebaseStorage.instance.ref().child(
-        "user/${Provider.of<FirebaseUser>(context, listen: false).uid}/i");
+        "user/${Provider.of<FirebaseUser>(context, listen: false).uid}/${_image.path.split('/').last}");
     StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
     StorageTaskSnapshot storageSnapshot = await uploadTask.onComplete;
     var downloadUrl = await storageSnapshot.ref.getDownloadURL();
