@@ -287,8 +287,8 @@ class Database {
     }
   }
 
-  static Future addUser(
-      IdTokenResult idToken, String name, String email, bool admin, BuildContext context) async {
+  static Future addUser(IdTokenResult idToken, String name, String email,
+      bool admin, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -296,6 +296,41 @@ class Database {
       'name': name,
       'email': email,
       'admin': admin,
+      'auth': idToken.token,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Constants.SERVER_URL,
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode == 200) {
+      return true;
+    } else {
+      print("ERROR");
+      print(result.body);
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
+      return false;
+    }
+  }
+
+  static Future reimbursement(
+      IdTokenResult idToken,
+      String personName,
+      String partName,
+      String partLink,
+      String mailingAddress,
+      String pictureLink,
+      BuildContext context) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'reimbursement',
+      'personName': personName,
+      'partName': partName,
+      'partLink': partLink,
+      'mailingAddress': mailingAddress,
+      'pictureLink': pictureLink,
       'auth': idToken.token,
     };
 

@@ -1,5 +1,7 @@
 // Flutter imports:
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
 
 // Package imports:
 import 'package:firebase_auth/firebase_auth.dart';
@@ -36,5 +38,16 @@ class Auth {
     } catch (e) {
       print(e);
     }
+  }
+
+  static Future<String> getImageUrl(File _image, FirebaseUser user) async {
+    StorageReference firebaseStorageRef = FirebaseStorage.instance
+        .ref()
+        .child("user/${user.uid}/${_image.path.split('/').last}");
+    StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
+    StorageTaskSnapshot storageSnapshot = await uploadTask.onComplete;
+    var downloadUrl = await storageSnapshot.ref.getDownloadURL();
+    if (!uploadTask.isComplete) throw ("error");
+    return downloadUrl.toString();
   }
 }

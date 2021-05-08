@@ -10,7 +10,7 @@ import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/database.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart'; // For File Upload To Firestore
+import 'package:OptixToolkit/services/firebase.dart';
 
 class PartReimburse extends StatefulWidget {
   PartReimburse({Key key}) : super(key: key);
@@ -22,7 +22,7 @@ class PartReimburse extends StatefulWidget {
 class _PartReimburseState extends State<PartReimburse> {
   final partNameController = TextEditingController();
   final partLinkController = TextEditingController();
-  final trackingNumberController = TextEditingController();
+  final mailingAddressController = TextEditingController();
   final partDescriptionController = TextEditingController();
   String dropdownValue = "Select a Carrier";
   double priority = 0;
@@ -45,19 +45,6 @@ class _PartReimburseState extends State<PartReimburse> {
         print('No image selected.');
       }
     });
-    StorageReference firebaseStorageRef = FirebaseStorage.instance.ref().child(
-        "user/${Provider.of<FirebaseUser>(context, listen: false).uid}/${_image.path.split('/').last}");
-    StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
-    StorageTaskSnapshot storageSnapshot = await uploadTask.onComplete;
-    var downloadUrl = await storageSnapshot.ref.getDownloadURL();
-    if (uploadTask.isComplete) {
-      final String url = downloadUrl.toString();
-      print(url);
-      //You might want to set this as the _auth.currentUser().photourl
-    } else {
-      //error uploading
-      print("error");
-    }
   }
 
   @override
@@ -166,7 +153,7 @@ class _PartReimburseState extends State<PartReimburse> {
                           },
                           style: GoogleFonts.rubik(color: Colors.white),
                           textAlign: TextAlign.center,
-                          controller: trackingNumberController,
+                          controller: mailingAddressController,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: gray,
@@ -224,17 +211,19 @@ class _PartReimburseState extends State<PartReimburse> {
                                   onPressed: () async {
                                     if (_formKey.currentState.validate()) {
                                       print("Handling on pressed");
-                                      var result = await Database.addPart(
+                                      var result = await Database.reimbursement(
                                           Provider.of<IdTokenResult>(context,
                                               listen: false),
                                           Provider.of<FirebaseUser>(context,
-                                              listen: false),
+                                                  listen: false)
+                                              .displayName,
                                           partNameController.text,
                                           partLinkController.text,
-                                          trackingNumberController.text,
-                                          dropdownValue,
-                                          '',
-                                          priority,
+                                          mailingAddressController.text,
+                                          await Auth.getImageUrl(
+                                              _image,
+                                              Provider.of<FirebaseUser>(context,
+                                                  listen: false)),
                                           context);
                                       print("Result of the request below: ");
                                       print(result);
