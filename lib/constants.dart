@@ -1,1 +1,1 @@
-final String SERVER_URL = "https://76b0d7bc83d5.up.railway.app/";
+final String SERVER_URL = "https://toolkit.team3749.org/"
