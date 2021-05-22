@@ -318,7 +318,7 @@ class profilePage extends StatelessWidget {
               ),
             ),
           ),
-          if (Provider.of<IdTokenResult>(context).claims['admin'])
+          if (Provider.of<IdTokenResult>(context).claims['admin'] == true)
             Container(
               margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
               width: 400,

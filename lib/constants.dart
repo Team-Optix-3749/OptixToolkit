@@ -1,2 +1,1 @@
-final String SERVER_URL =
-    "https://optix-toolkit-backend-git-restructure-teamoptix3749.vercel.app/api/";
+final String SERVER_URL = "https://76b0d7bc83d5.up.railway.app/";
