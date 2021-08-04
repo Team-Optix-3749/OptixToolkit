@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -142,6 +143,17 @@ class _FormPageState extends State<FormPage> {
                                 fontWeight: FontWeight.bold, color: white)),
                         color: blue,
                       ),
+                    ),
+                    SizedBox(height: 20),
+                    RichText(
+                      text: TextSpan(
+                          text: 'Forgot Password',
+                            style: GoogleFonts.rubik(
+                                color: blue, fontSize: 15),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              print('The user is stupid and has forgot their password');
+                            }),
                     ),
                     SizedBox(height: 5),
                     SizedBox(height: 5),
