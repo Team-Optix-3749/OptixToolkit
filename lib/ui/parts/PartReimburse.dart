@@ -174,7 +174,7 @@ class _PartReimburseState extends State<PartReimburse> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               ButtonTheme(
-                                minWidth: 200,
+                                minWidth: 280,
                                 height: 55,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(7.0)),
@@ -182,7 +182,7 @@ class _PartReimburseState extends State<PartReimburse> {
                                   onPressed: () async {
                                     getImage();
                                   },
-                                  child: Text('PICK IMAGE',
+                                  child: Text('UPLOAD RECIEPT',
                                       style: GoogleFonts.rubik(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),
