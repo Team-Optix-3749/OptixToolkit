@@ -32,10 +32,12 @@ class Auth {
     return _auth.onAuthStateChanged;
   }
 
-  static Future<void> sendPasswordResetEmail(String email) async {
+  static Future<void> sendPasswordResetEmail(
+      String email, BuildContext context) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
     } catch (e) {
+      Alert.showAlert(context, e.message);
       print(e);
     }
   }
