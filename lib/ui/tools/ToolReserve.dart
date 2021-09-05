@@ -86,20 +86,21 @@ class ToolReserve extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: (!!Provider.of<IdTokenResult>(context)
-              .claims['admin'])
-          ? FloatingActionButton(
-              onPressed: () {
-                NavigationService.goTo(
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation1, animation2) => ToolAdd(),
-                  ),
-                );
-              },
-              child: const Icon(Icons.add),
-              backgroundColor: Color(0xff159deb),
-            )
-          : null,
+      floatingActionButton:
+          (Provider.of<IdTokenResult>(context).claims['admin'] == true)
+              ? FloatingActionButton(
+                  onPressed: () {
+                    NavigationService.goTo(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            ToolAdd(),
+                      ),
+                    );
+                  },
+                  child: const Icon(Icons.add),
+                  backgroundColor: Color(0xff159deb),
+                )
+              : null,
     );
   }
 }

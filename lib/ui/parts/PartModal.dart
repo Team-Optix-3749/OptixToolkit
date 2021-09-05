@@ -187,7 +187,7 @@ class PartModal extends StatelessWidget {
         ),
       ),
       actions: [
-        (!!Provider.of<IdTokenResult>(context).claims['admin'])
+        (Provider.of<IdTokenResult>(context).claims['admin'] == true)
             ? removeButton
             : null,
         doneButton,
