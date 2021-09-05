@@ -178,7 +178,7 @@ class profilePage extends StatelessWidget {
                                           child: RaisedButton(
                                             onPressed: () {
                                               Auth.sendPasswordResetEmail(
-                                                  emailController.text);
+                                                  emailController.text, context);
                                             },
                                             child: Text(
                                               'CHANGE PASSWORD',
