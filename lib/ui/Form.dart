@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:google_fonts/google_fonts.dart';
+import 'package:OptixToolkit/ui/ForgetPassword.dart';
+import 'package:OptixToolkit/services/NavigationService.dart';
 
 // Project imports:
 import 'package:OptixToolkit/services/firebase.dart';
@@ -148,11 +150,16 @@ class _FormPageState extends State<FormPage> {
                     RichText(
                       text: TextSpan(
                           text: 'Forgot Password',
-                            style: GoogleFonts.rubik(
-                                color: blue, fontSize: 15),
+                          style: GoogleFonts.rubik(color: blue, fontSize: 15),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              print('The user is stupid and has forgot their password');
+                              NavigationService.goTo(
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation1, animation2) =>
+                                          ForgetPassword(),
+                                ),
+                              );
                             }),
                     ),
                     SizedBox(height: 5),
