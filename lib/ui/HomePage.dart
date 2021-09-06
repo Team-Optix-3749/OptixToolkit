@@ -9,6 +9,7 @@ import 'package:OptixToolkit/services/database.dart';
 import 'package:OptixToolkit/ui/Loading.dart';
 import 'package:OptixToolkit/ui/parts/PartLine.dart';
 import 'package:OptixToolkit/ui/tools/ToolLine.dart';
+import 'dart:math';
 
 class homePage extends StatelessWidget {
   final Function(int) changePage;
@@ -209,7 +210,7 @@ class homePage2 extends StatelessWidget {
                                 .toList()
                                 .reversed
                                 .toList()
-                                .sublist(0, 4),
+                                .sublist(0, min(4, parts.length)),
                           ),
                         ),
                       ],
