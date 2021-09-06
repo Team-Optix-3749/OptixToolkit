@@ -16,10 +16,15 @@ class UserModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Color blue = Color(0xff159deb);
     final Color green = Color(0xff15ee07);
     final Color yellow = Color(0xffebe712);
     final Color red = Color(0xffd5212c);
     final Color orange = Color(0xffff9415);
+
+    final ButtonStyle buttonStyle = ElevatedButton.styleFrom(
+      textStyle: const TextStyle(fontSize: 20),
+    );
 
     final Map<String, TextStyle> styleMap = {
       "Arrived": GoogleFonts.rubik(
@@ -107,6 +112,23 @@ class UserModal extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(blue),
+                ),
+                onPressed: () {},
+                child: RichText(
+                  text: TextSpan(
+                    text: 'Certify User',
+                    style: GoogleFonts.rubik(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )
+                ),
           ],
         ),
       ),
