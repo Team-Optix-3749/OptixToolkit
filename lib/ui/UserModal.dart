@@ -117,7 +117,16 @@ class UserModal extends StatelessWidget {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(blue),
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  var res = await Database.addCertifyRole(
+                      Provider.of<IdTokenResult>(context, listen: false),
+                      user.uid,
+                      context);
+                  if (res) {
+                    Navigator.of(context).pop();
+                    print("worked");
+                  }
+                },
                 child: RichText(
                   text: TextSpan(
                     text: 'Certify User',
@@ -127,8 +136,7 @@ class UserModal extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                )
-                ),
+                )),
           ],
         ),
       ),
