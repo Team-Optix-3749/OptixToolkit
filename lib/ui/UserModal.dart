@@ -73,26 +73,6 @@ class UserModal extends StatelessWidget {
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
-            RichText(
-              text: TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
-                      text: 'Name: ',
-                      style: GoogleFonts.rubik(
-                        color: Colors.white,
-                        fontSize: 18.0,
-                      )),
-                  TextSpan(
-                    text: user.displayName,
-                    style: GoogleFonts.rubik(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 18.0,
-                    ),
-                  ),
-                ],
-              ),
-            ),
             const SizedBox(height: 20),
             ElevatedButton(
                 style: ButtonStyle(
