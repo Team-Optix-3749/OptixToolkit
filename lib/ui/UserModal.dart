@@ -61,25 +61,6 @@ class UserModal extends StatelessWidget {
       },
     );
 
-    Widget removeButton = FlatButton(
-      child: Text(
-        "Remove",
-        style: GoogleFonts.rubik(
-          fontWeight: FontWeight.bold,
-          color: Color(0xffd5212c),
-        ),
-      ),
-      // onPressed: () async {
-      //   var res = await Database.removePart(
-      //       Provider.of<IdTokenResult>(context, listen: false),
-      //       this.user.id,
-      //       context);
-      //   if (res) {
-      //     Navigator.of(context).pop();
-      //   }
-      // },
-    );
-
     return AlertDialog(
       title: Text(
         user.displayName,
@@ -141,9 +122,6 @@ class UserModal extends StatelessWidget {
         ),
       ),
       actions: [
-        (Provider.of<IdTokenResult>(context).claims['admin'] == true)
-            ? removeButton
-            : null,
         doneButton,
       ],
     );
