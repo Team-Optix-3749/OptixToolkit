@@ -163,20 +163,32 @@ class ToolReserveItem extends StatelessWidget {
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
-                  RichText(
-                    text: TextSpan(
-                      children: tool.reservations
-                          .map(
-                            (user) => TextSpan(
-                              text: '${user}\n',
-                              style: GoogleFonts.rubik(
-                                color: Colors.white,
-                                fontSize: 18.0,
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.cancel,
+                        color: Colors.pink,
+                        size: 23.0,
+                        semanticLabel: 'remove reservation',
+                      ),
+                      const SizedBox(width: 10),
+                      RichText(
+                        text: TextSpan(
+                          children: tool.reservations
+                              .map(
+                                (user) => TextSpan(
+                                  text: '${user}\n',
+                                  style: GoogleFonts.rubik(
+                                    color: Colors.white,
+                                    fontSize: 18.0,
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
