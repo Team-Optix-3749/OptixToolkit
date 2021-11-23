@@ -6,10 +6,14 @@ import 'package:OptixToolkit/services/database.dart';
 
 import 'ToolReserve.dart';
 
+typedef void RefreshFunction();
+
 class ToolCard extends StatelessWidget {
   final List<Tool> tools;
   final String category;
-  const ToolCard({Key key, this.tools, this.category}) : super(key: key);
+  final RefreshFunction refreshTools;
+  const ToolCard({Key key, this.tools, this.category, this.refreshTools})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +25,13 @@ class ToolCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        NavigationService.goTo(
-          PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) =>
-                ToolReserve(category: category, tools: tools),
-          ),
-        );
+        NavigationService.goToAndThen(
+            PageRouteBuilder(
+              pageBuilder: (context, animation1, animation2) =>
+                  ToolReserve(category: category, tools: tools),
+            ), (value) {
+          refreshTools();
+        });
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 10),

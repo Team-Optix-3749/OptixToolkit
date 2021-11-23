@@ -47,7 +47,7 @@ class ToolWidget extends StatefulWidget {
   _toolState createState() => _toolState(this.tools, this.idToken);
 }
 
-class _toolState extends State<ToolWidget> {
+class _toolState extends State<ToolWidget> with RouteAware {
   Map<String, List<Tool>> tools;
   IdTokenResult idToken;
 
@@ -79,8 +79,24 @@ class _toolState extends State<ToolWidget> {
     );
   }
 
+  void refreshTools() async {
+    var toolsRes = await Database.getTools(idToken);
+    setState(() {
+      this.tools = toolsRes;
+    });
+    print("Refreshsed");
+  }
+
+  @override
   void initState() {
+    refreshTools();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    refreshTools();
+    super.dispose();
   }
 
   Future checkOutScan() async {
@@ -135,8 +151,13 @@ class _toolState extends State<ToolWidget> {
   @override
   Widget build(BuildContext context) {
     List<ToolCard> widgets = [];
-    tools.forEach((category, tools) =>
-        widgets.insert(0, ToolCard(category: category, tools: tools)));
+    tools.forEach((category, tools) => widgets.insert(
+        0,
+        ToolCard(
+          category: category,
+          tools: tools,
+          refreshTools: refreshTools,
+        )));
 
     return Container(
       child: Column(
@@ -243,12 +264,8 @@ class _toolState extends State<ToolWidget> {
                   const SizedBox(height: 15),
                   Expanded(
                     child: RefreshIndicator(
-                      onRefresh: () async {
-                        var toolsRes = await Database.getTools(idToken);
-                        setState(() {
-                          this.tools = toolsRes;
-                        });
-                        print("Refreshsed");
+                      onRefresh: () {
+                        refreshTools();
                       },
                       child: ListView(children: widgets),
                     ),

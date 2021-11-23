@@ -58,6 +58,13 @@ class _partState extends State<PartsWidget> {
     this.idToken = idToken;
   }
 
+  void refreshParts() async {
+    var partsRes = await Database.getParts(idToken);
+    setState(() {
+      this.parts = partsRes;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -83,12 +90,13 @@ class _partState extends State<PartsWidget> {
                         borderRadius: BorderRadius.circular(7.0)),
                     child: RaisedButton(
                       onPressed: () {
-                        NavigationService.goTo(
-                          PageRouteBuilder(
-                            pageBuilder: (context, animation1, animation2) =>
-                                PartAdd(),
-                          ),
-                        );
+                        NavigationService.goToAndThen(
+                            PageRouteBuilder(
+                              pageBuilder: (context, animation1, animation2) =>
+                                  PartAdd(),
+                            ), (value) {
+                          refreshParts();
+                        });
                       },
                       child: Text(
                         'ADD A PART',
@@ -169,13 +177,7 @@ class _partState extends State<PartsWidget> {
                   const SizedBox(height: 15),
                   Expanded(
                     child: RefreshIndicator(
-                      onRefresh: () async {
-                        var partsRes = await Database.getParts(idToken);
-                        setState(() {
-                          this.parts = partsRes;
-                        });
-                        print("Refreshsed");
-                      },
+                      onRefresh: refreshParts,
                       child: ListView(
                         children: parts.length != 0
                             ? parts
