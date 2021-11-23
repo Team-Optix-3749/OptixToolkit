@@ -1,5 +1,6 @@
 // Dart imports:
 import 'dart:convert';
+import 'dart:developer';
 
 // Package imports:
 import 'package:firebase_auth/firebase_auth.dart';
@@ -113,6 +114,32 @@ class Database {
 
     Map data = {
       'endpoint': 'reserve-tool',
+      'auth': idToken.token,
+      'uid': user.uid,
+      'toolname': toolname,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Constants.SERVER_URL,
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode == 200) {
+      return true;
+    } else {
+      print("ERROR");
+      print(result.body);
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
+      return false;
+    }
+  }
+
+  static Future reserveToolRemove(IdTokenResult idToken, FirebaseUser user,
+      String toolname, BuildContext context) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'remove-reservation',
       'auth': idToken.token,
       'uid': user.uid,
       'toolname': toolname,
@@ -394,6 +421,8 @@ class Database {
       throw new FailedRequestException();
     }
 
+    LogPrint(result.body);
+
     final parsed =
         jsonDecode(result.body)['tools'].cast<Map<String, dynamic>>();
 
@@ -408,6 +437,8 @@ class Database {
         category_map[tool.category as String] = [tool];
       }
     }
+
+    print(category_map['Drill'][0].reservations);
 
     return category_map;
   }
@@ -507,6 +538,7 @@ class Tool {
   final String user;
   final List<String> reservations;
   final String status;
+  final List<String> reservationsUid;
 
   Tool({
     @required this.id,
@@ -515,6 +547,7 @@ class Tool {
     @required this.user,
     @required this.reservations,
     @required this.status,
+    @required this.reservationsUid,
   });
 
   factory Tool.fromJson(Map<String, dynamic> json) {
@@ -528,6 +561,7 @@ class Tool {
       user: json['user'] as String,
       category: json['category'] as String,
       reservations: json['reservations'].cast<String>().toList(),
+      reservationsUid: json['reservations_uid'].cast<String>().toList(),
     );
   }
 }
@@ -551,5 +585,27 @@ class User {
 
   String toString() {
     return '${displayName}';
+  }
+}
+
+void LogPrint(Object object) async {
+  int defaultPrintLength = 1020;
+  if (object == null || object.toString().length <= defaultPrintLength) {
+    print(object);
+  } else {
+    String log = object.toString();
+    int start = 0;
+    int endIndex = defaultPrintLength;
+    int logLength = log.length;
+    int tmpLogLength = log.length;
+    while (endIndex < logLength) {
+      print(log.substring(start, endIndex));
+      endIndex += defaultPrintLength;
+      start += defaultPrintLength;
+      tmpLogLength -= defaultPrintLength;
+    }
+    if (tmpLogLength > 0) {
+      print(log.substring(start, logLength));
+    }
   }
 }

@@ -162,35 +162,46 @@ class ToolReserveItem extends StatelessWidget {
             backgroundColor: Color(0xff26292c),
             content: SingleChildScrollView(
               child: ListBody(
-                children: <Widget>[
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.cancel,
-                        color: Colors.pink,
-                        size: 23.0,
-                        semanticLabel: 'remove reservation',
+                children: tool.reservations
+                    .map(
+                      (user) => Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GestureDetector(
+                            onTap: () async {
+                              // var res = await Database.reserveToolRemove(
+                              //     Provider.of<IdTokenResult>(context,
+                              //         listen: false),
+                              //     user,
+                              //     // Provider.of<FirebaseUser>(context, listen: false),
+                              //     tool.name,
+                              //     context);
+                              // if (res) {
+                              //   print("removed");
+                              // }
+                              // print("Handling on pressed");
+                            },
+                            child: Icon(
+                              Icons.cancel,
+                              color: Colors.pink,
+                              size: 23.0,
+                              semanticLabel: 'remove reservation',
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          RichText(
+                            text: TextSpan(
+                              text: '${user}\n',
+                              style: GoogleFonts.rubik(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                      const SizedBox(width: 10),
-                      RichText(
-                        text: TextSpan(
-                          children: tool.reservations
-                              .map(
-                                (user) => TextSpan(
-                                  text: '${user}\n',
-                                  style: GoogleFonts.rubik(
-                                    color: Colors.white,
-                                    fontSize: 18.0,
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                    )
+                    .toList(),
               ),
             ),
             actions: [
