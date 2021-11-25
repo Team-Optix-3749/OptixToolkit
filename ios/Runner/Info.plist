@@ -2,6 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Used to provide geofence services in the background.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Used to provide geofence services in the background.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+	    <string>fetch</string>
+	    <string>location</string>
+	</array>
+	<key>NSMotionUsageDescription</key>
+	<string>Used to recognize user activity information.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
