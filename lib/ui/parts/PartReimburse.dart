@@ -35,7 +35,7 @@ class _PartReimburseState extends State<PartReimburse> {
   final Color subtleGray = Color(0xffcccccc);
 
   Future getImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+    final pickedFile = await ImagePicker.pickImage(source: ImageSource.camera);
 
     setState(() {
       if (pickedFile != null) {
