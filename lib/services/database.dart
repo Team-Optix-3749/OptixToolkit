@@ -41,7 +41,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -66,7 +66,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -91,7 +91,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode != 200) {
@@ -121,7 +121,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -147,7 +147,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -173,7 +173,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -199,7 +199,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -225,7 +225,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -251,7 +251,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -276,7 +276,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -301,7 +301,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -328,7 +328,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -353,7 +353,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -388,7 +388,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode == 200) {
@@ -413,7 +413,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode != 200) {
@@ -455,7 +455,7 @@ class Database {
 
     var body = json.encode(data);
 
-    var result = await client.post(Constants.SERVER_URL,
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
         headers: {"Content-Type": "application/json"}, body: body);
 
     if (result.statusCode != 200) {
@@ -538,7 +538,7 @@ class Tool {
   final String user;
   final List<String> reservations;
   final String status;
-  final List<String> reservationsUid;
+  // final List<String> reservationsUid;
 
   Tool({
     @required this.id,
@@ -547,7 +547,7 @@ class Tool {
     @required this.user,
     @required this.reservations,
     @required this.status,
-    @required this.reservationsUid,
+    // @required this.reservationsUid,
   });
 
   factory Tool.fromJson(Map<String, dynamic> json) {
@@ -561,7 +561,7 @@ class Tool {
       user: json['user'] as String,
       category: json['category'] as String,
       reservations: json['reservations'].cast<String>().toList(),
-      reservationsUid: json['reservations_uid'].cast<String>().toList(),
+      // reservationsUid: json['reservations_uid'].cast<String>().toList(),
     );
   }
 }
