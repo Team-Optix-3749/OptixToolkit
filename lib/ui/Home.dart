@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:OptixToolkit/ui/HoursPage.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -27,7 +28,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final Color lightBackground = Color(0xff3a3d41);
   final Color blue = Color(0xff159deb);
   final Color white = Color(0xffffffff);
-  final List<String> titles = ["HOME", "TOOLS", "PARTS", "PROFILE"];
+  final List<String> titles = ["HOME", "HOURS", "TOOLS", "PARTS", "PROFILE"];
   int _selectedIndex = 0;
 
   void changePage(int index) {
@@ -50,6 +51,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     List<Widget> _widgetOptions = <Widget>[
       homePage(changePage: changePage),
+      hoursPage(),
       toolsPage(),
       partsPage(),
       profilePage(),
@@ -81,6 +83,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             icon: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Icon(Icons.home),
+            ),
+            title: Container(),
+          ),
+          BottomNavigationBarItem(
+            icon: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Icon(Icons.access_time_filled_rounded),
             ),
             title: Container(),
           ),
