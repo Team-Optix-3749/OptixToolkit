@@ -13,6 +13,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  location:
 
   barcode_scan:
   loading_animations:
