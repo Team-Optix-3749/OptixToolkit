@@ -58,7 +58,7 @@ class _partState extends State<PartsWidget> {
     this.idToken = idToken;
   }
 
-  void refreshParts() async {
+  Future<void> refreshParts() async {
     var partsRes = await Database.getParts(idToken);
     setState(() {
       this.parts = partsRes;
