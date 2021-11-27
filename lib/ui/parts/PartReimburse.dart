@@ -51,15 +51,15 @@ class _PartReimburseState extends State<PartReimburse> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: background,
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          "GET REIMBURSED",
-          style: GoogleFonts.rubik(fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-        ),
-        backgroundColor: Color(0xff159deb),
-      ),
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   title: Text(
+      //     "GET REIMBURSED",
+      //     style: GoogleFonts.rubik(fontWeight: FontWeight.bold),
+      //     textAlign: TextAlign.center,
+      //   ),
+      //   backgroundColor: Color(0xff159deb),
+      // ),
       body: Center(
         child: Container(
           child: Container(
