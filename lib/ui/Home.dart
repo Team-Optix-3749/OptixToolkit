@@ -109,7 +109,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.only(top: 8.0),
-              child: Icon(FlutterIcons.parts),
+              // child: Icon(FlutterIcons.parts),
+              child: Icon(Icons.monetization_on_rounded),
             ),
             title: Container(),
           ),
