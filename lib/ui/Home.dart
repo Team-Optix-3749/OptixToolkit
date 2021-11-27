@@ -15,6 +15,7 @@ import 'package:OptixToolkit/ui/parts/PartsPage.dart';
 import 'package:OptixToolkit/ui/ProfilePage.dart';
 import 'package:OptixToolkit/ui/tools/ToolsPage.dart';
 import 'package:OptixToolkit/services/firebase.dart';
+import 'package:OptixToolkit/ui/parts/PartReimburse.dart';
 
 class MyStatefulWidget extends StatefulWidget {
   MyStatefulWidget({Key key}) : super(key: key);
@@ -28,7 +29,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final Color lightBackground = Color(0xff3a3d41);
   final Color blue = Color(0xff159deb);
   final Color white = Color(0xffffffff);
-  final List<String> titles = ["HOME", "HOURS", "TOOLS", "PARTS", "PROFILE"];
+  final List<String> titles = [
+    "HOME",
+    "HOURS",
+    "TOOLS",
+    "REIMBURSEMENTS",
+    "PROFILE"
+  ];
   int _selectedIndex = 0;
 
   void changePage(int index) {
@@ -53,7 +60,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       homePage(changePage: changePage),
       hoursPage(),
       toolsPage(),
-      partsPage(),
+      PartReimburse(),
       profilePage(),
       Container(
         child: Column(
