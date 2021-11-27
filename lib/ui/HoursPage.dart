@@ -151,7 +151,7 @@ class _hoursPageState extends State<hoursPage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 25),
                   ElevatedButton(
                     child: Text("CHECK IN"),
                     style: buttonStyle,
@@ -160,7 +160,7 @@ class _hoursPageState extends State<hoursPage> {
                       _showMyDialog();
                     },
                   ),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 25),
                   ElevatedButton(
                     child: Text("CHECK OUT"),
                     style: buttonStyle,
@@ -169,6 +169,7 @@ class _hoursPageState extends State<hoursPage> {
                       _showMyDialog();
                     },
                   ),
+                  const SizedBox(height: 5),
                 ],
               ),
             ),
