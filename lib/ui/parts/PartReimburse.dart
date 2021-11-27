@@ -228,7 +228,7 @@ class _PartReimburseState extends State<PartReimburse> {
                                       print("Result of the request below: ");
                                       print(result);
                                       if (result) {
-                                        NavigationService.pop();
+                                        setState(() {});
                                       }
                                     }
                                   },
