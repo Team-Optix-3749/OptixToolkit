@@ -20,6 +20,9 @@ class _hoursPageState extends State<hoursPage> {
 
   @override
   Widget build(BuildContext context) {
+    final codeController = TextEditingController();
+    final Color formBackground = Color(0xff3A3D41);
+    final Color subtleGray = Color(0xffcccccc);
     final Color green = Color(0xff15ee07);
 
     final ButtonStyle buttonStyle = ElevatedButton.styleFrom(
@@ -30,6 +33,58 @@ class _hoursPageState extends State<hoursPage> {
         borderRadius: BorderRadius.circular(12), // <-- Radius
       ),
     );
+
+    Future<void> _showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              "Code",
+              style: GoogleFonts.rubik(
+                fontWeight: FontWeight.bold,
+                color: Color(0xff159deb),
+              ),
+            ),
+            backgroundColor: Color(0xff26292c),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  TextFormField(
+                    controller: codeController,
+                    style: GoogleFonts.rubik(color: Colors.white),
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: formBackground,
+                      hintText: 'Enter code',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(9.0)),
+                      hintStyle: GoogleFonts.rubik(color: subtleGray),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text(
+                  'Approve',
+                  style: GoogleFonts.rubik(
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff159deb),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
 
     return Container(
       child: Column(
@@ -102,6 +157,7 @@ class _hoursPageState extends State<hoursPage> {
                     style: buttonStyle,
                     onPressed: () {
                       print("Checking in...");
+                      _showMyDialog();
                     },
                   ),
                   const SizedBox(height: 15),
@@ -110,6 +166,7 @@ class _hoursPageState extends State<hoursPage> {
                     style: buttonStyle,
                     onPressed: () {
                       print("Checking out...");
+                      _showMyDialog();
                     },
                   ),
                 ],
