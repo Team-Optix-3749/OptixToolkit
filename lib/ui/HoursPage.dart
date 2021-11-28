@@ -24,6 +24,7 @@ class _hoursPageState extends State<hoursPage> {
     final Color formBackground = Color(0xff3A3D41);
     final Color subtleGray = Color(0xffcccccc);
     final Color green = Color(0xff15ee07);
+    final Color red = Color(0xffd5212c);
 
     final ButtonStyle buttonStyle = ElevatedButton.styleFrom(
       textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -68,6 +69,18 @@ class _hoursPageState extends State<hoursPage> {
               ),
             ),
             actions: <Widget>[
+              TextButton(
+                child: Text(
+                  'Cancel',
+                  style: GoogleFonts.rubik(
+                    fontWeight: FontWeight.bold,
+                    color: red,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
               TextButton(
                 child: Text(
                   'Approve',
