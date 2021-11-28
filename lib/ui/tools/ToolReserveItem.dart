@@ -169,17 +169,16 @@ class ToolReserveItem extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () async {
-                              // var res = await Database.reserveToolRemove(
-                              //     Provider.of<IdTokenResult>(context,
-                              //         listen: false),
-                              //     user,
-                              //     // Provider.of<FirebaseUser>(context, listen: false),
-                              //     tool.name,
-                              //     context);
-                              // if (res) {
-                              //   print("removed");
-                              // }
-                              // print("Handling on pressed");
+                              var res = await Database.reserveToolRemove(
+                                  Provider.of<IdTokenResult>(context,
+                                      listen: false),
+                                  user["uid"] as String,
+                                  tool.name,
+                                  context);
+                              if (res) {
+                                print("removed");
+                                Navigator.of(context).pop();
+                              }
                             },
                             child: Icon(
                               Icons.cancel,
@@ -191,7 +190,7 @@ class ToolReserveItem extends StatelessWidget {
                           const SizedBox(width: 10),
                           RichText(
                             text: TextSpan(
-                              text: '${user}\n',
+                              text: '${user["dName"]}\n',
                               style: GoogleFonts.rubik(
                                 color: Colors.white,
                                 fontSize: 18.0,

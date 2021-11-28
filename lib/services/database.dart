@@ -134,14 +134,14 @@ class Database {
     }
   }
 
-  static Future reserveToolRemove(IdTokenResult idToken, FirebaseUser user,
+  static Future reserveToolRemove(IdTokenResult idToken, String uid,
       String toolname, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
       'endpoint': 'remove-reservation',
       'auth': idToken.token,
-      'uid': user.uid,
+      'uid': uid,
       'toolname': toolname,
     };
 
@@ -536,7 +536,7 @@ class Tool {
   final String name;
   final String category;
   final String user;
-  final List<String> reservations;
+  final List<Map<String, dynamic>> reservations;
   final String status;
   // final List<String> reservationsUid;
 
@@ -560,8 +560,7 @@ class Tool {
       status: json['status'] as String,
       user: json['user'] as String,
       category: json['category'] as String,
-      reservations: json['reservations'].cast<String>().toList(),
-      // reservationsUid: json['reservations_uid'].cast<String>().toList(),
+      reservations: json['reservations'].cast<Map<String, dynamic>>().toList(),
     );
   }
 }
