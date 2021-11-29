@@ -1,7 +1,11 @@
+import 'package:OptixToolkit/services/Good.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:location/location.dart';
+import 'package:OptixToolkit/services/database.dart';
+import 'package:provider/provider.dart';
 
 class hoursPage extends StatefulWidget {
   const hoursPage({Key key}) : super(key: key);
@@ -20,7 +24,10 @@ class _hoursPageState extends State<hoursPage> {
 
   @override
   Widget build(BuildContext context) {
-    final codeController = TextEditingController();
+    final _formKey = GlobalKey<FormState>();
+    final checkInCodeController = TextEditingController();
+    final checkOutCodeController = TextEditingController();
+
     final Color formBackground = Color(0xff3A3D41);
     final Color subtleGray = Color(0xffcccccc);
     final Color green = Color(0xff15ee07);
@@ -60,7 +67,7 @@ class _hoursPageState extends State<hoursPage> {
       ),
     );
 
-    Future<void> _showMyDialog() async {
+    Future<void> _showMyDialogCheckIn() async {
       return showDialog<void>(
         context: context,
         barrierDismissible: false, // user must tap button!
@@ -78,7 +85,7 @@ class _hoursPageState extends State<hoursPage> {
               child: ListBody(
                 children: <Widget>[
                   TextFormField(
-                    controller: codeController,
+                    controller: checkInCodeController,
                     style: GoogleFonts.rubik(color: Colors.white),
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
@@ -114,8 +121,90 @@ class _hoursPageState extends State<hoursPage> {
                     color: Color(0xff159deb),
                   ),
                 ),
+                onPressed: () async {
+                  print("Handling on pressed");
+                  var result = await Database.checkIn(
+                      Provider.of<IdTokenResult>(context, listen: false),
+                      checkInCodeController.text,
+                      context);
+                  print("Result of the request below: ");
+                  print(result);
+                  if (result) {
+                    Good.showGood(context, "Your hours are being tracked.");
+                  }
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
+    Future<void> _showMyDialogCheckOut() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              "Code",
+              style: GoogleFonts.rubik(
+                fontWeight: FontWeight.bold,
+                color: Color(0xff159deb),
+              ),
+            ),
+            backgroundColor: Color(0xff26292c),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  TextFormField(
+                    controller: checkOutCodeController,
+                    style: GoogleFonts.rubik(color: Colors.white),
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: formBackground,
+                      hintText: 'Enter code',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(9.0)),
+                      hintStyle: GoogleFonts.rubik(color: subtleGray),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text(
+                  'Cancel',
+                  style: GoogleFonts.rubik(
+                    fontWeight: FontWeight.bold,
+                    color: red,
+                  ),
+                ),
                 onPressed: () {
                   Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: Text(
+                  'Approve',
+                  style: GoogleFonts.rubik(
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff159deb),
+                  ),
+                ),
+                onPressed: () async {
+                  print("Handling on pressed");
+                  var result = await Database.checkOut(
+                      Provider.of<IdTokenResult>(context, listen: false),
+                      checkOutCodeController.text,
+                      context);
+                  print("Result of the request below: ");
+                  print(result);
+                  if (result) {
+                    Good.showGood(context, "Your hours have been logged.");
+                  }
                 },
               ),
             ],
@@ -195,7 +284,7 @@ class _hoursPageState extends State<hoursPage> {
                     style: buttonStyle,
                     onPressed: () {
                       print("Checking in...");
-                      _showMyDialog();
+                      _showMyDialogCheckIn();
                     },
                   ),
                   const SizedBox(height: 25),
@@ -204,7 +293,7 @@ class _hoursPageState extends State<hoursPage> {
                     style: buttonStyle,
                     onPressed: () {
                       print("Checking out...");
-                      _showMyDialog();
+                      _showMyDialogCheckOut();
                     },
                   ),
                   const SizedBox(height: 5),
