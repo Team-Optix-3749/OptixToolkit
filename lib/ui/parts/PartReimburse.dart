@@ -1,12 +1,12 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:OptixToolkit/services/Good.dart';
 
 // Package imports:
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 // Project imports:
-import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/database.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -24,6 +24,7 @@ class _PartReimburseState extends State<PartReimburse> {
   final partLinkController = TextEditingController();
   final mailingAddressController = TextEditingController();
   final partDescriptionController = TextEditingController();
+  final checkAddressedToController = TextEditingController();
   String dropdownValue = "Select a Carrier";
   double priority = 0;
   File _image;
@@ -147,6 +148,29 @@ class _PartReimburseState extends State<PartReimburse> {
                         child: TextFormField(
                           validator: (value) {
                             if (value.isEmpty) {
+                              return 'Enter Recipient Name';
+                            }
+                            return null;
+                          },
+                          style: GoogleFonts.rubik(color: Colors.white),
+                          textAlign: TextAlign.center,
+                          controller: checkAddressedToController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: gray,
+                            hintText: 'Recipient Name',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(9.0)),
+                            hintStyle: GoogleFonts.rubik(color: subtleGray),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 300,
+                        margin: EdgeInsets.only(top: 20),
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value.isEmpty) {
                               return 'Enter Mailing Address';
                             }
                             return null;
@@ -224,11 +248,14 @@ class _PartReimburseState extends State<PartReimburse> {
                                               _image,
                                               Provider.of<FirebaseUser>(context,
                                                   listen: false)),
+                                          checkAddressedToController.text,
                                           context);
                                       print("Result of the request below: ");
                                       print(result);
                                       if (result) {
                                         setState(() {});
+                                        Good.showGood(context,
+                                            "We have sent your reimbursement to business for review. They will file it and send you a check shortly.");
                                       }
                                     }
                                   },

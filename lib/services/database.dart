@@ -373,6 +373,7 @@ class Database {
       String partLink,
       String mailingAddress,
       String pictureLink,
+      String checkAddressedTo,
       BuildContext context) async {
     var client = http.Client();
 
@@ -383,6 +384,7 @@ class Database {
       'partLink': partLink,
       'mailingAddress': mailingAddress,
       'pictureLink': pictureLink,
+      'checkAddressedTo': checkAddressedTo,
       'auth': idToken.token,
     };
 
