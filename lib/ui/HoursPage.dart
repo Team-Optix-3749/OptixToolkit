@@ -25,6 +25,31 @@ class _hoursPageState extends State<hoursPage> {
     final Color subtleGray = Color(0xffcccccc);
     final Color green = Color(0xff15ee07);
     final Color red = Color(0xffd5212c);
+    final Color yellow = Color(0xffebe712);
+    final Color orange = Color(0xffff9415);
+
+    final Map<String, TextStyle> statusColor = {
+      "logging": GoogleFonts.rubik(
+        color: green,
+        fontWeight: FontWeight.bold,
+        fontSize: 25.0,
+      ),
+      "offSeason": GoogleFonts.rubik(
+        color: orange,
+        fontWeight: FontWeight.bold,
+        fontSize: 25.0,
+      ),
+      "notLogging": GoogleFonts.rubik(
+        color: yellow,
+        fontWeight: FontWeight.bold,
+        fontSize: 25.0,
+      ),
+      "error": GoogleFonts.rubik(
+        color: red,
+        fontWeight: FontWeight.bold,
+        fontSize: 25.0,
+      ),
+    };
 
     final ButtonStyle buttonStyle = ElevatedButton.styleFrom(
       textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
