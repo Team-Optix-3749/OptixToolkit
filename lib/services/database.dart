@@ -403,6 +403,56 @@ class Database {
     }
   }
 
+  static Future checkIn(
+      IdTokenResult idToken, String code, BuildContext context) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'check-in',
+      'password': code,
+      'auth': idToken.token,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode == 200) {
+      return true;
+    } else {
+      print("ERROR");
+      print(result.body);
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
+      return false;
+    }
+  }
+
+  static Future checkOut(
+      IdTokenResult idToken, String code, BuildContext context) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'check-out',
+      'password': code,
+      'auth': idToken.token,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode == 200) {
+      return true;
+    } else {
+      print("ERROR");
+      print(result.body);
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
+      return false;
+    }
+  }
+
   static Future<Map<String, List<Tool>>> getTools(
     IdTokenResult idToken,
   ) async {
