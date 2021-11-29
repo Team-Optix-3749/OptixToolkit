@@ -1,6 +1,6 @@
 // Dart imports:
+import 'dart:collection';
 import 'dart:convert';
-import 'dart:developer';
 
 // Package imports:
 import 'package:firebase_auth/firebase_auth.dart';
@@ -443,6 +443,52 @@ class Database {
     print(category_map['Drill'][0].reservations);
 
     return category_map;
+  }
+
+  static Future<Map<String, List<Tool>>> getToolsReversed(
+    IdTokenResult idToken,
+  ) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'get-tools',
+      'auth': idToken.token,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode != 200) {
+      print(jsonDecode(result.body)['err']);
+      throw new FailedRequestException();
+    }
+
+    LogPrint(result.body);
+
+    final parsed =
+        jsonDecode(result.body)['tools'].cast<Map<String, dynamic>>();
+
+    List<Tool> list = parsed
+        .map<Tool>((json) => Tool.fromJson(json))
+        .toList()
+        .reversed
+        .toList();
+
+    Map<String, List<Tool>> category_map = {};
+
+    for (var tool in list) {
+      if (category_map.containsKey(tool.category)) {
+        category_map[tool.category as String].insert(0, tool);
+      } else {
+        category_map[tool.category as String] = [tool];
+      }
+    }
+
+    print(category_map['Drill'][0].reservations);
+
+    return LinkedHashMap.fromEntries(category_map.entries.toList().reversed);
   }
 
   static Future<List<User>> getUsers(
