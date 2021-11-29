@@ -1,4 +1,5 @@
 import 'package:OptixToolkit/services/Good.dart';
+import 'package:OptixToolkit/ui/Loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,14 +8,45 @@ import 'package:location/location.dart';
 import 'package:OptixToolkit/services/database.dart';
 import 'package:provider/provider.dart';
 
-class hoursPage extends StatefulWidget {
+class hoursPage extends StatelessWidget {
   const hoursPage({Key key}) : super(key: key);
 
   @override
-  _hoursPageState createState() => _hoursPageState();
+  Widget build(BuildContext context) {
+    return FutureBuilder<int>(
+      future: Database.getTime(Provider.of<IdTokenResult>(context), context),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return Loading();
+          default:
+            if (snapshot.hasError)
+              return Text('Error: ${snapshot.error}');
+            else
+              return hoursPageLoaded(
+                time: snapshot.data,
+              );
+        }
+      },
+    );
+  }
 }
 
-class _hoursPageState extends State<hoursPage> {
+class hoursPageLoaded extends StatefulWidget {
+  final int time;
+  const hoursPageLoaded({Key key, this.time}) : super(key: key);
+
+  @override
+  _hoursPageState createState() => _hoursPageState(this.time);
+}
+
+class _hoursPageState extends State<hoursPageLoaded> {
+  int time;
+
+  _hoursPageState(int time) {
+    this.time = time;
+  }
+
   Location location = new Location();
 
   @override
@@ -66,6 +98,22 @@ class _hoursPageState extends State<hoursPage> {
         borderRadius: BorderRadius.circular(12), // <-- Radius
       ),
     );
+
+    String msToTime(duration) {
+      var hours = (duration / (1000 * 60 * 60)).floor();
+      var minutes = ((duration / 1000) / 60).floor();
+      var seconds = ((duration / 1000) % 60).floor();
+
+      var hoursStr = "${(hours < 10) ? "0${hours}" : hours}";
+      var minutesStr = "${(minutes < 10) ? "0${minutes}" : minutes}";
+      var secondsStr = "${(seconds < 10) ? "0${seconds}" : seconds}";
+
+      print(hoursStr);
+      print(minutesStr);
+      print(secondsStr);
+
+      return hoursStr + " hr, " + minutesStr + " min, " + secondsStr + " sec";
+    }
 
     Future<void> _showMyDialogCheckIn() async {
       return showDialog<void>(
@@ -230,7 +278,7 @@ class _hoursPageState extends State<hoursPage> {
                 children: [
                   RichText(
                     text: TextSpan(
-                      text: "37 hr, 49 min, 0 sec",
+                      text: msToTime(time),
                       style: GoogleFonts.rubik(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
