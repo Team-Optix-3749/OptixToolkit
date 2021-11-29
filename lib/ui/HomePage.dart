@@ -7,9 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:OptixToolkit/services/database.dart';
 import 'package:OptixToolkit/ui/Loading.dart';
-import 'package:OptixToolkit/ui/parts/PartLine.dart';
 import 'package:OptixToolkit/ui/tools/ToolLine.dart';
-import 'dart:math';
 
 class homePage extends StatelessWidget {
   final Function(int) changePage;
@@ -21,7 +19,7 @@ class homePage extends StatelessWidget {
       FutureProvider<List<Part>>.value(
           value: Database.getParts(Provider.of<IdTokenResult>(context))),
       FutureProvider<Map<String, List<Tool>>>.value(
-          value: Database.getTools(Provider.of<IdTokenResult>(context)))
+          value: Database.getToolsReversed(Provider.of<IdTokenResult>(context)))
     ], child: homePage2());
   }
 }
@@ -174,13 +172,12 @@ class homePage2 extends StatelessWidget {
                         const SizedBox(height: 15),
                         Expanded(
                           child: ListView(
-                            children: tools
-                                .map<Widget>((tool) =>
-                                    ToolLine(tool: tool, status: tool.status))
-                                .toList()
-                                .reversed
-                                .toList(),
-                          ),
+                              children: tools
+                                  .map<Widget>((tool) =>
+                                      ToolLine(tool: tool, status: tool.status))
+                                  .toList()
+                                  .reversed
+                                  .toList()),
                         ),
                       ],
                     ),
