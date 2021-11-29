@@ -178,6 +178,7 @@ class ToolReserveItem extends StatelessWidget {
                               if (res) {
                                 print("removed");
                                 Navigator.of(context).pop();
+                                Navigator.of(context).pop();
                               }
                             },
                             child: Icon(
