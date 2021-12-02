@@ -305,7 +305,7 @@ class _hoursPageState extends State<hoursPageLoaded> {
                         text: TextSpan(
                           children: <TextSpan>[
                             TextSpan(
-                                text: 'Stats: ',
+                                text: 'Status: ',
                                 style: GoogleFonts.rubik(
                                   color: Colors.white,
                                   fontSize: 25.0,
