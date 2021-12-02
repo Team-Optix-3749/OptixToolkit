@@ -363,7 +363,7 @@ class _hoursPageState extends State<hoursPageLoaded> {
                     children: [
                       RichText(
                         text: TextSpan(
-                          text: 'Status',
+                          text: 'Stats',
                           style: GoogleFonts.rubik(
                             color: Colors.white,
                             fontSize: 25.0,
