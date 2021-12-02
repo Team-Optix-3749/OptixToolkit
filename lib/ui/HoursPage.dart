@@ -97,8 +97,8 @@ class _hoursPageState extends State<hoursPageLoaded> {
     );
 
     String msToTime(duration) {
-      var hours = (duration / (1000 * 60 * 60)).floor();
-      var minutes = ((duration / 1000) / 60).floor();
+      var hours = ((duration / (1000*60*60))).floor();
+      var minutes = ((duration / (1000*60)) % 60).floor();
       var seconds = ((duration / 1000) % 60).floor();
 
       var hoursStr = "${(hours < 10) ? "0${hours}" : hours}";
