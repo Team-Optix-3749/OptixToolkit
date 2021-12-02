@@ -19,27 +19,53 @@ class homePage extends StatelessWidget {
       FutureProvider<List<Part>>.value(
           value: Database.getParts(Provider.of<IdTokenResult>(context))),
       FutureProvider<Map<String, List<Tool>>>.value(
-          value: Database.getToolsReversed(Provider.of<IdTokenResult>(context)))
+          value:
+              Database.getToolsReversed(Provider.of<IdTokenResult>(context))),
+      FutureProvider<int>.value(
+          value: Database.getTime(Provider.of<IdTokenResult>(context), context))
     ], child: homePage2());
   }
 }
 
-class homePage2 extends StatelessWidget {
+class homePage2 extends StatefulWidget {
   final List<Part> parts;
   final List<Tool> tools;
+  final int time;
   final Function(int) changePage;
-  homePage2({Key key, this.parts, this.tools, this.changePage})
+  homePage2({Key key, this.parts, this.tools, this.changePage, this.time})
       : super(key: key);
 
+  @override
+  _homePage2State createState() => _homePage2State();
+}
+
+class _homePage2State extends State<homePage2> {
   @override
   Widget build(BuildContext context) {
     var parts = Provider.of<List<Part>>(context);
     var toolsMap = Provider.of<Map<String, List<Tool>>>(context);
+    var time = Provider.of<int>(context);
     if (parts == null || toolsMap == null) return Loading();
 
     List<Tool> tools = [];
 
     toolsMap.forEach((k, v) => tools += v);
+
+    String msToTime(duration) {
+      var hours = (duration / (1000 * 60 * 60)).floor();
+      var minutes = ((duration / 1000) / 60).floor();
+      var seconds = ((duration / 1000) % 60).floor();
+
+      var hoursStr = "${(hours < 10) ? "0${hours}" : hours}";
+      var minutesStr = "${(minutes < 10) ? "0${minutes}" : minutes}";
+      var secondsStr = "${(seconds < 10) ? "0${seconds}" : seconds}";
+
+      print(hoursStr);
+      print(minutesStr);
+      print(secondsStr);
+
+      return hoursStr + " hr, " + minutesStr + " min, " + secondsStr + " sec";
+    }
 
     return Container(
       child: Column(
@@ -114,7 +140,7 @@ class homePage2 extends StatelessWidget {
                     children: [
                       RichText(
                         text: TextSpan(
-                          text: "37 hr, 49 min, 0 sec",
+                          text: msToTime(time),
                           style: GoogleFonts.rubik(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -128,7 +154,7 @@ class homePage2 extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  changePage(1);
+                  widget.changePage(1);
                 },
                 child: Container(
                   margin:
