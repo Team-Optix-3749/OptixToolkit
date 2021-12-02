@@ -1,11 +1,9 @@
-import 'package:OptixToolkit/services/Good.dart';
 import 'package:OptixToolkit/services/GoodPop.dart';
 import 'package:OptixToolkit/ui/Loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:location/location.dart';
 import 'package:OptixToolkit/services/database.dart';
 import 'package:provider/provider.dart';
 
@@ -47,8 +45,6 @@ class _hoursPageState extends State<hoursPageLoaded> {
   _hoursPageState(int time) {
     this.time = time;
   }
-
-  Location location = new Location();
 
   @override
   void initState() {
@@ -401,50 +397,6 @@ class _hoursPageState extends State<hoursPageLoaded> {
               ),
             ),
           ),
-          // RichText(
-          //   text: TextSpan(
-          //     text: "37 hr, 49 min, 0 sec",
-          //     style: GoogleFonts.rubik(
-          //       color: Colors.white,
-          //       fontSize: 21.0,
-          //     ),
-          //   ),
-          // ),
-          // ElevatedButton(
-          //   child: Text("Get Location"),
-          //   onPressed: () async {
-          //     var currentLocation = await location.getLocation();
-
-          //     final latitude = currentLocation.latitude;
-          //     final longitude = currentLocation.longitude;
-          //     final accuracy = currentLocation.accuracy;
-
-          //     print("Latitude: $latitude");
-          //     print("Longitude: $longitude");
-          //     print("Accuracy: $accuracy meters");
-          //   },
-          // ),
-          // ElevatedButton(
-          //   child: Text("Verify Geofence"),
-          //   onPressed: () async {
-          //     var currentLocation = await location.getLocation();
-
-          //     final longitude = currentLocation.longitude;
-          //     final latitude = currentLocation.latitude;
-
-          //     print("Latitude: $latitude");
-          //     print("Longitude: $longitude");
-
-          //     if (latitude > 37.42193608134135 &&
-          //         latitude < 37.42206873207847 &&
-          //         longitude > -122.08428558910641 &&
-          //         longitude < -122.08391431794179) {
-          //       print("In range!");
-          //     } else {
-          //       print("Not in range :(");
-          //     }
-          //   },
-          // ),
         ],
       ),
     );
