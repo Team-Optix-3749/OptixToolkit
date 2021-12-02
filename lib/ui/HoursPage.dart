@@ -1,4 +1,5 @@
 import 'package:OptixToolkit/services/Good.dart';
+import 'package:OptixToolkit/services/GoodPop.dart';
 import 'package:OptixToolkit/ui/Loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -178,7 +179,7 @@ class _hoursPageState extends State<hoursPageLoaded> {
                   print("Result of the request below: ");
                   print(result);
                   if (result) {
-                    Good.showGood(context, "Your hours are being tracked.");
+                    GoodPop.showGood(context, "Your hours are being tracked.");
                   }
                 },
               ),
@@ -251,7 +252,7 @@ class _hoursPageState extends State<hoursPageLoaded> {
                   print("Result of the request below: ");
                   print(result);
                   if (result) {
-                    Good.showGood(context, "Your hours have been logged.");
+                    GoodPop.showGood(context, "Your hours have been logged.");
                   }
                 },
               ),
