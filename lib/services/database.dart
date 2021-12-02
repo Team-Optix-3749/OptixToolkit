@@ -429,6 +429,32 @@ class Database {
     }
   }
 
+  static Future<int> getMeetingCount(
+      IdTokenResult idToken, BuildContext context) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'get-meetings',
+      'auth': idToken.token,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode == 200) {
+      var a = jsonDecode(result.body);
+      var b = a['count'];
+      return b as int;
+    } else {
+      print("ERROR");
+      print(result.body);
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
+      return 0;
+    }
+  }
+
   static Future checkIn(
       IdTokenResult idToken, String code, BuildContext context) async {
     var client = http.Client();
