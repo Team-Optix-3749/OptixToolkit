@@ -12,30 +12,41 @@ class hoursPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
+    return 
+    MultiProvider(providers: [
       FutureProvider<int>.value(
-          value: Database.getTime(Provider.of<IdTokenResult>(context), context)),
+          value:
+              Database.getTime(Provider.of<IdTokenResult>(context), context)),
       FutureProvider<int>.value(
-          value: Database.getMeetingCount(Provider.of<IdTokenResult>(context), context))
+          value: Database.getLastCheckIn(
+              Provider.of<IdTokenResult>(context), context)),
+      FutureProvider<int>.value(
+          value: Database.getMeetingCount(
+              Provider.of<IdTokenResult>(context), context))
     ], child: hoursPageLoaded());
   }
 }
-
 class hoursPageLoaded extends StatefulWidget {
   final int time;
+  final int lastCheckIn;
   final int meetingCount;
-  const hoursPageLoaded({Key key, this.time, this.meetingCount}) : super(key: key);
+  const hoursPageLoaded(
+      {Key key, this.time, this.lastCheckIn, this.meetingCount})
+      : super(key: key);
 
   @override
-  _hoursPageState createState() => _hoursPageState(this.time, this.meetingCount);
+  _hoursPageState createState() =>
+      _hoursPageState(this.time, this.lastCheckIn, this.meetingCount);
 }
 
 class _hoursPageState extends State<hoursPageLoaded> {
   int time;
+  int lastCheckIn;
   int meetingCount;
 
-  _hoursPageState(int time, int meetingCount) {
+  _hoursPageState(int time, int lastCheckIn, int meetingCount) {
     this.time = time;
+    this.lastCheckIn = lastCheckIn;
     this.meetingCount = meetingCount;
   }
 
@@ -46,13 +57,16 @@ class _hoursPageState extends State<hoursPageLoaded> {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
     final checkInCodeController = TextEditingController();
     final checkOutCodeController = TextEditingController();
 
     var time = Provider.of<int>(context);
+    var lastCheckIn = Provider.of<int>(context);
     var meetingCount = Provider.of<int>(context);
-    if (time == null || meetingCount == null) return Loading();
+    if (time == null || lastCheckIn == null || meetingCount == null)
+      return Loading();
+
+    print("lastcheckin ${lastCheckIn}");
 
     final Color formBackground = Color(0xff3A3D41);
     final Color subtleGray = Color(0xffcccccc);
@@ -94,8 +108,8 @@ class _hoursPageState extends State<hoursPageLoaded> {
     );
 
     String msToTime(duration) {
-      var hours = ((duration / (1000*60*60))).floor();
-      var minutes = ((duration / (1000*60)) % 60).floor();
+      var hours = ((duration / (1000 * 60 * 60))).floor();
+      var minutes = ((duration / (1000 * 60)) % 60).floor();
       var seconds = ((duration / 1000) % 60).floor();
 
       var hoursStr = "${(hours < 10) ? "0${hours}" : hours}";
@@ -308,12 +322,16 @@ class _hoursPageState extends State<hoursPageLoaded> {
                                   fontSize: 25.0,
                                 )),
                             TextSpan(
-                              text: 'Logging',
-                              style: GoogleFonts.rubik(
-                                fontWeight: FontWeight.bold,
-                                color: green,
-                                fontSize: 25.0,
-                              ),
+                              text: (lastCheckIn == 0)
+                                  ? "Not Logging"
+                                  : (lastCheckIn != 0)
+                                      ? "Logging"
+                                      : "Error",
+                              style: (lastCheckIn == 0)
+                                  ? statusColor["notLogging"]
+                                  : (lastCheckIn != 0)
+                                      ? statusColor["logging"]
+                                      : statusColor["error"],
                             ),
                           ],
                         ),
@@ -326,6 +344,7 @@ class _hoursPageState extends State<hoursPageLoaded> {
                     style: buttonStyle,
                     onPressed: () {
                       print("Checking in...");
+                      print(lastCheckIn);
                       _showMyDialogCheckIn();
                     },
                   ),
