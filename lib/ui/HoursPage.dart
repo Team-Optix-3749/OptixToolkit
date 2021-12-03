@@ -12,38 +12,47 @@ class hoursPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<int>(
-      future: Database.getTime(Provider.of<IdTokenResult>(context), context),
-      builder: (context, snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.waiting:
-            return Loading();
-          default:
-            if (snapshot.hasError)
-              return Text('Error: ${snapshot.error}');
-            else
-              return hoursPageLoaded(
-                time: snapshot.data,
-              );
-        }
-      },
-    );
+    return MultiProvider(providers: [
+      FutureProvider<int>.value(
+          value: Database.getTime(Provider.of<IdTokenResult>(context), context)),
+      FutureProvider<int>.value(
+          value: Database.getMeetingCount(Provider.of<IdTokenResult>(context), context))
+    ], child: hoursPageLoaded());
+    // return FutureBuilder<int>(
+    //   future: Database.getTime(Provider.of<IdTokenResult>(context), context),
+    //   builder: (context, snapshot) {
+    //     switch (snapshot.connectionState) {
+    //       case ConnectionState.waiting:
+    //         return Loading();
+    //       default:
+    //         if (snapshot.hasError)
+    //           return Text('Error: ${snapshot.error}');
+    //         else
+    //           return hoursPageLoaded(
+    //             time: snapshot.data,
+    //           );
+    //     }
+    //   },
+    // );
   }
 }
 
 class hoursPageLoaded extends StatefulWidget {
   final int time;
-  const hoursPageLoaded({Key key, this.time}) : super(key: key);
+  final int meetingCount;
+  const hoursPageLoaded({Key key, this.time, this.meetingCount}) : super(key: key);
 
   @override
-  _hoursPageState createState() => _hoursPageState(this.time);
+  _hoursPageState createState() => _hoursPageState(this.time, this.meetingCount);
 }
 
 class _hoursPageState extends State<hoursPageLoaded> {
   int time;
+  int meetingCount;
 
-  _hoursPageState(int time) {
+  _hoursPageState(int time, int meetingCount) {
     this.time = time;
+    this.meetingCount = meetingCount;
   }
 
   @override
@@ -56,6 +65,10 @@ class _hoursPageState extends State<hoursPageLoaded> {
     final _formKey = GlobalKey<FormState>();
     final checkInCodeController = TextEditingController();
     final checkOutCodeController = TextEditingController();
+
+    var time = Provider.of<int>(context);
+    var meetingCount = Provider.of<int>(context);
+    if (time == null || meetingCount == null) return Loading();
 
     final Color formBackground = Color(0xff3A3D41);
     final Color subtleGray = Color(0xffcccccc);
@@ -384,7 +397,7 @@ class _hoursPageState extends State<hoursPageLoaded> {
                               fontSize: 25.0,
                             )),
                         TextSpan(
-                          text: '14',
+                          text: meetingCount.toString(),
                           style: GoogleFonts.rubik(
                             color: Colors.white,
                             fontSize: 25.0,
