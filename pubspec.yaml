@@ -14,7 +14,6 @@ dependencies:
   flutter:
     sdk: flutter
   
-  location:
   permission_handler:
 
   barcode_scan:
