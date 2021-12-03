@@ -45,7 +45,7 @@ class _homePage2State extends State<homePage2> {
     var parts = Provider.of<List<Part>>(context);
     var toolsMap = Provider.of<Map<String, List<Tool>>>(context);
     var time = Provider.of<int>(context);
-    if (parts == null || toolsMap == null) return Loading();
+    if (parts == null || toolsMap == null || time == null) return Loading();
 
     List<Tool> tools = [];
 
