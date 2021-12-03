@@ -18,22 +18,6 @@ class hoursPage extends StatelessWidget {
       FutureProvider<int>.value(
           value: Database.getMeetingCount(Provider.of<IdTokenResult>(context), context))
     ], child: hoursPageLoaded());
-    // return FutureBuilder<int>(
-    //   future: Database.getTime(Provider.of<IdTokenResult>(context), context),
-    //   builder: (context, snapshot) {
-    //     switch (snapshot.connectionState) {
-    //       case ConnectionState.waiting:
-    //         return Loading();
-    //       default:
-    //         if (snapshot.hasError)
-    //           return Text('Error: ${snapshot.error}');
-    //         else
-    //           return hoursPageLoaded(
-    //             time: snapshot.data,
-    //           );
-    //     }
-    //   },
-    // );
   }
 }
 
