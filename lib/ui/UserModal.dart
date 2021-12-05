@@ -7,9 +7,6 @@ import 'package:OptixToolkit/services/database.dart';
 // Package imports:
 import 'package:google_fonts/google_fonts.dart';
 
-// Project imports:
-import 'package:OptixToolkit/services/database.dart';
-
 class UserModal extends StatelessWidget {
   final User user;
   const UserModal({Key key, this.user}) : super(key: key);
