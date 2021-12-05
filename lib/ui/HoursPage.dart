@@ -34,9 +34,38 @@ class hoursPageLoaded extends StatefulWidget {
 }
 
 class _hoursPageState extends State<hoursPageLoaded> {
+  int time, lastCheckIn, meetingCount;
+
   @override
   void initState() {
+    refresh();
     super.initState();
+  }
+
+  Future refresh() async {
+    var curTime = await Database.getTime(
+        Provider.of<IdTokenResult>(context, listen: false), context);
+    var curLastCheckInProv = await Database.getLastCheckIn(
+        Provider.of<IdTokenResult>(context, listen: false), context);
+    var curMeetingCountProv = await Database.getMeetingCount(
+        Provider.of<IdTokenResult>(context, listen: false), context);
+
+    if (curMeetingCountProv == null ||
+        curLastCheckInProv == null ||
+        curTime == null) {
+      return;
+    }
+
+    var curLastCheckIn = curLastCheckInProv.getValue();
+    var curMeetingCount = curMeetingCountProv.getValue();
+
+    print("old time = ${this.time}, new time = ${curTime}");
+
+    setState(() {
+      this.time = curTime;
+      this.lastCheckIn = curLastCheckIn;
+      this.meetingCount = curMeetingCount;
+    });
   }
 
   @override
@@ -44,17 +73,18 @@ class _hoursPageState extends State<hoursPageLoaded> {
     final checkInCodeController = TextEditingController();
     final checkOutCodeController = TextEditingController();
 
-    var timeProv = Provider.of<int>(context);
-    var lastCheckInProv = Provider.of<LastCheckInTime>(context);
-    var meetingCountProv = Provider.of<MeetingCount>(context);
-    if (timeProv == null || lastCheckInProv == null || meetingCountProv == null)
-      return Loading();
+    if (time == null || lastCheckIn == null || meetingCount == null) {
+      var timeProv = Provider.of<int>(context);
+      var lastCheckInProv = Provider.of<LastCheckInTime>(context);
+      var meetingCountProv = Provider.of<MeetingCount>(context);
+      if (timeProv == null ||
+          lastCheckInProv == null ||
+          meetingCountProv == null) return Loading();
 
-    var time = timeProv;
-    var lastCheckIn = lastCheckInProv.getValue();
-    var meetingCount = meetingCountProv.getValue();
-
-    print("lastcheckin ${lastCheckIn}");
+      time = timeProv;
+      lastCheckIn = lastCheckInProv.getValue();
+      meetingCount = meetingCountProv.getValue();
+    }
 
     final Color formBackground = Color(0xff3A3D41);
     final Color subtleGray = Color(0xffcccccc);
@@ -175,6 +205,7 @@ class _hoursPageState extends State<hoursPageLoaded> {
                   print(result);
                   if (result) {
                     GoodPop.showGood(context, "Your hours are being tracked.");
+                    refresh();
                   }
                 },
               ),
@@ -248,6 +279,7 @@ class _hoursPageState extends State<hoursPageLoaded> {
                   print(result);
                   if (result) {
                     GoodPop.showGood(context, "Your hours have been logged.");
+                    refresh();
                   }
                 },
               ),
@@ -332,7 +364,6 @@ class _hoursPageState extends State<hoursPageLoaded> {
                     style: buttonStyle,
                     onPressed: () {
                       print("Checking in...");
-                      print(lastCheckIn);
                       _showMyDialogCheckIn();
                     },
                   ),
