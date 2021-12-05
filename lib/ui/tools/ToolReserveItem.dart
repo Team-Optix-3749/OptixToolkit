@@ -325,8 +325,8 @@ class ToolReserveItem extends StatelessWidget {
                       }
                     },
                     child: Text(
-                      tool.reservations.contains(
-                              Provider.of<FirebaseUser>(context).displayName)
+                      checkForUser(tool.reservations,
+                              Provider.of<FirebaseUser>(context).uid)
                           ? "UNRESERVE"
                           : "RESERVE",
                       style: GoogleFonts.rubik(
@@ -345,4 +345,11 @@ class ToolReserveItem extends StatelessWidget {
       ),
     );
   }
+}
+
+bool checkForUser(List<Map<String, dynamic>> l, String desired) {
+  for (Map<String, dynamic> m in l) {
+    if (m["uid"] == desired) return true;
+  }
+  return false;
 }
