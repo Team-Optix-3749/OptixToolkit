@@ -63,8 +63,9 @@ class _toolState extends State<ToolWidget> with RouteAware {
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text("Alert Dialog title"),
-          content: new Text("Alert Dialog body"),
+          title: new Text("Error!"),
+          content: new Text(
+              "An error has occurred, but we don't know what exactly. :("),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -185,6 +186,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
                         checkOutScan().catchError(() {
                           _showDialog(context);
                         });
+                        refreshTools();
                       },
                       child: Text(
                         'CHECK OUT',
@@ -207,6 +209,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
                         returnScan().catchError(() {
                           _showDialog(context);
                         });
+                        refreshTools();
                       },
                       child: Text(
                         'RETURN',
