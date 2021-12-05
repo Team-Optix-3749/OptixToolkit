@@ -239,7 +239,7 @@ class _UserListState extends State<UserList> {
                   margin:
                       EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
                   width: 400,
-                  height: MediaQuery.of(context).size.height * 0.80,
+                  height: MediaQuery.of(context).size.height * 0.70,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                     color: Color(0xff3a3d41),

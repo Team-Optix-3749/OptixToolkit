@@ -65,6 +65,7 @@ class UserModal extends StatelessWidget {
       title: Text(
         user.displayName,
         style: GoogleFonts.rubik(
+          fontSize: 25.0,
           fontWeight: FontWeight.bold,
           color: Color(0xff159deb),
         ),
@@ -73,31 +74,85 @@ class UserModal extends StatelessWidget {
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
-            const SizedBox(height: 20),
-            ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(blue),
-                ),
-                onPressed: () async {
-                  var res = await Database.addCertifyRole(
-                      Provider.of<IdTokenResult>(context, listen: false),
-                      user.uid,
-                      context);
-                  if (res) {
-                    Navigator.of(context).pop();
-                    print("worked");
-                  }
-                },
-                child: RichText(
-                  text: TextSpan(
-                    text: 'Certify User',
+            RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  TextSpan(
+                    text: 'Status: ',
                     style: GoogleFonts.rubik(
-                      color: Colors.white,
-                      fontSize: 18.0,
                       fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 20.0,
                     ),
                   ),
-                )),
+                  TextSpan(
+                    text: (user.certified) ? "Certified" : "Not Certified",
+                    style: (user.certified)
+                        ? GoogleFonts.rubik(
+                            fontWeight: FontWeight.bold,
+                            color: green,
+                            fontSize: 20.0,
+                          )
+                        : GoogleFonts.rubik(
+                            fontWeight: FontWeight.bold,
+                            color: red,
+                            fontSize: 20.0,
+                          ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(blue),
+              ),
+              onPressed: () async {
+                var res = await Database.addCertifyRole(
+                    Provider.of<IdTokenResult>(context, listen: false),
+                    user.uid,
+                    context);
+                if (res) {
+                  Navigator.of(context).pop();
+                  print("worked");
+                }
+              },
+              child: RichText(
+                text: TextSpan(
+                  text: 'Certify User',
+                  style: GoogleFonts.rubik(
+                    color: Colors.white,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(blue),
+              ),
+              onPressed: () async {
+                var res = await Database.removeCertifyRole(
+                    Provider.of<IdTokenResult>(context, listen: false),
+                    user.uid,
+                    context);
+                if (res) {
+                  Navigator.of(context).pop();
+                  print("worked");
+                }
+              },
+              child: RichText(
+                text: TextSpan(
+                  text: 'Uncertify User :(',
+                  style: GoogleFonts.rubik(
+                    color: Colors.white,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
