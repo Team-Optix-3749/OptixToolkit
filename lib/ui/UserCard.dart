@@ -78,6 +78,7 @@ class UserCard extends StatelessWidget {
                             context);
                         if (res) {
                           print("removed");
+                          Navigator.of(context).pop();
                         }
                       },
                       child: Text(
