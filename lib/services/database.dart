@@ -429,7 +429,7 @@ class Database {
     }
   }
 
-  static Future<int> getLastCheckIn(
+  static Future<LastCheckInTime> getLastCheckIn(
       IdTokenResult idToken, BuildContext context) async {
     var client = http.Client();
 
@@ -446,16 +446,16 @@ class Database {
     if (result.statusCode == 200) {
       var a = jsonDecode(result.body);
       var b = a['lastcheckin'];
-      return b as int;
+      return LastCheckInTime(b as int);
     } else {
       print("ERROR");
       print(result.body);
       Alert.showAlert(context, jsonDecode(result.body)['err']);
-      return 0;
+      return LastCheckInTime(0);
     }
   }
 
-  static Future<int> getMeetingCount(
+  static Future<MeetingCount> getMeetingCount(
       IdTokenResult idToken, BuildContext context) async {
     var client = http.Client();
 
@@ -472,12 +472,12 @@ class Database {
     if (result.statusCode == 200) {
       var a = jsonDecode(result.body);
       var b = a['count'];
-      return b as int;
+      return MeetingCount(b as int);
     } else {
       print("ERROR");
       print(result.body);
       Alert.showAlert(context, jsonDecode(result.body)['err']);
-      return 0;
+      return MeetingCount(0);
     }
   }
 
@@ -760,6 +760,30 @@ class User {
 
   String toString() {
     return '${displayName}';
+  }
+}
+
+class LastCheckInTime {
+  int _value;
+
+  LastCheckInTime(int value) {
+    _value = value;
+  }
+
+  int getValue() {
+    return _value;
+  }
+}
+
+class MeetingCount {
+  int _value;
+
+  MeetingCount(int value) {
+    _value = value;
+  }
+
+  int getValue() {
+    return _value;
   }
 }
 

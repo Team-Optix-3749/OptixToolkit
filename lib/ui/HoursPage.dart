@@ -12,44 +12,28 @@ class hoursPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    MultiProvider(providers: [
+    return MultiProvider(providers: [
       FutureProvider<int>.value(
           value:
               Database.getTime(Provider.of<IdTokenResult>(context), context)),
-      FutureProvider<int>.value(
+      FutureProvider<LastCheckInTime>.value(
           value: Database.getLastCheckIn(
               Provider.of<IdTokenResult>(context), context)),
-      FutureProvider<int>.value(
+      FutureProvider<MeetingCount>.value(
           value: Database.getMeetingCount(
               Provider.of<IdTokenResult>(context), context))
     ], child: hoursPageLoaded());
   }
 }
+
 class hoursPageLoaded extends StatefulWidget {
-  final int time;
-  final int lastCheckIn;
-  final int meetingCount;
-  const hoursPageLoaded(
-      {Key key, this.time, this.lastCheckIn, this.meetingCount})
-      : super(key: key);
+  const hoursPageLoaded({Key key}) : super(key: key);
 
   @override
-  _hoursPageState createState() =>
-      _hoursPageState(this.time, this.lastCheckIn, this.meetingCount);
+  _hoursPageState createState() => _hoursPageState();
 }
 
 class _hoursPageState extends State<hoursPageLoaded> {
-  int time;
-  int lastCheckIn;
-  int meetingCount;
-
-  _hoursPageState(int time, int lastCheckIn, int meetingCount) {
-    this.time = time;
-    this.lastCheckIn = lastCheckIn;
-    this.meetingCount = meetingCount;
-  }
-
   @override
   void initState() {
     super.initState();
@@ -60,11 +44,15 @@ class _hoursPageState extends State<hoursPageLoaded> {
     final checkInCodeController = TextEditingController();
     final checkOutCodeController = TextEditingController();
 
-    var time = Provider.of<int>(context);
-    var lastCheckIn = Provider.of<int>(context);
-    var meetingCount = Provider.of<int>(context);
-    if (time == null || lastCheckIn == null || meetingCount == null)
+    var timeProv = Provider.of<int>(context);
+    var lastCheckInProv = Provider.of<LastCheckInTime>(context);
+    var meetingCountProv = Provider.of<MeetingCount>(context);
+    if (timeProv == null || lastCheckInProv == null || meetingCountProv == null)
       return Loading();
+
+    var time = timeProv;
+    var lastCheckIn = lastCheckInProv.getValue();
+    var meetingCount = meetingCountProv.getValue();
 
     print("lastcheckin ${lastCheckIn}");
 
