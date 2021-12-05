@@ -366,6 +366,31 @@ class Database {
     }
   }
 
+  static Future removeCertifyRole(
+      IdTokenResult idToken, String uid, BuildContext context) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'uncertify-user',
+      'uid': uid,
+      'auth': idToken.token,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode == 200) {
+      return true;
+    } else {
+      print("ERROR");
+      print(result.body);
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
+      return false;
+    }
+  }
+
   static Future reimbursement(
       IdTokenResult idToken,
       String personName,
@@ -745,17 +770,19 @@ class User {
   final String uid;
   final String email;
   final String displayName;
-  User({
-    @required this.uid,
-    @required this.email,
-    @required this.displayName,
-  });
+  final bool certified;
+  User(
+      {@required this.uid,
+      @required this.email,
+      @required this.displayName,
+      @required this.certified});
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
         uid: json['uid'] as String,
         email: json['email'] as String,
-        displayName: json['displayName'] as String);
+        displayName: json['displayName'] as String,
+        certified: json['certified'] as bool);
   }
 
   String toString() {
