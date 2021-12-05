@@ -1,6 +1,6 @@
 # OptixToolkit
 ![build](https://github.com/Team-Optix-3749/OptixToolkit/workflows/build/badge.svg)
-> 🧰 An FRC app to track and manage tools, robot parts, and attendance hours.
+> 🧰 An FRC app to track and manage tools, reimbursements, and attendance hours.
 
 # Known Errors
 
