@@ -739,7 +739,6 @@ class Tool {
   final String user;
   final List<Map<String, dynamic>> reservations;
   final String status;
-  // final List<String> reservationsUid;
 
   Tool({
     @required this.id,
@@ -748,7 +747,6 @@ class Tool {
     @required this.user,
     @required this.reservations,
     @required this.status,
-    // @required this.reservationsUid,
   });
 
   factory Tool.fromJson(Map<String, dynamic> json) {
