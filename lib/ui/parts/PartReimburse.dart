@@ -25,8 +25,6 @@ class _PartReimburseState extends State<PartReimburse> {
   final mailingAddressController = TextEditingController();
   final partDescriptionController = TextEditingController();
   final checkAddressedToController = TextEditingController();
-  String dropdownValue = "Select a Carrier";
-  double priority = 0;
   File _image;
   final picker = ImagePicker();
 
@@ -52,15 +50,6 @@ class _PartReimburseState extends State<PartReimburse> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: background,
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: Text(
-      //     "GET REIMBURSED",
-      //     style: GoogleFonts.rubik(fontWeight: FontWeight.bold),
-      //     textAlign: TextAlign.center,
-      //   ),
-      //   backgroundColor: Color(0xff159deb),
-      // ),
       body: Center(
         child: Container(
           child: Container(
@@ -253,9 +242,14 @@ class _PartReimburseState extends State<PartReimburse> {
                                       print("Result of the request below: ");
                                       print(result);
                                       if (result) {
-                                        setState(() {});
                                         Good.showGood(context,
                                             "We have sent your reimbursement to business for review. They will file it and send you a check shortly.");
+                                        File _image = null;
+                                        partNameController.clear();
+                                        partLinkController.clear();
+                                        mailingAddressController.clear();
+                                        partDescriptionController.clear();
+                                        checkAddressedToController.clear();
                                       }
                                     }
                                   },
