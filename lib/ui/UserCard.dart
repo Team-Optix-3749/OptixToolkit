@@ -1,6 +1,6 @@
 // Flutter imports:
 import 'package:OptixToolkit/services/NavigationService.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -70,10 +70,10 @@ class UserCard extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(7.0),
                     ),
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: () async {
                         var res = await Database.removeUser(
-                            Provider.of<IdTokenResult>(context, listen: false),
+                            Provider.of<firebase.IdTokenResult>(context, listen: false),
                             user.uid,
                             context);
                         if (res) {
@@ -89,7 +89,7 @@ class UserCard extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      color: Color(0xffd5212c),
+                      style: ElevatedButton.styleFrom(backgroundColor: Color(0xffd5212c))
                     ),
                   ),
                 ],

@@ -1,6 +1,6 @@
 // Flutter imports:
 import 'package:OptixToolkit/services/NavigationService.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:flutter/material.dart';
 import 'package:OptixToolkit/services/database.dart';
 import 'package:OptixToolkit/ui/tools/ToolAdd.dart';
@@ -87,7 +87,7 @@ class ToolReserve extends StatelessWidget {
         ),
       ),
       floatingActionButton:
-          (Provider.of<IdTokenResult>(context).claims['admin'] == true)
+          (Provider.of<firebase.IdTokenResult>(context).claims['admin'] == true)
               ? FloatingActionButton(
                   onPressed: () {
                     NavigationService.goTo(

@@ -20,7 +20,7 @@ class Good extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget doneButton = FlatButton(
+    Widget doneButton = TextButton(
       child: Text(
         "Done",
         style: GoogleFonts.rubik(

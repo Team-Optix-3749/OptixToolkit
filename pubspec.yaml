@@ -16,7 +16,7 @@ dependencies:
   
   permission_handler:
 
-  barcode_scan:
+  barcode_scan2: 
   loading_animations:
   firebase_auth:
   firebase_storage:

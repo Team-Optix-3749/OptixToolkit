@@ -1,7 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:OptixToolkit/services/database.dart';
 
 // Package imports:
@@ -45,7 +45,7 @@ class UserModal extends StatelessWidget {
         fontSize: 18.0,
       ),
     };
-    Widget doneButton = FlatButton(
+    Widget doneButton = TextButton(
       child: Text(
         "Done",
         style: GoogleFonts.rubik(
@@ -106,7 +106,7 @@ class UserModal extends StatelessWidget {
               ),
               onPressed: () async {
                 var res = await Database.addCertifyRole(
-                    Provider.of<IdTokenResult>(context, listen: false),
+                    Provider.of<firebase.IdTokenResult>(context, listen: false),
                     user.uid,
                     context);
                 if (res) {
@@ -131,7 +131,7 @@ class UserModal extends StatelessWidget {
               ),
               onPressed: () async {
                 var res = await Database.removeCertifyRole(
-                    Provider.of<IdTokenResult>(context, listen: false),
+                    Provider.of<firebase.IdTokenResult>(context, listen: false),
                     user.uid,
                     context);
                 if (res) {

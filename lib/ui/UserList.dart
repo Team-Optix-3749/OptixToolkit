@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -37,7 +37,7 @@ class _UserListState extends State<UserList> {
   bool called = false;
 
   Future<void> _showToolService(BuildContext context) async {
-    Widget cancelButton = FlatButton(
+    Widget cancelButton = TextButton(
       child: Text(
         "Cancel",
         style: GoogleFonts.rubik(
@@ -150,12 +150,12 @@ class _UserListState extends State<UserList> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(7.0)),
-                                    child: RaisedButton(
+                                    child: ElevatedButton(
                                       onPressed: () async {
                                         if (_formKey.currentState.validate()) {
                                           print("Handling on pressed");
                                           var result = await Database.addUser(
-                                              Provider.of<IdTokenResult>(
+                                              Provider.of<firebase.IdTokenResult>(
                                                   context,
                                                   listen: false),
                                               partNameController.text,
@@ -177,7 +177,7 @@ class _UserListState extends State<UserList> {
                                             fontSize: 17.0,
                                             color: Colors.white),
                                       ),
-                                      color: Color(0xff159deb),
+                                      style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
                                     ),
                                   ),
                                 ],
@@ -191,7 +191,7 @@ class _UserListState extends State<UserList> {
                 ),
               ),
               actions: [
-                // (!!Provider.of<IdTokenResult>(context).claims['admin'])
+                // (!!Provider.of<firebase.IdTokenResult>(context).claims['admin'])
                 //     ? removeButton
                 //     : null,
                 cancelButton,
@@ -206,7 +206,7 @@ class _UserListState extends State<UserList> {
   @override
   Widget build(BuildContext context) {
     if (!called) {
-      Database.getUsers(Provider.of<IdTokenResult>(context)).then((v) {
+      Database.getUsers(Provider.of<firebase.IdTokenResult>(context)).then((v) {
         setState(() {
           users = v.map((u) => UserCard(user: u)).toList();
         });

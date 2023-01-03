@@ -2,7 +2,7 @@
 import 'package:OptixToolkit/ui/Loading.dart';
 import 'package:OptixToolkit/ui/parts/PartCard.dart';
 import 'package:OptixToolkit/services/database.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -21,7 +21,7 @@ class partsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Part>>(
-      future: Database.getParts(Provider.of<IdTokenResult>(context)),
+      future: Database.getParts(Provider.of<firebase.IdTokenResult>(context)),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
@@ -32,7 +32,7 @@ class partsPage extends StatelessWidget {
             else
               return PartsWidget(
                   parts: snapshot.data,
-                  idToken: Provider.of<IdTokenResult>(context));
+                  idToken: Provider.of<firebase.IdTokenResult>(context));
         }
       },
     );
@@ -41,7 +41,7 @@ class partsPage extends StatelessWidget {
 
 class PartsWidget extends StatefulWidget {
   final List<Part> parts;
-  final IdTokenResult idToken;
+  final firebase.IdTokenResult idToken;
 
   PartsWidget({Key key, this.parts, this.idToken}) : super(key: key);
 
@@ -51,9 +51,9 @@ class PartsWidget extends StatefulWidget {
 
 class _partState extends State<PartsWidget> {
   List<Part> parts;
-  IdTokenResult idToken;
+  firebase.IdTokenResult idToken;
 
-  _partState(List<Part> parts, IdTokenResult idToken) {
+  _partState(List<Part> parts, firebase.IdTokenResult idToken) {
     this.parts = parts;
     this.idToken = idToken;
   }
@@ -88,7 +88,7 @@ class _partState extends State<PartsWidget> {
                     height: 55,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         NavigationService.goToAndThen(
                             PageRouteBuilder(
@@ -105,7 +105,7 @@ class _partState extends State<PartsWidget> {
                             fontSize: 16.0,
                             color: Colors.white),
                       ),
-                      color: Color(0xff159deb),
+                      style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
                     ),
                   ),
                   ButtonTheme(
@@ -113,7 +113,7 @@ class _partState extends State<PartsWidget> {
                     height: 55,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         NavigationService.goTo(
                           PageRouteBuilder(
@@ -129,7 +129,7 @@ class _partState extends State<PartsWidget> {
                             fontSize: 16.0,
                             color: Colors.white),
                       ),
-                      color: Color(0xff159deb),
+                      style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
                     ),
                   ),
                 ],

@@ -3,14 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 
 class ToolReserveItem extends StatelessWidget {
   final Tool tool;
   const ToolReserveItem({Key key, this.tool}) : super(key: key);
 
   Future<void> _showToolService(BuildContext context) async {
-    Widget doneButton = FlatButton(
+    Widget doneButton = TextButton(
       child: Text(
         "Done",
         style: GoogleFonts.rubik(
@@ -23,7 +23,7 @@ class ToolReserveItem extends StatelessWidget {
       },
     );
 
-    Widget removeButton = FlatButton(
+    Widget removeButton = TextButton(
       child: Text(
         "Remove",
         style: GoogleFonts.rubik(
@@ -33,7 +33,7 @@ class ToolReserveItem extends StatelessWidget {
       ),
       onPressed: () async {
         var res = await Database.removeTool(
-            Provider.of<IdTokenResult>(context, listen: false),
+            Provider.of<firebase.IdTokenResult>(context, listen: false),
             this.tool.id,
             context);
         if (res) {
@@ -73,15 +73,15 @@ class ToolReserveItem extends StatelessWidget {
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: () async {
                       print("Handling on pressed");
                       print("Tool Name: " + tool.name);
                       print("Tool Status: " + tool.status);
                       if (tool.status == "notInUse") {
                         var result = await Database.changeToolStatus(
-                          Provider.of<IdTokenResult>(context, listen: false),
-                          Provider.of<FirebaseUser>(context, listen: false),
+                          Provider.of<firebase.IdTokenResult>(context, listen: false),
+                          Provider.of<firebase.User>(context, listen: false),
                           tool.name,
                           "outOfService",
                           context,
@@ -92,8 +92,8 @@ class ToolReserveItem extends StatelessWidget {
                         }
                       } else if (tool.status == "outOfService") {
                         var result = await Database.changeToolStatus(
-                          Provider.of<IdTokenResult>(context, listen: false),
-                          Provider.of<FirebaseUser>(context, listen: false),
+                          Provider.of<firebase.IdTokenResult>(context, listen: false),
+                          Provider.of<firebase.User>(context, listen: false),
                           tool.name,
                           "notInUse",
                           context,
@@ -115,13 +115,13 @@ class ToolReserveItem extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    color: Color(0xff159deb),
+                    style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
                   ),
                 ],
               ),
             ),
             actions: [
-              (!!Provider.of<IdTokenResult>(context).claims['admin'])
+              (!!Provider.of<firebase.IdTokenResult>(context).claims['admin'])
                   ? removeButton
                   : null,
               doneButton,
@@ -133,7 +133,7 @@ class ToolReserveItem extends StatelessWidget {
   }
 
   Future<void> _showMyDialog(BuildContext context) async {
-    Widget doneButton = FlatButton(
+    Widget doneButton = TextButton(
       child: Text(
         "Done",
         style: GoogleFonts.rubik(
@@ -170,7 +170,7 @@ class ToolReserveItem extends StatelessWidget {
                           GestureDetector(
                             onTap: () async {
                               var res = await Database.reserveToolRemove(
-                                  Provider.of<IdTokenResult>(context,
+                                  Provider.of<firebase.IdTokenResult>(context,
                                       listen: false),
                                   user["uid"] as String,
                                   tool.name,
@@ -307,18 +307,18 @@ class ToolReserveItem extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(7.0),
                   ),
-                  child: RaisedButton(
+                  child: ElevatedButton(
                     onPressed: () async {
                       print("Handling on pressed");
                       print("Tool Name: " + tool.name);
                       print("Tool Status: " + tool.status);
                       var result = await Database.reserveTool(
-                          Provider.of<IdTokenResult>(context, listen: false),
-                          Provider.of<FirebaseUser>(context, listen: false),
+                          Provider.of<firebase.IdTokenResult>(context, listen: false),
+                          Provider.of<firebase.User>(context, listen: false),
                           tool.name,
                           context);
                       print(await Database.getUsers(
-                          Provider.of<IdTokenResult>(context, listen: false)));
+                          Provider.of<firebase.IdTokenResult>(context, listen: false)));
                       print("Result of the request: " + result.toString());
                       if (result) {
                         NavigationService.pop();
@@ -326,7 +326,7 @@ class ToolReserveItem extends StatelessWidget {
                     },
                     child: Text(
                       checkForUser(tool.reservations,
-                              Provider.of<FirebaseUser>(context).uid)
+                              Provider.of<firebase.User>(context).uid)
                           ? "UNRESERVE"
                           : "RESERVE",
                       style: GoogleFonts.rubik(
@@ -335,7 +335,7 @@ class ToolReserveItem extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    color: Color(0xff159deb),
+                    style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
                   ),
                 ),
               ],

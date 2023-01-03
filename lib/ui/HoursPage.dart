@@ -1,6 +1,6 @@
 import 'package:OptixToolkit/services/GoodPop.dart';
 import 'package:OptixToolkit/ui/Loading.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,13 +15,13 @@ class hoursPage extends StatelessWidget {
     return MultiProvider(providers: [
       FutureProvider<int>.value(
           value:
-              Database.getTime(Provider.of<IdTokenResult>(context), context)),
+              Database.getTime(Provider.of<firebase.IdTokenResult>(context), context)),
       FutureProvider<LastCheckInTime>.value(
           value: Database.getLastCheckIn(
-              Provider.of<IdTokenResult>(context), context)),
+              Provider.of<firebase.IdTokenResult>(context), context)),
       FutureProvider<MeetingCount>.value(
           value: Database.getMeetingCount(
-              Provider.of<IdTokenResult>(context), context))
+              Provider.of<firebase.IdTokenResult>(context), context))
     ], child: hoursPageLoaded());
   }
 }
@@ -44,11 +44,11 @@ class _hoursPageState extends State<hoursPageLoaded> {
 
   Future refresh() async {
     var curTime = await Database.getTime(
-        Provider.of<IdTokenResult>(context, listen: false), context);
+        Provider.of<firebase.IdTokenResult>(context, listen: false), context);
     var curLastCheckInProv = await Database.getLastCheckIn(
-        Provider.of<IdTokenResult>(context, listen: false), context);
+        Provider.of<firebase.IdTokenResult>(context, listen: false), context);
     var curMeetingCountProv = await Database.getMeetingCount(
-        Provider.of<IdTokenResult>(context, listen: false), context);
+        Provider.of<firebase.IdTokenResult>(context, listen: false), context);
 
     if (curMeetingCountProv == null ||
         curLastCheckInProv == null ||
@@ -198,7 +198,7 @@ class _hoursPageState extends State<hoursPageLoaded> {
                 onPressed: () async {
                   print("Handling on pressed");
                   var result = await Database.checkIn(
-                      Provider.of<IdTokenResult>(context, listen: false),
+                      Provider.of<firebase.IdTokenResult>(context, listen: false),
                       checkInCodeController.text,
                       context);
                   print("Result of the request below: ");
@@ -272,7 +272,7 @@ class _hoursPageState extends State<hoursPageLoaded> {
                 onPressed: () async {
                   print("Handling on pressed");
                   var result = await Database.checkOut(
-                      Provider.of<IdTokenResult>(context, listen: false),
+                      Provider.of<firebase.IdTokenResult>(context, listen: false),
                       checkOutCodeController.text,
                       context);
                   print("Result of the request below: ");

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 
 // Package imports:
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:OptixToolkit/services/Alert.dart';
 
 class Auth {
   static bool isInProcess = false;
-  static FirebaseAuth _auth = FirebaseAuth.instance;
+  static firebase.FirebaseAuth _auth = firebase.FirebaseAuth.instance;
 
   static Future signIn(
       String email, String password, BuildContext context) async {
@@ -28,8 +28,8 @@ class Auth {
     await _auth.signOut();
   }
 
-  static Stream<FirebaseUser> authState() {
-    return _auth.onAuthStateChanged;
+  static Stream<firebase.User> authState() {
+    return _auth.authStateChanges();
   }
 
   static Future<void> sendPasswordResetEmail(
@@ -42,14 +42,13 @@ class Auth {
     }
   }
 
-  static Future<String> getImageUrl(File _image, FirebaseUser user) async {
-    StorageReference firebaseStorageRef = FirebaseStorage.instance
+  static Future<String> getImageUrl(File _image, firebase.User user) async {
+    Reference firebaseStorageRef = FirebaseStorage.instance
         .ref()
         .child("user/${user.uid}/${_image.path.split('/').last}");
-    StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
-    StorageTaskSnapshot storageSnapshot = await uploadTask.onComplete;
+    UploadTask uploadTask = firebaseStorageRef.putFile(_image);
+    TaskSnapshot storageSnapshot = await uploadTask;
     var downloadUrl = await storageSnapshot.ref.getDownloadURL();
-    if (!uploadTask.isComplete) throw ("error");
     return downloadUrl.toString();
   }
 }

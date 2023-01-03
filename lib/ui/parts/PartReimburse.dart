@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:OptixToolkit/services/Good.dart';
 
 // Package imports:
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 // Project imports:
@@ -34,7 +34,7 @@ class _PartReimburseState extends State<PartReimburse> {
   final Color subtleGray = Color(0xffcccccc);
 
   Future getImage() async {
-    final pickedFile = await ImagePicker.pickImage(source: ImageSource.camera);
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
 
     setState(() {
       if (pickedFile != null) {
@@ -191,7 +191,7 @@ class _PartReimburseState extends State<PartReimburse> {
                                 height: 55,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(7.0)),
-                                child: RaisedButton(
+                                child: ElevatedButton(
                                   onPressed: () async {
                                     getImage();
                                   },
@@ -199,7 +199,7 @@ class _PartReimburseState extends State<PartReimburse> {
                                       style: GoogleFonts.rubik(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),
-                                  color: Color(0xff159deb),
+                                  style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
                                 ),
                               ),
                             ],
@@ -220,14 +220,14 @@ class _PartReimburseState extends State<PartReimburse> {
                                 height: 55,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(7.0)),
-                                child: RaisedButton(
+                                child: ElevatedButton(
                                   onPressed: () async {
                                     if (_formKey.currentState.validate()) {
                                       print("Handling on pressed");
                                       var result = await Database.reimbursement(
-                                          Provider.of<IdTokenResult>(context,
+                                          Provider.of<firebase.IdTokenResult>(context,
                                               listen: false),
-                                          Provider.of<FirebaseUser>(context,
+                                          Provider.of<firebase.User>(context,
                                                   listen: false)
                                               .displayName,
                                           partNameController.text,
@@ -235,7 +235,7 @@ class _PartReimburseState extends State<PartReimburse> {
                                           mailingAddressController.text,
                                           await Auth.getImageUrl(
                                               _image,
-                                              Provider.of<FirebaseUser>(context,
+                                              Provider.of<firebase.User>(context,
                                                   listen: false)),
                                           checkAddressedToController.text,
                                           context);
@@ -257,7 +257,7 @@ class _PartReimburseState extends State<PartReimburse> {
                                       style: GoogleFonts.rubik(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),
-                                  color: Color(0xff159deb),
+                                  style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
                                 ),
                               ),
                             ],

@@ -1,7 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:OptixToolkit/services/database.dart';
 
 // Package imports:
@@ -43,7 +43,7 @@ class PartModal extends StatelessWidget {
         fontSize: 18.0,
       ),
     };
-    Widget doneButton = FlatButton(
+    Widget doneButton = TextButton(
       child: Text(
         "Done",
         style: GoogleFonts.rubik(
@@ -56,7 +56,7 @@ class PartModal extends StatelessWidget {
       },
     );
 
-    Widget removeButton = FlatButton(
+    Widget removeButton = TextButton(
       child: Text(
         "Remove",
         style: GoogleFonts.rubik(
@@ -66,7 +66,7 @@ class PartModal extends StatelessWidget {
       ),
       onPressed: () async {
         var res = await Database.removePart(
-            Provider.of<IdTokenResult>(context, listen: false),
+            Provider.of<firebase.IdTokenResult>(context, listen: false),
             this.part.id,
             context);
         if (res) {
@@ -187,7 +187,7 @@ class PartModal extends StatelessWidget {
         ),
       ),
       actions: [
-        (Provider.of<IdTokenResult>(context).claims['admin'] == true)
+        (Provider.of<firebase.IdTokenResult>(context).claims['admin'] == true)
             ? removeButton
             : null,
         doneButton,

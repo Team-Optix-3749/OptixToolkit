@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:OptixToolkit/ui/UserList.dart';
 
 // Package imports:
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -52,7 +52,7 @@ class profilePage extends StatelessWidget {
                                   fontSize: 25.0,
                                 )),
                             TextSpan(
-                              text: Provider.of<FirebaseUser>(context)
+                              text: Provider.of<firebase.User>(context)
                                   .displayName
                                   .split(" ")[0],
                               style: GoogleFonts.rubik(
@@ -175,7 +175,7 @@ class profilePage extends StatelessWidget {
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(7.0)),
-                                          child: RaisedButton(
+                                          child: ElevatedButton(
                                             onPressed: () {
                                               Auth.sendPasswordResetEmail(
                                                   emailController.text,
@@ -189,7 +189,7 @@ class profilePage extends StatelessWidget {
                                                 fontSize: 18,
                                               ),
                                             ),
-                                            color: Color(0xff159deb),
+                                            style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb))
                                           ),
                                         ),
                                       ],
@@ -207,7 +207,7 @@ class profilePage extends StatelessWidget {
               ),
             ),
           ),
-          if (Provider.of<IdTokenResult>(context).claims['admin'] == true)
+          if (Provider.of<firebase.IdTokenResult>(context).claims['admin'] == true)
             Container(
               margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
               width: 400,
@@ -266,7 +266,7 @@ class profilePage extends StatelessWidget {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(7.0)),
-                                      child: RaisedButton(
+                                      child: ElevatedButton(
                                         onPressed: () {
                                           NavigationService.goTo(
                                             PageRouteBuilder(
@@ -284,7 +284,7 @@ class profilePage extends StatelessWidget {
                                             fontSize: 18,
                                           ),
                                         ),
-                                        color: Color(0xff159deb),
+                                        style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb))
                                       ),
                                     ),
                                   ],

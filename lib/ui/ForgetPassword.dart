@@ -99,7 +99,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       height: 50,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0)),
-                      child: RaisedButton(
+                      child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
                             Auth.sendPasswordResetEmail(
@@ -110,7 +110,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         child: Text('Forget Password',
                             style: GoogleFonts.rubik(
                                 fontWeight: FontWeight.bold, color: white)),
-                        color: blue,
+                        style: ElevatedButton.styleFrom(backgroundColor: blue)
                       ),
                     ),
                     SizedBox(height: 20),

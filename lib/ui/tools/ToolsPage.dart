@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:OptixToolkit/ui/tools/ToolCard.dart';
 import 'package:OptixToolkit/services/database.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:OptixToolkit/ui/Loading.dart';
 import 'package:provider/provider.dart';
 
 // Package imports:
-import 'package:barcode_scan/barcode_scan.dart';
+import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class toolsPage extends StatelessWidget {
@@ -18,7 +18,7 @@ class toolsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Map<String, List<Tool>>>(
-      future: Database.getTools(Provider.of<IdTokenResult>(context)),
+      future: Database.getTools(Provider.of<firebase.IdTokenResult>(context)),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
@@ -29,7 +29,7 @@ class toolsPage extends StatelessWidget {
             else
               return ToolWidget(
                 tools: snapshot.data,
-                idToken: Provider.of<IdTokenResult>(context),
+                idToken: Provider.of<firebase.IdTokenResult>(context),
               );
         }
       },
@@ -39,7 +39,7 @@ class toolsPage extends StatelessWidget {
 
 class ToolWidget extends StatefulWidget {
   Map<String, List<Tool>> tools;
-  final IdTokenResult idToken;
+  final firebase.IdTokenResult idToken;
 
   ToolWidget({Key key, this.tools, this.idToken}) : super(key: key);
 
@@ -49,9 +49,9 @@ class ToolWidget extends StatefulWidget {
 
 class _toolState extends State<ToolWidget> with RouteAware {
   Map<String, List<Tool>> tools;
-  IdTokenResult idToken;
+  firebase.IdTokenResult idToken;
 
-  _toolState(Map<String, List<Tool>> tools, IdTokenResult idToken) {
+  _toolState(Map<String, List<Tool>> tools, firebase.IdTokenResult idToken) {
     this.tools = tools;
     this.idToken = idToken;
   }
@@ -68,7 +68,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
               "An error has occurred, but we don't know what exactly. :("),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
-            new FlatButton(
+            new TextButton(
               child: new Text("Close"),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -106,8 +106,8 @@ class _toolState extends State<ToolWidget> with RouteAware {
       print("Handling on pressed");
       print("Tool Name: " + toolname);
       var result = await Database.checkOutTool(
-        Provider.of<IdTokenResult>(context, listen: false),
-        Provider.of<FirebaseUser>(context, listen: false),
+        Provider.of<firebase.IdTokenResult>(context, listen: false),
+        Provider.of<firebase.User>(context, listen: false),
         toolname,
         context,
       );
@@ -131,8 +131,8 @@ class _toolState extends State<ToolWidget> with RouteAware {
       print("Handling on pressed");
       print("Tool Name: " + toolname);
       var result = await Database.returnTool(
-        Provider.of<IdTokenResult>(context, listen: false),
-        Provider.of<FirebaseUser>(context, listen: false),
+        Provider.of<firebase.IdTokenResult>(context, listen: false),
+        Provider.of<firebase.User>(context, listen: false),
         toolname,
         context,
       );
@@ -181,7 +181,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
                     height: 55,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         checkOutScan().catchError(() {
                           _showDialog(context);
@@ -196,7 +196,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
                           color: Colors.white,
                         ),
                       ),
-                      color: Color(0xff159deb),
+                      style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
                     ),
                   ),
                   ButtonTheme(
@@ -204,7 +204,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
                     height: 55,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0)),
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         returnScan().catchError(() {
                           _showDialog(context);
@@ -219,7 +219,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
                           color: Colors.white,
                         ),
                       ),
-                      color: Color(0xff159deb),
+                      style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
                     ),
                   )
                 ],

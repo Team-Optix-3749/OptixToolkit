@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'dart:convert';
 
 // Package imports:
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:http/http.dart' as http;
 import 'package:OptixToolkit/services/Alert.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +17,8 @@ class FailedRequestException implements Exception {}
 
 class Database {
   static Future addPart(
-      IdTokenResult idToken,
-      FirebaseUser user,
+      firebase.IdTokenResult idToken,
+      firebase.User user,
       String name,
       String link,
       String trackingId,
@@ -55,7 +55,7 @@ class Database {
   }
 
   static Future removePart(
-      IdTokenResult idToken, String id, BuildContext context) async {
+      firebase.IdTokenResult idToken, String id, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -80,7 +80,7 @@ class Database {
   }
 
   static Future<List<Part>> getParts(
-    IdTokenResult idToken,
+    firebase.IdTokenResult idToken,
   ) async {
     var client = http.Client();
 
@@ -108,7 +108,7 @@ class Database {
     return parsed.map<Part>((json) => Part.fromJson(json)).toList();
   }
 
-  static Future reserveTool(IdTokenResult idToken, FirebaseUser user,
+  static Future reserveTool(firebase.IdTokenResult idToken, firebase.User user,
       String toolname, BuildContext context) async {
     var client = http.Client();
 
@@ -134,7 +134,7 @@ class Database {
     }
   }
 
-  static Future reserveToolRemove(IdTokenResult idToken, String uid,
+  static Future reserveToolRemove(firebase.IdTokenResult idToken, String uid,
       String toolname, BuildContext context) async {
     var client = http.Client();
 
@@ -160,7 +160,7 @@ class Database {
     }
   }
 
-  static Future changeToolStatus(IdTokenResult idToken, FirebaseUser user,
+  static Future changeToolStatus(firebase.IdTokenResult idToken, firebase.User user,
       String toolname, String newstatus, BuildContext context) async {
     var client = http.Client();
 
@@ -186,7 +186,7 @@ class Database {
     }
   }
 
-  static Future checkOutTool(IdTokenResult idToken, FirebaseUser user,
+  static Future checkOutTool(firebase.IdTokenResult idToken, firebase.User user,
       String toolname, BuildContext context) async {
     var client = http.Client();
 
@@ -212,7 +212,7 @@ class Database {
     }
   }
 
-  static Future returnTool(IdTokenResult idToken, FirebaseUser user,
+  static Future returnTool(firebase.IdTokenResult idToken, firebase.User user,
       String toolname, BuildContext context) async {
     var client = http.Client();
 
@@ -238,7 +238,7 @@ class Database {
     }
   }
 
-  static Future addTool(IdTokenResult idToken, String toolname, String category,
+  static Future addTool(firebase.IdTokenResult idToken, String toolname, String category,
       BuildContext context) async {
     var client = http.Client();
 
@@ -265,7 +265,7 @@ class Database {
   }
 
   static Future removeTool(
-      IdTokenResult idToken, String id, BuildContext context) async {
+      firebase.IdTokenResult idToken, String id, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -290,7 +290,7 @@ class Database {
   }
 
   static Future removeUser(
-      IdTokenResult idToken, String uid, BuildContext context) async {
+      firebase.IdTokenResult idToken, String uid, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -314,7 +314,7 @@ class Database {
     }
   }
 
-  static Future addUser(IdTokenResult idToken, String name, String email,
+  static Future addUser(firebase.IdTokenResult idToken, String name, String email,
       bool admin, BuildContext context) async {
     var client = http.Client();
 
@@ -342,7 +342,7 @@ class Database {
   }
 
   static Future addCertifyRole(
-      IdTokenResult idToken, String uid, BuildContext context) async {
+      firebase.IdTokenResult idToken, String uid, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -367,7 +367,7 @@ class Database {
   }
 
   static Future removeCertifyRole(
-      IdTokenResult idToken, String uid, BuildContext context) async {
+      firebase.IdTokenResult idToken, String uid, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -392,7 +392,7 @@ class Database {
   }
 
   static Future reimbursement(
-      IdTokenResult idToken,
+      firebase.IdTokenResult idToken,
       String personName,
       String partName,
       String partLink,
@@ -429,7 +429,7 @@ class Database {
   }
 
   static Future<int> getTime(
-      IdTokenResult idToken, BuildContext context) async {
+      firebase.IdTokenResult idToken, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -455,7 +455,7 @@ class Database {
   }
 
   static Future<LastCheckInTime> getLastCheckIn(
-      IdTokenResult idToken, BuildContext context) async {
+      firebase.IdTokenResult idToken, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -481,7 +481,7 @@ class Database {
   }
 
   static Future<MeetingCount> getMeetingCount(
-      IdTokenResult idToken, BuildContext context) async {
+      firebase.IdTokenResult idToken, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -507,7 +507,7 @@ class Database {
   }
 
   static Future checkIn(
-      IdTokenResult idToken, String code, BuildContext context) async {
+      firebase.IdTokenResult idToken, String code, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -532,7 +532,7 @@ class Database {
   }
 
   static Future checkOut(
-      IdTokenResult idToken, String code, BuildContext context) async {
+      firebase.IdTokenResult idToken, String code, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -557,7 +557,7 @@ class Database {
   }
 
   static Future<Map<String, List<Tool>>> getTools(
-    IdTokenResult idToken,
+    firebase.IdTokenResult idToken,
   ) async {
     var client = http.Client();
 
@@ -599,7 +599,7 @@ class Database {
   }
 
   static Future<Map<String, List<Tool>>> getToolsReversed(
-    IdTokenResult idToken,
+    firebase.IdTokenResult idToken,
   ) async {
     var client = http.Client();
 
@@ -645,7 +645,7 @@ class Database {
   }
 
   static Future<List<User>> getUsers(
-    IdTokenResult idToken,
+    firebase.IdTokenResult idToken,
   ) async {
     var client = http.Client();
 

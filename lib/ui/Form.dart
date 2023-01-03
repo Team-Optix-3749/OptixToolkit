@@ -133,7 +133,7 @@ class _FormPageState extends State<FormPage> {
                       height: 50,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0)),
-                      child: RaisedButton(
+                      child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
                             Auth.signIn(emailController.text,
@@ -143,7 +143,7 @@ class _FormPageState extends State<FormPage> {
                         child: Text('LOG IN',
                             style: GoogleFonts.rubik(
                                 fontWeight: FontWeight.bold, color: white)),
-                        color: blue,
+                        style: ElevatedButton.styleFrom(backgroundColor: blue)
                       ),
                     ),
                     SizedBox(height: 20),

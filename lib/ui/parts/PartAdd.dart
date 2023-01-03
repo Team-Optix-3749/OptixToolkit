@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -232,14 +232,14 @@ class _PartAddState extends State<PartAdd> {
                                 height: 55,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(7.0)),
-                                child: RaisedButton(
+                                child: ElevatedButton(
                                   onPressed: () async {
                                     if (_formKey.currentState.validate()) {
                                       print("Handling on pressed");
                                       var result = await Database.addPart(
-                                          Provider.of<IdTokenResult>(context,
+                                          Provider.of<firebase.IdTokenResult>(context,
                                               listen: false),
-                                          Provider.of<FirebaseUser>(context,
+                                          Provider.of<firebase.User>(context,
                                               listen: false),
                                           partNameController.text,
                                           partLinkController.text,
@@ -259,7 +259,7 @@ class _PartAddState extends State<PartAdd> {
                                       style: GoogleFonts.rubik(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),
-                                  color: Color(0xff159deb),
+                                  style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
                                 ),
                               ),
                             ],

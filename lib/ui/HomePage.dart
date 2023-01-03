@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:OptixToolkit/services/database.dart';
@@ -17,12 +17,12 @@ class homePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
       FutureProvider<List<Part>>.value(
-          value: Database.getParts(Provider.of<IdTokenResult>(context))),
+          value: Database.getParts(Provider.of<firebase.IdTokenResult>(context))),
       FutureProvider<Map<String, List<Tool>>>.value(
           value:
-              Database.getToolsReversed(Provider.of<IdTokenResult>(context))),
+              Database.getToolsReversed(Provider.of<firebase.IdTokenResult>(context))),
       FutureProvider<int>.value(
-          value: Database.getTime(Provider.of<IdTokenResult>(context), context))
+          value: Database.getTime(Provider.of<firebase.IdTokenResult>(context), context))
     ], child: homePage2());
   }
 }
@@ -100,7 +100,7 @@ class _homePage2State extends State<homePage2> {
                                       fontSize: 25.0,
                                     )),
                                 TextSpan(
-                                  text: Provider.of<FirebaseUser>(context)
+                                  text: Provider.of<firebase.User>(context)
                                       .displayName
                                       .split(" ")[0],
                                   style: GoogleFonts.rubik(

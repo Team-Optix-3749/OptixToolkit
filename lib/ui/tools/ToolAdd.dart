@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -162,12 +162,12 @@ class _ToolAddState extends State<ToolAdd> {
                                 height: 55,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(7.0)),
-                                child: RaisedButton(
+                                child: ElevatedButton(
                                   onPressed: () async {
                                     if (_formKey.currentState.validate()) {
                                       print("Handling on pressed");
                                       var result = await Database.addTool(
-                                          Provider.of<IdTokenResult>(context,
+                                          Provider.of<firebase.IdTokenResult>(context,
                                               listen: false),
                                           partNameController.text,
                                           dropdownValue,
@@ -184,7 +184,7 @@ class _ToolAddState extends State<ToolAdd> {
                                       style: GoogleFonts.rubik(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),
-                                  color: Color(0xff159deb),
+                                  style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
                                 ),
                               ),
                             ],

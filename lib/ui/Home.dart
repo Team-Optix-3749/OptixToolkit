@@ -90,21 +90,21 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               padding: const EdgeInsets.only(top: 8.0),
               child: Icon(Icons.home),
             ),
-            title: Container(),
+          label: ""
           ),
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Icon(Icons.access_time_filled_rounded),
             ),
-            title: Container(),
+          label: ""
           ),
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Icon(FlutterIcons.tools),
             ),
-            title: Container(),
+          label: ""
           ),
           BottomNavigationBarItem(
             icon: Padding(
@@ -112,14 +112,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               // child: Icon(FlutterIcons.parts),
               child: Icon(Icons.monetization_on_rounded),
             ),
-            title: Container(),
+          label: ""
           ),
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Icon(Icons.person),
             ),
-            title: Container(),
+          label: ""
           ),
         ],
         currentIndex: _selectedIndex,
