@@ -33,7 +33,8 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
+    
     ndkVersion "22.1.7171670"
 
     sourceSets {
@@ -47,7 +48,7 @@ android {
     defaultConfig {
         applicationId "org.team3749.toolkit"
         minSdkVersion 23
-        targetSdkVersion 30
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
