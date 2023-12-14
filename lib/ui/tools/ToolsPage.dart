@@ -56,10 +56,10 @@ class _toolState extends State<ToolWidget> with RouteAware {
     this.idToken = idToken;
   }
 
-  void _showDialog(BuildContext context) {
+  void _showDialog(BuildContext context) { //dialog is the modal
     // flutter defined function
     showDialog(
-      context: context,
+      context: context, //tells flutter the context, or where we are in the app
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
@@ -282,3 +282,64 @@ class _toolState extends State<ToolWidget> with RouteAware {
     );
   }
 }
+
+//  ButtonTheme( //This is for barcode scanner new
+//     minWidth: MediaQuery.of(context).size.width * 0.43,
+//     height: 55,
+//     shape: RoundedRectangleBorder(
+//         borderRadius:
+//          BorderRadius.circular(7.0)),
+//     child: ElevatedButton(
+//       onPressed: () {
+//         returnScan().catchError(() {
+//           _showDialog(context);
+//         });
+//         refreshTools();
+//       },
+//       child: Text(
+//         'RETURN',
+//         style: GoogleFonts.rubik(
+//           fontWeight: FontWeight.bold,
+//           fontSize: 20.0,
+//           color: Colors.white,
+//         ),
+//       ),
+//       style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
+//     ),
+//   )
+
+// Container(
+//       margin: EdgeInsets.only(left: 12, top: 50, right: 12, bottom: 0),
+//       width: 400,
+//       height: MediaQuery.of(context).size.height * 0.63,
+//       decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(10.0),
+//         color: Color(0xff3a3d41),
+//       ),
+//       child: Padding(
+//         padding: EdgeInsets.all(15.0),
+//         child: Column(
+//           children: [
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: <Widget>[
+//                 RichText(
+//                   text: TextSpan(
+//                     children: <TextSpan>[
+//                       TextSpan(
+//                           text: 'Checkout ',
+//                           style: GoogleFonts.rubik(
+//                             color: Colors.white,
+//                             fontSize: 25.0,
+//                           )
+//                       )
+//                     ]
+//                   )
+//                 ) 
+//               ] 
+//             )
+//           ]     
+//         )  
+//       )
+// )  
