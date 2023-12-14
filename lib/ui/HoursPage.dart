@@ -8,7 +8,7 @@ import 'package:OptixToolkit/services/database.dart';
 import 'package:provider/provider.dart';
 
 class hoursPage extends StatelessWidget {
-  const hoursPage({Key key}) : super(key: key);
+  const hoursPage({required Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class hoursPage extends StatelessWidget {
 }
 
 class hoursPageLoaded extends StatefulWidget {
-  const hoursPageLoaded({Key key}) : super(key: key);
+  const hoursPageLoaded({required Key key}) : super(key: key);
 
   @override
   _hoursPageState createState() => _hoursPageState();

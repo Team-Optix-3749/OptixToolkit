@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:OptixToolkit/services/firebase.dart';
 
 class profilePage extends StatelessWidget {
-  const profilePage({Key key}) : super(key: key);
+  const profilePage({required Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

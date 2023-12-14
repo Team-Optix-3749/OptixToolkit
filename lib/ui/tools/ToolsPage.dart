@@ -12,7 +12,7 @@ import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class toolsPage extends StatelessWidget {
-  const toolsPage({Key key, this.uid}) : super(key: key);
+  const toolsPage({required Key key, this.uid}) : super(key: key);
   final String uid;
 
   @override
@@ -41,7 +41,7 @@ class ToolWidget extends StatefulWidget {
   Map<String, List<Tool>> tools;
   final firebase.IdTokenResult idToken;
 
-  ToolWidget({Key key, this.tools, this.idToken}) : super(key: key);
+  ToolWidget({required Key key, this.tools, this.idToken}) : super(key: key);
 
   @override
   _toolState createState() => _toolState(this.tools, this.idToken);

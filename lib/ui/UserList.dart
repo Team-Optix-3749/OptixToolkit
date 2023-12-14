@@ -14,7 +14,7 @@ import 'Loading.dart';
 import 'UserCard.dart';
 
 class UserList extends StatefulWidget {
-  UserList({Key key}) : super(key: key);
+  UserList({required Key key}) : super(key: key);
 
   @override
   _UserListState createState() => _UserListState();
@@ -32,8 +32,8 @@ class _UserListState extends State<UserList> {
 
   final _formKey = GlobalKey<FormState>();
 
-  List<UserCard> users = null;
-  String err = null;
+  List<UserCard>? users = null;
+  String? err = null;
   bool called = false;
 
   Future<void> _showToolService(BuildContext context) async {
@@ -78,7 +78,7 @@ class _UserListState extends State<UserList> {
                             margin: EdgeInsets.only(top: 20),
                             child: TextFormField(
                               validator: (value) {
-                                if (value.isEmpty) {
+                                if (value!.isEmpty) {
                                   return 'Enter User Name';
                                 }
                                 return null;
@@ -101,7 +101,7 @@ class _UserListState extends State<UserList> {
                             margin: EdgeInsets.only(top: 20, bottom: 20),
                             child: TextFormField(
                               validator: (value) {
-                                if (value.isEmpty) {
+                                if (value!.isEmpty) {
                                   return 'Enter User Email Address';
                                 }
                                 return null;
@@ -129,9 +129,9 @@ class _UserListState extends State<UserList> {
                             checkColor: Colors.white,
                             selected: _checked,
                             value: _checked,
-                            onChanged: (bool value) {
+                            onChanged: (bool? value) {
                               setState(() {
-                                _checked = value;
+                                _checked = value ?? false;
                               });
                             },
                           ),
@@ -152,7 +152,7 @@ class _UserListState extends State<UserList> {
                                             BorderRadius.circular(7.0)),
                                     child: ElevatedButton(
                                       onPressed: () async {
-                                        if (_formKey.currentState.validate()) {
+                                        if (_formKey.currentState!.validate()) {
                                           print("Handling on pressed");
                                           var result = await Database.addUser(
                                               Provider.of<firebase.IdTokenResult>(
@@ -283,7 +283,7 @@ class _UserListState extends State<UserList> {
                           Expanded(
                             child: RefreshIndicator(
                               onRefresh: () async {},
-                              child: ListView(children: users),
+                              child: ListView(children: users??[]),
                             ),
                           ),
                       ],

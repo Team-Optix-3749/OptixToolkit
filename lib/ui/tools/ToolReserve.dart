@@ -18,7 +18,7 @@ class ToolReserve extends StatelessWidget {
   final List<Tool> tools;
   final String category;
 
-  ToolReserve({Key key, this.tools, this.category}) : super(key: key);
+  ToolReserve({required Key key, this.tools, this.category}) : super(key: key);
 
   final Color background = Color(0xff26292c);
   final Color gray = Color(0xff3A3D41);
