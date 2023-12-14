@@ -7,7 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase;
 
 class ToolReserveItem extends StatelessWidget {
   final Tool tool;
-  const ToolReserveItem({Key key, this.tool}) : super(key: key);
+  const ToolReserveItem({required Key key, required this.tool}) : super(key: key);
 
   Future<void> _showToolService(BuildContext context) async {
     Widget doneButton = TextButton(

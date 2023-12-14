@@ -15,14 +15,14 @@ class hoursPage extends StatelessWidget {
     return MultiProvider(providers: [
       FutureProvider<int>.value(
           value:
-              Database.getTime(Provider.of<firebase.IdTokenResult>(context), context)),
+              Database.getTime(Provider.of<firebase.IdTokenResult>(context), context), initialData: 0,),
       FutureProvider<LastCheckInTime>.value(
           value: Database.getLastCheckIn(
-              Provider.of<firebase.IdTokenResult>(context), context)),
+              Provider.of<firebase.IdTokenResult>(context), context), initialData: null,),
       FutureProvider<MeetingCount>.value(
           value: Database.getMeetingCount(
-              Provider.of<firebase.IdTokenResult>(context), context))
-    ], child: hoursPageLoaded());
+              Provider.of<firebase.IdTokenResult>(context), context), initialData: null,)
+    ], child: hoursPageLoaded(key: null,));
   }
 }
 
@@ -34,7 +34,7 @@ class hoursPageLoaded extends StatefulWidget {
 }
 
 class _hoursPageState extends State<hoursPageLoaded> {
-  int time, lastCheckIn, meetingCount;
+  late int time, lastCheckIn, meetingCount;
 
   @override
   void initState() {

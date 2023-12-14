@@ -93,7 +93,7 @@ class ToolReserve extends StatelessWidget {
                     NavigationService.goTo(
                       PageRouteBuilder(
                         pageBuilder: (context, animation1, animation2) =>
-                            ToolAdd(),
+                            ToolAdd(key: null,),
                       ),
                     );
                   },

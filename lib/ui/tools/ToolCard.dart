@@ -28,7 +28,7 @@ class ToolCard extends StatelessWidget {
         NavigationService.goToAndThen(
             PageRouteBuilder(
               pageBuilder: (context, animation1, animation2) =>
-                  ToolReserve(category: category, tools: tools),
+                  ToolReserve(category: category, tools: tools, key: null,),
             ), (value) {
           refreshTools();
         });

@@ -12,7 +12,7 @@ import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class toolsPage extends StatelessWidget {
-  const toolsPage({required Key key, this.uid}) : super(key: key);
+  const toolsPage({required Key key, required this.uid}) : super(key: key);
   final String uid;
 
   @override
@@ -29,7 +29,7 @@ class toolsPage extends StatelessWidget {
             else
               return ToolWidget(
                 tools: snapshot.data,
-                idToken: Provider.of<firebase.IdTokenResult>(context),
+                idToken: Provider.of<firebase.IdTokenResult>(context), key: null,
               );
         }
       },
@@ -41,7 +41,7 @@ class ToolWidget extends StatefulWidget {
   Map<String, List<Tool>> tools;
   final firebase.IdTokenResult idToken;
 
-  ToolWidget({required Key key, this.tools, this.idToken}) : super(key: key);
+  ToolWidget({required Key key, required  this.tools, required this.idToken}) : super(key: key);
 
   @override
   _toolState createState() => _toolState(this.tools, this.idToken);
@@ -157,7 +157,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
         ToolCard(
           category: category,
           tools: tools,
-          refreshTools: refreshTools,
+          refreshTools: refreshTools, key: null,
         )));
 
     return Container(
