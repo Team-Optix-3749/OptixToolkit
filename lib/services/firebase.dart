@@ -18,8 +18,8 @@ class Auth {
     //do login
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-    } catch (e) {
-      Alert.showAlert(context, e.message);
+    } on firebase.FirebaseAuthException catch (e) {
+      Alert.showAlert(context, e.message ?? "Unknown authentication error");
     }
     isInProcess = false;
   }
@@ -28,7 +28,7 @@ class Auth {
     await _auth.signOut();
   }
 
-  static Stream<firebase.User> authState() {
+  static Stream<firebase.User?> authState() {
     return _auth.authStateChanges();
   }
 
@@ -36,8 +36,8 @@ class Auth {
       String email, BuildContext context) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
-    } catch (e) {
-      Alert.showAlert(context, e.message);
+    } on firebase.FirebaseAuthException catch (e) {
+      Alert.showAlert(context, e.message ?? "Unknown Authentication error");
       print(e);
     }
   }

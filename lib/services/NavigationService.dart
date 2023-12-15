@@ -12,7 +12,7 @@ class NavigationService {
     return navigatorKey.currentState!.push(route);
   }
 
-  static Future<dynamic> goToAndThen(Route<Object> route, Function f) {
+  static Future<dynamic> goToAndThen(Route<Object> route, Function(Object?) f) {
     return navigatorKey.currentState!.push(route).then(f);
   }
 

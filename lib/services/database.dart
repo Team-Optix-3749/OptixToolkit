@@ -160,8 +160,12 @@ class Database {
     }
   }
 
-  static Future changeToolStatus(firebase.IdTokenResult idToken, firebase.User user,
-      String toolname, String newstatus, BuildContext context) async {
+  static Future changeToolStatus(
+      firebase.IdTokenResult idToken,
+      firebase.User user,
+      String toolname,
+      String newstatus,
+      BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -238,8 +242,8 @@ class Database {
     }
   }
 
-  static Future addTool(firebase.IdTokenResult idToken, String toolname, String category,
-      BuildContext context) async {
+  static Future addTool(firebase.IdTokenResult idToken, String toolname,
+      String category, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -314,8 +318,8 @@ class Database {
     }
   }
 
-  static Future addUser(firebase.IdTokenResult idToken, String name, String email,
-      bool admin, BuildContext context) async {
+  static Future addUser(firebase.IdTokenResult idToken, String name,
+      String email, bool admin, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -803,9 +807,7 @@ class LastCheckInTime {
 class MeetingCount {
   int _value;
 
-  MeetingCount(int value) {
-    _value = value;
-  }
+  MeetingCount(int value) : _value = value;
 
   int getValue() {
     return _value;
