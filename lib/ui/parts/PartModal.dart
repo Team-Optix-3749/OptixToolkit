@@ -12,7 +12,7 @@ import 'package:OptixToolkit/services/database.dart';
 
 class PartModal extends StatelessWidget {
   final Part part;
-  const PartModal({Key key, this.part}) : super(key: key);
+  const PartModal({Key? key, required this.part}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -187,9 +187,9 @@ class PartModal extends StatelessWidget {
         ),
       ),
       actions: [
-        (Provider.of<firebase.IdTokenResult>(context).claims['admin'] == true)
-            ? removeButton
-            : null,
+        if (Provider.of<firebase.IdTokenResult>(context).claims?['admin'] ==
+            true)
+          removeButton,
         doneButton,
       ],
     );
