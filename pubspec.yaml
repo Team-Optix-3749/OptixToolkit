@@ -22,7 +22,7 @@ dependencies:
   firebase_storage:
   cloud_firestore:
   rxdart:
-  google_fonts:
+  google_fonts: ^4.0.4
   percent_indicator:
   provider:
   image_picker:
