@@ -712,7 +712,7 @@ class Part {
     String status = json['status'];
     print(status + " " + json['trackingInfo']['trackingId']);
     if (deliveryMap.containsKey(json['status'])) {
-      status = deliveryMap[status];
+      status = deliveryMap[status]!;
     } else {
       status = "Faliure";
     }

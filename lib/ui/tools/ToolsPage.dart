@@ -283,63 +283,65 @@ class _toolState extends State<ToolWidget> with RouteAware {
   }
 }
 
-//  ButtonTheme( //This is for barcode scanner new
-//     minWidth: MediaQuery.of(context).size.width * 0.43,
-//     height: 55,
-//     shape: RoundedRectangleBorder(
-//         borderRadius:
-//          BorderRadius.circular(7.0)),
-//     child: ElevatedButton(
-//       onPressed: () {
-//         returnScan().catchError(() {
-//           _showDialog(context);
-//         });
-//         refreshTools();
-//       },
-//       child: Text(
-//         'RETURN',
-//         style: GoogleFonts.rubik(
-//           fontWeight: FontWeight.bold,
-//           fontSize: 20.0,
-//           color: Colors.white,
-//         ),
-//       ),
-//       style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
-//     ),
-//   )
+ElevatedButton(
+  onPressed: () {
+    _scanBarcode(context); // Function to initiate barcode scanning
+  },
+  child: Text(
+    'Barcode Scanner',
+    style: GoogleFonts.rubik(
+      fontWeight: FontWeight.bold,
+      fontSize: 20.0,
+      color: Colors.white,
+    ),
+  ),
+  style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
+),
+];
 
-// Container(
-//       margin: EdgeInsets.only(left: 12, top: 50, right: 12, bottom: 0),
-//       width: 400,
-//       height: MediaQuery.of(context).size.height * 0.63,
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.circular(10.0),
-//         color: Color(0xff3a3d41),
-//       ),
-//       child: Padding(
-//         padding: EdgeInsets.all(15.0),
-//         child: Column(
-//           children: [
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               crossAxisAlignment: CrossAxisAlignment.center,
-//               children: <Widget>[
-//                 RichText(
-//                   text: TextSpan(
-//                     children: <TextSpan>[
-//                       TextSpan(
-//                           text: 'Checkout ',
-//                           style: GoogleFonts.rubik(
-//                             color: Colors.white,
-//                             fontSize: 25.0,
-//                           )
-//                       )
-//                     ]
-//                   )
-//                 ) 
-//               ] 
-//             )
-//           ]     
-//         )  
-//       )
-// )  
+// Function to handle barcode scanning
+Future _scanBarcode(BuildContext context) async {
+  try {
+    String barcodeValue = (await BarcodeScanner.scan()).rawContent;
+    _showBarcodeModal(context, barcodeValue);
+  } on PlatformException catch (e) {
+    if (e.code == BarcodeScanner.cameraAccessDenied) {
+      print('Camera permission not granted');
+    } else {
+      print('Unknown Error: $e');
+    }
+  } on FormatException catch (e) {
+    print('User pressed back button before scanning');
+  } catch (e) {
+    print('Unknown Error: $e');
+  }
+}
+
+// Function to show a modal 
+void _showBarcodeModal(BuildContext context, String barcodeValue) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        height: 200,
+        color: Colors.white,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Scanned Barcode Value:',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+              Text(
+                barcodeValue,
+                style: TextStyle(fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
