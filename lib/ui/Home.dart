@@ -17,7 +17,7 @@ import 'package:OptixToolkit/services/firebase.dart';
 import 'package:OptixToolkit/ui/parts/PartReimburse.dart';
 
 class MyStatefulWidget extends StatefulWidget {
-  MyStatefulWidget({Key key}) : super(key: key);
+  MyStatefulWidget({required Key key}) : super(key: key);
 
   @override
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
@@ -57,10 +57,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     List<Widget> _widgetOptions = <Widget>[
       homePage(changePage: changePage),
-      hoursPage(),
-      toolsPage(),
+      hoursPage(key: null,),
+      toolsPage(key: null, uid: '',),
       PartReimburse(),
-      profilePage(),
+      profilePage(key: null,),
       Container(
         child: Column(
           children: [

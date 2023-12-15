@@ -12,7 +12,7 @@ class ToolCard extends StatelessWidget {
   final List<Tool> tools;
   final String category;
   final RefreshFunction refreshTools;
-  const ToolCard({Key key, this.tools, this.category, this.refreshTools})
+  const ToolCard({required Key key, required this.tools, required this.category, required this.refreshTools})
       : super(key: key);
 
   @override
@@ -28,7 +28,7 @@ class ToolCard extends StatelessWidget {
         NavigationService.goToAndThen(
             PageRouteBuilder(
               pageBuilder: (context, animation1, animation2) =>
-                  ToolReserve(category: category, tools: tools),
+                  ToolReserve(category: category, tools: tools, key: null,),
             ), (value) {
           refreshTools();
         });

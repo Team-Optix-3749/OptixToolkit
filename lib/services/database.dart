@@ -587,13 +587,13 @@ class Database {
 
     for (var tool in list) {
       if (category_map.containsKey(tool.category)) {
-        category_map[tool.category as String].insert(0, tool);
+        category_map[tool.category as String]!.insert(0, tool);
       } else {
         category_map[tool.category as String] = [tool];
       }
     }
 
-    print(category_map['Drill'][0].reservations);
+    print(category_map['Drill']![0].reservations);
 
     return category_map;
   }
@@ -633,13 +633,13 @@ class Database {
 
     for (var tool in list) {
       if (category_map.containsKey(tool.category)) {
-        category_map[tool.category as String].insert(0, tool);
+        category_map[tool.category as String]!.insert(0, tool);
       } else {
         category_map[tool.category as String] = [tool];
       }
     }
 
-    print(category_map['Drill'][0].reservations);
+    print(category_map['Drill']![0].reservations);
 
     return LinkedHashMap.fromEntries(category_map.entries.toList().reversed);
   }
@@ -697,22 +697,22 @@ class Part {
   final String status;
 
   Part(
-      {@required this.id,
-      @required this.uid,
-      @required this.name,
-      @required this.link,
-      @required this.trackingId,
-      @required this.carrier,
-      @required this.description,
-      @required this.priority,
-      @required this.displayName,
-      @required this.status});
+      {required this.id,
+      required this.uid,
+      required this.name,
+      required this.link,
+      required this.trackingId,
+      required this.carrier,
+      required this.description,
+      required this.priority,
+      required this.displayName,
+      required this.status});
 
   factory Part.fromJson(Map<String, dynamic> json) {
     String status = json['status'];
     print(status + " " + json['trackingInfo']['trackingId']);
     if (deliveryMap.containsKey(json['status'])) {
-      status = deliveryMap[status];
+      status = deliveryMap[status]!;
     } else {
       status = "Faliure";
     }
@@ -741,12 +741,12 @@ class Tool {
   final String status;
 
   Tool({
-    @required this.id,
-    @required this.name,
-    @required this.category,
-    @required this.user,
-    @required this.reservations,
-    @required this.status,
+    required this.id,
+    required this.name,
+    required this.category,
+    required this.user,
+    required this.reservations,
+    required this.status,
   });
 
   factory Tool.fromJson(Map<String, dynamic> json) {
@@ -770,10 +770,10 @@ class User {
   final String displayName;
   final bool certified;
   User(
-      {@required this.uid,
-      @required this.email,
-      @required this.displayName,
-      @required this.certified});
+      {required this.uid,
+      required this.email,
+      required this.displayName,
+      required this.certified});
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -789,7 +789,7 @@ class User {
 }
 
 class LastCheckInTime {
-  int _value;
+  late int _value;
 
   LastCheckInTime(int value) {
     _value = value;

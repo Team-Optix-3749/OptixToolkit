@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class GoodPop extends StatelessWidget {
   final String good;
-  const GoodPop({Key key, this.good}) : super(key: key);
+  const GoodPop({required Key key, this.good}) : super(key: key);
 
   static Future<void> showGood(BuildContext context, String good) async {
     return showDialog<void>(

@@ -12,7 +12,7 @@ import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class toolsPage extends StatelessWidget {
-  const toolsPage({Key key, this.uid}) : super(key: key);
+  const toolsPage({required Key key, required this.uid}) : super(key: key);
   final String uid;
 
   @override
@@ -29,7 +29,7 @@ class toolsPage extends StatelessWidget {
             else
               return ToolWidget(
                 tools: snapshot.data,
-                idToken: Provider.of<firebase.IdTokenResult>(context),
+                idToken: Provider.of<firebase.IdTokenResult>(context), key: null,
               );
         }
       },
@@ -41,7 +41,7 @@ class ToolWidget extends StatefulWidget {
   Map<String, List<Tool>> tools;
   final firebase.IdTokenResult idToken;
 
-  ToolWidget({Key key, this.tools, this.idToken}) : super(key: key);
+  ToolWidget({required Key key, required  this.tools, required this.idToken}) : super(key: key);
 
   @override
   _toolState createState() => _toolState(this.tools, this.idToken);
@@ -56,10 +56,10 @@ class _toolState extends State<ToolWidget> with RouteAware {
     this.idToken = idToken;
   }
 
-  void _showDialog(BuildContext context) {
+  void _showDialog(BuildContext context) { //dialog is the modal
     // flutter defined function
     showDialog(
-      context: context,
+      context: context, //tells flutter the context, or where we are in the app
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
@@ -157,7 +157,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
         ToolCard(
           category: category,
           tools: tools,
-          refreshTools: refreshTools,
+          refreshTools: refreshTools, key: null,
         )));
 
     return Container(
@@ -281,4 +281,67 @@ class _toolState extends State<ToolWidget> with RouteAware {
       ),
     );
   }
+}
+
+ElevatedButton(
+  onPressed: () {
+    _scanBarcode(context); // Function to initiate barcode scanning
+  },
+  child: Text(
+    'Barcode Scanner',
+    style: GoogleFonts.rubik(
+      fontWeight: FontWeight.bold,
+      fontSize: 20.0,
+      color: Colors.white,
+    ),
+  ),
+  style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
+),
+];
+
+// Function to handle barcode scanning
+Future _scanBarcode(BuildContext context) async {
+  try {
+    String barcodeValue = (await BarcodeScanner.scan()).rawContent;
+    _showBarcodeModal(context, barcodeValue);
+  } on PlatformException catch (e) {
+    if (e.code == BarcodeScanner.cameraAccessDenied) {
+      print('Camera permission not granted');
+    } else {
+      print('Unknown Error: $e');
+    }
+  } on FormatException catch (e) {
+    print('User pressed back button before scanning');
+  } catch (e) {
+    print('Unknown Error: $e');
+  }
+}
+
+// Function to show a modal 
+void _showBarcodeModal(BuildContext context, String barcodeValue) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        height: 200,
+        color: Colors.white,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Scanned Barcode Value:',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+              Text(
+                barcodeValue,
+                style: TextStyle(fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }
