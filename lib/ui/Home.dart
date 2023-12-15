@@ -57,8 +57,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     List<Widget> _widgetOptions = <Widget>[
       homePage(changePage: changePage),
-      hoursPage(key: null,),
-      toolsPage(key: null, uid: '',),
+      hoursPage(),
+      toolsPage(uid: '',),
       PartReimburse(),
       profilePage(key: null,),
       Container(

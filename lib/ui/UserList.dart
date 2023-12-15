@@ -14,7 +14,7 @@ import 'Loading.dart';
 import 'UserCard.dart';
 
 class UserList extends StatefulWidget {
-  UserList({required Key key}) : super(key: key);
+  UserList({Key? key}) : super(key: key);
 
   @override
   _UserListState createState() => _UserListState();

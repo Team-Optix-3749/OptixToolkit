@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class UserModal extends StatelessWidget {
   final User user;
-  const UserModal({required Key key, this.user}) : super(key: key);
+  const UserModal({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

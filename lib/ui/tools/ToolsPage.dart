@@ -12,7 +12,7 @@ import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class toolsPage extends StatelessWidget {
-  const toolsPage({required Key key, required this.uid}) : super(key: key);
+  const toolsPage({Key? key, required this.uid}) : super(key: key);
   final String uid;
 
   @override

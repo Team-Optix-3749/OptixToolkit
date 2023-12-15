@@ -11,7 +11,7 @@ import 'package:OptixToolkit/ui/tools/ToolLine.dart';
 
 class homePage extends StatelessWidget {
   final Function(int) changePage;
-  homePage({required Key key, required this.changePage}) : super(key: key);
+  homePage({Key? key, required this.changePage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +23,13 @@ class homePage extends StatelessWidget {
               Database.getToolsReversed(Provider.of<firebase.IdTokenResult>(context)), initialData: {},),
       FutureProvider<int>.value(
           value: Database.getTime(Provider.of<firebase.IdTokenResult>(context), context), initialData: 0,)
-    ], child: homePage2());
+    ], child: homePage2(changePage: this.changePage));
   }
 }
 
 class homePage2 extends StatefulWidget {
-  final List<Part> parts;
-  final List<Tool> tools;
-  final int time;
   final Function(int) changePage;
-  homePage2({required Key key, required this.parts, required this.tools, required this.changePage, required this.time})
+  homePage2({Key? key, required this.changePage })
       : super(key: key);
 
   @override

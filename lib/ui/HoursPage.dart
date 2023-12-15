@@ -8,7 +8,7 @@ import 'package:OptixToolkit/services/database.dart';
 import 'package:provider/provider.dart';
 
 class hoursPage extends StatelessWidget {
-  const hoursPage({required Key key}) : super(key: key);
+  const hoursPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +16,18 @@ class hoursPage extends StatelessWidget {
       FutureProvider<int>.value(
           value:
               Database.getTime(Provider.of<firebase.IdTokenResult>(context), context), initialData: 0,),
-      FutureProvider<LastCheckInTime>.value(
+      FutureProvider<LastCheckInTime?>.value(
           value: Database.getLastCheckIn(
-              Provider.of<firebase.IdTokenResult>(context), context), initialData: null,),
-      FutureProvider<MeetingCount>.value(
+              Provider.of<firebase.IdTokenResult?>(context), context), initialData: null),
+      FutureProvider<MeetingCount?>.value(
           value: Database.getMeetingCount(
-              Provider.of<firebase.IdTokenResult>(context), context), initialData: null,)
-    ], child: hoursPageLoaded(key: null,));
+              Provider.of<firebase.IdTokenResult?>(context), context), initialData: null)
+    ], child: hoursPageLoaded());
   }
 }
 
 class hoursPageLoaded extends StatefulWidget {
-  const hoursPageLoaded({required Key key}) : super(key: key);
+  const hoursPageLoaded({Key? key}) : super(key: key);
 
   @override
   _hoursPageState createState() => _hoursPageState();

@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:OptixToolkit/services/firebase.dart';
 
 class profilePage extends StatelessWidget {
-  const profilePage({required Key key}) : super(key: key);
+  const profilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class profilePage extends StatelessWidget {
                             TextSpan(
                               text: Provider.of<firebase.User>(context)
                                   .displayName
-                                  .split(" ")[0],
+                                  ?.split(" ")[0],
                               style: GoogleFonts.rubik(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -207,7 +207,7 @@ class profilePage extends StatelessWidget {
               ),
             ),
           ),
-          if (Provider.of<firebase.IdTokenResult>(context).claims['admin'] == true)
+          if (Provider.of<firebase.IdTokenResult>(context).claims?['admin'] == true)
             Container(
               margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
               width: 400,

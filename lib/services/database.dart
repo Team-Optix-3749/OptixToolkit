@@ -458,8 +458,10 @@ class Database {
     }
   }
 
-  static Future<LastCheckInTime> getLastCheckIn(
-      firebase.IdTokenResult idToken, BuildContext context) async {
+  static Future<LastCheckInTime?> getLastCheckIn(
+      firebase.IdTokenResult? idToken, BuildContext context) async {
+    if (idToken == null) return null;
+
     var client = http.Client();
 
     Map data = {
@@ -484,8 +486,10 @@ class Database {
     }
   }
 
-  static Future<MeetingCount> getMeetingCount(
-      firebase.IdTokenResult idToken, BuildContext context) async {
+  static Future<MeetingCount?> getMeetingCount(
+      firebase.IdTokenResult? idToken, BuildContext context) async {
+    if (idToken == null) return null;
+
     var client = http.Client();
 
     Map data = {
