@@ -17,7 +17,7 @@ import 'package:OptixToolkit/services/firebase.dart';
 import 'package:OptixToolkit/ui/parts/PartReimburse.dart';
 
 class MyStatefulWidget extends StatefulWidget {
-  MyStatefulWidget({required Key key}) : super(key: key);
+  MyStatefulWidget({Key? key}) : super(key: key);
 
   @override
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
