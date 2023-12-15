@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ToolStatus extends StatelessWidget {
   final String status;
-  const ToolStatus({Key key, @required this.status}) : super(key: key);
+  const ToolStatus({Key? key, required this.status}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

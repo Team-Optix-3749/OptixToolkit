@@ -28,8 +28,8 @@ class toolsPage extends StatelessWidget {
               return Text('Error: ${snapshot.error}');
             else
               return ToolWidget(
-                tools: snapshot.data,
-                idToken: Provider.of<firebase.IdTokenResult>(context), key: null,
+                tools: snapshot.data ?? {},
+                idToken: Provider.of<firebase.IdTokenResult>(context),
               );
         }
       },
@@ -41,15 +41,15 @@ class ToolWidget extends StatefulWidget {
   Map<String, List<Tool>> tools;
   final firebase.IdTokenResult idToken;
 
-  ToolWidget({required Key key, required  this.tools, required this.idToken}) : super(key: key);
+  ToolWidget({Key? key, required  this.tools, required this.idToken}) : super(key: key);
 
   @override
   _toolState createState() => _toolState(this.tools, this.idToken);
 }
 
 class _toolState extends State<ToolWidget> with RouteAware {
-  Map<String, List<Tool>> tools;
-  firebase.IdTokenResult idToken;
+  late Map<String, List<Tool>> tools;
+  late firebase.IdTokenResult idToken;
 
   _toolState(Map<String, List<Tool>> tools, firebase.IdTokenResult idToken) {
     this.tools = tools;
@@ -196,7 +196,10 @@ class _toolState extends State<ToolWidget> with RouteAware {
                           color: Colors.white,
                         ),
                       ),
-                      style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Color(0xff159deb)),
+                      ),
                     ),
                   ),
                   ButtonTheme(
@@ -219,12 +222,29 @@ class _toolState extends State<ToolWidget> with RouteAware {
                           color: Colors.white,
                         ),
                       ),
-                      style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Color(0xff159deb)),
+                      ),
                     ),
                   )
                 ],
               ),
             ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              _scanBarcode(context); // Function to initiate barcode scanning
+            },
+            child: Text(
+              'Barcode Scanner',
+              style: GoogleFonts.rubik(
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0,
+                color: Colors.white,
+              ),
+            ),
+            style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
           ),
           Container(
             margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
@@ -267,7 +287,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
                   const SizedBox(height: 15),
                   Expanded(
                     child: RefreshIndicator(
-                      onRefresh: () {
+                      onRefresh: () async {
                         refreshTools();
                       },
                       child: ListView(children: widgets),
@@ -282,22 +302,6 @@ class _toolState extends State<ToolWidget> with RouteAware {
     );
   }
 }
-
-ElevatedButton(
-  onPressed: () {
-    _scanBarcode(context); // Function to initiate barcode scanning
-  },
-  child: Text(
-    'Barcode Scanner',
-    style: GoogleFonts.rubik(
-      fontWeight: FontWeight.bold,
-      fontSize: 20.0,
-      color: Colors.white,
-    ),
-  ),
-  style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
-),
-];
 
 // Function to handle barcode scanning
 Future _scanBarcode(BuildContext context) async {

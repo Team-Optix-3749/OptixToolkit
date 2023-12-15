@@ -12,7 +12,7 @@ class ToolCard extends StatelessWidget {
   final List<Tool> tools;
   final String category;
   final RefreshFunction refreshTools;
-  const ToolCard({required Key key, required this.tools, required this.category, required this.refreshTools})
+  const ToolCard({Key? key, required this.tools, required this.category, required this.refreshTools})
       : super(key: key);
 
   @override

@@ -11,7 +11,7 @@ import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/database.dart';
 
 class ToolAdd extends StatefulWidget {
-  ToolAdd({required Key key}) : super(key: key);
+  ToolAdd({Key? key}) : super(key: key);
 
   @override
   _ToolAddState createState() => _ToolAddState();
@@ -119,10 +119,12 @@ class _ToolAddState extends State<ToolAdd> {
                                 return "Type of Tool";
                               return null;
                             },
-                            onChanged: (String newValue) {
-                              setState(() {
-                                dropdownValue = newValue;
-                              });
+                            onChanged: (String? newValue) {
+                              if (newValue != null) {
+                                setState(() {
+                                  dropdownValue = newValue;
+                                });
+                              }
                             },
                             items: <String>[
                               'Type of Tool',
