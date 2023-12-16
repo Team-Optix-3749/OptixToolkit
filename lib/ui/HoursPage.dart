@@ -34,7 +34,7 @@ class hoursPageLoaded extends StatefulWidget {
 }
 
 class _hoursPageState extends State<hoursPageLoaded> {
-  late int time, lastCheckIn, meetingCount;
+  int? time, lastCheckIn, meetingCount;
 
   @override
   void initState() {
