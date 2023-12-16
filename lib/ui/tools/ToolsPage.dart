@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:OptixToolkit/ui/tools/ToolModal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:OptixToolkit/ui/tools/ToolCard.dart';
@@ -41,7 +42,8 @@ class ToolWidget extends StatefulWidget {
   Map<String, List<Tool>> tools;
   final firebase.IdTokenResult idToken;
 
-  ToolWidget({Key? key, required  this.tools, required this.idToken}) : super(key: key);
+  ToolWidget({Key? key, required this.tools, required this.idToken})
+      : super(key: key);
 
   @override
   _toolState createState() => _toolState(this.tools, this.idToken);
@@ -56,7 +58,8 @@ class _toolState extends State<ToolWidget> with RouteAware {
     this.idToken = idToken;
   }
 
-  void _showDialog(BuildContext context) { //dialog is the modal
+  void _showDialog(BuildContext context) {
+    //dialog is the modal
     // flutter defined function
     showDialog(
       context: context, //tells flutter the context, or where we are in the app
@@ -152,13 +155,17 @@ class _toolState extends State<ToolWidget> with RouteAware {
   @override
   Widget build(BuildContext context) {
     List<ToolCard> widgets = [];
-    tools.forEach((category, tools) => widgets.insert(
+    tools.forEach(
+      (category, tools) => widgets.insert(
         0,
         ToolCard(
           category: category,
           tools: tools,
-          refreshTools: refreshTools, key: null,
-        )));
+          refreshTools: refreshTools,
+          key: null,
+        ),
+      ),
+    );
 
     return Container(
       child: Column(
@@ -183,7 +190,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
                         borderRadius: BorderRadius.circular(7.0)),
                     child: ElevatedButton(
                       onPressed: () {
-                        checkOutScan().catchError(() {
+                        checkOutScan().catchError((e) {
                           _showDialog(context);
                         });
                         refreshTools();
@@ -196,9 +203,8 @@ class _toolState extends State<ToolWidget> with RouteAware {
                           color: Colors.white,
                         ),
                       ),
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Color(0xff159deb)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xff159deb),
                       ),
                     ),
                   ),
@@ -216,7 +222,8 @@ class _toolState extends State<ToolWidget> with RouteAware {
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff159deb)),
+                      backgroundColor: Color(0xff159deb),
+                    ),
                   ),
                   ButtonTheme(
                     minWidth: MediaQuery.of(context).size.width * 0.43,
@@ -225,7 +232,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
                         borderRadius: BorderRadius.circular(7.0)),
                     child: ElevatedButton(
                       onPressed: () {
-                        returnScan().catchError(() {
+                        returnScan().catchError((e) {
                           _showDialog(context);
                         });
                         refreshTools();
@@ -238,9 +245,8 @@ class _toolState extends State<ToolWidget> with RouteAware {
                           color: Colors.white,
                         ),
                       ),
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Color(0xff159deb)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xff159deb),
                       ),
                     ),
                   )
@@ -268,11 +274,12 @@ class _toolState extends State<ToolWidget> with RouteAware {
                         text: TextSpan(
                           children: <TextSpan>[
                             TextSpan(
-                                text: 'Tool ',
-                                style: GoogleFonts.rubik(
-                                  color: Colors.white,
-                                  fontSize: 25.0,
-                                )),
+                              text: 'Tool ',
+                              style: GoogleFonts.rubik(
+                                color: Colors.white,
+                                fontSize: 25.0,
+                              ),
+                            ),
                             TextSpan(
                               text: 'List',
                               style: GoogleFonts.rubik(
@@ -303,51 +310,33 @@ class _toolState extends State<ToolWidget> with RouteAware {
       ),
     );
   }
-}
 
-// Function to handle barcode scanning
-Future _scanBarcode(BuildContext context) async {
-  try {
-    String barcodeValue = (await BarcodeScanner.scan()).rawContent;
-    _showBarcodeModal(context, barcodeValue);
-  } on PlatformException catch (e) {
-    if (e.code == BarcodeScanner.cameraAccessDenied) {
-      print('Camera permission not granted');
-    } else {
+  // Function to handle barcode scanning
+  Future _scanBarcode(BuildContext context) async {
+    try {
+      String barcodeValue = (await BarcodeScanner.scan()).rawContent;
+      _showBarcodeModal(context, barcodeValue);
+    } on PlatformException catch (e) {
+      if (e.code == BarcodeScanner.cameraAccessDenied) {
+        print('Camera permission not granted');
+      } else {
+        print('Unknown Error: $e');
+      }
+    } on FormatException catch (e) {
+      print('User pressed back button before scanning');
+    } catch (e) {
       print('Unknown Error: $e');
     }
-  } on FormatException catch (e) {
-    print('User pressed back button before scanning');
-  } catch (e) {
-    print('Unknown Error: $e');
   }
-}
 
-// Function to show a modal 
-void _showBarcodeModal(BuildContext context, String barcodeValue) {
-  showModalBottomSheet(
-    context: context,
-    builder: (BuildContext context) {
-      return Container(
-        height: 200,
-        color: Colors.white,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'Scanned Barcode Value:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 10),
-              Text(
-                barcodeValue,
-                style: TextStyle(fontSize: 16),
-              ),
-            ],
-          ),
-        ),
-      );
-    },
-  );
+  // Function to show a modal
+  void _showBarcodeModal(BuildContext context, String barcodeValue) {
+    showDialog(
+      context: context, //tells flutter the context, or where we are in the app
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return ToolModal(toolName: barcodeValue);
+      },
+    );
+  }
 }
