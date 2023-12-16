@@ -72,8 +72,8 @@ class MyApp extends StatelessWidget {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (Provider.of<firebase.User>(context) == null) return FormPage();
-    if (Provider.of<firebase.IdTokenResult>(context) == null) return Loading();
+    if (Provider.of<firebase.User?>(context) == null) return FormPage();
+    if (Provider.of<firebase.IdTokenResult?>(context) == null) return Loading();
     return MyStatefulWidget();
   }
 }
