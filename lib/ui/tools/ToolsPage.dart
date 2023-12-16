@@ -202,6 +202,22 @@ class _toolState extends State<ToolWidget> with RouteAware {
                       ),
                     ),
                   ),
+                  ElevatedButton(
+                    onPressed: () {
+                      _scanBarcode(
+                          context); // Function to initiate barcode scanning
+                    },
+                    child: Text(
+                      'SCAN',
+                      style: GoogleFonts.rubik(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xff159deb)),
+                  ),
                   ButtonTheme(
                     minWidth: MediaQuery.of(context).size.width * 0.43,
                     height: 55,
@@ -231,20 +247,6 @@ class _toolState extends State<ToolWidget> with RouteAware {
                 ],
               ),
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              _scanBarcode(context); // Function to initiate barcode scanning
-            },
-            child: Text(
-              'Barcode Scanner',
-              style: GoogleFonts.rubik(
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-                color: Colors.white,
-              ),
-            ),
-            style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
           ),
           Container(
             margin: EdgeInsets.only(left: 12, top: 17, right: 12, bottom: 0),
