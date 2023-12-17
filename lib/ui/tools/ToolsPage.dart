@@ -315,7 +315,12 @@ class _toolState extends State<ToolWidget> with RouteAware {
   Future _scanBarcode(BuildContext context) async {
     try {
       String barcodeValue = (await BarcodeScanner.scan()).rawContent;
-      _showBarcodeModal(context, barcodeValue);
+
+      Inventory? inv = await Database.getInventory(idToken, barcodeValue, context);
+
+      if (inv != null) {
+        _showBarcodeModal(context, inv);
+      }
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.cameraAccessDenied) {
         print('Camera permission not granted');
@@ -330,12 +335,12 @@ class _toolState extends State<ToolWidget> with RouteAware {
   }
 
   // Function to show a modal
-  void _showBarcodeModal(BuildContext context, String barcodeValue) {
+  void _showBarcodeModal(BuildContext context, Inventory inv) {
     showDialog(
       context: context, //tells flutter the context, or where we are in the app
       builder: (BuildContext context) {
         // return object of type Dialog
-        return ToolModal(toolName: barcodeValue);
+        return ToolModal(inventory: inv);
       },
     );
   }

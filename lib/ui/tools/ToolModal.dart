@@ -8,8 +8,8 @@ import 'package:OptixToolkit/services/database.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ToolModal extends StatelessWidget {
-  final String toolName;
-  const ToolModal({Key? key, required this.toolName}) : super(key: key);
+  final Inventory inventory;
+  const ToolModal({Key? key, required this.inventory}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class ToolModal extends StatelessWidget {
 
     return AlertDialog(
       title: Text(
-        'Tool: $toolName',
+        'Tool: ${inventory.name}',
         style: GoogleFonts.rubik(
           fontSize: 25.0,
           fontWeight: FontWeight.bold,
@@ -53,7 +53,7 @@ class ToolModal extends StatelessWidget {
               text: TextSpan(
                 children: <TextSpan>[
                   TextSpan(
-                    text: 'Status: ',
+                    text: 'Count: ${inventory.count}',
                     style: GoogleFonts.rubik(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -63,6 +63,21 @@ class ToolModal extends StatelessWidget {
                 ],
               ),
             ),
+            if (inventory.description != null)
+              RichText(
+                text: TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Description: ${inventory.description}',
+                      style: GoogleFonts.rubik(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             const SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
