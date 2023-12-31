@@ -11,7 +11,7 @@ import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/firebase.dart';
 
 class FormPage extends StatefulWidget {
-  FormPage({Key key}) : super(key: key);
+  FormPage({Key? key}) : super(key: key);
 
   @override
   _FormPageState createState() => _FormPageState();
@@ -62,7 +62,7 @@ class _FormPageState extends State<FormPage> {
                       width: 300,
                       child: TextFormField(
                         validator: (value) {
-                          if (value.isEmpty) {
+                          if (value == null || value.isEmpty) {
                             return 'Email';
                           }
                           return null;
@@ -85,7 +85,7 @@ class _FormPageState extends State<FormPage> {
                       width: 300,
                       child: TextFormField(
                         validator: (value) {
-                          if (value.isEmpty) {
+                          if (value == null || value.isEmpty) {
                             return 'Password';
                           }
                           return null;
@@ -134,17 +134,18 @@ class _FormPageState extends State<FormPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0)),
                       child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            Auth.signIn(emailController.text,
-                                passwordController.text, context);
-                          }
-                        },
-                        child: Text('LOG IN',
-                            style: GoogleFonts.rubik(
-                                fontWeight: FontWeight.bold, color: white)),
-                        style: ElevatedButton.styleFrom(backgroundColor: blue)
-                      ),
+                          onPressed: () {
+                            if (_formKey.currentState != null &&
+                                _formKey.currentState!.validate()) {
+                              Auth.signIn(emailController.text,
+                                  passwordController.text, context);
+                            }
+                          },
+                          child: Text('LOG IN',
+                              style: GoogleFonts.rubik(
+                                  fontWeight: FontWeight.bold, color: white)),
+                          style:
+                              ElevatedButton.styleFrom(backgroundColor: blue)),
                     ),
                     SizedBox(height: 20),
                     RichText(

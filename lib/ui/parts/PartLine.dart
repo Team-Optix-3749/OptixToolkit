@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class PartLine extends StatelessWidget {
   final Part part;
-  const PartLine({Key key, this.part}) : super(key: key);
+  const PartLine({Key? key, required this.part}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class PartLine extends StatelessWidget {
             lineHeight: 30.0,
             animationDuration: 1000,
             backgroundColor: Color(0xff26292c),
-            percent: percentMap[part.status],
+            percent: percentMap[part.status]!,
             center: RichText(
               text: TextSpan(
                 children: <TextSpan>[

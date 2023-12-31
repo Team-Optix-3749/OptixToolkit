@@ -11,28 +11,25 @@ import 'package:OptixToolkit/ui/tools/ToolLine.dart';
 
 class homePage extends StatelessWidget {
   final Function(int) changePage;
-  homePage({Key key, this.changePage}) : super(key: key);
+  homePage({Key? key, required this.changePage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
       FutureProvider<List<Part>>.value(
-          value: Database.getParts(Provider.of<firebase.IdTokenResult>(context))),
+          value: Database.getParts(Provider.of<firebase.IdTokenResult>(context)), initialData: [],),
       FutureProvider<Map<String, List<Tool>>>.value(
           value:
-              Database.getToolsReversed(Provider.of<firebase.IdTokenResult>(context))),
+              Database.getToolsReversed(Provider.of<firebase.IdTokenResult>(context)), initialData: {},),
       FutureProvider<int>.value(
-          value: Database.getTime(Provider.of<firebase.IdTokenResult>(context), context))
-    ], child: homePage2());
+          value: Database.getTime(Provider.of<firebase.IdTokenResult>(context), context), initialData: 0,)
+    ], child: homePage2(changePage: this.changePage));
   }
 }
 
 class homePage2 extends StatefulWidget {
-  final List<Part> parts;
-  final List<Tool> tools;
-  final int time;
   final Function(int) changePage;
-  homePage2({Key key, this.parts, this.tools, this.changePage, this.time})
+  homePage2({Key? key, required this.changePage })
       : super(key: key);
 
   @override
@@ -102,7 +99,7 @@ class _homePage2State extends State<homePage2> {
                                 TextSpan(
                                   text: Provider.of<firebase.User>(context)
                                       .displayName
-                                      .split(" ")[0],
+                                      ?.split(" ")[0],
                                   style: GoogleFonts.rubik(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,

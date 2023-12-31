@@ -11,7 +11,7 @@ import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/database.dart';
 
 class ToolAdd extends StatefulWidget {
-  ToolAdd({Key key}) : super(key: key);
+  ToolAdd({Key? key}) : super(key: key);
 
   @override
   _ToolAddState createState() => _ToolAddState();
@@ -80,7 +80,7 @@ class _ToolAddState extends State<ToolAdd> {
                         margin: EdgeInsets.only(top: 20),
                         child: TextFormField(
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value!.isEmpty) {
                               return 'Enter Part Name';
                             }
                             return null;
@@ -119,10 +119,12 @@ class _ToolAddState extends State<ToolAdd> {
                                 return "Type of Tool";
                               return null;
                             },
-                            onChanged: (String newValue) {
-                              setState(() {
-                                dropdownValue = newValue;
-                              });
+                            onChanged: (String? newValue) {
+                              if (newValue != null) {
+                                setState(() {
+                                  dropdownValue = newValue;
+                                });
+                              }
                             },
                             items: <String>[
                               'Type of Tool',
@@ -164,7 +166,7 @@ class _ToolAddState extends State<ToolAdd> {
                                     borderRadius: BorderRadius.circular(7.0)),
                                 child: ElevatedButton(
                                   onPressed: () async {
-                                    if (_formKey.currentState.validate()) {
+                                    if (_formKey.currentState!.validate()) {
                                       print("Handling on pressed");
                                       var result = await Database.addTool(
                                           Provider.of<firebase.IdTokenResult>(context,

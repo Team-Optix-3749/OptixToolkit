@@ -160,8 +160,12 @@ class Database {
     }
   }
 
-  static Future changeToolStatus(firebase.IdTokenResult idToken, firebase.User user,
-      String toolname, String newstatus, BuildContext context) async {
+  static Future changeToolStatus(
+      firebase.IdTokenResult idToken,
+      firebase.User user,
+      String toolname,
+      String newstatus,
+      BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -238,8 +242,8 @@ class Database {
     }
   }
 
-  static Future addTool(firebase.IdTokenResult idToken, String toolname, String category,
-      BuildContext context) async {
+  static Future addTool(firebase.IdTokenResult idToken, String toolname,
+      String category, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -314,8 +318,8 @@ class Database {
     }
   }
 
-  static Future addUser(firebase.IdTokenResult idToken, String name, String email,
-      bool admin, BuildContext context) async {
+  static Future addUser(firebase.IdTokenResult idToken, String name,
+      String email, bool admin, BuildContext context) async {
     var client = http.Client();
 
     Map data = {
@@ -454,8 +458,10 @@ class Database {
     }
   }
 
-  static Future<LastCheckInTime> getLastCheckIn(
-      firebase.IdTokenResult idToken, BuildContext context) async {
+  static Future<LastCheckInTime?> getLastCheckIn(
+      firebase.IdTokenResult? idToken, BuildContext context) async {
+    if (idToken == null) return null;
+
     var client = http.Client();
 
     Map data = {
@@ -480,8 +486,10 @@ class Database {
     }
   }
 
-  static Future<MeetingCount> getMeetingCount(
-      firebase.IdTokenResult idToken, BuildContext context) async {
+  static Future<MeetingCount?> getMeetingCount(
+      firebase.IdTokenResult? idToken, BuildContext context) async {
+    if (idToken == null) return null;
+
     var client = http.Client();
 
     Map data = {
@@ -587,13 +595,13 @@ class Database {
 
     for (var tool in list) {
       if (category_map.containsKey(tool.category)) {
-        category_map[tool.category as String].insert(0, tool);
+        category_map[tool.category as String]!.insert(0, tool);
       } else {
         category_map[tool.category as String] = [tool];
       }
     }
 
-    print(category_map['Drill'][0].reservations);
+    print(category_map['Drill']![0].reservations);
 
     return category_map;
   }
@@ -633,13 +641,13 @@ class Database {
 
     for (var tool in list) {
       if (category_map.containsKey(tool.category)) {
-        category_map[tool.category as String].insert(0, tool);
+        category_map[tool.category as String]!.insert(0, tool);
       } else {
         category_map[tool.category as String] = [tool];
       }
     }
 
-    print(category_map['Drill'][0].reservations);
+    print(category_map['Drill']![0].reservations);
 
     return LinkedHashMap.fromEntries(category_map.entries.toList().reversed);
   }
@@ -671,6 +679,39 @@ class Database {
 
     return users;
   }
+
+  static Future<Inventory?> getInventory(firebase.IdTokenResult idToken,
+      String barcodeId, BuildContext context) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'get-inventory',
+      'auth': idToken.token,
+      'barcodeId': barcodeId,
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode != 200) {
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
+      return null;
+    }
+
+    if (jsonDecode(result.body)['inventory'] == null) {
+      Alert.showAlert(context, "Inventoried tool does not exist!");
+      return null;
+    }
+
+    final parsed =
+        jsonDecode(result.body)['inventory'];
+
+    var inventory = Inventory.fromJson(parsed);
+
+    return inventory;
+  }
 }
 
 final Map<String, String> deliveryMap = {
@@ -697,22 +738,22 @@ class Part {
   final String status;
 
   Part(
-      {@required this.id,
-      @required this.uid,
-      @required this.name,
-      @required this.link,
-      @required this.trackingId,
-      @required this.carrier,
-      @required this.description,
-      @required this.priority,
-      @required this.displayName,
-      @required this.status});
+      {required this.id,
+      required this.uid,
+      required this.name,
+      required this.link,
+      required this.trackingId,
+      required this.carrier,
+      required this.description,
+      required this.priority,
+      required this.displayName,
+      required this.status});
 
   factory Part.fromJson(Map<String, dynamic> json) {
     String status = json['status'];
     print(status + " " + json['trackingInfo']['trackingId']);
     if (deliveryMap.containsKey(json['status'])) {
-      status = deliveryMap[status];
+      status = deliveryMap[status]!;
     } else {
       status = "Faliure";
     }
@@ -741,12 +782,12 @@ class Tool {
   final String status;
 
   Tool({
-    @required this.id,
-    @required this.name,
-    @required this.category,
-    @required this.user,
-    @required this.reservations,
-    @required this.status,
+    required this.id,
+    required this.name,
+    required this.category,
+    required this.user,
+    required this.reservations,
+    required this.status,
   });
 
   factory Tool.fromJson(Map<String, dynamic> json) {
@@ -770,10 +811,10 @@ class User {
   final String displayName;
   final bool certified;
   User(
-      {@required this.uid,
-      @required this.email,
-      @required this.displayName,
-      @required this.certified});
+      {required this.uid,
+      required this.email,
+      required this.displayName,
+      required this.certified});
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -788,8 +829,32 @@ class User {
   }
 }
 
+class Inventory {
+  final String name;
+  final String? description;
+  final int count;
+  final String barcodeId;
+  Inventory(
+      {required this.name,
+      required this.count,
+      required this.barcodeId,
+      required this.description});
+
+  factory Inventory.fromJson(Map<String, dynamic> json) {
+    return Inventory(
+        name: json['name'] as String,
+        count: json['count'] as int,
+        barcodeId: json['barcodeId'] as String,
+        description: json['description'] as String?);
+  }
+
+  String toString() {
+    return name;
+  }
+}
+
 class LastCheckInTime {
-  int _value;
+  late int _value;
 
   LastCheckInTime(int value) {
     _value = value;
@@ -803,9 +868,7 @@ class LastCheckInTime {
 class MeetingCount {
   int _value;
 
-  MeetingCount(int value) {
-    _value = value;
-  }
+  MeetingCount(int value) : _value = value;
 
   int getValue() {
     return _value;

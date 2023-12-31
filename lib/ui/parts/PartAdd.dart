@@ -11,7 +11,7 @@ import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/database.dart';
 
 class PartAdd extends StatefulWidget {
-  PartAdd({Key key}) : super(key: key);
+  PartAdd({Key? key}) : super(key: key);
 
   @override
   _PartAddState createState() => _PartAddState();
@@ -80,7 +80,7 @@ class _PartAddState extends State<PartAdd> {
                         margin: EdgeInsets.only(top: 20),
                         child: TextFormField(
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value == null || value.isEmpty) {
                               return 'Enter Part Name';
                             }
                             return null;
@@ -103,7 +103,8 @@ class _PartAddState extends State<PartAdd> {
                         margin: EdgeInsets.only(top: 17),
                         child: TextFormField(
                           validator: (value) {
-                            if (value.length < 8 &&
+                            if (value != null &&
+                                value.length < 8 &&
                                 !((value.substring(0, 8) != "https://") ||
                                     (value.substring(0, 8) != "http://"))) {
                               return 'Enter Valid Link (with http(s))';
@@ -128,7 +129,7 @@ class _PartAddState extends State<PartAdd> {
                         margin: EdgeInsets.only(top: 20),
                         child: TextFormField(
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value == null || value.isEmpty) {
                               return 'Enter Tracking Number';
                             }
                             return null;
@@ -166,10 +167,12 @@ class _PartAddState extends State<PartAdd> {
                                 return "Select a Tool";
                               return null;
                             },
-                            onChanged: (String newValue) {
-                              setState(() {
-                                dropdownValue = newValue;
-                              });
+                            onChanged: (String? newValue) {
+                              if (newValue != null) {
+                                setState(() {
+                                  dropdownValue = newValue;
+                                });
+                              }
                             },
                             items: <String>[
                               'Select a Carrier',
@@ -234,10 +237,12 @@ class _PartAddState extends State<PartAdd> {
                                     borderRadius: BorderRadius.circular(7.0)),
                                 child: ElevatedButton(
                                   onPressed: () async {
-                                    if (_formKey.currentState.validate()) {
+                                    if (_formKey.currentState != null &&
+                                        _formKey.currentState!.validate()) {
                                       print("Handling on pressed");
                                       var result = await Database.addPart(
-                                          Provider.of<firebase.IdTokenResult>(context,
+                                          Provider.of<firebase.IdTokenResult>(
+                                              context,
                                               listen: false),
                                           Provider.of<firebase.User>(context,
                                               listen: false),
@@ -259,7 +264,8 @@ class _PartAddState extends State<PartAdd> {
                                       style: GoogleFonts.rubik(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),
-                                  style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Color(0xff159deb)),
                                 ),
                               ),
                             ],

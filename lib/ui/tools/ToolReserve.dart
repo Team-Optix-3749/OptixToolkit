@@ -18,7 +18,7 @@ class ToolReserve extends StatelessWidget {
   final List<Tool> tools;
   final String category;
 
-  ToolReserve({Key key, this.tools, this.category}) : super(key: key);
+  ToolReserve({Key? key, required this.tools, required this.category}) : super(key: key);
 
   final Color background = Color(0xff26292c);
   final Color gray = Color(0xff3A3D41);
@@ -87,13 +87,13 @@ class ToolReserve extends StatelessWidget {
         ),
       ),
       floatingActionButton:
-          (Provider.of<firebase.IdTokenResult>(context).claims['admin'] == true)
+          (Provider.of<firebase.IdTokenResult>(context).claims?['admin'] == true)
               ? FloatingActionButton(
                   onPressed: () {
                     NavigationService.goTo(
                       PageRouteBuilder(
                         pageBuilder: (context, animation1, animation2) =>
-                            ToolAdd(),
+                            ToolAdd(key: null,),
                       ),
                     );
                   },

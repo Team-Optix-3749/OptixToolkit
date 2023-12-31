@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:OptixToolkit/ui/tools/ToolModal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:OptixToolkit/ui/tools/ToolCard.dart';
@@ -12,7 +13,7 @@ import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class toolsPage extends StatelessWidget {
-  const toolsPage({Key key, this.uid}) : super(key: key);
+  const toolsPage({Key? key, required this.uid}) : super(key: key);
   final String uid;
 
   @override
@@ -28,7 +29,7 @@ class toolsPage extends StatelessWidget {
               return Text('Error: ${snapshot.error}');
             else
               return ToolWidget(
-                tools: snapshot.data,
+                tools: snapshot.data ?? {},
                 idToken: Provider.of<firebase.IdTokenResult>(context),
               );
         }
@@ -41,15 +42,16 @@ class ToolWidget extends StatefulWidget {
   Map<String, List<Tool>> tools;
   final firebase.IdTokenResult idToken;
 
-  ToolWidget({Key key, this.tools, this.idToken}) : super(key: key);
+  ToolWidget({Key? key, required this.tools, required this.idToken})
+      : super(key: key);
 
   @override
   _toolState createState() => _toolState(this.tools, this.idToken);
 }
 
 class _toolState extends State<ToolWidget> with RouteAware {
-  Map<String, List<Tool>> tools;
-  firebase.IdTokenResult idToken;
+  late Map<String, List<Tool>> tools;
+  late firebase.IdTokenResult idToken;
 
   _toolState(Map<String, List<Tool>> tools, firebase.IdTokenResult idToken) {
     this.tools = tools;
@@ -57,9 +59,10 @@ class _toolState extends State<ToolWidget> with RouteAware {
   }
 
   void _showDialog(BuildContext context) {
+    //dialog is the modal
     // flutter defined function
     showDialog(
-      context: context,
+      context: context, //tells flutter the context, or where we are in the app
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
@@ -152,13 +155,17 @@ class _toolState extends State<ToolWidget> with RouteAware {
   @override
   Widget build(BuildContext context) {
     List<ToolCard> widgets = [];
-    tools.forEach((category, tools) => widgets.insert(
+    tools.forEach(
+      (category, tools) => widgets.insert(
         0,
         ToolCard(
           category: category,
           tools: tools,
           refreshTools: refreshTools,
-        )));
+          key: null,
+        ),
+      ),
+    );
 
     return Container(
       child: Column(
@@ -183,7 +190,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
                         borderRadius: BorderRadius.circular(7.0)),
                     child: ElevatedButton(
                       onPressed: () {
-                        checkOutScan().catchError(() {
+                        checkOutScan().catchError((e) {
                           _showDialog(context);
                         });
                         refreshTools();
@@ -196,7 +203,26 @@ class _toolState extends State<ToolWidget> with RouteAware {
                           color: Colors.white,
                         ),
                       ),
-                      style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xff159deb),
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      _scanBarcode(
+                          context); // Function to initiate barcode scanning
+                    },
+                    child: Text(
+                      'SCAN',
+                      style: GoogleFonts.rubik(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xff159deb),
                     ),
                   ),
                   ButtonTheme(
@@ -206,7 +232,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
                         borderRadius: BorderRadius.circular(7.0)),
                     child: ElevatedButton(
                       onPressed: () {
-                        returnScan().catchError(() {
+                        returnScan().catchError((e) {
                           _showDialog(context);
                         });
                         refreshTools();
@@ -219,7 +245,9 @@ class _toolState extends State<ToolWidget> with RouteAware {
                           color: Colors.white,
                         ),
                       ),
-                      style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xff159deb),
+                      ),
                     ),
                   )
                 ],
@@ -246,11 +274,12 @@ class _toolState extends State<ToolWidget> with RouteAware {
                         text: TextSpan(
                           children: <TextSpan>[
                             TextSpan(
-                                text: 'Tool ',
-                                style: GoogleFonts.rubik(
-                                  color: Colors.white,
-                                  fontSize: 25.0,
-                                )),
+                              text: 'Tool ',
+                              style: GoogleFonts.rubik(
+                                color: Colors.white,
+                                fontSize: 25.0,
+                              ),
+                            ),
                             TextSpan(
                               text: 'List',
                               style: GoogleFonts.rubik(
@@ -267,7 +296,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
                   const SizedBox(height: 15),
                   Expanded(
                     child: RefreshIndicator(
-                      onRefresh: () {
+                      onRefresh: () async {
                         refreshTools();
                       },
                       child: ListView(children: widgets),
@@ -279,6 +308,40 @@ class _toolState extends State<ToolWidget> with RouteAware {
           ),
         ],
       ),
+    );
+  }
+
+  // Function to handle barcode scanning
+  Future _scanBarcode(BuildContext context) async {
+    try {
+      String barcodeValue = (await BarcodeScanner.scan()).rawContent;
+
+      Inventory? inv = await Database.getInventory(idToken, barcodeValue, context);
+
+      if (inv != null) {
+        _showBarcodeModal(context, inv);
+      }
+    } on PlatformException catch (e) {
+      if (e.code == BarcodeScanner.cameraAccessDenied) {
+        print('Camera permission not granted');
+      } else {
+        print('Unknown Error: $e');
+      }
+    } on FormatException catch (e) {
+      print('User pressed back button before scanning');
+    } catch (e) {
+      print('Unknown Error: $e');
+    }
+  }
+
+  // Function to show a modal
+  void _showBarcodeModal(BuildContext context, Inventory inv) {
+    showDialog(
+      context: context, //tells flutter the context, or where we are in the app
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return ToolModal(inventory: inv);
+      },
     );
   }
 }

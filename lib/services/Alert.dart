@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class Alert extends StatelessWidget {
   final String alert;
-  const Alert({Key key, this.alert}) : super(key: key);
+  const Alert({Key? key, required this.alert}) : super(key: key);
 
   static Future<void> showAlert(BuildContext context, String error) async {
     return showDialog<void>(

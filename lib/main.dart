@@ -30,11 +30,17 @@ class MyApp extends StatelessWidget {
       ],
     );
     return MultiProvider(
-      providers: [StreamProvider<firebase.User>.value(value: Auth.authState())],
-      child: Consumer<firebase.User>(
+      providers: [
+        StreamProvider<firebase.User?>.value(
+          value: Auth.authState(),
+          initialData: null,
+        )
+      ],
+      child: Consumer<firebase.User?>(
         builder: (context, user, child) {
           if (user != null) {
-            return FutureProvider<firebase.IdTokenResult>(
+            return FutureProvider<firebase.IdTokenResult?>(
+              initialData: null,
               create: (_) => user.getIdTokenResult(),
               child: MaterialApp(
                 title: 'OptixToolkit',
@@ -66,8 +72,8 @@ class MyApp extends StatelessWidget {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (Provider.of<firebase.User>(context) == null) return FormPage();
-    if (Provider.of<firebase.IdTokenResult>(context) == null) return Loading();
+    if (Provider.of<firebase.User?>(context) == null) return FormPage();
+    if (Provider.of<firebase.IdTokenResult?>(context) == null) return Loading();
     return MyStatefulWidget();
   }
 }

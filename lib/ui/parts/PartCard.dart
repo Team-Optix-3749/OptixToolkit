@@ -10,7 +10,7 @@ import 'package:OptixToolkit/services/database.dart';
 
 class PartCard extends StatelessWidget {
   final Part part;
-  const PartCard({Key key, this.part}) : super(key: key);
+  const PartCard({Key? key, required this.part}) : super(key: key);
 
   Future<void> _showMyDialog(BuildContext context) async {
     return showDialog<void>(

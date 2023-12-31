@@ -5,7 +5,7 @@ import 'package:OptixToolkit/services/database.dart';
 class ToolLine extends StatelessWidget {
   final Tool tool;
   final String status;
-  const ToolLine({Key key, this.tool, this.status}) : super(key: key);
+  const ToolLine({Key? key, required this.tool, required this.status}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

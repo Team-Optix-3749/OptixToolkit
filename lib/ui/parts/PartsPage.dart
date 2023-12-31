@@ -15,7 +15,7 @@ import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:provider/provider.dart';
 
 class partsPage extends StatelessWidget {
-  const partsPage({Key key, this.uid}) : super(key: key);
+  const partsPage({Key? key, required this.uid}) : super(key: key);
   final String uid;
 
   @override
@@ -31,7 +31,7 @@ class partsPage extends StatelessWidget {
               return Text('Error: ${snapshot.error}');
             else
               return PartsWidget(
-                  parts: snapshot.data,
+                  parts: snapshot.data ?? [],
                   idToken: Provider.of<firebase.IdTokenResult>(context));
         }
       },
@@ -43,15 +43,15 @@ class PartsWidget extends StatefulWidget {
   final List<Part> parts;
   final firebase.IdTokenResult idToken;
 
-  PartsWidget({Key key, this.parts, this.idToken}) : super(key: key);
+  PartsWidget({Key? key, required this.parts, required this.idToken}) : super(key: key);
 
   @override
   _partState createState() => _partState(this.parts, this.idToken);
 }
 
 class _partState extends State<PartsWidget> {
-  List<Part> parts;
-  firebase.IdTokenResult idToken;
+  late List<Part> parts;
+  late firebase.IdTokenResult idToken;
 
   _partState(List<Part> parts, firebase.IdTokenResult idToken) {
     this.parts = parts;

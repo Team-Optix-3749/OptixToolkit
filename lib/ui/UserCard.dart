@@ -13,7 +13,7 @@ import 'package:provider/provider.dart';
 
 class UserCard extends StatelessWidget {
   final User user;
-  const UserCard({Key key, this.user}) : super(key: key);
+  const UserCard({Key? key, required this.user}) : super(key: key);
 
   Future<void> _showMyDialog(BuildContext context) async {
     return showDialog<void>(

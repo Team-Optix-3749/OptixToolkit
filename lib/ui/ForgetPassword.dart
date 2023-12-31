@@ -10,7 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:OptixToolkit/services/firebase.dart';
 
 class ForgetPassword extends StatefulWidget {
-  ForgetPassword({Key key}) : super(key: key);
+  ForgetPassword({Key? key}) : super(key: key);
 
   @override
   _ForgetPasswordState createState() => _ForgetPasswordState();
@@ -65,7 +65,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       width: 300,
                       child: TextFormField(
                         validator: (value) {
-                          if (value.isEmpty) {
+                          if (value == null || value.isEmpty) {
                             return 'Email';
                           }
                           return null;
@@ -101,7 +101,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           borderRadius: BorderRadius.circular(7.0)),
                       child: ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState.validate()) {
+                          if (_formKey.currentState != null && _formKey.currentState!.validate()) {
                             Auth.sendPasswordResetEmail(
                                 emailController.text, context);
                             Good.showGood(context, "Sent!");

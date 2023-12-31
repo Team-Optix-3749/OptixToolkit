@@ -13,7 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:OptixToolkit/services/firebase.dart';
 
 class PartReimburse extends StatefulWidget {
-  PartReimburse({Key key}) : super(key: key);
+  PartReimburse({Key? key}) : super(key: key);
 
   @override
   _PartReimburseState createState() => _PartReimburseState();
@@ -25,7 +25,7 @@ class _PartReimburseState extends State<PartReimburse> {
   final mailingAddressController = TextEditingController();
   final partDescriptionController = TextEditingController();
   final checkAddressedToController = TextEditingController();
-  File _image;
+  File? _image;
   final picker = ImagePicker();
 
   final _formKey = GlobalKey<FormState>();
@@ -88,7 +88,7 @@ class _PartReimburseState extends State<PartReimburse> {
                         margin: EdgeInsets.only(top: 20),
                         child: TextFormField(
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value == null || value.isEmpty) {
                               return 'Enter Part Name';
                             }
                             return null;
@@ -111,7 +111,7 @@ class _PartReimburseState extends State<PartReimburse> {
                         margin: EdgeInsets.only(top: 17),
                         child: TextFormField(
                           validator: (value) {
-                            if (value.length < 8 &&
+                            if (value != null && value.length < 8 &&
                                 !((value.substring(0, 8) != "https://") ||
                                     (value.substring(0, 8) != "http://"))) {
                               return 'Enter Valid Link (with http(s))';
@@ -136,7 +136,7 @@ class _PartReimburseState extends State<PartReimburse> {
                         margin: EdgeInsets.only(top: 20),
                         child: TextFormField(
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value == null || value.isEmpty) {
                               return 'Enter Recipient Name';
                             }
                             return null;
@@ -159,7 +159,7 @@ class _PartReimburseState extends State<PartReimburse> {
                         margin: EdgeInsets.only(top: 20),
                         child: TextFormField(
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value == null || value.isEmpty) {
                               return 'Enter Mailing Address';
                             }
                             return null;
@@ -222,19 +222,19 @@ class _PartReimburseState extends State<PartReimburse> {
                                     borderRadius: BorderRadius.circular(7.0)),
                                 child: ElevatedButton(
                                   onPressed: () async {
-                                    if (_formKey.currentState.validate()) {
+                                    if (_formKey.currentState != null && _formKey.currentState!.validate() && _image != null) {
                                       print("Handling on pressed");
                                       var result = await Database.reimbursement(
                                           Provider.of<firebase.IdTokenResult>(context,
                                               listen: false),
                                           Provider.of<firebase.User>(context,
                                                   listen: false)
-                                              .displayName,
+                                              .displayName!,
                                           partNameController.text,
                                           partLinkController.text,
                                           mailingAddressController.text,
                                           await Auth.getImageUrl(
-                                              _image,
+                                              _image!,
                                               Provider.of<firebase.User>(context,
                                                   listen: false)),
                                           checkAddressedToController.text,
@@ -244,7 +244,7 @@ class _PartReimburseState extends State<PartReimburse> {
                                       if (result) {
                                         Good.showGood(context,
                                             "We have sent your reimbursement to business for review. They will file it and send you a check shortly.");
-                                        File _image = null;
+                                        _image = null;
                                         partNameController.clear();
                                         partLinkController.clear();
                                         mailingAddressController.clear();

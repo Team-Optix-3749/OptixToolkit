@@ -7,7 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase;
 
 class ToolReserveItem extends StatelessWidget {
   final Tool tool;
-  const ToolReserveItem({Key key, this.tool}) : super(key: key);
+  const ToolReserveItem({Key? key, required this.tool}) : super(key: key);
 
   Future<void> _showToolService(BuildContext context) async {
     Widget doneButton = TextButton(
@@ -80,7 +80,8 @@ class ToolReserveItem extends StatelessWidget {
                       print("Tool Status: " + tool.status);
                       if (tool.status == "notInUse") {
                         var result = await Database.changeToolStatus(
-                          Provider.of<firebase.IdTokenResult>(context, listen: false),
+                          Provider.of<firebase.IdTokenResult>(context,
+                              listen: false),
                           Provider.of<firebase.User>(context, listen: false),
                           tool.name,
                           "outOfService",
@@ -92,7 +93,8 @@ class ToolReserveItem extends StatelessWidget {
                         }
                       } else if (tool.status == "outOfService") {
                         var result = await Database.changeToolStatus(
-                          Provider.of<firebase.IdTokenResult>(context, listen: false),
+                          Provider.of<firebase.IdTokenResult>(context,
+                              listen: false),
                           Provider.of<firebase.User>(context, listen: false),
                           tool.name,
                           "notInUse",
@@ -115,15 +117,17 @@ class ToolReserveItem extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xff159deb)),
                   ),
                 ],
               ),
             ),
             actions: [
-              (!!Provider.of<firebase.IdTokenResult>(context).claims['admin'])
-                  ? removeButton
-                  : null,
+              if (Provider.of<firebase.IdTokenResult>(context)
+                      .claims?['admin'] ==
+                  true)
+                removeButton,
               doneButton,
             ],
           ),
@@ -313,12 +317,14 @@ class ToolReserveItem extends StatelessWidget {
                       print("Tool Name: " + tool.name);
                       print("Tool Status: " + tool.status);
                       var result = await Database.reserveTool(
-                          Provider.of<firebase.IdTokenResult>(context, listen: false),
+                          Provider.of<firebase.IdTokenResult>(context,
+                              listen: false),
                           Provider.of<firebase.User>(context, listen: false),
                           tool.name,
                           context);
                       print(await Database.getUsers(
-                          Provider.of<firebase.IdTokenResult>(context, listen: false)));
+                          Provider.of<firebase.IdTokenResult>(context,
+                              listen: false)));
                       print("Result of the request: " + result.toString());
                       if (result) {
                         NavigationService.pop();
@@ -335,7 +341,8 @@ class ToolReserveItem extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    style: ElevatedButton.styleFrom(backgroundColor: Color(0xff159deb)),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xff159deb)),
                   ),
                 ),
               ],
