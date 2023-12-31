@@ -834,18 +834,25 @@ class Inventory {
   final String? description;
   final int count;
   final String barcodeId;
+  final String status;
+  final String location;
   Inventory(
       {required this.name,
       required this.count,
       required this.barcodeId,
-      required this.description});
+      required this.description,
+      required this.status,
+      required this.location
+      });
 
   factory Inventory.fromJson(Map<String, dynamic> json) {
     return Inventory(
         name: json['name'] as String,
         count: json['count'] as int,
         barcodeId: json['barcodeId'] as String,
-        description: json['description'] as String?);
+        description: json['description'] as String,
+        status: json['status'] as String,
+        location: json['location'] as String);
   }
 
   String toString() {
