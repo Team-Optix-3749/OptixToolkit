@@ -313,26 +313,32 @@ class _toolState extends State<ToolWidget> with RouteAware {
 
   // Function to handle barcode scanning
   Future _scanBarcode(BuildContext context) async {
-    try {
-      String barcodeValue = (await BarcodeScanner.scan()).rawContent;
+  try {
+    String barcodeValue = (await BarcodeScanner.scan()).rawContent;
 
-      Inventory? inv = await Database.getInventory(idToken, barcodeValue, context);
+    Inventory? inv = await Database.getInventory(idToken, barcodeValue, context);
 
-      if (inv != null) {
-        _showBarcodeModal(context, inv);
-      }
-    } on PlatformException catch (e) {
-      if (e.code == BarcodeScanner.cameraAccessDenied) {
-        print('Camera permission not granted');
-      } else {
-        print('Unknown Error: $e');
-      }
-    } on FormatException catch (e) {
-      print('User pressed back button before scanning');
-    } catch (e) {
+    if (inv != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => BarcodeResultPage(barcodeValue: barcodeValue, inventory: inv),
+        ),
+      );
+    }
+  } on PlatformException catch (e) {
+    if (e.code == BarcodeScanner.cameraAccessDenied) {
+      print('Camera permission not granted');
+    } else {
       print('Unknown Error: $e');
     }
+  } on FormatException catch (e) {
+    print('User pressed back button before scanning');
+  } catch (e) {
+    print('Unknown Error: $e');
   }
+}
+
 
   // Function to show a modal
   void _showBarcodeModal(BuildContext context, Inventory inv) {
