@@ -237,9 +237,12 @@ class _toolState extends State<ToolWidget> with RouteAware {
                         fontSize: 20.0,
                         color: Colors.white
                       )
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xff159deb),
                     )
                   )
-                  // ButtonTheme(
+                  // ButtonTheme(      
                   //   minWidth: MediaQuery.of(context).size.width * 0.43,
                   //   height: 55,
                   //   shape: RoundedRectangleBorder(
@@ -390,15 +393,20 @@ class _toolState extends State<ToolWidget> with RouteAware {
     );
   }
 
-void _handleManualBarcodeEntry(BuildContext context, String enteredBarcode) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-          builder: (context) => BarcodeResultPage(barcodeValue: barcodeValue, inventory: inv),
-    ),
-  );
-}
+Future _handleManualBarcodeEntry(BuildContext context, String enteredBarcode) async{
 
+  String barcodeValue = enteredBarcode;
+  Inventory? inv = await Database.getInventory(idToken, barcodeValue, context);
+  
+  if (inv != null) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+            builder: (context) => BarcodeResultPage(barcodeValue: barcodeValue, inventory: inv),
+    ),
+    );
+  }
+}
   // Function to show a modal
   void _showBarcodeModal(BuildContext context, Inventory inv) {
     showDialog(
@@ -410,6 +418,3 @@ void _handleManualBarcodeEntry(BuildContext context, String enteredBarcode) {
     );
   }
 }
-
-// final Color buttonColor = Color(0xff159deb);
-
