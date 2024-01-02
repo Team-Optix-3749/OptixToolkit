@@ -226,23 +226,19 @@ class _toolState extends State<ToolWidget> with RouteAware {
                       backgroundColor: Color(0xff159deb),
                     ),
                   ),
-                  ElevatedButton(  
-                    onPressed: () {
-                      _showManualEntryDialog(context);
-                    },
-                    child: Text(
-                      'Manual Entry' ,
-                      style: GoogleFonts.rubik(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20.0,
-                        color: Colors.white
-                      )
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff159deb),
-                    )
-                  )
-                  // ButtonTheme(      
+                  ElevatedButton(
+                      onPressed: () {
+                        _showManualEntryDialog(context);
+                      },
+                      child: Text('Manual Entry',
+                          style: GoogleFonts.rubik(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              color: Colors.white)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xff159deb),
+                      ))
+                  // ButtonTheme(
                   //   minWidth: MediaQuery.of(context).size.width * 0.43,
                   //   height: 55,
                   //   shape: RoundedRectangleBorder(
@@ -330,31 +326,36 @@ class _toolState extends State<ToolWidget> with RouteAware {
 
   // Function to handle barcode scanning
   Future _scanBarcode(BuildContext context) async {
-  try {
-    String barcodeValue = (await BarcodeScanner.scan()).rawContent;
+    try {
+      String barcodeValue = (await BarcodeScanner.scan()).rawContent;
 
-    Inventory? inv = await Database.getInventory(idToken, barcodeValue, context);
+      // remove first and last digit of barcode
+      barcodeValue = barcodeValue.substring(1, barcodeValue.length - 1);
 
-    if (inv != null) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => BarcodeResultPage(barcodeValue: barcodeValue, inventory: inv),
-        ),
-      );
-    }
-  } on PlatformException catch (e) {
-    if (e.code == BarcodeScanner.cameraAccessDenied) {
-      print('Camera permission not granted');
-    } else {
+      Inventory? inv =
+          await Database.getInventory(idToken, barcodeValue, context);
+
+      if (inv != null) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                BarcodeResultPage(barcodeValue: barcodeValue, inventory: inv),
+          ),
+        );
+      }
+    } on PlatformException catch (e) {
+      if (e.code == BarcodeScanner.cameraAccessDenied) {
+        print('Camera permission not granted');
+      } else {
+        print('Unknown Error: $e');
+      }
+    } on FormatException catch (e) {
+      print('User pressed back button before scanning');
+    } catch (e) {
       print('Unknown Error: $e');
     }
-  } on FormatException catch (e) {
-    print('User pressed back button before scanning');
-  } catch (e) {
-    print('Unknown Error: $e');
   }
-}
 
   void _showManualEntryDialog(BuildContext context) {
     TextEditingController barcodeController = TextEditingController();
@@ -393,30 +394,22 @@ class _toolState extends State<ToolWidget> with RouteAware {
     );
   }
 
-Future _handleManualBarcodeEntry(BuildContext context, String enteredBarcode) async{
+  Future _handleManualBarcodeEntry(
+      BuildContext context, String enteredBarcode) async {
+    String barcodeValue = enteredBarcode;
+    Inventory? inv =
+        await Database.getInventory(idToken, barcodeValue, context);
 
-  String barcodeValue = enteredBarcode;
-  Inventory? inv = await Database.getInventory(idToken, barcodeValue, context);
-  
-  if (inv != null) {
-    Navigator.of(context).pop(); // Close the dialog
+    if (inv != null) {
+      Navigator.of(context).pop(); // Close the dialog
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-            builder: (context) => BarcodeResultPage(barcodeValue: barcodeValue, inventory: inv),
-    ),
-    );
-  }
-}
-  // Function to show a modal
-  void _showBarcodeModal(BuildContext context, Inventory inv) {
-    showDialog(
-      context: context, //tells flutter the context, or where we are in the app
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return ToolModal(inventory: inv);
-      },
-    );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              BarcodeResultPage(barcodeValue: barcodeValue, inventory: inv),
+        ),
+      );
+    }
   }
 }
