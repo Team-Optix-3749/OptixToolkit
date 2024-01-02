@@ -1,14 +1,29 @@
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:flutter/material.dart';
 import 'package:OptixToolkit/services/database.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-class BarcodeResultPage extends StatelessWidget {
+class BarcodeResultPage extends StatefulWidget {
   final String barcodeValue;
   final Inventory inventory;
 
   const BarcodeResultPage(
       {Key? key, required this.barcodeValue, required this.inventory})
       : super(key: key);
+
+  @override
+  State<BarcodeResultPage> createState() => _BarcodeResultPageState();
+}
+
+class _BarcodeResultPageState extends State<BarcodeResultPage> {
+  Inventory? inventory;
+
+  @override
+  void initState() {
+    super.initState();
+    inventory = widget.inventory;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +53,7 @@ class BarcodeResultPage extends StatelessWidget {
               children: [
                 Text(
                   //Tool Name
-                  'Tool Name: ${inventory.name}',
+                  'Tool Name: ${inventory!.name}',
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
@@ -46,7 +61,7 @@ class BarcodeResultPage extends StatelessWidget {
                 ),
                 Text(
                   //Barcode Value
-                  'Barcode ID: $barcodeValue',
+                  'Barcode ID: ${widget.barcodeValue}',
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
@@ -57,7 +72,7 @@ class BarcodeResultPage extends StatelessWidget {
 
                 Text(
                   // Tool Description
-                  'Tool Description: ${inventory.description}',
+                  'Tool Description: ${inventory!.description}',
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.normal,
@@ -66,7 +81,7 @@ class BarcodeResultPage extends StatelessWidget {
                 SizedBox(height: 10),
                 Text(
                   // Tool Count
-                  'Tool Count: ${inventory.count}',
+                  'Tool Count: ${inventory!.count}',
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.normal,
@@ -77,17 +92,19 @@ class BarcodeResultPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Tool Status: ${inventory.status}',
+                      'Tool Status: ${inventory!.status}',
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        _handleChange('Tool Status', inventory.status, context);
+                        _handleChange(
+                            'Tool Status', widget.inventory.status, context);
                       },
                       child:
                           Text('Change', style: TextStyle(color: Colors.white)),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue, // Set the button color to blue
+                        backgroundColor:
+                            Colors.blue, // Set the button color to blue
                       ),
                     ),
                   ],
@@ -98,18 +115,19 @@ class BarcodeResultPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Tool Location: ${inventory.location}',
+                      'Tool Location: ${inventory!.location}',
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        _handleChange(
-                            'Tool Location', inventory.location, context);
+                        _handleChange('Tool Location',
+                            widget.inventory.location, context);
                       },
                       child:
                           Text('Change', style: TextStyle(color: Colors.white)),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue, // Set the button color to blue
+                        backgroundColor:
+                            Colors.blue, // Set the button color to blue
                       ),
                     ),
                   ],
@@ -143,9 +161,34 @@ class BarcodeResultPage extends StatelessWidget {
               child: Text('Cancel'),
             ),
             TextButton(
-              onPressed: () {
+              onPressed: () async {
                 String newValue = inputController.text.trim();
                 if (newValue.isNotEmpty) {
+                  Inventory? newInventory;
+
+                  if (attributeName == "Tool Status") {
+                    newInventory = await Database.modifyInventory(
+                        Provider.of<firebase.IdTokenResult>(context, listen: false),
+                        widget.barcodeValue,
+                        newValue,
+                        null,
+                        context);
+                  }
+                  if (attributeName == "Tool Location") {
+                    newInventory = await Database.modifyInventory(
+                        Provider.of<firebase.IdTokenResult>(context, listen: false),
+                        widget.barcodeValue,
+                        null,
+                        newValue,
+                        context);
+                  }
+
+                  if (newInventory != null) {
+                    setState(() {
+                      inventory = newInventory;
+                    });
+                  }
+
                   Navigator.of(context).pop();
                 } else {
                   print("Please enter a valid $attributeName");

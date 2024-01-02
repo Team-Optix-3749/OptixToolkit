@@ -399,6 +399,8 @@ Future _handleManualBarcodeEntry(BuildContext context, String enteredBarcode) as
   Inventory? inv = await Database.getInventory(idToken, barcodeValue, context);
   
   if (inv != null) {
+    Navigator.of(context).pop(); // Close the dialog
+
     Navigator.push(
       context,
       MaterialPageRoute(
