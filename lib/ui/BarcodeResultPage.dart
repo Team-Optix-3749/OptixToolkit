@@ -15,95 +15,111 @@ class BarcodeResultPage extends StatelessWidget {
         title: Center(
           child: Text(
             'Barcode Result',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-              backgroundColor: Colors.blue  //Must fix
-            ),
+            style: TextStyle(fontSize: 30,fontWeight: FontWeight.w800, color: Colors.black),
           ),
         ),
+        backgroundColor: Colors.blue,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: Text(
-                'Barcode Value: $barcodeValue',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
-                textAlign: TextAlign.center,
-              ),
+            Text(  //Tool Name
+              'Tool Name: ${inventory.name}',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black ),
             ),
-            SizedBox(height: 16),
-            buildAttributeRow('Tool Name', inventory.name, context),
-            buildAttributeRow('Tool Description', inventory.description, context),
-            buildAttributeRow('Tool Status', inventory.status, context),
-            buildAttributeRow('Tool Count', inventory.count.toString(), context),
-            buildAttributeRow('Tool Location', inventory.location, context),
+            Text( //Barcode Value
+              'Barcode ID: $barcodeValue',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
+            ),
+
+            SizedBox(height: 30),
+
+            Text( // Tool Description
+              'Tool Description: ${inventory.description}',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal, color: Colors.black),
+            ),
+            SizedBox(height: 10),
+            Text( // Tool Count
+              'Tool Count: ${inventory.count}',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal, color: Colors.black),
+            ),
+            // Tool Status
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Tool Status: ${inventory.status}',
+                  style: TextStyle(fontSize: 18),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    _handleChange('Tool Status', inventory.status, context);
+                  },
+                  child: Text('Change',
+                  style: TextStyle(color: Colors.black)),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue, // Set the button color to blue
+                  ),
+                ),
+              ],
+            ),
+
+            // Tool Location
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Tool Location: ${inventory.location}',
+                  style: TextStyle(fontSize: 18),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    _handleChange('Tool Location', inventory.location, context);
+                  },
+                  child: Text('Change',
+                  style: TextStyle(color: Colors.black)),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue, // Set the button color to blue
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget buildAttributeRow(String attributeName, String attributeValue, BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          '$attributeName:',
-          style: TextStyle(fontSize: 18),
-        ),
-        Row(
-          children: [
-            Text(
-              attributeValue,
-              style: TextStyle(fontSize: 18),
-            ),
-            TextButton(
-              onPressed: () => _handleAttributeChange(context, attributeName, attributeValue),
-              child: Text('Change'),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
+  //This is the function to handle changing tool attributes
+  void _handleChange(String attributeName, String currentValue, BuildContext context) async {
+    TextEditingController inputController = TextEditingController();
 
-  void _handleAttributeChange(BuildContext context, String attributeName, String currentValue) async {
-    TextEditingController newValueController = TextEditingController();
-
-    await showDialog(
+    showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Change $attributeName'),
           content: TextField(
-            controller: newValueController,
+            controller: inputController,
             keyboardType: TextInputType.text,
             decoration: InputDecoration(labelText: 'Enter new $attributeName'),
           ),
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pop();    
               },
               child: Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
-                String newValue = newValueController.text.trim();
+                String newValue = inputController.text.trim();
                 if (newValue.isNotEmpty) {
-                  // You can add logic here to update the attribute in the database or any other action
-                  print('New $attributeName: $newValue');
-                  Navigator.of(context).pop(); // Close the dialog
+                  Navigator.of(context).pop(); 
                 } else {
-                  print("Please enter a valid value");
+                  print("Please enter a valid $attributeName");
                 }
               },
               child: Text('Submit'),
