@@ -831,7 +831,7 @@ class User {
 
 class Inventory {
   final String name;
-  final String? description;
+  final String description;
   final int count;
   final String barcodeId;
   final String status;
