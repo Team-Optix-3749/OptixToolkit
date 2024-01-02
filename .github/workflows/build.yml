@@ -19,18 +19,18 @@ jobs:
       
       # release the apk
       - name: Set current date as env variable
-        run: echo "NOW=\"$(git rev-parse --abbrev-ref HEAD)-$(date +'%Y-%m-%dT%H:%M:%S')\"" >> $GITHUB_ENV
+        run: echo "NOW=\"$(git rev-parse --abbrev-ref HEAD) $(date +'%Y-%m-%dT%H:%M:%S')\" TAG=$(date +%s)" >> $GITHUB_ENV
       - name: tag snapshot
         uses: tvdias/github-tagger@v0.0.1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ env.NOW }}
+          tag: ${{ env.TAG }}
       - name: create new release
         uses: softprops/action-gh-release@v1
         with:
           files: "build/app/outputs/flutter-apk/app-release.apk"
           name: OptixToolkit ${{ env.NOW }}
-          tag_name: ${{ env.NOW }}
+          tag_name: ${{ env.TAG }}
           draft: false
           prerelease: false
       
