@@ -15,78 +15,81 @@ class BarcodeResultPage extends StatelessWidget {
         title: Center(
           child: Text(
             'Barcode Result',
-            style: TextStyle(fontSize: 30,fontWeight: FontWeight.w800, color: Colors.black),
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800, color: Colors.black),
           ),
         ),
         backgroundColor: Colors.blue,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(  //Tool Name
-              'Tool Name: ${inventory.name}',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black ),
-            ),
-            Text( //Barcode Value
-              'Barcode ID: $barcodeValue',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
-            ),
+      body: Container(
+        color: Color.fromARGB(255, 51, 44, 44), // Not sure if this is the right shade of gray
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text( //Tool Name
+                'Tool Name: ${inventory.name}',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+              ),
+              Text( //Barcode Value
+                'Barcode ID: $barcodeValue',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.white),
+              ),
 
-            SizedBox(height: 30),
+              SizedBox(height: 30),
 
-            Text( // Tool Description
-              'Tool Description: ${inventory.description}',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal, color: Colors.black),
-            ),
-            SizedBox(height: 10),
-            Text( // Tool Count
-              'Tool Count: ${inventory.count}',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal, color: Colors.black),
-            ),
-            // Tool Status
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Tool Status: ${inventory.status}',
-                  style: TextStyle(fontSize: 18),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    _handleChange('Tool Status', inventory.status, context);
-                  },
-                  child: Text('Change',
-                  style: TextStyle(color: Colors.black)),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.blue, // Set the button color to blue
+              Text( // Tool Description
+                'Tool Description: ${inventory.description}',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal, color: Colors.white),
+              ),
+              SizedBox(height: 10),
+              Text( // Tool Count
+                'Tool Count: ${inventory.count}',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal, color: Colors.white),
+              ),
+              // Tool Status
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Tool Status: ${inventory.status}',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
-                ),
-              ],
-            ),
-
-            // Tool Location
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Tool Location: ${inventory.location}',
-                  style: TextStyle(fontSize: 18),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    _handleChange('Tool Location', inventory.location, context);
-                  },
-                  child: Text('Change',
-                  style: TextStyle(color: Colors.black)),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.blue, // Set the button color to blue
+                  ElevatedButton(
+                    onPressed: () {
+                      _handleChange('Tool Status', inventory.status, context);
+                    },
+                    child: Text('Change',
+                        style: TextStyle(color: Colors.white)),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blue, // Set the button color to blue
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+
+              // Tool Location
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Tool Location: ${inventory.location}',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      _handleChange('Tool Location', inventory.location, context);
+                    },
+                    child: Text('Change',
+                        style: TextStyle(color: Colors.white)),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blue, // Set the button color to blue
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -109,7 +112,7 @@ class BarcodeResultPage extends StatelessWidget {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop();    
+                Navigator.of(context).pop();
               },
               child: Text('Cancel'),
             ),
@@ -117,7 +120,7 @@ class BarcodeResultPage extends StatelessWidget {
               onPressed: () {
                 String newValue = inputController.text.trim();
                 if (newValue.isNotEmpty) {
-                  Navigator.of(context).pop(); 
+                  Navigator.of(context).pop();
                 } else {
                   print("Please enter a valid $attributeName");
                 }
