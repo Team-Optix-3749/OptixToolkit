@@ -19,7 +19,7 @@ jobs:
       
       # release the apk
       - name: Set current date as env variable
-        run: echo "NOW=\"$(git rev-parse --abbrev-ref HEAD) $(date +'%Y-%m-%dT%H:%M:%S')\"" >> $GITHUB_ENV
+        run: echo "NOW=\"$(git rev-parse --abbrev-ref HEAD)-$(date +'%Y-%m-%dT%H:%M:%S')\"" >> $GITHUB_ENV
       - name: tag snapshot
         uses: tvdias/github-tagger@v0.0.1
         with:
