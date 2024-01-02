@@ -1,6 +1,5 @@
 // Flutter imports:
 import 'package:OptixToolkit/ui/tools/BarcodeResultPage.dart';
-import 'package:OptixToolkit/ui/tools/ToolModal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:OptixToolkit/ui/tools/ToolCard.dart';
