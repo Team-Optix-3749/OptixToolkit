@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:OptixToolkit/services/database.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BarcodeResultPage extends StatelessWidget {
   final String barcodeValue;
@@ -12,13 +13,13 @@ class BarcodeResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            'Barcode Result',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800, color: Color.fromARGB(255, 255, 255, 255)),
-          ),
+        centerTitle: true,
+        title: Text(
+          "BARCODE RESULT",
+          style: GoogleFonts.rubik(fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xff159deb),
       ),
       body: Container(
         color: Color.fromARGB(255, 51, 44, 44), // Not sure if this is the right shade of gray
