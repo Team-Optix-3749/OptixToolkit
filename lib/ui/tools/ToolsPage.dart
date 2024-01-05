@@ -1,5 +1,5 @@
 // Flutter imports:
-import 'package:OptixToolkit/ui/tools/ToolModal.dart';
+import 'package:OptixToolkit/ui/tools/BarcodeResultPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:OptixToolkit/ui/tools/ToolCard.dart';
@@ -183,31 +183,31 @@ class _toolState extends State<ToolWidget> with RouteAware {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  ButtonTheme(
-                    minWidth: MediaQuery.of(context).size.width * 0.43,
-                    height: 55,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7.0)),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        checkOutScan().catchError((e) {
-                          _showDialog(context);
-                        });
-                        refreshTools();
-                      },
-                      child: Text(
-                        'CHECK OUT',
-                        style: GoogleFonts.rubik(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff159deb),
-                      ),
-                    ),
-                  ),
+                  // ButtonTheme(
+                  //   minWidth: MediaQuery.of(context).size.width * 0.43,
+                  //   height: 55,
+                  //   shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(7.0)),
+                  //   child: ElevatedButton(
+                  //     onPressed: () {
+                  //       checkOutScan().catchError((e) {
+                  //         _showDialog(context);
+                  //       });
+                  //       refreshTools();
+                  //     },
+                  //     child: Text(
+                  //       'CHECK OUT',
+                  //       style: GoogleFonts.rubik(
+                  //         fontWeight: FontWeight.bold,
+                  //         fontSize: 20.0,
+                  //         color: Colors.white,
+                  //       ),
+                  //     ),
+                  //     style: ElevatedButton.styleFrom(
+                  //       backgroundColor: Color(0xff159deb),
+                  //     ),
+                  //   ),
+                  // ),
                   ElevatedButton(
                     onPressed: () {
                       _scanBarcode(
@@ -225,31 +225,43 @@ class _toolState extends State<ToolWidget> with RouteAware {
                       backgroundColor: Color(0xff159deb),
                     ),
                   ),
-                  ButtonTheme(
-                    minWidth: MediaQuery.of(context).size.width * 0.43,
-                    height: 55,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(7.0)),
-                    child: ElevatedButton(
+                  ElevatedButton(
                       onPressed: () {
-                        returnScan().catchError((e) {
-                          _showDialog(context);
-                        });
-                        refreshTools();
+                        _showManualEntryDialog(context);
                       },
-                      child: Text(
-                        'RETURN',
-                        style: GoogleFonts.rubik(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0,
-                          color: Colors.white,
-                        ),
-                      ),
+                      child: Text('Manual Entry',
+                          style: GoogleFonts.rubik(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              color: Colors.white)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xff159deb),
-                      ),
-                    ),
-                  )
+                      ))
+                  // ButtonTheme(
+                  //   minWidth: MediaQuery.of(context).size.width * 0.43,
+                  //   height: 55,
+                  //   shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(7.0)),
+                  //   child: ElevatedButton(
+                  //     onPressed: () {
+                  //       returnScan().catchError((e) {
+                  //         _showDialog(context);
+                  //       });
+                  //       refreshTools();
+                  //     },
+                  //     child: Text(
+                  //       'RETURN',
+                  //       style: GoogleFonts.rubik(
+                  //         fontWeight: FontWeight.bold,
+                  //         fontSize: 20.0,
+                  //         color: Colors.white,
+                  //       ),
+                  //     ),
+                  //     style: ElevatedButton.styleFrom(
+                  //       backgroundColor: Color(0xff159deb),
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
             ),
@@ -316,10 +328,20 @@ class _toolState extends State<ToolWidget> with RouteAware {
     try {
       String barcodeValue = (await BarcodeScanner.scan()).rawContent;
 
-      Inventory? inv = await Database.getInventory(idToken, barcodeValue, context);
+      // remove first and last digit of barcode
+      barcodeValue = barcodeValue.substring(1, barcodeValue.length - 1);
+
+      Inventory? inv =
+          await Database.getInventory(idToken, barcodeValue, context);
 
       if (inv != null) {
-        _showBarcodeModal(context, inv);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                BarcodeResultPage(barcodeValue: barcodeValue, inventory: inv),
+          ),
+        );
       }
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.cameraAccessDenied) {
@@ -334,14 +356,59 @@ class _toolState extends State<ToolWidget> with RouteAware {
     }
   }
 
-  // Function to show a modal
-  void _showBarcodeModal(BuildContext context, Inventory inv) {
+  void _showManualEntryDialog(BuildContext context) {
+    TextEditingController barcodeController = TextEditingController();
+
     showDialog(
-      context: context, //tells flutter the context, or where we are in the app
+      context: context,
       builder: (BuildContext context) {
-        // return object of type Dialog
-        return ToolModal(inventory: inv);
+        return AlertDialog(
+          title: Text('Manual Barcode Entry'),
+          content: TextField(
+            controller: barcodeController,
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(labelText: 'Enter Barcode ID'),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                String enteredBarcode = barcodeController.text.trim();
+                if (enteredBarcode.isNotEmpty) {
+                  _handleManualBarcodeEntry(context, enteredBarcode);
+                } else {
+                  print("This is not a valid barcode ID");
+                }
+              },
+              child: Text('Submit'),
+            ),
+          ],
+        );
       },
     );
+  }
+
+  Future _handleManualBarcodeEntry(
+      BuildContext context, String enteredBarcode) async {
+    String barcodeValue = enteredBarcode;
+    Inventory? inv =
+        await Database.getInventory(idToken, barcodeValue, context);
+
+    if (inv != null) {
+      Navigator.of(context).pop(); // Close the dialog
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              BarcodeResultPage(barcodeValue: barcodeValue, inventory: inv),
+        ),
+      );
+    }
   }
 }
