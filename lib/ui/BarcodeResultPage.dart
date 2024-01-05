@@ -15,7 +15,7 @@ class BarcodeResultPage extends StatelessWidget {
         title: Center(
           child: Text(
             'Barcode Result',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800, color: Colors.black),
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800, color: Color.fromARGB(255, 255, 255, 255)),
           ),
         ),
         backgroundColor: Colors.blue,
