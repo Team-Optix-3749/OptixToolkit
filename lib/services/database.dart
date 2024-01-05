@@ -712,6 +712,41 @@ class Database {
 
     return inventory;
   }
+
+  static Future<Inventory?> modifyInventory(firebase.IdTokenResult idToken,
+      String barcodeId, String? newStatus, String? newLocation, BuildContext context) async {
+    var client = http.Client();
+
+    Map data = {
+      'endpoint': 'modify-inventory',
+      'auth': idToken.token,
+      'barcodeId': barcodeId,
+      'status': newStatus,
+      'location': newLocation
+    };
+
+    var body = json.encode(data);
+
+    var result = await client.post(Uri.parse(Constants.SERVER_URL),
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    if (result.statusCode != 200) {
+      Alert.showAlert(context, jsonDecode(result.body)['err']);
+      return null;
+    }
+
+    if (jsonDecode(result.body)['inventory'] == null) {
+      Alert.showAlert(context, "Inventoried tool does not exist!");
+      return null;
+    }
+
+    final parsed =
+        jsonDecode(result.body)['inventory'];
+
+    var inventory = Inventory.fromJson(parsed);
+
+    return inventory;
+  }
 }
 
 final Map<String, String> deliveryMap = {
@@ -831,21 +866,28 @@ class User {
 
 class Inventory {
   final String name;
-  final String? description;
+  final String description;
   final int count;
   final String barcodeId;
+  final String status;
+  final String location;
   Inventory(
       {required this.name,
       required this.count,
       required this.barcodeId,
-      required this.description});
+      required this.description,
+      required this.status,
+      required this.location
+      });
 
   factory Inventory.fromJson(Map<String, dynamic> json) {
     return Inventory(
         name: json['name'] as String,
         count: json['count'] as int,
         barcodeId: json['barcodeId'] as String,
-        description: json['description'] as String?);
+        description: json['description'] as String,
+        status: json['status'] as String,
+        location: json['location'] as String);
   }
 
   String toString() {
