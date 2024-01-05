@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
                 ),
                 navigatorKey: NavigationService.navigatorKey,
                 home: MainApp(),
+                debugShowCheckedModeBanner: false,
               ),
             );
           } else {
