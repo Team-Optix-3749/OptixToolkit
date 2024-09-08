@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:OptixToolkit/constants.dart' as Constants;
 
-import 'package:flutter/foundation.dart';
 
 class FailedRequestException implements Exception {}
 
@@ -595,9 +594,9 @@ class Database {
 
     for (var tool in list) {
       if (category_map.containsKey(tool.category)) {
-        category_map[tool.category as String]!.insert(0, tool);
+        category_map[tool.category]!.insert(0, tool);
       } else {
-        category_map[tool.category as String] = [tool];
+        category_map[tool.category] = [tool];
       }
     }
 
@@ -641,9 +640,9 @@ class Database {
 
     for (var tool in list) {
       if (category_map.containsKey(tool.category)) {
-        category_map[tool.category as String]!.insert(0, tool);
+        category_map[tool.category]!.insert(0, tool);
       } else {
-        category_map[tool.category as String] = [tool];
+        category_map[tool.category] = [tool];
       }
     }
 
@@ -919,7 +918,7 @@ class MeetingCount {
 
 void LogPrint(Object object) async {
   int defaultPrintLength = 1020;
-  if (object == null || object.toString().length <= defaultPrintLength) {
+  if (object.toString().length <= defaultPrintLength) {
     print(object);
   } else {
     String log = object.toString();

@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:OptixToolkit/services/database.dart';
-import 'package:OptixToolkit/ui/Loading.dart';
 import 'package:OptixToolkit/ui/tools/ToolLine.dart';
 
 class homePage extends StatelessWidget {
@@ -39,10 +38,8 @@ class homePage2 extends StatefulWidget {
 class _homePage2State extends State<homePage2> {
   @override
   Widget build(BuildContext context) {
-    var parts = Provider.of<List<Part>>(context);
     var toolsMap = Provider.of<Map<String, List<Tool>>>(context);
     var time = Provider.of<int>(context);
-    if (parts == null || toolsMap == null || time == null) return Loading();
 
     List<Tool> tools = [];
 

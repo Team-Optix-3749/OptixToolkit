@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:OptixToolkit/services/Good.dart';
 
@@ -29,7 +28,6 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   final Color gray = Color(0xff3A3D41);
   final Color subtleGray = Color(0xffcccccc);
   final Color divider = Color(0xff3a3d41);
-  bool _showPassword = false;
 
   @override
   void dispose() {

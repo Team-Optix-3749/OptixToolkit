@@ -8,7 +8,6 @@ import 'package:OptixToolkit/services/database.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Project imports:
-import 'package:OptixToolkit/services/database.dart';
 
 class PartModal extends StatelessWidget {
   final Part part;
