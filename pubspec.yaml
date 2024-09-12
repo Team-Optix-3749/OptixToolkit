@@ -17,6 +17,7 @@ dependencies:
   permission_handler:
 
   barcode_scan2: 
+  flutter_barcode_scanner: ^2.0.0
   loading_animations:
   firebase_auth:
   firebase_storage:

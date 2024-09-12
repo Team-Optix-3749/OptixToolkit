@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:barcode_scan2/barcode_scan2.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -23,100 +23,159 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
   // Step 3: Function to scan the barcode
   Future<void> _scanBarcode() async {
     try {
-      var scanResult = await BarcodeScanner.scan();
-      setState(() {
-        barcode = scanResult.rawContent;
-      });
+      var scanResult = await FlutterBarcodeScanner.scanBarcode(
+        '#ff6666',
+        'Cancel',
+        true,
+        ScanMode.BARCODE,
+      );
 
-      if (barcode.isNotEmpty) {
+      // Check if scan was cancelled (returns '-1')
+      if (scanResult != '-1' && scanResult.isNotEmpty) {
+        setState(() {
+          barcode = scanResult;
+        });
+
         await _postInventoryCheck();
+      } else {
+        _showSnackBar('Scan was cancelled or invalid');
       }
     } catch (e) {
       print(e);
+      _showSnackBar('Failed to scan barcode');
     }
   }
 
   // Step 4: POST inventory check
   Future<void> _postInventoryCheck() async {
-    var url = Uri.parse('https://toolkit.team3749.com/');
-    var response = await http.post(url,
+    var url = Uri.parse('http://localhost:4000/inventory-check');
+
+    try {
+      var response = await http.post(
+        url,
         body: jsonEncode({
           "endpoint": "post-inventory-check-tool",
-          "barcodeId": barcode
+          "barcodeId": barcode,
         }),
-        headers: {"Content-Type": "application/json"});
+        headers: {"Content-Type": "application/json"},
+      );
 
-    if (response.statusCode == 200) {
-      setState(() {
-        inventoryEntry = jsonDecode(response.body);
-      });
+      if (response.statusCode == 200) {
+        setState(() {
+          inventoryEntry = jsonDecode(response.body);
+        });
 
-      await _postInventoryDecreaseCount();
-      await _postToolReservation();
-    } else {
-      print('Failed to check inventory');
+        await _postInventoryDecreaseCount();
+        await _postToolReservation();
+      } else {
+        _showSnackBar('Failed to check inventory');
+      }
+    } catch (e) {
+      print(e);
+      _showSnackBar('Error checking inventory');
     }
   }
 
   // Step 5: POST inventory decrease count
   Future<void> _postInventoryDecreaseCount() async {
-    var url = Uri.parse('https://toolkit.team3749.com/');
-    await http.post(url,
+    var url = Uri.parse('http://localhost:4000/decrease-count');
+
+    try {
+      var response = await http.post(
+        url,
         body: jsonEncode({
           "endpoint": "post-inventory-decrease-count-by-name",
-          "name": inventoryEntry['name']
+          "name": inventoryEntry['name'],
         }),
-        headers: {"Content-Type": "application/json"});
+        headers: {"Content-Type": "application/json"},
+      );
+
+      if (response.statusCode != 200) {
+        _showSnackBar('Failed to decrease inventory count');
+      }
+    } catch (e) {
+      print(e);
+      _showSnackBar('Error decreasing inventory count');
+    }
   }
 
   // Step 6: POST tool reservation
   Future<void> _postToolReservation() async {
-    var url = Uri.parse('https://toolkit.team3749.com/');
-    await http.post(url,
+    var url = Uri.parse('http://localhost:4000/reserve-tool');
+
+    try {
+      var response = await http.post(
+        url,
         body: jsonEncode({
           "endpoint": "post-tool",
           "name": inventoryEntry['name'],
           "category": inventoryEntry['category'],
-          "reserverID": userID
+          "reserverID": userID,
         }),
-        headers: {"Content-Type": "application/json"});
+        headers: {"Content-Type": "application/json"},
+      );
+
+      if (response.statusCode != 200) {
+        _showSnackBar('Failed to reserve tool');
+      }
+    } catch (e) {
+      print(e);
+      _showSnackBar('Error reserving tool');
+    }
   }
 
   // Step 7: Fetch tools
   Future<void> _fetchTools() async {
-    var url = Uri.parse('https://toolkit.team3749.com/tools');
-    var response = await http.get(url);
+    var url = Uri.parse('http://localhost:4000/tools');
 
-    if (response.statusCode == 200) {
-      setState(() {
-        tools = jsonDecode(response.body);
-      });
-    } else {
-      print('Failed to fetch tools');
+    try {
+      var response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        setState(() {
+          tools = jsonDecode(response.body);
+        });
+      } else {
+        _showSnackBar('Failed to fetch tools');
+      }
+    } catch (e) {
+      print(e);
+      _showSnackBar('Error fetching tools');
     }
   }
 
   // Step 8: Check In function
   Future<void> _checkInTool(String toolName) async {
-    var deleteUrl =
-        Uri.parse('https://toolkit.team3749.com/tools/$userID/$toolName');
+    var deleteUrl = Uri.parse('http://localhost:4000/tools/$userID/$toolName');
 
-    var deleteResponse = await http.delete(deleteUrl);
+    try {
+      var deleteResponse = await http.delete(deleteUrl);
 
-    if (deleteResponse.statusCode == 200) {
-      var postUrl = Uri.parse('https://toolkit.team3749.com/');
-      await http.post(postUrl,
+      if (deleteResponse.statusCode == 200) {
+        var postUrl = Uri.parse('http://localhost:4000/increase-count');
+        await http.post(
+          postUrl,
           body: jsonEncode({
             "endpoint": "post-inventory-increase-count-by-name",
-            "name": toolName
+            "name": toolName,
           }),
-          headers: {"Content-Type": "application/json"});
+          headers: {"Content-Type": "application/json"},
+        );
 
-      // Refresh tool list
-      _fetchTools();
-    } else {
-      print('Failed to check in tool');
+        // Refresh tool list
+        await _fetchTools();
+      } else {
+        _showSnackBar('Failed to check in tool');
+      }
+    } catch (e) {
+      print(e);
+      _showSnackBar('Error checking in tool');
     }
+  }
+
+  // Function to show a SnackBar with a message
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override

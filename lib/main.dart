@@ -14,6 +14,8 @@ import 'package:OptixToolkit/ui/Loading.dart';
 import 'package:OptixToolkit/services/firebase.dart';
 import 'services/NavigationService.dart';
 
+import 'package:OptixToolkit/ui/BarcodeScanner.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -73,7 +75,7 @@ class MyApp extends StatelessWidget {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (Provider.of<firebase.User?>(context) == null) return FormPage();
+    if (Provider.of<firebase.User?>(context) == null) return BarcodeScannerPage();
     if (Provider.of<firebase.IdTokenResult?>(context) == null) return Loading();
     return MyStatefulWidget();
   }
