@@ -12,7 +12,8 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
   String barcode = '';
   Map<String, dynamic> inventoryEntry = {};
   List<dynamic> tools = [];
-  String userID = "yourUserID"; // Replace with actual user ID
+  String userID = "deltameters"; // Replace with actual user ID
+  String baseUrl = "https://optixtoolkit-backend-production-abcd.up.railway.app/"; // Replace this variable later with the actual base URL
 
   @override
   void initState() {
@@ -48,7 +49,7 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
 
   // Step 4: POST inventory check
   Future<void> _postInventoryCheck() async {
-    var url = Uri.parse('http://localhost:4000/inventory-check');
+    var url = Uri.parse('$baseUrl/inventory-check');
 
     try {
       var response = await http.post(
@@ -78,7 +79,7 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
 
   // Step 5: POST inventory decrease count
   Future<void> _postInventoryDecreaseCount() async {
-    var url = Uri.parse('http://localhost:4000/decrease-count');
+    var url = Uri.parse('$baseUrl/decrease-count');
 
     try {
       var response = await http.post(
@@ -101,7 +102,7 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
 
   // Step 6: POST tool reservation
   Future<void> _postToolReservation() async {
-    var url = Uri.parse('http://localhost:4000/reserve-tool');
+    var url = Uri.parse('$baseUrl/reserve-tool');
 
     try {
       var response = await http.post(
@@ -126,7 +127,7 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
 
   // Step 7: Fetch tools
   Future<void> _fetchTools() async {
-    var url = Uri.parse('http://localhost:4000/tools');
+    var url = Uri.parse('$baseUrl/tools');
 
     try {
       var response = await http.get(url);
@@ -146,13 +147,13 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
 
   // Step 8: Check In function
   Future<void> _checkInTool(String toolName) async {
-    var deleteUrl = Uri.parse('http://localhost:4000/tools/$userID/$toolName');
+    var deleteUrl = Uri.parse('$baseUrl/tools/$userID/$toolName');
 
     try {
       var deleteResponse = await http.delete(deleteUrl);
 
       if (deleteResponse.statusCode == 200) {
-        var postUrl = Uri.parse('http://localhost:4000/increase-count');
+        var postUrl = Uri.parse('$baseUrl/increase-count');
         await http.post(
           postUrl,
           body: jsonEncode({
