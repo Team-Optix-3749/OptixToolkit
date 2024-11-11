@@ -8,22 +8,22 @@ class ToolsPage extends StatefulWidget {
 }
 
 class _ToolsPageState extends State<ToolsPage> {
-  List<dynamic> tools = []; // List to hold the tools data
+  List<dynamic> tools = []; 
 
   @override
   void initState() {
     super.initState();
-    fetchTools(); // Fetch tools when the page loads
+    getTools(); 
   }
 
-  Future<void> fetchTools() async {
-    final url = Uri.parse('https://your-backend-url.com/tools');
+  Future<void> getTools() async {
+    final url = Uri.parse('https://optixtoolkit-backend-production-abcd.up.railway.app/tools/reserverID');
     try {
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
         setState(() {
-          tools = jsonDecode(response.body); // Update the list of tools
+          tools = jsonDecode(response.body);
         });
       } else {
         print('Failed to load tools: ${response.statusCode}');
@@ -34,13 +34,13 @@ class _ToolsPageState extends State<ToolsPage> {
   }
 
   Future<void> deleteTool(String toolId) async {
-    final url = Uri.parse('https://your-backend-url.com/tools/$toolId');
+    final url = Uri.parse('https://optixtoolkit-backend-production-abcd.up.railway.app/tools/reserverID/name');
     try {
       final response = await http.delete(url);
 
       if (response.statusCode == 200) {
         setState(() {
-          tools.removeWhere((tool) => tool['id'] == toolId); // Remove the tool from the list
+          tools.removeWhere((tool) => tool['id'] == toolId); 
         });
         print('Tool deleted successfully');
       } else {
@@ -58,7 +58,7 @@ class _ToolsPageState extends State<ToolsPage> {
         title: Text('Tools List'),
       ),
       body: tools.isEmpty
-          ? Center(child: CircularProgressIndicator()) // Show loading indicator while fetching
+          ? Center(child: CircularProgressIndicator()) 
           : ListView.builder(
               itemCount: tools.length,
               itemBuilder: (context, index) {
@@ -68,7 +68,7 @@ class _ToolsPageState extends State<ToolsPage> {
                   subtitle: Text('ID: ${tool['id']}'),
                   trailing: IconButton(
                     icon: Icon(Icons.delete, color: Colors.red),
-                    onPressed: () => deleteTool(tool['id']), // Call deleteTool with the tool's ID
+                    onPressed: () => deleteTool(tool['id']), 
                   ),
                 );
               },
