@@ -118,7 +118,7 @@ class _hoursPageState extends State<hoursPageLoaded> {
 
     final ButtonStyle buttonStyle = ElevatedButton.styleFrom(
       textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-      primary: Colors.blue,
+      backgroundColor: Colors.blue,
       minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 60.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12), // <-- Radius

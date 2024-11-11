@@ -63,7 +63,7 @@ class BarcodeResultPage extends StatelessWidget {
                     child: Text('Change',
                         style: TextStyle(color: Colors.white)),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blue, // Set the button color to blue
+                      backgroundColor: Colors.blue, // Set the button color to blue
                     ),
                   ),
                 ],
@@ -84,7 +84,7 @@ class BarcodeResultPage extends StatelessWidget {
                     child: Text('Change',
                         style: TextStyle(color: Colors.white)),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blue, // Set the button color to blue
+                      backgroundColor: Colors.blue, // Set the button color to blue
                     ),
                   ),
                 ],
