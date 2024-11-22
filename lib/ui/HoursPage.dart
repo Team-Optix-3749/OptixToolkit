@@ -1,5 +1,4 @@
 import 'package:OptixToolkit/services/GoodPop.dart';
-import 'package:OptixToolkit/ui/Loading.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,8 +50,7 @@ class _hoursPageState extends State<hoursPageLoaded> {
         Provider.of<firebase.IdTokenResult>(context, listen: false), context);
 
     if (curMeetingCountProv == null ||
-        curLastCheckInProv == null ||
-        curTime == null) {
+        curLastCheckInProv == null) {
       return;
     }
 
@@ -77,9 +75,6 @@ class _hoursPageState extends State<hoursPageLoaded> {
       var timeProv = Provider.of<int>(context);
       var lastCheckInProv = Provider.of<LastCheckInTime>(context);
       var meetingCountProv = Provider.of<MeetingCount>(context);
-      if (timeProv == null ||
-          lastCheckInProv == null ||
-          meetingCountProv == null) return Loading();
 
       time = timeProv;
       lastCheckIn = lastCheckInProv.getValue();
@@ -117,8 +112,7 @@ class _hoursPageState extends State<hoursPageLoaded> {
     };
 
     final ButtonStyle buttonStyle = ElevatedButton.styleFrom(
-      textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-      primary: Colors.blue,
+      textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold), backgroundColor: Colors.blue,
       minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 60.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12), // <-- Radius

@@ -46,13 +46,10 @@ class ToolReserveItem extends StatelessWidget {
       switch (status) {
         case "notInUse":
           return "Tool is Broken";
-          break;
         case "outOfService":
           return "Tool is Working";
-          break;
         default:
           return "Tool is in Use";
-          break;
       }
     }
 

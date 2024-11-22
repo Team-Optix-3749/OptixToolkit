@@ -5,7 +5,7 @@ description: An app to track and manage tools and robot parts.
 # pub.dev using `pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+2
+version: 5.0.0+5
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -17,6 +17,7 @@ dependencies:
   permission_handler:
 
   barcode_scan2: 
+  flutter_barcode_scanner: ^2.0.0
   loading_animations:
   firebase_auth:
   firebase_storage:
@@ -30,6 +31,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons:
+  firebase_core: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

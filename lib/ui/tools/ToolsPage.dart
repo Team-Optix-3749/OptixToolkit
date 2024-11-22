@@ -121,7 +121,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
       } else {
         print('Unknown Error: $e');
       }
-    } on FormatException catch (e) {
+    } on FormatException {
       print('User pressed back button before scanning');
     } catch (e) {
       print('Unknown Error: $e');
@@ -145,7 +145,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
       } else {
         print('Unknown Error: $e');
       }
-    } on FormatException catch (e) {
+    } on FormatException {
       print('User pressed back button before scanning');
     } catch (e) {
       print('Unknown Error: $e');
@@ -349,7 +349,7 @@ class _toolState extends State<ToolWidget> with RouteAware {
       } else {
         print('Unknown Error: $e');
       }
-    } on FormatException catch (e) {
+    } on FormatException {
       print('User pressed back button before scanning');
     } catch (e) {
       print('Unknown Error: $e');

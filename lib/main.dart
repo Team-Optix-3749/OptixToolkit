@@ -14,6 +14,8 @@ import 'package:OptixToolkit/ui/Loading.dart';
 import 'package:OptixToolkit/services/firebase.dart';
 import 'services/NavigationService.dart';
 
+import 'package:OptixToolkit/ui/BarcodeScanner.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
