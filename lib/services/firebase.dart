@@ -11,12 +11,33 @@ class Auth {
   static bool isInProcess = false;
   static firebase.FirebaseAuth _auth = firebase.FirebaseAuth.instance;
 
-  static Future signIn(
+  static Future<void> signUp(
       String email, String password, BuildContext context) async {
     if (isInProcess) return;
     isInProcess = true;
-    //do login
     try {
+      // Create a new user
+      await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      // Show a success message
+      Alert.showAlert(context, "Account created successfully!");
+      Navigator.pop(context); // Navigate back to the login page
+    } on firebase.FirebaseAuthException catch (e) {
+      // Handle authentication errors
+      Alert.showAlert(context, e.message ?? "Unknown authentication error");
+    } finally {
+      isInProcess = false;
+    }
+  }
+
+  static Future<void> signIn(
+      String email, String password, BuildContext context) async {
+    if (isInProcess) return;
+    isInProcess = true;
+    try {
+      // Log in the user
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on firebase.FirebaseAuthException catch (e) {
       Alert.showAlert(context, e.message ?? "Unknown authentication error");
@@ -24,7 +45,7 @@ class Auth {
     isInProcess = false;
   }
 
-  static Future signOut() async {
+  static Future<void> signOut() async {
     await _auth.signOut();
   }
 
@@ -37,8 +58,7 @@ class Auth {
     try {
       await _auth.sendPasswordResetEmail(email: email);
     } on firebase.FirebaseAuthException catch (e) {
-      Alert.showAlert(context, e.message ?? "Unknown Authentication error");
-      print(e);
+      Alert.showAlert(context, e.message ?? "Unknown authentication error");
     }
   }
 

@@ -1,36 +1,35 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:OptixToolkit/ui/ForgetPassword.dart';
-import 'package:OptixToolkit/ui/CreateAccount.dart';
 import 'package:OptixToolkit/services/NavigationService.dart';
 import 'package:OptixToolkit/services/firebase.dart';
 
-class FormPage extends StatefulWidget {
-  FormPage({Key? key}) : super(key: key);
+class CreateAccount extends StatefulWidget {
+  CreateAccount({Key? key}) : super(key: key);
 
   @override
-  _FormPageState createState() => _FormPageState();
+  _CreateAccountState createState() => _CreateAccountState();
 }
 
-class _FormPageState extends State<FormPage> {
+class _CreateAccountState extends State<CreateAccount> {
   final _formKey = GlobalKey<FormState>();
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   final Color background = const Color(0xff26292c);
   final Color blue = const Color(0xff159deb);
   final Color white = const Color(0xffffffff);
   final Color gray = const Color(0xff3A3D41);
   final Color subtleGray = const Color(0xffcccccc);
-  final Color divider = const Color(0xff3a3d41);
   bool _showPassword = false;
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -41,7 +40,7 @@ class _FormPageState extends State<FormPage> {
       appBar: AppBar(
         title: Center(
           child: Text(
-            "LOGIN",
+            "CREATE ACCOUNT",
             style: GoogleFonts.rubik(fontWeight: FontWeight.bold),
           ),
         ),
@@ -86,6 +85,9 @@ class _FormPageState extends State<FormPage> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password.';
                         }
+                        if (value.length < 6) {
+                          return 'Password must be at least 6 characters long.';
+                        }
                         return null;
                       },
                       controller: passwordController,
@@ -94,7 +96,7 @@ class _FormPageState extends State<FormPage> {
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         filled: true,
-                        prefixIcon: const Icon(Icons.security),
+                        prefixIcon: const Icon(Icons.lock),
                         suffixIcon: IconButton(
                           icon: Icon(
                             Icons.remove_red_eye,
@@ -113,17 +115,33 @@ class _FormPageState extends State<FormPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 10),
                   Container(
                     width: 300,
-                    child: Divider(
-                      color: divider,
-                      height: 20,
-                      thickness: 2,
-                      endIndent: 0,
+                    child: TextFormField(
+                      validator: (value) {
+                        if (value != passwordController.text) {
+                          return 'Passwords do not match.';
+                        }
+                        return null;
+                      },
+                      controller: confirmPasswordController,
+                      obscureText: !_showPassword,
+                      style: GoogleFonts.rubik(color: Colors.white),
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        filled: true,
+                        prefixIcon: const Icon(Icons.lock),
+                        fillColor: gray,
+                        hintText: 'Confirm Password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(9.0),
+                        ),
+                        hintStyle: GoogleFonts.rubik(color: subtleGray),
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 20),
                   ButtonTheme(
                     minWidth: 300,
                     height: 50,
@@ -134,7 +152,7 @@ class _FormPageState extends State<FormPage> {
                       onPressed: () {
                         if (_formKey.currentState != null &&
                             _formKey.currentState!.validate()) {
-                          Auth.signIn(
+                          Auth.signUp(
                             emailController.text,
                             passwordController.text,
                             context,
@@ -142,7 +160,7 @@ class _FormPageState extends State<FormPage> {
                         }
                       },
                       child: Text(
-                        'LOG IN',
+                        'CREATE ACCOUNT',
                         style: GoogleFonts.rubik(
                           fontWeight: FontWeight.bold,
                           color: white,
@@ -154,46 +172,23 @@ class _FormPageState extends State<FormPage> {
                   const SizedBox(height: 20),
                   RichText(
                     text: TextSpan(
-                      text: 'Forgot Password?',
-                      style: GoogleFonts.rubik(color: blue, fontSize: 15),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          NavigationService.goTo(
-                            PageRouteBuilder(
-                              pageBuilder: (context, animation1, animation2) =>
-                                  ForgetPassword(),
-                            ),
-                          );
-                        },
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  RichText(
-                    text: TextSpan(
-                      text: 'New to Toolkit? ',
+                      text: 'Already have an account? ',
                       style: GoogleFonts.rubik(color: subtleGray, fontSize: 15),
                       children: [
                         TextSpan(
-                          text: 'Create account.',
+                          text: 'Log in.',
                           style: GoogleFonts.rubik(
                             color: blue,
                             fontWeight: FontWeight.bold,
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              NavigationService.goTo(
-                                PageRouteBuilder(
-                                  pageBuilder:
-                                      (context, animation1, animation2) =>
-                                          CreateAccount(),
-                                ),
-                              );
+                              Navigator.pop(context);
                             },
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 5),
                 ],
               ),
             ),

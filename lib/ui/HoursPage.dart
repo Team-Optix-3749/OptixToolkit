@@ -20,7 +20,9 @@ class hoursPage extends StatelessWidget {
               Provider.of<firebase.IdTokenResult?>(context), context), initialData: null),
       FutureProvider<MeetingCount?>.value(
           value: Database.getMeetingCount(
-              Provider.of<firebase.IdTokenResult?>(context), context), initialData: null)
+              Provider.of<firebase.IdTokenResult?>(context), context),
+              initialData: null,
+)
     ], child: hoursPageLoaded());
   }
 }
@@ -73,12 +75,12 @@ class _hoursPageState extends State<hoursPageLoaded> {
 
     if (time == null || lastCheckIn == null || meetingCount == null) {
       var timeProv = Provider.of<int>(context);
-      var lastCheckInProv = Provider.of<LastCheckInTime>(context);
-      var meetingCountProv = Provider.of<MeetingCount>(context);
+      var lastCheckInProv = Provider.of<LastCheckInTime?>(context);
+      var meetingCountProv = Provider.of<MeetingCount?>(context);
 
       time = timeProv;
-      lastCheckIn = lastCheckInProv.getValue();
-      meetingCount = meetingCountProv.getValue();
+      lastCheckIn = lastCheckInProv?.getValue();
+      meetingCount = meetingCountProv?.getValue() ?? 0; // Default to 0 if null
     }
 
     final Color formBackground = Color(0xff3A3D41);
