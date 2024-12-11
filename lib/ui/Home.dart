@@ -2,6 +2,7 @@
 import 'dart:async';
 
 // Flutter imports:
+import 'package:OptixToolkit/ui/BarcodeScanner.dart';
 import 'package:OptixToolkit/ui/HoursPage.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:OptixToolkit/Icons.dart';
 import 'package:OptixToolkit/ui/HomePage.dart';
 import 'package:OptixToolkit/ui/ProfilePage.dart';
-import 'package:OptixToolkit/ui/tools/ToolsPage.dart';
+// import 'package:OptixToolkit/ui/tools/ToolsPage.dart';
 import 'package:OptixToolkit/services/firebase.dart';
 import 'package:OptixToolkit/ui/parts/PartReimburse.dart';
 
@@ -58,7 +59,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     List<Widget> _widgetOptions = <Widget>[
       homePage(changePage: changePage),
       hoursPage(),
-      toolsPage(uid: '',),
+      ToolReservationPage(),
       PartReimburse(),
       profilePage(key: null,),
       Container(
